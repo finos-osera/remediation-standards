@@ -1,4 +1,4 @@
 ---
 layout: index
-title: OSERA Patching Standards
+title: OSERA Remediation Standards
 ---

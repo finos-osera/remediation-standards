@@ -1,5 +1,6 @@
-# Participants enrolled in the {standard name} project
-Below is the list of [participants](governance-documents/5._Governance.md#1roles) in the {standard_name}, who have committed to the [Community Specification Contributor License Agreement](governance-documents/0._CS_Contributor_License_Agreement.md).
+# Participants enrolled in the OSERA Remediation Standards project
+
+Below is the list of [participants](governance-documents/5._Governance.md#1roles) in the OSERA Remediation Standards project, who have committed to the [Community Specification Contributor License Agreement](governance-documents/0._CS_Contributor_License_Agreement.md).
 
 ## Participants
 - Name, organization, Date of enrollment: MMM/DD/YYYY
@@ -16,7 +17,7 @@ Below is the list of [participants](governance-documents/5._Governance.md#1roles
 
 
 ## How to enroll as a participant
-In order to enroll as a participant in the {standard name} project, please submit a Pull Request to this [participants](#participants) file listing your name, organization, and date of enrollment, by following the steps described below. 
+In order to enroll as a participant in the OSERA Remediation Standards project, please submit a Pull Request to this [participants](#participants) file listing your name, organization, and date of enrollment, by following the steps described below. 
 
 _:question:Please email help@finos.org if you encounter issues or have questions._
 

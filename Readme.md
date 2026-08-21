@@ -1,4 +1,4 @@
-# OSERA Patching Standards
+# OSERA Remediation Standards
 
 [![badge-labs](docs/assets/finos-labs-badge.svg)](https://community.finos.org/docs/governance/lifecycle-stages/labs)
 
@@ -40,3 +40,13 @@ This material is provisional and in active evaluation status. It is intended to 
 ## Governance
 
 This repository keeps the Community Specification governance scaffold in [`governance-documents/`](governance-documents/). The site currently treats the standards as provisional evaluation material and points contributors toward that process.
+
+## Getting involved
+
+Join and subscribe to the working group mailing list by emailing [osera-remediations-wg+subscribe@lists.finos.org](mailto:osera-remediations-wg+subscribe@lists.finos.org).
+
+Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
+
+## License
+
+This project uses the **Community Specification License 1.0**; you can read more in the [LICENSE](LICENSE) file.
