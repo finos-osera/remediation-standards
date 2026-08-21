@@ -6,6 +6,8 @@ This file lists the maintainers of this repository.
 
 | GitHub Username | Name | Organization | Email (Optional) |
 |----------------|------|--------------|-------|
+| @dovops | Dov Katz | Morgan Stanley | |
+| @d1gital-f | Francesco Beltramini | ControlPlane | |
 
 For information about maintainer responsibilities and resources, see the [FINOS Maintainers Cheatsheet](https://community.finos.org/docs/finos-maintainers-cheatsheet).
 
