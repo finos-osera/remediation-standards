@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         # OSERA Remediation Standards Meeting
-        [OSERA Remediation Standards overview, roadmap and background](https://github.com/finos/remediation-standards)
   - type: input
     id: date
     attributes:
@@ -83,9 +82,6 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### WebEx info
-        - [WebEx Meeting URL](https://finos.webex.com/finos/j.php?MTID=mf27815a7807f13f1d0974a973196cb4c)
-        - Meeting Number: 127 819 0322
-        - Join by phone: +1.415.655.0003 USA Toll | +44-20319-88141 UK Toll | Access code: 127 819 0322
-        - Password: VXcd2eQgh82
-        - [Global call-in numbers](https://finos.webex.com/finos/globalcallin.php?serviceType=MC&ED=582460637&tollFree=0)
+        ### Zoom info
+        - [Zoom Meeting URL]({zoom-meeting-link})
+  
