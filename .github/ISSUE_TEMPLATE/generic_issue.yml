@@ -1,0 +1,10 @@
+name: Generic template
+description: If you need to raise any other issue
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: Issue
+      description: Add the issue content here.
+    validations:
+      required: true
