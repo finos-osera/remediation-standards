@@ -61,11 +61,26 @@ layout: default
         <h2>Standards catalog</h2>
         <p>Numbered requirements and examples, modeled on the SDLC Controls Framework catalog style and adapted for patch production and consumption.</p>
       </div>
-      <div class="search-box">
-        <label for="catalogueSearch">Search</label>
-        <input id="catalogueSearch" type="search" placeholder="Search standards, evidence, feeds">
+      <div class="catalogue-controls" aria-label="Catalog filters">
+        <div class="search-box">
+          <label for="catalogueSearch">Search</label>
+          <input id="catalogueSearch" type="search" placeholder="Search standards">
+        </div>
+        <div class="filter-box">
+          <label for="packFilter">Pack</label>
+          <select id="packFilter">
+            <option value="">All packs</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+          </select>
+        </div>
       </div>
     </div>
+    <p class="catalogue-note">Standard lifecycle status and standards-pack membership are tracked separately. Ratifying a pack records the exact standard versions included in that pack; it does not rewrite every future draft into the pack.</p>
     {% include catalogue.html %}
   </div>
 </section>

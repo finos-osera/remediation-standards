@@ -1,15 +1,19 @@
 <div class="catalogue" id="catalogue">
   {% assign standards = site.standards | sort: "sequence" %}
   {% for standard in standards %}
-    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase }}" data-type="{{ standard.type }}">
+    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase }}" data-type="{{ standard.type }}" data-status="{{ standard.doc-status }}" data-pack="{{ standard.candidate-pack }}">
       <span class="row-id">{{ standard.standard_id }}</span>
       <span class="row-main">
         <strong>{{ standard.title }}</strong>
         <small>{{ standard.summary }}</small>
-        <small class="row-version">Version {{ standard.standard-version }} &middot; {{ standard.candidate-pack }} &middot; {{ standard.ratified-date }}</small>
+        <small class="row-version">v{{ standard.standard-version }} &middot; {{ standard.fitness-role }}</small>
       </span>
       <span class="row-category">{{ site.standard_classification[standard.type] }}</span>
-      <span class="row-status">{{ standard.doc-status }}</span>
+      <span class="row-badges">
+        <span class="row-status">{{ standard.doc-status }}</span>
+        <span class="row-pack">{{ standard.candidate-pack }}</span>
+        <span class="row-ratified">{{ standard.ratified-date }}</span>
+      </span>
     </a>
   {% endfor %}
 </div>

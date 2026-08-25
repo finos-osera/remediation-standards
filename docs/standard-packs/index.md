@@ -5,6 +5,10 @@ permalink: /standard-packs/
 
 Standard packs collect individually versioned remediation standards into a release candidate or ratified set. A pack version is the thing an implementer targets; each included standard keeps its own version so the working group can revise one standard and include the revision in a later pack.
 
+Standard lifecycle status and standards-pack membership are separate. Ratifying `OSERA-SP-0.1` should record the exact standard versions included in that pack and set their pack relationship to ratified for that release set. It should not erase later draft work or imply that every future revision of those standards is automatically part of `OSERA-SP-0.1`.
+
+In the catalog, the primary pill shows the standard lifecycle status. The pack pill shows whether that version is a candidate, deferred item, or eventually ratified member of a standards pack.
+
 ## Release history
 
 <table>
