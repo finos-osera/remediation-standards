@@ -25,6 +25,7 @@ Standard packs collect individually versioned remediation standards into a relea
 | Target decision date | {{ pack.target_decision_date }} |
 | Ratified date | {{ pack.ratified_date }} |
 | GitHub issue | [Issue #12]({{ pack.issue }}) |
+| Agenda issue | [Issue #13]({{ pack.agenda_issue }}) |
 | Proposal branch | `{{ pack.branch }}` |
 
 ### Observed evidence

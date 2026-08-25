@@ -5,6 +5,7 @@
   target_decision_date: 2026-09-20
   ratified_date: Not ratified
   issue: https://github.com/finos-osera/remediation-standards/issues/12
+  agenda_issue: https://github.com/finos-osera/remediation-standards/issues/13
   branch: codex/issue-12-v0.1-standards-proposal
   summary: Initial candidate pack for producing, publishing, and consuming OSERA backpatches without over-specifying immature implementation details.
   evidence_summary:
