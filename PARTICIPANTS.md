@@ -4,7 +4,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 
 ## Participants
 - Name, organization, Date of enrollment: MMM/DD/YYYY
-- 
+- Dov Katz, Morgan Stanley, Date of enrollment: Aug/25/2026
 -
 -  
 - 
