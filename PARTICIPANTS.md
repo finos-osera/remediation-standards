@@ -3,18 +3,11 @@
 Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediation Standards project, who have committed to the [Community Specification Contributor License Agreement](governance-documents/CS_Contributor_License_Agreement.md).
 
 ## Participants
-- Name, organization, Date of enrollment: MMM/DD/YYYY
 - Dov Katz, Morgan Stanley, Date of enrollment: Aug/25/2026
--
--  
-- 
-- 
-- 
--  
-- 
-- 
-- 
-
+- Francesco Beltramini, ControlPlane, Aug/25/2026
+- Fabian Kammel, ControlPlane, Aug/25/2026
+- Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
+- <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
 In order to enroll as a participant in the OSERA Remediation Standards project, please submit a Pull Request to this [participants](PARTICIPANTS.md) file listing your name, organization, and date of enrollment, by following the steps described below. 
