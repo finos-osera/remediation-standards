@@ -3,8 +3,8 @@
 Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediation Standards project, who have committed to the [Community Specification Contributor License Agreement](governance-documents/CS_Contributor_License_Agreement.md).
 
 ## Participants
-- Name, organization, Date of enrollment: MM/DD/YYYY
-- Dov Katz, Morgan Stanley, Date of enrollment: 08/25/2026
+- Name, organization, Date of enrollment: MMM/DD/YYYY
+- Dov Katz, Morgan Stanley, Date of enrollment: Aug/25/2026
 -
 -  
 - 
