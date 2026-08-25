@@ -27,6 +27,13 @@ The result SHOULD identify the standards-pack version, each standard version tes
 | FEED-001 | OpenVEX and CycloneDX feed data can identify vulnerability, patched artifact, release, baseline, and provenance. |
 | EVD-001 | Recipient guidance describes what changed and what surface area should be tested. |
 
+## Deferred checks
+
+| Standard | Deferred check |
+| --- | --- |
+| FORK-004 | Repository is fully public, publicly fetchable, and contains the applicable upstream open-source license files and notices. |
+| APP-001 | Feed and metadata support estate-wide automated discovery and application. |
+
 ## Output shape
 
 ```json

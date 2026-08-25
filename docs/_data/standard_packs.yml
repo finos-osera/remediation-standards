@@ -59,6 +59,9 @@
       role: Advisory evidence
       rationale: Recipient guidance is valuable, but v0.1 should not yet require a detailed schema before implementers prove it.
   deferred_standards:
+    - id: FORK-004
+      version: 0.0.1
+      rationale: Public source and license availability are important to recipient trust, but the exact rule needs discussion around embargoes, platform access, and multi-license projects before becoming a v0.1 gate.
     - id: APP-001
       version: 0.0.1
       rationale: Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for a first acceptance gate.
@@ -67,4 +70,5 @@
     - Whether the working group should require provider self-attestation for every published backpatch.
     - Which evidence fields should become machine-readable in v0.2.
     - What exception process should exist for repositories that cannot preserve GitHub fork relationships or upstream tag conventions.
+    - Whether public repository access and upstream license-file preservation should become required for v0.1 or remain deferred to v0.2.
     - Which checks are publish-time gates and which are advisory warnings.
