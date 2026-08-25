@@ -1,7 +1,7 @@
 <div class="catalogue" id="catalogue">
   {% assign standards = site.standards | sort: "sequence" %}
   {% for standard in standards %}
-    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase }}" data-type="{{ standard.type }}" data-status="{{ standard.doc-status }}" data-pack="{{ standard.candidate-pack }}">
+    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase }}" data-type="{{ standard.type }}" data-category="{{ site.standard_classification[standard.type] }}" data-status="{{ standard.doc-status }}" data-pack="{{ standard.candidate-pack }}">
       <span class="row-id">{{ standard.standard_id }}</span>
       <span class="row-main">
         <strong>{{ standard.title }}</strong>

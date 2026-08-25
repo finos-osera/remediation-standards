@@ -212,9 +212,9 @@ code {
 .section-heading p { max-width: 720px; margin: 10px 0 0; }
 .catalogue-controls {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) 160px 150px;
+  grid-template-columns: minmax(230px, 1fr) 160px 180px 150px;
   gap: 12px;
-  min-width: 560px;
+  min-width: 740px;
 }
 .search-box label, .filter-box label {
   display: block;
