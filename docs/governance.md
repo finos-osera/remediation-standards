@@ -21,6 +21,8 @@ Each standard carries its own version. A standards pack records the exact standa
 
 This lets the working group revise one standard without implying that every other standard changed. For example, `REL-003` could move from `0.1.0` to `0.2.0` and then be included in a later standards pack while `FORK-001` remains unchanged.
 
+The proposed [standard lifecycle]({{ site.baseurl }}/lifecycle/) defines when to reuse an existing identifier, when to create a new identifier, and when to create a standards pack.
+
 ## Alignment and certification
 
 The v0.1 proposal should use alignment language, not certification language.

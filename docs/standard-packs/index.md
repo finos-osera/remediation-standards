@@ -9,6 +9,8 @@ Standard lifecycle status and standards-pack membership are separate. Ratifying 
 
 In the catalog, the primary pill shows the standard lifecycle status. The pack pill shows whether that version is a candidate, deferred item, or eventually ratified member of a standards pack.
 
+See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on standard identifiers, versions, ratification, and pack creation.
+
 ## Release history
 
 <table>
