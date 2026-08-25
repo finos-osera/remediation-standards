@@ -10,8 +10,8 @@
   summary: Initial candidate pack for producing, publishing, and consuming OSERA backpatches without over-specifying immature implementation details.
   evidence_summary:
     - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
-    - 59 baseline tags observed in the form v<VERSION>+backpatch.baseline across 59 repositories.
-    - 61 release tags observed in the form v<VERSION>+backpatch.NNN across 55 repositories.
+    - 59 baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.
+    - 61 release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.
     - Five repositories had no release tag at the time of scan; one of those had no tags.
   included_standards:
     - id: FORK-001

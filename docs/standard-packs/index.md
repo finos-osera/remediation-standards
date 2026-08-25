@@ -7,11 +7,28 @@ Standard packs collect individually versioned remediation standards into a relea
 
 ## Release history
 
-| Pack | Status | Proposed | Target decision | Ratified |
-| --- | --- | --- | --- | --- |
-{% for pack in site.data.standard_packs %}
-| [{{ pack.id }}](#{{ pack.id | slugify }}) | {{ pack.status }} | {{ pack.proposed_date }} | {{ pack.target_decision_date }} | {{ pack.ratified_date }} |
-{% endfor %}
+<table>
+  <thead>
+    <tr>
+      <th>Pack</th>
+      <th>Status</th>
+      <th>Proposed</th>
+      <th>Target decision</th>
+      <th>Ratified</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pack in site.data.standard_packs %}
+    <tr>
+      <td><a href="#{{ pack.id | slugify }}">{{ pack.id }}</a></td>
+      <td>{{ pack.status }}</td>
+      <td>{{ pack.proposed_date }}</td>
+      <td>{{ pack.target_decision_date }}</td>
+      <td>{{ pack.ratified_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% for pack in site.data.standard_packs %}
 <h2 id="{{ pack.id | slugify }}">{{ pack.id }}: {{ pack.title }}</h2>
