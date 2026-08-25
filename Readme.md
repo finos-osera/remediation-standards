@@ -2,11 +2,17 @@
 
 [![badge-labs](docs/assets/finos-labs-badge.svg)](https://community.finos.org/docs/governance/lifecycle-stages/labs)
 
-This repository contains a provisional evaluation standards site for FINOS OSERA patch production and consumption.
+# What OSERA Remediation Standards are
 
-The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Controls Framework](https://github.com/finos-labs/SDLC-Controls-Framework), but focuses on OSERA backpatches: fork management, source provenance, release compatibility, OpenVEX and CycloneDX feeds, and the recipient evidence enterprises need to decide what changed and what to test.
+This repository contains the vulnerability remediation standards used for FINOS OSERA patch production and consumption. It is intended to help OSERA members, patch providers, and enterprise recipients converge on an open, bank-consumable format before formal ratification. 
 
-## Site
+The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Controls Framework](https://github.com/finos-labs/SDLC-Controls-Framework), but focuses on OSERA backpatches: fork management, source provenance, release compatibility, OpenVEX and CycloneDX feeds, and the recipient evidence enterprises need to decide what changed and what to test. 
+
+## Status
+
+The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026. A draft proposal is available at (https://standards.osera.finos.org).
+
+## Documentation
 
 The standards site lives in [`docs/`](docs/) and is designed for GitHub Pages/Jekyll.
 
@@ -33,20 +39,17 @@ The initial content is aligned with:
 * Jonathan Schneider / Moderne OSERA backpatching work summarized in the July 7, 2026 OSERA update deck;
 * the group discussion about publishing patch-provider evidence such as "what changed" and "what surface area should recipients test".
 
-## Status
-
-This material is provisional and in active evaluation status. It is intended to help OSERA members, patch providers, and enterprise recipients converge on an open, bank-consumable format before formal ratification. It has not been published as a formal FINOS standard.
-
 ## Governance
 
-This repository keeps the Community Specification governance scaffold in [`governance-documents/`](governance-documents/). The site currently treats the standards as provisional evaluation material and points contributors toward that process.
+This repository follows the Community Specification process. See [`GOVERNANCE.md`](GOVERNANCE.md), [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SCOPE.md`](SCOPE.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), and remaining templates in [`governance-documents/`](governance-documents/).
 
 ## Getting involved
-
 Join and subscribe to the working group mailing list by emailing [osera-remediations-wg+subscribe@lists.finos.org](mailto:osera-remediations-wg+subscribe@lists.finos.org).
 
 Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
 
+To become a voting participant, please follow the enrollment process described at [PARTICIPANTS.MD](PARTICIPANTS.MD). To become a maintainer please see [GOVERNANCE.md](GOVERNANCE.md).
+
 ## License
 
-This project uses the **Community Specification License 1.0**; you can read more in the [LICENSE](LICENSE) file.
+This project uses the **Community Specification License 1.0** for its specifications and **Apache License v2** for the underlying source code; you can read more in the [LICENSE](LICENSE) file.

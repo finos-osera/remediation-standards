@@ -2,14 +2,13 @@
 
 By making a Contribution to this repository, I agree to the terms of the following documents located at [https://github.com/finos/standards-project-blueprint](https://github.com/finos/standards-project-blueprint):
 
-(a) Community Specification License 1.0 (.0_Community_Specification_License-v1.md)
+(a) Community Specification License 1.0 ([LICENSES/SPECIFICATION-LICENSE](../LICENSES/SPECIFICATION-LICENSE))
 
-(b) Community Specification Governance Policy 1.0 (5._Governance.md)
+(b) Community Specification Governance Policy 1.0 ([GOVERNANCE.md](../GOVERNANCE.md))
 
-(c) Community Specification Contribution Policy 1.0 (6._Contributing.md)
+(c) Community Specification Contribution Policy 1.0 ([CONTRIBUTING.md](../CONTRIBUTING.md))
 
-(d) Community Specification Code of Conduct (8._Code_of_Conduct.md)
-
+(d) Community Specification Code of Conduct ([CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md))
 
 In addition, for source code contributions, I certify that:
 

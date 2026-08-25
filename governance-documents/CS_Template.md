@@ -58,7 +58,7 @@ This second/third/… edition cancels and replaces the first/second/… edition 
 The main changes compared to the previous edition are as follows:
 —	xxx xxxxxxx xxx xxxx
 
-Known patent licensing exclusions are available in the specification’s repository’s Notices.md file.
+Known patent licensing exclusions are available in the specification’s repository’s [NOTICES.md](../NOTICES.md) file.
 
 Any feedback or questions on this document should be directed to specifications repository, located at _________________.
 
