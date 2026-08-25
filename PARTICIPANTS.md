@@ -3,10 +3,9 @@
 Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediation Standards project, who have committed to the [Community Specification Contributor License Agreement](governance-documents/CS_Contributor_License_Agreement.md).
 
 ## Participants
-- Name, organization, Date of enrollment: MMM/DD/YYYY
-- 
--
--  
+- Francesco Beltramini, ControlPlane, Aug/25/2026
+- Fabian Kammel, ControlPlane, Aug/25/2026
+- Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
 - 
 - 
 - 
