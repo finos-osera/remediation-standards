@@ -4,6 +4,11 @@ standard_id: FEED-001
 title: OpenVEX and CycloneDX Feeds
 summary: OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX feed formats.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required evidence
 type: FEED
 applies-to:
   - Patch providers

@@ -1,0 +1,69 @@
+- id: OSERA-SP-0.1
+  title: OSERA Remediation Standards Pack 0.1
+  status: Candidate for discussion
+  proposed_date: 2026-08-25
+  target_decision_date: 2026-09-20
+  ratified_date: Not ratified
+  issue: https://github.com/finos-osera/remediation-standards/issues/12
+  branch: codex/issue-12-v0.1-standards-proposal
+  summary: Initial candidate pack for producing, publishing, and consuming OSERA backpatches without over-specifying immature implementation details.
+  evidence_summary:
+    - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
+    - 59 baseline tags observed in the form v<VERSION>+backpatch.baseline across 59 repositories.
+    - 61 release tags observed in the form v<VERSION>+backpatch.NNN across 55 repositories.
+    - Five repositories had no release tag at the time of scan; one of those had no tags.
+  included_standards:
+    - id: FORK-001
+      version: 0.1.0
+      role: Required check
+      rationale: Repository naming is already consistently deployed and easy for new providers to follow.
+    - id: FORK-002
+      version: 0.1.0
+      role: Required check
+      rationale: Version-scoped backpatch branches are simple to create and necessary for multiple supported lines.
+    - id: FORK-003
+      version: 0.1.0
+      role: Required check
+      rationale: Every observed public backpatch repository has a baseline tag, making this mature enough for v0.1.
+    - id: SRC-001
+      version: 0.1.0
+      role: Required evidence
+      rationale: Consumers need to distinguish upstream backports from provider-developed fixes.
+    - id: SRC-002
+      version: 0.1.0
+      role: Required evidence
+      rationale: Provenance links are central to reviewability and auditability.
+    - id: SRC-003
+      version: 0.1.0
+      role: Required evidence
+      rationale: License-header consistency is low-cost and reduces avoidable review friction.
+    - id: REL-001
+      version: 0.1.0
+      role: Required evidence
+      rationale: Build systems vary too much to mandate one CI model, but release evidence is still required.
+    - id: REL-002
+      version: 0.1.0
+      role: Required evidence
+      rationale: Runtime compatibility is a high-impact recipient concern and should be measured per release.
+    - id: REL-003
+      version: 0.1.0
+      role: Required check
+      rationale: The +backpatch.NNN release form is already widely adopted and avoids inventing a second OSERA token.
+    - id: FEED-001
+      version: 0.1.0
+      role: Required evidence
+      rationale: Feeds are necessary for enterprise consumption, while exact feed operations can mature after v0.1.
+    - id: EVD-001
+      version: 0.1.0
+      role: Advisory evidence
+      rationale: Recipient guidance is valuable, but v0.1 should not yet require a detailed schema before implementers prove it.
+  deferred_standards:
+    - id: APP-001
+      version: 0.0.1
+      rationale: Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for a first acceptance gate.
+  discussion_topics:
+    - Whether v0.1 should use "alignment" or "certification" language before a formal conformance program exists.
+    - Whether the working group should require provider self-attestation for every published backpatch.
+    - Which evidence fields should become machine-readable in v0.2.
+    - What exception process should exist for repositories that cannot preserve GitHub fork relationships or upstream tag conventions.
+    - Which checks are publish-time gates and which are advisory warnings.

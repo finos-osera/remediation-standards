@@ -4,6 +4,11 @@ standard_id: APP-001
 title: Estate-Wide Patch Application
 summary: Patch feeds should support automated discovery and application across dependency estates.
 doc-status: Pre-Draft
+standard-version: 0.0.1
+candidate-pack: Deferred from OSERA-SP-0.1
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Discussion item
 type: APP
 applies-to:
   - Enterprise recipients

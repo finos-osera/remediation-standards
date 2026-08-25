@@ -260,6 +260,7 @@ code {
 .row-main { display: grid; gap: 4px; }
 .row-main strong { color: var(--navy); font-size: 17px; }
 .row-main small { color: var(--muted); font-size: 13px; line-height: 1.45; }
+.row-version { color: #49616f; font-weight: 700; }
 .row-category, .row-status {
   color: var(--muted);
   font-size: 13px;
@@ -278,7 +279,17 @@ code {
   align-items: center;
   gap: 32px;
 }
-.split-band p { max-width: 760px; }
+.split-band p, .pack-callout p { max-width: 760px; }
+.pack-callout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.pack-callout h2 { margin: 0; font-size: 30px; }
+.pack-callout p { color: var(--muted); }
+.pack-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 .content-page, .standard-page {
   padding-top: 54px;
   padding-bottom: 80px;
@@ -338,18 +349,18 @@ code {
 .meta-panel dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
 .meta-panel dd { margin: 0; font-weight: 700; }
 .standard-body { padding-top: 26px; }
-.standard-body table {
+.content-page table, .standard-body table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0 28px;
 }
-.standard-body th, .standard-body td {
+.content-page th, .content-page td, .standard-body th, .standard-body td {
   border: 1px solid var(--line);
   padding: 10px 12px;
   text-align: left;
   vertical-align: top;
 }
-.standard-body th { background: var(--soft); color: var(--navy); }
+.content-page th, .standard-body th { background: var(--soft); color: var(--navy); }
 pre {
   max-width: 920px;
   overflow: auto;
@@ -381,12 +392,13 @@ pre code { background: transparent; border: 0; color: inherit; padding: 0; }
 .footer-grid a { color: #9fd4ec; font-weight: 700; }
 
 @media (max-width: 900px) {
-  .nav-wrap, .section-heading, .split-band, .footer-grid { align-items: flex-start; flex-direction: column; }
+  .nav-wrap, .section-heading, .split-band, .pack-callout, .footer-grid { align-items: flex-start; flex-direction: column; }
   nav { flex-direction: row; flex-wrap: wrap; gap: 10px 14px; }
   .status-banner .wrap { align-items: flex-start; flex-direction: column; gap: 2px; padding-top: 9px; padding-bottom: 9px; }
   .hero-grid, .intro-grid, .standard-header { grid-template-columns: 1fr; }
   .hero h1 { font-size: 40px; }
   .standard-row { grid-template-columns: 1fr; gap: 8px; }
   .row-category, .row-status { justify-self: start; }
+  .pack-actions { justify-content: flex-start; }
   .search-box { min-width: 0; width: 100%; }
 }

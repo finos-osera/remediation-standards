@@ -4,6 +4,11 @@ standard_id: FORK-003
 title: Baseline Tags
 summary: Every backpatch line identifies its starting source SHA with a `v<VERSION>+backpatch.baseline` tag.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required check
 type: FORK
 applies-to:
   - Patch providers

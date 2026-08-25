@@ -4,6 +4,11 @@ standard_id: SRC-002
 title: Upstream Provenance Links
 summary: Backports link to the upstream commit or advisory that introduced the fix being carried back.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required evidence
 type: SRC
 applies-to:
   - Patch providers

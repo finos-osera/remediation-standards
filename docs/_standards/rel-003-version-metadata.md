@@ -4,6 +4,11 @@ standard_id: REL-003
 title: Backpatch Version Metadata
 summary: Patched releases use SemVer metadata in the form `+backpatch.NNN`.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required check
 type: REL
 applies-to:
   - Patch providers
@@ -19,6 +24,8 @@ Patch providers SHOULD release patched artifacts using SemVer build metadata in 
 ```
 
 `NNN` MUST be monotonically increasing for the same upstream version line.
+
+OSERA release names SHOULD NOT add a second OSERA-specific token such as `+osera-backpatch.NNN` unless the working group later finds a concrete interoperability need. The current `+backpatch.NNN` form is shorter, already deployed, and keeps OSERA identity in the repository, feed, and provider metadata.
 
 ## Rationale
 

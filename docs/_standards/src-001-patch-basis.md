@@ -4,6 +4,11 @@ standard_id: SRC-001
 title: Patch Basis Classification
 summary: Providers distinguish upstream backports from provider-developed fixes where no upstream fix exists.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required evidence
 type: SRC
 applies-to:
   - Patch providers

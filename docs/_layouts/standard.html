@@ -12,6 +12,10 @@ layout: default
     </div>
     <dl class="meta-panel">
       <div><dt>Status</dt><dd>{{ page.doc-status }}</dd></div>
+      <div><dt>Version</dt><dd>{{ page.standard-version }}</dd></div>
+      <div><dt>Pack</dt><dd>{{ page.candidate-pack }}</dd></div>
+      <div><dt>Ratified</dt><dd>{{ page.ratified-date }}</dd></div>
+      <div><dt>Fitness</dt><dd>{{ page.fitness-role }}</dd></div>
       <div><dt>Category</dt><dd>{{ site.standard_classification[page.type] }}</dd></div>
       <div><dt>Applies to</dt><dd>{{ page.applies-to | join: ", " }}</dd></div>
     </dl>

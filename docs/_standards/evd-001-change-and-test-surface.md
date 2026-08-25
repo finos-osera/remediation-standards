@@ -4,6 +4,11 @@ standard_id: EVD-001
 title: Change and Test Surface Guidance
 summary: Providers publish concise recipient guidance describing what changed and what surface area should be tested.
 doc-status: Pre-Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Advisory evidence
 type: EVD
 applies-to:
   - Patch providers

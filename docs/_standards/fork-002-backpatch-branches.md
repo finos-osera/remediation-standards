@@ -4,6 +4,11 @@ standard_id: FORK-002
 title: Backpatch Branches
 summary: Patch providers use `backpatch/<version>` branches for every supported major or minor line.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required check
 type: FORK
 applies-to:
   - Patch providers

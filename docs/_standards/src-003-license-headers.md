@@ -4,6 +4,11 @@ standard_id: SRC-003
 title: License Headers for New Files
 summary: New source or test files match the prevailing license format of the surrounding project.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required evidence
 type: SRC
 applies-to:
   - Patch providers

@@ -4,6 +4,11 @@ standard_id: REL-001
 title: Provider Build Process
 summary: Build and test methods are provider-dependent, but the provider records enough detail for repeatable release evidence.
 doc-status: Draft
+standard-version: 0.1.0
+candidate-pack: OSERA-SP-0.1 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
+fitness-role: Required evidence
 type: REL
 applies-to:
   - Patch providers

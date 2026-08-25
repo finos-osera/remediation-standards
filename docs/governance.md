@@ -10,9 +10,22 @@ The initial content is provisional and in active evaluation status. It is intend
 ## Proposed path
 
 1. Capture current OSERA patch-production practice as provisional markdown-backed standards.
-2. Collect implementation feedback from providers and consuming banks.
-3. Split stable requirements from examples, tooling profiles, and implementation notes.
-4. Move mature requirements through the Community Specification governance process.
+2. Propose a versioned `OSERA-SP-0.1` standards pack with individually versioned standards, inclusion rationale, deferred items, and a target decision date.
+3. Collect implementation feedback from providers and consuming banks.
+4. Split stable requirements from examples, tooling profiles, and implementation notes.
+5. Move mature requirements through the Community Specification governance process.
+
+## Versioning model
+
+Each standard carries its own version. A standards pack records the exact standard versions included in a candidate or ratified release set.
+
+This lets the working group revise one standard without implying that every other standard changed. For example, `REL-003` could move from `0.1.0` to `0.2.0` and then be included in a later standards pack while `FORK-001` remains unchanged.
+
+## Alignment and certification
+
+The v0.1 proposal should use alignment language, not certification language.
+
+Repositories can publish a fitness result showing that they are aligned to a named standards pack. The working group should defer "certified" claims until it has agreed reviewer authority, evidence retention, revocation, dispute handling, and badge or trademark rules.
 
 ## Contribution focus
 

@@ -6,9 +6,10 @@ layout: default
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Open remediation standards for regulated consumption</h1>
-      <p class="hero-subtitle">A provisional FINOS OSERA evaluation draft for producing, publishing, and consuming open backpatches with provenance, release evidence, vulnerability feeds, and recipient-focused test guidance. This is not published as a formal standard.</p>
+      <p class="hero-subtitle">A provisional FINOS OSERA evaluation draft for producing, publishing, and consuming open backpatches with provenance, release evidence, vulnerability feeds, and recipient-focused test guidance. This branch proposes an initial OSERA-SP-0.1 standards pack for open discussion.</p>
       <div class="hero-actions">
         <a class="button primary" href="#standards">Browse standards</a>
+        <a class="button secondary" href="{{ site.baseurl }}/standard-packs/">Review v0.1 pack</a>
         <a class="button secondary" href="https://osera.finos.org" target="_blank" rel="noopener">About OSERA</a>
         <a class="button secondary" href="{{ site.baseurl }}/governance/">Contribute</a>
       </div>
@@ -19,15 +20,26 @@ layout: default
     <aside class="evidence-panel" aria-label="Current OSERA evidence">
       <div class="panel-header">
         <span>Current evidence</span>
-        <strong>July 2026</strong>
+        <strong>Aug. 25, 2026</strong>
       </div>
       <dl>
         <div><dt>60</dt><dd>public <code>backpatch-*</code> repositories observed in <a href="https://github.com/finos-osera" target="_blank" rel="noopener">finos-osera</a></dd></div>
         <div><dt>61</dt><dd><code>+backpatch.NNN</code> release tags across 55 public backpatch repositories</dd></div>
+        <div><dt>59</dt><dd><code>+backpatch.baseline</code> tags across 59 public backpatch repositories</dd></div>
         <div><dt>2</dt><dd>feed formats expected: OpenVEX and CycloneDX</dd></div>
-        <div><dt>1</dt><dd>shared branch prefix: <code>backpatch/&lt;version&gt;</code></dd></div>
       </dl>
     </aside>
+  </div>
+</section>
+
+<section class="wrap section pack-callout">
+  <div>
+    <h2>Candidate standards pack</h2>
+    <p><strong>OSERA-SP-0.1</strong> proposes the first versioned set of remediation standards for issue #12. The pack includes conventions that current implementers can plausibly follow on day one and defers immature areas such as certification and estate-wide automated application.</p>
+  </div>
+  <div class="pack-actions">
+    <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View pack and release history</a>
+    <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
   </div>
 </section>
 
