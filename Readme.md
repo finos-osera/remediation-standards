@@ -46,7 +46,7 @@ This repository follows the Community Specification process. See [`GOVERNANCE.md
 ## Getting involved
 Join and subscribe to the working group mailing list by emailing [osera-remediations-wg+subscribe@lists.finos.org](mailto:osera-remediations-wg+subscribe@lists.finos.org).
 
-Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
+Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). Given some firms can't access slack, this is meant for strictly heads up and banters, while official communications and vote happens on the mailing list. If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
 
 To become a voting participant, please follow the enrollment process described at [PARTICIPANTS.MD](PARTICIPANTS.MD). To become a maintainer please see [GOVERNANCE.md](GOVERNANCE.md).
 
