@@ -4,12 +4,12 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 
 ## Participants
 - Name, organization, Date of enrollment: MMM/DD/YYYY
+- Francesco Beltramini, ControlPlane, Aug/25/2026
+- Fabian Kammel, ControlPlane, Aug/25/2026
+- Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
 - Dov Katz, Morgan Stanley, Date of enrollment: Aug/25/2026
 -
 -  
-- 
-- 
-- 
 -  
 - 
 - 
