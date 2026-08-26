@@ -12,23 +12,18 @@ body:
     attributes:
       label: Date
       description: Meeting date and time
-      placeholder: YYYYMMDD - 10am ET / 3pm GMT
+      placeholder: MMM DD YYYY - 10am ET / 3pm GMT
     validations:
       required: true
-  - type: textarea
-    id: attendees
-    attributes:
-      label: Untracked attendees
-      description: People who attended but are not already listed as project participants.
-      value: |
-        - Fullname, Affiliation, (optional) GitHub username
-        - ...
-      render: markdown
-    validations:
-      required: false
   - type: markdown
     attributes:
       value: |
+        ## Attendance
+
+        Meeting attendees must be enrolled as project participants in [PARTICIPANTS.md](https://github.com/finos-osera/remediation-standards/blob/main/PARTICIPANTS.md). Enrollment records agreement with the [Community Specification Contributor License Agreement](https://github.com/finos-osera/remediation-standards/blob/main/governance-documents/CS_Contributor_License_Agreement.md).
+
+        If you are not yet listed, please [enroll](https://github.com/finos-osera/remediation-standards/blob/main/PARTICIPANTS.md#how-to-enroll-as-a-participant) by opening a pull request with your name, organization, and date of enrollment.
+
         ## Meeting notices
 
         - FINOS **Project leads** are responsible for observing the FINOS guidelines for [running project meetings](https://community.finos.org/docs/governance/meeting-procedures/). Project maintainers can find additional resources in the [FINOS Maintainers Cheatsheet](https://community.finos.org/docs/finos-maintainers-cheatsheet).
@@ -84,4 +79,12 @@ body:
       value: |
         ### Zoom info
         - [Zoom Meeting URL]({zoom-meeting-link})
-  
+  - type: textarea
+    id: minutes
+    attributes:
+      label: Meeting minutes
+      description: Add notes after the call. Leave blank until then.
+      render: markdown
+    validations:
+      required: false
+ 
