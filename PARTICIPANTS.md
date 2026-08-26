@@ -9,6 +9,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
 - Mark Hoare, Deutsche Bank, Aug/25/2026
 - Peter Thomas, Deutsche Bank, Aug/25/2026
+- Paul Horton, Sonatype, Inc., Aug/26/2026
 - <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
