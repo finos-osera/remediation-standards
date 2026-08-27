@@ -1,0 +1,44 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 20,
+    "standard_id": "FORK-002",
+    "title": "Backpatch Branches",
+    "summary": "Patch providers use `backpatch/<version>` source workflow branches for every supported major or minor line.",
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required check",
+    "type": "FORK",
+    "category": "Fork Management",
+    "applies-to": [
+      "Patch providers",
+      "OSERA maintainers"
+    ],
+    "requirements": [
+      {
+        "id": "FORK-002.REQ-001",
+        "level": "MUST",
+        "text": "Patch providers must create version-scoped source workflow branches using backpatch/<version>.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "FORK-002.CHECK-001",
+            "title": "Supported line has a backpatch version branch",
+            "type": "repository",
+            "severity": "blocking",
+            "implementation": "osera-fitness.fork002.backpatch_branch",
+            "evidence": [
+              "branch_name"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/fork-002-backpatch-branches.md",
+    "url": "/standards/fork-002-backpatch-branches/"
+  }
+}

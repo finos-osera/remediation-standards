@@ -1,0 +1,66 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 250,
+    "standard_id": "REL-005",
+    "title": "Artifact Publication Hygiene",
+    "summary": "Published OSERA artifacts include consistent package metadata, checksums, and repository evidence required by the publication gate.",
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required check",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "Patch providers",
+      "Repository operators",
+      "Enterprise recipients"
+    ],
+    "requirements": [
+      {
+        "id": "REL-005.REQ-001",
+        "level": "MUST",
+        "text": "Official OSERA artifacts must publish expected package files and checksums for the ecosystem being released.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-005.CHECK-001",
+            "title": "Package files and checksums are present",
+            "type": "artifact",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel005.package_checksum_hygiene",
+            "evidence": [
+              "artifact_files",
+              "checksums"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-005.REQ-002",
+        "level": "MUST",
+        "text": "Published package metadata must identify the patched version consistently with REL-003.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-005.CHECK-002",
+            "title": "Package metadata uses the approved patched version",
+            "type": "artifact",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel005.package_metadata_version",
+            "evidence": [
+              "pom",
+              "artifact_version",
+              "release_tag"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-005-artifact-publication-hygiene.md",
+    "url": "/standards/rel-005-artifact-publication-hygiene/"
+  }
+}

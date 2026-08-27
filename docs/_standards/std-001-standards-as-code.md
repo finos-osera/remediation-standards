@@ -84,3 +84,11 @@ The repository SHOULD publish generated artifacts at stable HTTP paths such as:
 ## Generator posture
 
 The generated artifacts are derived from the Markdown front matter. Contributors SHOULD update the Markdown source and rerun the generator rather than editing generated catalog files directly.
+
+## Authoring model
+
+Standard prose pages are maintained manually in `docs/_standards/*.md`. The structured YAML front matter at the top of each page is the machine-readable source for standard IDs, versions, lifecycle status, pack membership, requirements, checks, evidence expectations, and future fitness-function bindings.
+
+The documentation site renders those Markdown files through Jekyll templates. The same front matter is also used by `tools/generate_catalog.rb` to produce normalized YAML and JSON artifacts under `docs/catalog/`.
+
+The generated YAML and JSON files SHOULD NOT be edited independently. When a standard changes, update the Markdown page and rerun the generator so the rendered documentation and machine-readable catalog remain synchronized.

@@ -1,0 +1,51 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 310
+  standard_id: FEED-001
+  title: OpenVEX and CycloneDX Feeds
+  summary: OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX
+    feed formats.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: FEED
+  category: Feeds and Advisories
+  applies-to:
+  - Patch providers
+  - Feed maintainers
+  - Enterprise recipients
+  requirements:
+  - id: FEED-001.REQ-001
+    level: MUST
+    text: OSERA-compatible releases must be represented in OpenVEX and CycloneDX feed
+      data.
+    checkability: partially-automated
+    checks:
+    - id: FEED-001.CHECK-001
+      title: OpenVEX and CycloneDX entries exist for the release
+      type: feed
+      severity: blocking
+      implementation: osera-fitness.feed001.feed_entry_presence
+      evidence:
+      - openvex_entry
+      - cyclonedx_entry
+  - id: FEED-001.REQ-002
+    level: MUST
+    text: Feed entries must preserve the exact patched package URL, including encoded
+      release metadata.
+    checkability: automated
+    checks:
+    - id: FEED-001.CHECK-002
+      title: Feed purls match the published patched artifact identifier
+      type: feed
+      severity: blocking
+      implementation: osera-fitness.feed001.exact_purl_match
+      evidence:
+      - purl
+      - release_version
+  source_path: docs/_standards/feed-001-openvex-cyclonedx.md
+  url: "/standards/feed-001-openvex-cyclonedx/"

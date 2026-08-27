@@ -1,0 +1,38 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 210
+  standard_id: REL-001
+  title: Provider Build Process
+  summary: Build and test methods are provider-dependent, but the provider records
+    enough detail for repeatable release evidence.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: REL-001.REQ-001
+    level: MUST
+    text: Patch providers must define the build and test process used to produce a
+      patched artifact.
+    checkability: manual
+    checks:
+    - id: REL-001.CHECK-001
+      title: Build and test evidence is recorded
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel001.build_test_evidence
+      evidence:
+      - build_tool
+      - runtime
+      - test_command
+      - validation_result
+  source_path: docs/_standards/rel-001-build-process.md
+  url: "/standards/rel-001-build-process/"

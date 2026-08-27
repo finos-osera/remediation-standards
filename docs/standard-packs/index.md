@@ -54,6 +54,7 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on stan
 | Agenda issue | {{ pack.agenda_issue }} |
 | Standards-as-code issue | [Issue #23]({{ pack.standards_as_code_issue }}) |
 | Proposal branch | `{{ pack.branch }}` |
+| Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
 
 ### Release metadata posture
 

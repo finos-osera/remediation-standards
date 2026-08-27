@@ -13,6 +13,7 @@ PACKS_FILE = File.join(DOCS, "_data", "standard_packs.yml")
 CONFIG_FILE = File.join(DOCS, "_config.yml")
 CATALOG_DIR = File.join(DOCS, "catalog")
 PACK_CATALOG_DIR = File.join(CATALOG_DIR, "packs")
+STANDARD_CATALOG_DIR = File.join(CATALOG_DIR, "standards")
 
 STANDARD_SCHEMA_VERSION = "0.1.0"
 PACK_SCHEMA_VERSION = "0.1.0"
@@ -176,6 +177,16 @@ outputs = {
   File.join(CATALOG_DIR, "osera-standards.json") => JSON.pretty_generate(catalog) + "\n"
 }
 
+standards.each do |standard|
+  value = {
+    "schema-version" => STANDARD_SCHEMA_VERSION,
+    "standard" => standard
+  }
+  id = standard.fetch("standard_id")
+  outputs[File.join(STANDARD_CATALOG_DIR, "#{id}.yaml")] = yaml_dump(value)
+  outputs[File.join(STANDARD_CATALOG_DIR, "#{id}.json")] = JSON.pretty_generate(value) + "\n"
+end
+
 pack_catalogs.each do |pack_id, value|
   outputs[File.join(PACK_CATALOG_DIR, "#{pack_id}.yaml")] = yaml_dump(value)
   outputs[File.join(PACK_CATALOG_DIR, "#{pack_id}.json")] = JSON.pretty_generate(value) + "\n"
@@ -193,6 +204,7 @@ if ARGV.include?("--check")
   puts "Catalog artifacts are current."
 else
   FileUtils.mkdir_p(CATALOG_DIR)
+  FileUtils.mkdir_p(STANDARD_CATALOG_DIR)
   FileUtils.mkdir_p(PACK_CATALOG_DIR)
   outputs.each { |path, content| File.write(path, content) }
   puts "Generated #{outputs.length} catalog artifacts."

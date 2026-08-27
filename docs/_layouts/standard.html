@@ -18,6 +18,7 @@ layout: default
       <div><dt>Fitness</dt><dd>{{ page.fitness-role }}</dd></div>
       <div><dt>Category</dt><dd>{{ page.category | default: site.standard_classification[page.type] }}</dd></div>
       <div><dt>Applies to</dt><dd>{{ page.applies-to | join: ", " }}</dd></div>
+      <div><dt>Machine-readable</dt><dd><a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.yaml">YAML</a> / <a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.json">JSON</a></dd></div>
     </dl>
   </div>
   {% if page.requirements %}
