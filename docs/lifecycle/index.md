@@ -71,9 +71,19 @@ Standards packs use the existing OSERA pack naming form:
 OSERA-SP-<VERSION>
 ```
 
-For example, `OSERA-SP-0.1` can include `FORK-001 v0.1.0`, `REL-003 v0.1.0`, and other specific standard versions.
+For example, `OSERA-SP-0.1.0` can include `FORK-001 v0.1.0`, `REL-003 v0.1.0`, and other specific standard versions.
 
-Ratifying a pack freezes the list of included standard versions for that pack. If `FORK-001` later changes to `v0.2.0`, `OSERA-SP-0.1` still refers to `FORK-001 v0.1.0`. A later pack can include the revised version.
+Ratifying a pack freezes the list of included standard versions for that pack. If `FORK-001` later changes to `v0.2.0`, `OSERA-SP-0.1.0` still refers to `FORK-001 v0.1.0`. A later pack can include the revised version.
+
+## Pack patch versions and approved producers
+
+Standards-pack versions use SemVer.
+
+Patch-level pack versions MAY update administrative pack metadata, such as an approved-producer registry, when the standard text, standard versions, check IDs, and check semantics do not change.
+
+For example, `OSERA-SP-0.1.1` MAY update the approved-producer registry for the same gate rules as `OSERA-SP-0.1.0`.
+
+Minor or major pack versions SHOULD be used when standards text, blocking check semantics, or included standard versions change.
 
 ## When to create a standards pack
 
@@ -95,6 +105,7 @@ A pack should identify:
 * deferred standards and rationale;
 * issue or meeting record for the decision;
 * expected fitness-function checks.
+* approved-producer registry or binding, if official signed artifacts depend on producer approval.
 
 ## Ratification effect
 
@@ -106,4 +117,4 @@ Ratification means the standards group has approved a specific pack record and t
 
 The fitness function should report the standards pack tested, the exact standard versions tested, and the result for each check.
 
-For v0.1, repositories should claim standards-pack alignment only against a named ratified pack. Certification language should wait until the working group approves a certification or accreditation process.
+For v0.1.0, repositories should claim standards-pack alignment only against a named ratified pack. Certification language should wait until the working group approves a certification or accreditation process.

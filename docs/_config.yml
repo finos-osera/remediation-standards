@@ -31,6 +31,7 @@ standard_classification:
   FEED: Feeds and Advisories
   EVD: Recipient Evidence
   APP: Patch Application
+  STD: Standards Governance
 
 category_icons:
   FORK: branch
@@ -39,6 +40,7 @@ category_icons:
   FEED: feed
   EVD: evidence
   APP: apply
+  STD: governance
 
 collections:
   standards:

@@ -10,7 +10,7 @@ The initial content is provisional and in active evaluation status. It is intend
 ## Proposed path
 
 1. Capture current OSERA patch-production practice as provisional markdown-backed standards.
-2. Propose a versioned `OSERA-SP-0.1` standards pack with individually versioned standards, inclusion rationale, deferred items, and a target decision date.
+2. Propose a versioned `OSERA-SP-0.1.0` standards pack with individually versioned standards, inclusion rationale, deferred items, and a target decision date.
 3. Collect implementation feedback from providers and consuming banks.
 4. Split stable requirements from examples, tooling profiles, and implementation notes.
 5. Move mature requirements through the Community Specification governance process.
@@ -25,7 +25,7 @@ The proposed [standard lifecycle]({{ site.baseurl }}/lifecycle/) defines when to
 
 ## Alignment and certification
 
-The v0.1 proposal should use alignment language, not certification language.
+The v0.1.0 proposal should use alignment language, not certification language.
 
 Repositories can publish a fitness result showing that they are aligned to a named standards pack. The working group should defer "certified" claims until it has agreed reviewer authority, evidence retention, revocation, dispute handling, and badge or trademark rules.
 

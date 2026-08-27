@@ -29,7 +29,7 @@ The example site explains the core consumption problem clearly: scanners may sti
 
 The reference OpenVEX feed covered 118 backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
 
-REL-003 proposes that future patched-release metadata carry an initiative-identifying token such as `+osera-patch.NNN`. Feeds should preserve the exact published release identifier, including any transition or historical `+backpatch.NNN` releases, so scanners can match the artifact actually consumed.
+REL-003 proposes that official OSERA signed artifacts carry the branded `+osera-patch.NNN` token. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
 
 ## Feed expectations
 

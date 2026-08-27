@@ -1,19 +1,37 @@
 ---
+schema-version: 0.1.0
 sequence: 410
 standard_id: EVD-001
 title: Change and Test Surface Guidance
-summary: Providers publish concise recipient guidance describing what changed and what surface area should be tested.
+summary: Providers publish concise recipient guidance describing what changed and
+  what surface area should be tested.
 doc-status: Pre-Draft
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1 candidate
+candidate-pack: OSERA-SP-0.1.0 candidate
 ratified-in: Not ratified
 ratified-date: Not ratified
 fitness-role: Advisory evidence
 type: EVD
+category: Recipient Evidence
 applies-to:
-  - Patch providers
-  - Enterprise recipients
-  - Tooling providers
+- Patch providers
+- Enterprise recipients
+- Tooling providers
+requirements:
+- id: EVD-001.REQ-001
+  level: SHOULD
+  text: Patch providers should publish versioned recipient guidance describing what
+    changed and what surface area should be tested.
+  checkability: manual
+  checks:
+  - id: EVD-001.CHECK-001
+    title: Recipient guidance uses the current guidance schema
+    type: release-evidence
+    severity: advisory
+    implementation: osera-fitness.evd001.recipient_guidance_schema
+    evidence:
+    - recipient_guidance
+    - schema_version
 ---
 
 ## Requirement
@@ -34,6 +52,7 @@ Financial services consumers need more than a coordinate. They need enough conte
 
 ```yaml
 recipient_guidance:
+  schema_version: 0.1.0
   what_changed:
     - Short, concrete change summary.
   suggested_test_surface:
@@ -43,6 +62,8 @@ recipient_guidance:
       - org.example.security.ExampleRecipe
     llm_context: docs/patch-context.md
 ```
+
+The draft schema is published at [`/schemas/osera-recipient-guidance-0.1.0.schema.json`]({{ site.baseurl }}/schemas/osera-recipient-guidance-0.1.0.schema.json).
 
 ## Maturity note
 

@@ -372,18 +372,38 @@ code {
 .meta-panel dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
 .meta-panel dd { margin: 0; font-weight: 700; }
 .standard-body { padding-top: 26px; }
-.content-page table, .standard-body table {
+.structured-requirements {
+  padding-top: 26px;
+}
+.requirement-block {
+  max-width: 960px;
+  margin: 0 0 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+}
+.requirement-heading {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.requirement-block p {
+  margin: 12px 0 0;
+}
+.content-page table, .standard-body table, .structured-requirements table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0 28px;
 }
-.content-page th, .content-page td, .standard-body th, .standard-body td {
+.content-page th, .content-page td, .standard-body th, .standard-body td, .structured-requirements th, .structured-requirements td {
   border: 1px solid var(--line);
   padding: 10px 12px;
   text-align: left;
   vertical-align: top;
 }
-.content-page th, .standard-body th { background: var(--soft); color: var(--navy); }
+.content-page th, .standard-body th, .structured-requirements th { background: var(--soft); color: var(--navy); }
 pre {
   max-width: 920px;
   overflow: auto;

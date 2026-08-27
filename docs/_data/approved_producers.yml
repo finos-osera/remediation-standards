@@ -1,0 +1,6 @@
+schema-version: 0.1.0
+status: Candidate placeholder
+applies_to_pack: OSERA-SP-0.1.0
+description: Approved producers must be ratified by the standards group or other agreed OSERA governance process before official signed artifacts can claim OSERA-SP-0.1.0 alignment.
+update_policy: Producer registry changes that do not alter standard text or check semantics may be released as standards-pack patch versions.
+producers: []

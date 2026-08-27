@@ -1,0 +1,741 @@
+schema-version: 0.1.0
+source: docs/_standards
+standards:
+- schema-version: 0.1.0
+  sequence: 10
+  standard_id: FORK-001
+  title: Repository Naming
+  summary: Backpatched repositories use a consistent `backpatch-<reponame>` name in
+    the finos-osera GitHub organization.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: FORK
+  category: Fork Management
+  applies-to:
+  - Patch providers
+  - OSERA maintainers
+  requirements:
+  - id: FORK-001.REQ-001
+    level: MUST
+    text: Backpatched repositories must live in github.com/finos-osera unless the
+      working group approves an exception.
+    checkability: automated
+    checks:
+    - id: FORK-001.CHECK-001
+      title: Repository is in the finos-osera organization
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.fork001.repository_owner
+      evidence:
+      - repository_url
+  - id: FORK-001.REQ-002
+    level: SHOULD
+    text: Backpatched repositories should use the prefix backpatch- followed by the
+      upstream repository or artifact name.
+    checkability: automated
+    checks:
+    - id: FORK-001.CHECK-002
+      title: Repository name uses the backpatch prefix
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.fork001.repository_name
+      evidence:
+      - repository_name
+  source_path: docs/_standards/fork-001-repository-naming.md
+  url: "/standards/fork-001-repository-naming/"
+- schema-version: 0.1.0
+  sequence: 20
+  standard_id: FORK-002
+  title: Backpatch Branches
+  summary: Patch providers use `backpatch/<version>` branches for every supported
+    major or minor line.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: FORK
+  category: Fork Management
+  applies-to:
+  - Patch providers
+  - OSERA maintainers
+  requirements:
+  - id: FORK-002.REQ-001
+    level: MUST
+    text: Patch providers must create version-scoped backpatch branches using backpatch/<version>.
+    checkability: automated
+    checks:
+    - id: FORK-002.CHECK-001
+      title: Supported line has a backpatch version branch
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.fork002.backpatch_branch
+      evidence:
+      - branch_name
+  source_path: docs/_standards/fork-002-backpatch-branches.md
+  url: "/standards/fork-002-backpatch-branches/"
+- schema-version: 0.1.0
+  sequence: 30
+  standard_id: FORK-003
+  title: Baseline Tags
+  summary: Every backpatch line identifies its starting source SHA with a `v<VERSION>+backpatch.baseline`
+    tag.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: FORK
+  category: Fork Management
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: FORK-003.REQ-001
+    level: MUST
+    text: Patch providers must tag the baseline source commit using v<VERSION>+backpatch.baseline.
+    checkability: automated
+    checks:
+    - id: FORK-003.CHECK-001
+      title: Baseline tag exists and resolves to a commit
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.fork003.baseline_tag
+      evidence:
+      - baseline_tag
+      - baseline_commit
+  source_path: docs/_standards/fork-003-baseline-tags.md
+  url: "/standards/fork-003-baseline-tags/"
+- schema-version: 0.1.0
+  sequence: 40
+  standard_id: FORK-004
+  title: Public Access and License Availability
+  summary: Backpatch repositories should be fully public and preserve the applicable
+    upstream open-source license files and notices.
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Observe-only check
+  type: FORK
+  category: Fork Management
+  applies-to:
+  - Patch providers
+  - OSERA maintainers
+  - Enterprise recipients
+  requirements:
+  - id: FORK-004.REQ-001
+    level: SHOULD
+    text: Backpatch repositories should be fully public and publicly fetchable without
+      private credentials.
+    checkability: automated
+    checks:
+    - id: FORK-004.CHECK-001
+      title: Repository is publicly fetchable
+      type: repository
+      severity: observe
+      implementation: osera-fitness.fork004.public_fetch
+      evidence:
+      - repository_url
+      - fetch_result
+  - id: FORK-004.REQ-002
+    level: SHOULD
+    text: Backpatch repositories should preserve applicable upstream open-source license
+      files and notices.
+    checkability: partially-automated
+    checks:
+    - id: FORK-004.CHECK-002
+      title: Upstream license files and notices are preserved
+      type: repository
+      severity: observe
+      implementation: osera-fitness.fork004.license_files
+      evidence:
+      - license_files
+      - upstream_license_files
+  source_path: docs/_standards/fork-004-public-access-and-license.md
+  url: "/standards/fork-004-public-access-and-license/"
+- schema-version: 0.1.0
+  sequence: 110
+  standard_id: SRC-001
+  title: Patch Basis Classification
+  summary: Providers distinguish upstream backports from provider-developed fixes
+    where no upstream fix exists.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: SRC
+  category: Source Changes
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  - Feed maintainers
+  requirements:
+  - id: SRC-001.REQ-001
+    level: SHOULD
+    text: Patch providers should backpatch an upstream fix when one exists and identify
+      provider-developed fixes when no upstream fix exists.
+    checkability: manual
+    checks:
+    - id: SRC-001.CHECK-001
+      title: Patch basis classification is present
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.src001.patch_basis
+      evidence:
+      - patch_basis
+      - upstream_fix_reference
+  source_path: docs/_standards/src-001-patch-basis.md
+  url: "/standards/src-001-patch-basis/"
+- schema-version: 0.1.0
+  sequence: 120
+  standard_id: SRC-002
+  title: Upstream Provenance Links
+  summary: Backports link to the upstream commit or advisory that introduced the fix
+    being carried back.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: SRC
+  category: Source Changes
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: SRC-002.REQ-001
+    level: MUST
+    text: Backport evidence must link to the upstream commit, commit range, pull request,
+      advisory, or release note defining the fix.
+    checkability: partially-automated
+    checks:
+    - id: SRC-002.CHECK-001
+      title: Upstream provenance link is present
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.src002.upstream_provenance_link
+      evidence:
+      - upstream_fix_url
+      - backpatch_commit_url
+  source_path: docs/_standards/src-002-provenance-links.md
+  url: "/standards/src-002-provenance-links/"
+- schema-version: 0.1.0
+  sequence: 130
+  standard_id: SRC-003
+  title: License Headers for New Files
+  summary: New source or test files match the prevailing license format of the surrounding
+    project.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: SRC
+  category: Source Changes
+  applies-to:
+  - Patch providers
+  requirements:
+  - id: SRC-003.REQ-001
+    level: MUST
+    text: New source or test files added by a patch must follow the prevailing license-header
+      convention of the surrounding project.
+    checkability: partially-automated
+    checks:
+    - id: SRC-003.CHECK-001
+      title: New files use the local license-header convention
+      type: source
+      severity: blocking
+      implementation: osera-fitness.src003.license_headers
+      evidence:
+      - new_files
+      - license_header_check
+  source_path: docs/_standards/src-003-license-headers.md
+  url: "/standards/src-003-license-headers/"
+- schema-version: 0.1.0
+  sequence: 210
+  standard_id: REL-001
+  title: Provider Build Process
+  summary: Build and test methods are provider-dependent, but the provider records
+    enough detail for repeatable release evidence.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: REL-001.REQ-001
+    level: MUST
+    text: Patch providers must define the build and test process used to produce a
+      patched artifact.
+    checkability: manual
+    checks:
+    - id: REL-001.CHECK-001
+      title: Build and test evidence is recorded
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel001.build_test_evidence
+      evidence:
+      - build_tool
+      - runtime
+      - test_command
+      - validation_result
+  source_path: docs/_standards/rel-001-build-process.md
+  url: "/standards/rel-001-build-process/"
+- schema-version: 0.1.0
+  sequence: 220
+  standard_id: REL-002
+  title: Bytecode Compatibility
+  summary: Patched artifacts preserve the bytecode level of the last released artifact
+    unless an explicit exception is approved.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: REL-002.REQ-001
+    level: MUST
+    text: Patched Java artifacts must preserve the bytecode level of the last released
+      artifact unless an exception is approved.
+    checkability: automated
+    checks:
+    - id: REL-002.CHECK-001
+      title: Bytecode level matches the prior released artifact
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel002.bytecode_level
+      evidence:
+      - artifact_digest
+      - bytecode_level
+      - reference_artifact
+  source_path: docs/_standards/rel-002-bytecode-compatibility.md
+  url: "/standards/rel-002-bytecode-compatibility/"
+- schema-version: 0.1.0
+  sequence: 230
+  standard_id: REL-003
+  title: Patch Initiative Version Metadata
+  summary: Patched releases use SemVer build metadata that identifies the patching
+    initiative and release sequence.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: REL-003.REQ-001
+    level: SHOULD
+    text: Official OSERA patched releases should use SemVer build metadata in the
+      form <UPSTREAM_VERSION>+osera-patch.NNN.
+    checkability: automated
+    checks:
+    - id: REL-003.CHECK-001
+      title: Official release metadata uses the OSERA patch token
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.osera_patch_metadata
+      evidence:
+      - release_tag
+      - artifact_version
+  - id: REL-003.REQ-002
+    level: MUST
+    text: Release tags, artifact versions, vulnerability feeds, and release evidence
+      must carry the same patched-release identifier.
+    checkability: partially-automated
+    checks:
+    - id: REL-003.CHECK-002
+      title: Release identifier is consistent across source, artifact, and feeds
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.identifier_consistency
+      evidence:
+      - release_tag
+      - artifact_version
+      - feed_purl
+  source_path: docs/_standards/rel-003-version-metadata.md
+  url: "/standards/rel-003-version-metadata/"
+- schema-version: 0.1.0
+  sequence: 240
+  standard_id: REL-004
+  title: Approved Producers
+  summary: Official OSERA signed artifacts are produced only by producers approved
+    for the targeted standards pack.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - OSERA maintainers
+  - Patch providers
+  - Repository operators
+  requirements:
+  - id: REL-004.REQ-001
+    level: MUST
+    text: Official OSERA signed artifacts must identify a producer that appears in
+      the approved-producer registry for the targeted standards pack.
+    checkability: automated
+    checks:
+    - id: REL-004.CHECK-001
+      title: Producer is approved for the targeted standards pack
+      type: publication-gate
+      severity: blocking
+      implementation: osera-fitness.rel004.approved_producer
+      evidence:
+      - producer_identity
+      - approved_producer_registry
+  - id: REL-004.REQ-002
+    level: MUST
+    text: The producer identity used at publication time must be recorded in the fitness
+      result and release evidence.
+    checkability: partially-automated
+    checks:
+    - id: REL-004.CHECK-002
+      title: Producer identity is recorded in release evidence
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel004.producer_identity_evidence
+      evidence:
+      - producer_identity
+      - fitness_result
+      - release_evidence
+  source_path: docs/_standards/rel-004-approved-producers.md
+  url: "/standards/rel-004-approved-producers/"
+- schema-version: 0.1.0
+  sequence: 250
+  standard_id: REL-005
+  title: Artifact Publication Hygiene
+  summary: Published OSERA artifacts include consistent package metadata, checksums,
+    and repository evidence required by the publication gate.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Repository operators
+  - Enterprise recipients
+  requirements:
+  - id: REL-005.REQ-001
+    level: MUST
+    text: Official OSERA artifacts must publish expected package files and checksums
+      for the ecosystem being released.
+    checkability: automated
+    checks:
+    - id: REL-005.CHECK-001
+      title: Package files and checksums are present
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005.package_checksum_hygiene
+      evidence:
+      - artifact_files
+      - checksums
+  - id: REL-005.REQ-002
+    level: MUST
+    text: Published package metadata must identify the patched version consistently
+      with REL-003.
+    checkability: automated
+    checks:
+    - id: REL-005.CHECK-002
+      title: Package metadata uses the approved patched version
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005.package_metadata_version
+      evidence:
+      - pom
+      - artifact_version
+      - release_tag
+  source_path: docs/_standards/rel-005-artifact-publication-hygiene.md
+  url: "/standards/rel-005-artifact-publication-hygiene/"
+- schema-version: 0.1.0
+  sequence: 260
+  standard_id: REL-006
+  title: Patch Request Authorization
+  summary: Patch releases should trace to an approved backlog item, request, sponsor
+    record, or equivalent authorization record.
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Observe-only check
+  type: REL
+  category: Release Process
+  applies-to:
+  - OSERA maintainers
+  - Patch providers
+  - Repository operators
+  requirements:
+  - id: REL-006.REQ-001
+    level: SHOULD
+    text: Patch releases should identify the backlog item, public request, sponsor
+      record, or equivalent authorization record for the patched coordinate and line.
+    checkability: manual
+    checks:
+    - id: REL-006.CHECK-001
+      title: Patch request authorization evidence is present
+      type: release-evidence
+      severity: observe
+      implementation: osera-fitness.rel006.patch_request_authorization
+      evidence:
+      - backlog_item
+      - sponsor_record
+      - coordinate_line
+  source_path: docs/_standards/rel-006-patch-request-authorization.md
+  url: "/standards/rel-006-patch-request-authorization/"
+- schema-version: 0.1.0
+  sequence: 270
+  standard_id: REL-007
+  title: Build Provenance and Signed Attestation
+  summary: Producers should sign an attestation linking the published artifact digest
+    to the source tag, build process, SBOM, VEX, test evidence, and license audit.
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Observe-only check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Repository operators
+  - Enterprise recipients
+  requirements:
+  - id: REL-007.REQ-001
+    level: SHOULD
+    text: Producers should sign an attestation linking the artifact digest to the
+      source tag and build provenance.
+    checkability: partially-automated
+    checks:
+    - id: REL-007.CHECK-001
+      title: Signed build provenance attestation is present
+      type: release-evidence
+      severity: observe
+      implementation: osera-fitness.rel007.signed_build_attestation
+      evidence:
+      - artifact_digest
+      - source_tag
+      - attestation_signature
+  - id: REL-007.REQ-002
+    level: SHOULD
+    text: The attestation should reference SBOM, VEX, test evidence, and license audit
+      material for the release.
+    checkability: manual
+    checks:
+    - id: REL-007.CHECK-002
+      title: Attestation references release evidence bundle
+      type: release-evidence
+      severity: observe
+      implementation: osera-fitness.rel007.evidence_bundle_references
+      evidence:
+      - sbom
+      - vex
+      - test_evidence
+      - license_audit
+  source_path: docs/_standards/rel-007-build-provenance-and-signed-attestation.md
+  url: "/standards/rel-007-build-provenance-and-signed-attestation/"
+- schema-version: 0.1.0
+  sequence: 310
+  standard_id: FEED-001
+  title: OpenVEX and CycloneDX Feeds
+  summary: OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX
+    feed formats.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required evidence
+  type: FEED
+  category: Feeds and Advisories
+  applies-to:
+  - Patch providers
+  - Feed maintainers
+  - Enterprise recipients
+  requirements:
+  - id: FEED-001.REQ-001
+    level: MUST
+    text: OSERA-compatible releases must be represented in OpenVEX and CycloneDX feed
+      data.
+    checkability: partially-automated
+    checks:
+    - id: FEED-001.CHECK-001
+      title: OpenVEX and CycloneDX entries exist for the release
+      type: feed
+      severity: blocking
+      implementation: osera-fitness.feed001.feed_entry_presence
+      evidence:
+      - openvex_entry
+      - cyclonedx_entry
+  - id: FEED-001.REQ-002
+    level: MUST
+    text: Feed entries must preserve the exact patched package URL, including encoded
+      release metadata.
+    checkability: automated
+    checks:
+    - id: FEED-001.CHECK-002
+      title: Feed purls match the published patched artifact identifier
+      type: feed
+      severity: blocking
+      implementation: osera-fitness.feed001.exact_purl_match
+      evidence:
+      - purl
+      - release_version
+  source_path: docs/_standards/feed-001-openvex-cyclonedx.md
+  url: "/standards/feed-001-openvex-cyclonedx/"
+- schema-version: 0.1.0
+  sequence: 410
+  standard_id: EVD-001
+  title: Change and Test Surface Guidance
+  summary: Providers publish concise recipient guidance describing what changed and
+    what surface area should be tested.
+  doc-status: Pre-Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Advisory evidence
+  type: EVD
+  category: Recipient Evidence
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  - Tooling providers
+  requirements:
+  - id: EVD-001.REQ-001
+    level: SHOULD
+    text: Patch providers should publish versioned recipient guidance describing what
+      changed and what surface area should be tested.
+    checkability: manual
+    checks:
+    - id: EVD-001.CHECK-001
+      title: Recipient guidance uses the current guidance schema
+      type: release-evidence
+      severity: advisory
+      implementation: osera-fitness.evd001.recipient_guidance_schema
+      evidence:
+      - recipient_guidance
+      - schema_version
+  source_path: docs/_standards/evd-001-change-and-test-surface.md
+  url: "/standards/evd-001-change-and-test-surface/"
+- schema-version: 0.1.0
+  sequence: 510
+  standard_id: APP-001
+  title: Estate-Wide Patch Application
+  summary: Patch feeds should support automated discovery and application across dependency
+    estates.
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Observe-only check
+  type: APP
+  category: Patch Application
+  applies-to:
+  - Enterprise recipients
+  - Tooling providers
+  - Patch providers
+  requirements:
+  - id: APP-001.REQ-001
+    level: SHOULD
+    text: Patch feeds and metadata should support estate-wide discovery and application
+      across dependency estates.
+    checkability: partially-automated
+    checks:
+    - id: APP-001.CHECK-001
+      title: Estate-wide discovery metadata is present
+      type: feed-metadata
+      severity: observe
+      implementation: osera-fitness.app001.estate_discovery_metadata
+      evidence:
+      - feed_entries
+      - dependency_coordinates
+  source_path: docs/_standards/app-001-estate-application.md
+  url: "/standards/app-001-estate-application/"
+- schema-version: 0.1.0
+  sequence: 610
+  standard_id: STD-001
+  title: Standards-as-Code Source Metadata
+  summary: OSERA standards use human-authored Markdown with structured YAML front
+    matter as the machine-readable source of truth.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: STD
+  category: Standards Governance
+  applies-to:
+  - OSERA maintainers
+  - Tooling providers
+  requirements:
+  - id: STD-001.REQ-001
+    level: MUST
+    text: Standard pages must include schema-versioned YAML front matter containing
+      identifiers, lifecycle status, requirements, checks, evidence expectations,
+      and pack references.
+    checkability: automated
+    checks:
+    - id: STD-001.CHECK-001
+      title: Standard front matter validates against the active OSERA schema
+      type: standards-repository
+      severity: blocking
+      implementation: osera-fitness.std001.standard_frontmatter_schema
+      evidence:
+      - standard_markdown
+      - schema-version
+  - id: STD-001.REQ-002
+    level: MUST
+    text: The standards repository must publish normalized catalog artifacts generated
+      from the Markdown front matter.
+    checkability: automated
+    checks:
+    - id: STD-001.CHECK-002
+      title: Generated catalog artifacts are current
+      type: standards-repository
+      severity: blocking
+      implementation: osera-fitness.std001.generated_catalog_current
+      evidence:
+      - docs/catalog/osera-standards.yaml
+      - docs/catalog/osera-standards.json
+  source_path: docs/_standards/std-001-standards-as-code.md
+  url: "/standards/std-001-standards-as-code/"

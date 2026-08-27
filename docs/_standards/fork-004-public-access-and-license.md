@@ -1,19 +1,51 @@
 ---
+schema-version: 0.1.0
 sequence: 40
 standard_id: FORK-004
 title: Public Access and License Availability
-summary: Backpatch repositories should be fully public and preserve the applicable upstream open-source license files and notices.
+summary: Backpatch repositories should be fully public and preserve the applicable
+  upstream open-source license files and notices.
 doc-status: Pre-Draft
 standard-version: 0.0.1
-candidate-pack: Deferred from OSERA-SP-0.1
+candidate-pack: OSERA-SP-0.2.0 observe
 ratified-in: Not ratified
 ratified-date: Not ratified
-fitness-role: Discussion item
+fitness-role: Observe-only check
 type: FORK
+category: Fork Management
 applies-to:
-  - Patch providers
-  - OSERA maintainers
-  - Enterprise recipients
+- Patch providers
+- OSERA maintainers
+- Enterprise recipients
+requirements:
+- id: FORK-004.REQ-001
+  level: SHOULD
+  text: Backpatch repositories should be fully public and publicly fetchable without
+    private credentials.
+  checkability: automated
+  checks:
+  - id: FORK-004.CHECK-001
+    title: Repository is publicly fetchable
+    type: repository
+    severity: observe
+    implementation: osera-fitness.fork004.public_fetch
+    evidence:
+    - repository_url
+    - fetch_result
+- id: FORK-004.REQ-002
+  level: SHOULD
+  text: Backpatch repositories should preserve applicable upstream open-source license
+    files and notices.
+  checkability: partially-automated
+  checks:
+  - id: FORK-004.CHECK-002
+    title: Upstream license files and notices are preserved
+    type: repository
+    severity: observe
+    implementation: osera-fitness.fork004.license_files
+    evidence:
+    - license_files
+    - upstream_license_files
 ---
 
 ## Requirement
@@ -30,7 +62,7 @@ OSERA backpatch consumers need to inspect source, provenance, and license eviden
 
 This should be a separate `FORK` standard rather than part of `FORK-003`. `FORK-003` answers whether the baseline source state is tagged. `FORK-004` answers whether the repository and its license evidence are publicly reviewable in the first place.
 
-The working group should discuss this before making it a required v0.1 gate because "publicly accessible" may need precise exceptions for platform outages, rate limits, embargo handling, and projects with complex multi-license structures.
+The working group should discuss this before making it a required v0.1.0 gate because "publicly accessible" may need precise exceptions for platform outages, rate limits, embargo handling, and projects with complex multi-license structures.
 
 ## Evidence
 

@@ -1,76 +1,169 @@
-- id: OSERA-SP-0.1
-  title: OSERA Remediation Standards Pack 0.1
-  status: Candidate for discussion
-  proposed_date: 2026-08-25
+- schema-version: 0.1.0
+  id: OSERA-SP-0.1.0
+  title: OSERA Remediation Standards Pack 0.1.0
+  status: Revised candidate for discussion
+  proposed_date: 2026-08-27
   target_decision_date: 2026-09-20
+  target_gate_date: 2026-09-20
   ratified_date: Not ratified
   issue: https://github.com/finos-osera/remediation-standards/issues/12
-  agenda_issue: https://github.com/finos-osera/remediation-standards/issues/13
-  branch: codex/issue-12-v0.1-standards-proposal
-  summary: Initial candidate pack for producing, publishing, and consuming OSERA backpatches without over-specifying immature implementation details.
+  agenda_issue: To be created from revised agenda
+  standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
+  branch: codex/issue-23-standards-as-code-sp010
+  summary: Revised candidate pack for the September 20 gate, using standards-as-code metadata, branded OSERA release identifiers, approved producers, and observe-mode checks for v0.2.0 candidates.
+  release_metadata:
+    official_token: osera-patch.NNN
+    official_example: 5.3.39+osera-patch.001
+    legacy_token: backpatch.NNN
+    legacy_posture: Existing +backpatch.NNN releases are treated as legacy/proof-of-concept evidence and are not the proposed official signed-artifact naming for OSERA-SP-0.1.0.
+  approved_producers:
+    registry: docs/_data/approved_producers.yml
+    lifecycle_policy: Producer registry updates that do not change standard text or check semantics may be handled as patch-level standards-pack updates.
   evidence_summary:
     - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
     - 59 baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.
-    - 61 release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.
-    - Issue 13 discussion raised whether release metadata should carry OSERA-visible branding for SCA and inventory workflows.
-    - Five repositories had no release tag at the time of scan; one of those had no tags.
+    - 61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.
+    - Issue 13 discussion favored visible OSERA branding in release metadata for SCA, inventory, and audit workflows.
+    - Issue 23 proposed Markdown plus structured YAML front matter, schema validation, and generated catalog artifacts as the standards-as-code model.
   included_standards:
+    - id: STD-001
+      version: 0.1.0
+      role: Required check
+      rationale: The standards group needs a machine-readable source format before ratifying a pack that acceptance gates can consume.
+      checks:
+        - STD-001.CHECK-001
+        - STD-001.CHECK-002
     - id: FORK-001
       version: 0.1.0
       role: Required check
-      rationale: Repository naming is already consistently deployed and easy for new providers to follow.
+      rationale: Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model.
+      checks:
+        - FORK-001.CHECK-001
+        - FORK-001.CHECK-002
     - id: FORK-002
       version: 0.1.0
       role: Required check
       rationale: Version-scoped backpatch branches are simple to create and necessary for multiple supported lines.
+      checks:
+        - FORK-002.CHECK-001
     - id: FORK-003
       version: 0.1.0
       role: Required check
-      rationale: Every observed public backpatch repository has a baseline tag, making this mature enough for v0.1.
+      rationale: Baseline tags are already broadly deployed and are essential for source comparison and audit evidence.
+      checks:
+        - FORK-003.CHECK-001
     - id: SRC-001
       version: 0.1.0
       role: Required evidence
       rationale: Consumers need to distinguish upstream backports from provider-developed fixes.
+      checks:
+        - SRC-001.CHECK-001
     - id: SRC-002
       version: 0.1.0
       role: Required evidence
       rationale: Provenance links are central to reviewability and auditability.
+      checks:
+        - SRC-002.CHECK-001
     - id: SRC-003
       version: 0.1.0
       role: Required evidence
       rationale: License-header consistency is low-cost and reduces avoidable review friction.
+      checks:
+        - SRC-003.CHECK-001
     - id: REL-001
       version: 0.1.0
       role: Required evidence
       rationale: Build systems vary too much to mandate one CI model, but release evidence is still required.
+      checks:
+        - REL-001.CHECK-001
     - id: REL-002
       version: 0.1.0
-      role: Required evidence
-      rationale: Runtime compatibility is a high-impact recipient concern and should be measured per release.
+      role: Required check
+      rationale: Runtime compatibility is a high-impact recipient concern and can be measured at publication time.
+      checks:
+        - REL-002.CHECK-001
     - id: REL-003
       version: 0.1.0
       role: Required check
-      rationale: Patched-release metadata should preserve the upstream version while making the responsible patching initiative visible in release tags, artifact coordinates, and scanner output.
+      rationale: Official signed artifacts should use branded OSERA release metadata visible in package coordinates and scanner output.
+      checks:
+        - REL-003.CHECK-001
+        - REL-003.CHECK-002
+    - id: REL-004
+      version: 0.1.0
+      role: Required check
+      rationale: The gate needs an approved-producer allow list so official artifacts come from a known participant.
+      checks:
+        - REL-004.CHECK-001
+        - REL-004.CHECK-002
+    - id: REL-005
+      version: 0.1.0
+      role: Required check
+      rationale: Package metadata and checksum hygiene are practical for the September 20 gate and necessary for reliable consumption.
+      checks:
+        - REL-005.CHECK-001
+        - REL-005.CHECK-002
     - id: FEED-001
       version: 0.1.0
       role: Required evidence
-      rationale: Feeds are necessary for enterprise consumption, while exact feed operations can mature after v0.1.
+      rationale: Feeds are necessary for enterprise consumption, and the gate can verify exact purl coverage for official artifacts.
+      checks:
+        - FEED-001.CHECK-001
+        - FEED-001.CHECK-002
+  advisory_standards:
     - id: EVD-001
       version: 0.1.0
       role: Advisory evidence
-      rationale: Recipient guidance is valuable, but v0.1 should not yet require a detailed schema before implementers prove it.
+      rationale: Recipient guidance is valuable for routing testing and should use a versioned schema, but should not block the first gate.
+      checks:
+        - EVD-001.CHECK-001
+  observe_standards:
+    - id: FORK-004
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Public source and license availability are important to recipient trust, but the exact rule needs discussion around embargoes, platform access, and multi-license projects.
+      checks:
+        - FORK-004.CHECK-001
+        - FORK-004.CHECK-002
+    - id: REL-006
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Patch request or backlog authorization is useful, but public/private sponsorship policy is not ready to enforce.
+      checks:
+        - REL-006.CHECK-001
+    - id: REL-007
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance and publication hygiene.
+      checks:
+        - REL-007.CHECK-001
+        - REL-007.CHECK-002
+    - id: APP-001
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for the first gate.
+      checks:
+        - APP-001.CHECK-001
   deferred_standards:
     - id: FORK-004
       version: 0.0.1
-      rationale: Public source and license availability are important to recipient trust, but the exact rule needs discussion around embargoes, platform access, and multi-license projects before becoming a v0.1 gate.
+      role: Observe-only check
+      rationale: Tracked in observe mode for OSERA-SP-0.1.0 and expected to be reconsidered for OSERA-SP-0.2.0.
+    - id: REL-006
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Tracked in observe mode until the backlog and private sponsorship model is settled.
+    - id: REL-007
+      version: 0.0.1
+      role: Observe-only check
+      rationale: Tracked in observe mode until producer signed build provenance is specified and implemented.
     - id: APP-001
       version: 0.0.1
-      rationale: Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for a first acceptance gate.
+      role: Observe-only check
+      rationale: Tracked in observe mode until estate-wide application workflows are proven.
   discussion_topics:
-    - Whether v0.1 should use "alignment" or "certification" language before a formal conformance program exists.
-    - Whether the working group should require provider self-attestation for every published backpatch.
-    - Which evidence fields should become machine-readable in v0.2.
-    - What exception process should exist for repositories that cannot preserve GitHub fork relationships or upstream tag conventions.
-    - Whether public repository access and upstream license-file preservation should become required for v0.1 or remain deferred to v0.2.
-    - Which release-metadata token should identify OSERA-managed patched releases, and whether existing `+backpatch.NNN` releases are transition aliases or historical examples.
-    - Which checks are publish-time gates and which are advisory warnings.
+    - Whether the standards-as-code schema is sufficient for the September 20 gate or needs narrower scope.
+    - Whether official OSERA signed artifacts must use `+osera-patch.NNN` while treating `+backpatch.NNN` as legacy/proof-of-concept.
+    - How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.
+    - Which v0.2.0 observe-mode checks should be promoted after the first gate.
+    - Whether generated catalog artifacts should also be published as signed GitHub releases or OCI artifacts after ratification.

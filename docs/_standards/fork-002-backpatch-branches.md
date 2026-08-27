@@ -1,18 +1,34 @@
 ---
+schema-version: 0.1.0
 sequence: 20
 standard_id: FORK-002
 title: Backpatch Branches
-summary: Patch providers use `backpatch/<version>` branches for every supported major or minor line.
+summary: Patch providers use `backpatch/<version>` branches for every supported major
+  or minor line.
 doc-status: Draft
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1 candidate
+candidate-pack: OSERA-SP-0.1.0 candidate
 ratified-in: Not ratified
 ratified-date: Not ratified
 fitness-role: Required check
 type: FORK
+category: Fork Management
 applies-to:
-  - Patch providers
-  - OSERA maintainers
+- Patch providers
+- OSERA maintainers
+requirements:
+- id: FORK-002.REQ-001
+  level: MUST
+  text: Patch providers must create version-scoped backpatch branches using backpatch/<version>.
+  checkability: automated
+  checks:
+  - id: FORK-002.CHECK-001
+    title: Supported line has a backpatch version branch
+    type: repository
+    severity: blocking
+    implementation: osera-fitness.fork002.backpatch_branch
+    evidence:
+    - branch_name
 ---
 
 ## Requirement
