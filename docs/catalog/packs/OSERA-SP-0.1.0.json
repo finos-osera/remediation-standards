@@ -10,7 +10,7 @@
     "target_gate_date": "2026-09-20",
     "ratified_date": "Not ratified",
     "issue": "https://github.com/finos-osera/remediation-standards/issues/12",
-    "agenda_issue": "To be created from revised agenda",
+    "agenda_issue": "https://github.com/finos-osera/remediation-standards/issues/24",
     "standards_as_code_issue": "https://github.com/finos-osera/remediation-standards/issues/23",
     "branch": "codex/issue-23-standards-as-code-sp010",
     "summary": "Revised candidate pack for the September 20 gate, using standards-as-code metadata, branded OSERA release identifiers, approved producers, and observe-mode checks for v0.2.0 candidates.",
