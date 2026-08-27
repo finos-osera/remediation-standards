@@ -29,6 +29,8 @@ The example site explains the core consumption problem clearly: scanners may sti
 
 The reference OpenVEX feed covered 118 backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
 
+REL-003 proposes that future patched-release metadata carry an initiative-identifying token such as `+osera-patch.NNN`. Feeds should preserve the exact published release identifier, including any transition or historical `+backpatch.NNN` releases, so scanners can match the artifact actually consumed.
+
 ## Feed expectations
 
 Each patched artifact should be traceable to:
@@ -80,7 +82,7 @@ The reference example notes that rebuilt backpatches may clear by binary hash, a
 An OpenVEX backpatch statement should include:
 
 * the CVE and aliases, including GHSA aliases where available;
-* exact patched package URLs, such as Maven purls with `%2Bbackpatch.NNN`;
+* exact patched package URLs, such as Maven purls with `%2Bosera-patch.NNN` for OSERA-managed releases;
 * hashes for built artifacts when available;
 * `status: fixed`;
 * an action statement describing that the CVE was fixed by backporting the upstream fix onto the baseline.
@@ -104,9 +106,9 @@ A CycloneDX backpatch statement should include vulnerability analysis and compon
       },
       "products": [
         {
-          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001",
+          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001",
           "identifiers": {
-            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001"
+            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
           },
           "hashes": {
             "sha-256": "..."

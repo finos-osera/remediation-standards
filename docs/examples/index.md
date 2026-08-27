@@ -13,7 +13,7 @@ See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-eviden
 github.com/finos-osera/backpatch-spring-framework
   branch: backpatch/5.3.x
   tag: v5.3.39+backpatch.baseline
-  release: v5.3.39+backpatch.001
+  release: v5.3.39+osera-patch.001
 ```
 
 ## Patch evidence bundle
@@ -24,7 +24,7 @@ patch:
   repository: https://github.com/finos-osera/backpatch-spring-framework
   branch: backpatch/5.3.x
   baseline_tag: v5.3.39+backpatch.baseline
-  release_version: 5.3.39+backpatch.001
+  release_version: 5.3.39+osera-patch.001
   basis:
     type: upstream-backport
     upstream_commit: https://github.com/spring-projects/spring-framework/commit/example
@@ -50,7 +50,7 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
 ```json
 {
   "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://vex.example.org/openvex/example-1.0.0+backpatch.001.json",
+  "@id": "https://vex.example.org/openvex/example-1.0.0+osera-patch.001.json",
   "author": "Example Patch Provider <security@example.org>",
   "timestamp": "2026-07-10T00:00:00Z",
   "version": 1,
@@ -62,9 +62,9 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
       },
       "products": [
         {
-          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001",
+          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001",
           "identifiers": {
-            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001"
+            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
           },
           "hashes": {
             "sha-256": "..."
@@ -98,7 +98,7 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
       },
       "affects": [
         {
-          "ref": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001"
+          "ref": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
         }
       ]
     }

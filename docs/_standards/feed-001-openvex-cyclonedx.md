@@ -39,7 +39,7 @@ Feed entries SHOULD link to:
 * patch basis and provenance links;
 * provider identity and publication timestamp.
 
-OpenVEX entries SHOULD match the patched artifact by exact package URL and SHOULD include a built-artifact hash when available. The status SHOULD be `fixed` when the upstream fix has been carried onto the backpatch baseline.
+OpenVEX entries SHOULD match the patched artifact by exact package URL and SHOULD include a built-artifact hash when available. The package URL MUST preserve the release metadata chosen under REL-003 so scanner results match the artifact version actually published. The status SHOULD be `fixed` when the upstream fix has been carried onto the backpatch baseline.
 
 CycloneDX entries SHOULD carry vulnerability analysis and SHOULD use pedigree or equivalent evidence links to connect the patched component to the backported fix.
 

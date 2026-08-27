@@ -12,6 +12,7 @@
     - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
     - 59 baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.
     - 61 release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.
+    - Issue 13 discussion raised whether release metadata should carry OSERA-visible branding for SCA and inventory workflows.
     - Five repositories had no release tag at the time of scan; one of those had no tags.
   included_standards:
     - id: FORK-001
@@ -49,7 +50,7 @@
     - id: REL-003
       version: 0.1.0
       role: Required check
-      rationale: The +backpatch.NNN release form is already widely adopted and avoids inventing a second OSERA token.
+      rationale: Patched-release metadata should preserve the upstream version while making the responsible patching initiative visible in release tags, artifact coordinates, and scanner output.
     - id: FEED-001
       version: 0.1.0
       role: Required evidence
@@ -71,4 +72,5 @@
     - Which evidence fields should become machine-readable in v0.2.
     - What exception process should exist for repositories that cannot preserve GitHub fork relationships or upstream tag conventions.
     - Whether public repository access and upstream license-file preservation should become required for v0.1 or remain deferred to v0.2.
+    - Which release-metadata token should identify OSERA-managed patched releases, and whether existing `+backpatch.NNN` releases are transition aliases or historical examples.
     - Which checks are publish-time gates and which are advisory warnings.

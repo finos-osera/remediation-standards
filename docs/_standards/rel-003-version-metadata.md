@@ -1,8 +1,8 @@
 ---
 sequence: 230
 standard_id: REL-003
-title: Backpatch Version Metadata
-summary: Patched releases use SemVer metadata in the form `+backpatch.NNN`.
+title: Patch Initiative Version Metadata
+summary: Patched releases use SemVer build metadata that identifies the patching initiative and release sequence.
 doc-status: Draft
 standard-version: 0.1.0
 candidate-pack: OSERA-SP-0.1 candidate
@@ -20,27 +20,37 @@ applies-to:
 Patch providers SHOULD release patched artifacts using SemVer build metadata in the form:
 
 ```text
-<UPSTREAM_VERSION>+backpatch.NNN
+<UPSTREAM_VERSION>+<PATCH_INITIATIVE>.NNN
 ```
 
-`NNN` MUST be monotonically increasing for the same upstream version line.
+`<PATCH_INITIATIVE>` SHOULD identify the patching initiative, provider, or organization responsible for the patched release. For OSERA-managed releases, the candidate metadata token is:
 
-OSERA release names SHOULD NOT add a second OSERA-specific token such as `+osera-backpatch.NNN` unless the working group later finds a concrete interoperability need. The current `+backpatch.NNN` form is shorter, already deployed, and keeps OSERA identity in the repository, feed, and provider metadata.
+```text
+osera-patch.NNN
+```
+
+`NNN` MUST be monotonically increasing for the same upstream version line and patching initiative.
+
+Release tags, artifact versions, vulnerability feeds, and release evidence MUST carry the same patched-release identifier so recipients can correlate source, binary, scanner, and advisory records.
+
+Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as deployed evidence and define whether v0.1 accepts it as a transition alias, grandfathered historical form, or replacement candidate before ratification.
 
 ## Rationale
 
-This form preserves the upstream version while making the patched artifact distinguishable. It also works well with build tools whose dynamic resolution behavior uses lexicographic ordering.
+This form preserves the upstream version while making the patched artifact distinguishable. Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream backpatch providers when repository or feed metadata is not shown.
+
+The numeric suffix keeps ordering simple for repeated releases on the same upstream version line and works with build tools whose dynamic resolution behavior uses lexicographic ordering.
 
 ## Examples
 
 ```text
-5.3.39+backpatch.001
-5.3.39+backpatch.002
+5.3.39+osera-patch.001
+5.3.39+osera-patch.002
 ```
 
 ## Observed OSERA examples
 
-Public OSERA repositories currently include release tags such as:
+Public OSERA repositories currently include deployed `+backpatch.NNN` release tags such as:
 
 * `backpatch-spring-framework`: `v5.3.39+backpatch.001`
 * `backpatch-gson`: `v2.8.8+backpatch.001`

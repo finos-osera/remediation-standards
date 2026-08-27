@@ -23,7 +23,7 @@ The result SHOULD identify the standards-pack version, each standard version tes
 | SRC-003 | New files added by the patch follow the surrounding license-header convention. |
 | REL-001 | Release evidence records build tool, runtime, test command, and validation result. |
 | REL-002 | Release evidence records bytecode level and how it was checked against the prior released artifact. |
-| REL-003 | Release tag and artifact version use `<UPSTREAM_VERSION>+backpatch.NNN`. |
+| REL-003 | Release tag and artifact version use `<UPSTREAM_VERSION>+<PATCH_INITIATIVE>.NNN`, with `+osera-patch.NNN` as the OSERA candidate token. |
 | FEED-001 | OpenVEX and CycloneDX feed data can identify vulnerability, patched artifact, release, baseline, and provenance. |
 | EVD-001 | Recipient guidance describes what changed and what surface area should be tested. |
 
@@ -40,7 +40,7 @@ The result SHOULD identify the standards-pack version, each standard version tes
 {
   "standard_pack": "OSERA-SP-0.1",
   "repository": "finos-osera/backpatch-example",
-  "release": "v1.2.3+backpatch.001",
+  "release": "v1.2.3+osera-patch.001",
   "result": "warn",
   "checks": [
     {
