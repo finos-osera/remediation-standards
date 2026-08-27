@@ -6,12 +6,12 @@ standard:
   title: Patch Basis Classification
   summary: Providers distinguish upstream backports from provider-developed fixes
     where no upstream fix exists.
-  doc-status: Draft
-  standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
   ratified-in: Not ratified
   ratified-date: Not ratified
-  fitness-role: Required evidence
+  fitness-role: Observe-only check
   type: SRC
   category: Source Changes
   applies-to:
@@ -21,14 +21,15 @@ standard:
   requirements:
   - id: SRC-001.REQ-001
     level: SHOULD
-    text: Patch providers should backpatch an upstream fix when one exists and identify
-      provider-developed fixes when no upstream fix exists.
+    text: Patch providers should classify whether a patch is based on an upstream
+      fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary
+      still to be defined by the working group.
     checkability: manual
     checks:
     - id: SRC-001.CHECK-001
       title: Patch basis classification is present
       type: release-evidence
-      severity: blocking
+      severity: observe
       implementation: osera-fitness.src001.patch_basis
       evidence:
       - patch_basis

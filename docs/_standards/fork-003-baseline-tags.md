@@ -3,8 +3,8 @@ schema-version: 0.1.0
 sequence: 30
 standard_id: FORK-003
 title: Baseline Tags
-summary: Every backpatch line identifies its unpatched starting source SHA with a
-  `v<VERSION>+backpatch.baseline` tag.
+summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
+  tag.
 doc-status: Draft
 standard-version: 0.1.0
 candidate-pack: OSERA-SP-0.1.0 candidate
@@ -19,7 +19,7 @@ applies-to:
 requirements:
 - id: FORK-003.REQ-001
   level: MUST
-  text: Patch providers must tag the unpatched baseline source commit using v<VERSION>+backpatch.baseline.
+  text: Patch providers must tag the unpatched baseline source commit using v<VERSION>+patch.baseline.
   checkability: automated
   checks:
   - id: FORK-003.CHECK-001
@@ -34,12 +34,12 @@ requirements:
 
 ## Requirement
 
-Patch providers MUST tag the commit that represents the unpatched baseline source state for a backpatched version.
+Patch providers MUST tag the commit that represents the unpatched baseline source state for a patched version.
 
 The tag MUST use the form:
 
 ```text
-v<VERSION>+backpatch.baseline
+v<VERSION>+patch.baseline
 ```
 
 This tag scheme applies regardless of the upstream project tag convention.
@@ -48,9 +48,9 @@ This tag scheme applies regardless of the upstream project tag convention.
 
 Recipients need an unambiguous starting point for source comparison, provenance review, and audit evidence.
 
-The `+backpatch.baseline` suffix is deliberately retained as a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use `+osera-patch.NNN` for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
+The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use `+osera-patch.NNN` for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
 
-The `<VERSION>` segment in `v<VERSION>+backpatch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-backpatch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
+The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
 
 ## Evidence
 
@@ -64,3 +64,5 @@ Public OSERA repositories currently include baseline tags such as:
 * `backpatch-gson`: `v2.8.8+backpatch.baseline`
 * `backpatch-activemq`: `v5.14.5+backpatch.baseline`
 * `backpatch-logback`: `v1.2.9+backpatch.baseline`
+
+These observed tags are legacy/proof-of-concept evidence that predates the proposed `+patch.baseline` convention.

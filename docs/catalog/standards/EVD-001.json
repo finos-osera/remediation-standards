@@ -7,11 +7,11 @@
     "title": "Change and Test Surface Guidance",
     "summary": "Providers publish concise recipient guidance describing what changed and what surface area should be tested.",
     "doc-status": "Pre-Draft",
-    "standard-version": "0.1.0",
-    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "standard-version": "0.0.1",
+    "candidate-pack": "OSERA-SP-0.2.0 observe",
     "ratified-in": "Not ratified",
     "ratified-date": "Not ratified",
-    "fitness-role": "Advisory evidence",
+    "fitness-role": "Observe-only check",
     "type": "EVD",
     "category": "Recipient Evidence",
     "applies-to": [
@@ -30,7 +30,7 @@
             "id": "EVD-001.CHECK-001",
             "title": "Recipient guidance uses the current guidance schema",
             "type": "release-evidence",
-            "severity": "advisory",
+            "severity": "observe",
             "implementation": "osera-fitness.evd001.recipient_guidance_schema",
             "evidence": [
               "recipient_guidance",

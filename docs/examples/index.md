@@ -5,14 +5,14 @@ permalink: /examples/
 
 These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.
 
-See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for concrete examples from public `finos-osera/backpatch-*` repositories and [Backpatch Release Tags]({{ site.baseurl }}/examples/release-tags/) for the current release-tag inventory.
+See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for historical examples from public `finos-osera/backpatch-*` repositories and [Backpatch Release Tags]({{ site.baseurl }}/examples/release-tags/) for the legacy/proof-of-concept release-tag inventory.
 
-## Backpatch repository shape
+## Patch repository shape
 
 ```text
-github.com/finos-osera/backpatch-spring-framework
-  branch: backpatch/5.3.x
-  tag: v5.3.39+backpatch.baseline
+github.com/finos-osera/patch-spring-framework
+  branch: patch/5.3.x
+  tag: v5.3.39+patch.baseline
   release: v5.3.39+osera-patch.001
 ```
 
@@ -21,9 +21,9 @@ github.com/finos-osera/backpatch-spring-framework
 ```yaml
 patch:
   provider: Moderne
-  repository: https://github.com/finos-osera/backpatch-spring-framework
-  branch: backpatch/5.3.x
-  baseline_tag: v5.3.39+backpatch.baseline
+  repository: https://github.com/finos-osera/patch-spring-framework
+  branch: patch/5.3.x
+  baseline_tag: v5.3.39+patch.baseline
   release_version: 5.3.39+osera-patch.001
   basis:
     type: upstream-backport

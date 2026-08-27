@@ -54,7 +54,7 @@ Release evidence SHOULD include the bytecode level, how it was determined, and w
 
 ## Observed OSERA example
 
-The `backpatch-logback` `backpatch/1.2.9` branch includes a compatibility-focused commit titled `ensure JDK 8 compatibility`:
+The historical `backpatch-logback` `backpatch/1.2.9` branch includes a compatibility-focused commit titled `ensure JDK 8 compatibility`:
 
 <https://github.com/finos-osera/backpatch-logback/commit/a721d9c51643f0a9fd113a1a3bb4e25ad7a76e4e>
 

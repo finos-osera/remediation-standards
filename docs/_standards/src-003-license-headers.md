@@ -5,12 +5,12 @@ standard_id: SRC-003
 title: License Headers for New Files
 summary: New source or test files match the prevailing license format of the surrounding
   project.
-doc-status: Draft
-standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
+doc-status: Pre-Draft
+standard-version: 0.0.1
+candidate-pack: OSERA-SP-0.2.0 observe
 ratified-in: Not ratified
 ratified-date: Not ratified
-fitness-role: Required evidence
+fitness-role: Observe-only check
 type: SRC
 category: Source Changes
 applies-to:
@@ -25,7 +25,7 @@ requirements:
   - id: SRC-003.CHECK-001
     title: New files use the local license-header convention
     type: source
-    severity: blocking
+    severity: observe
     implementation: osera-fitness.src003.license_headers
     evidence:
     - new_files
@@ -40,7 +40,9 @@ When the surrounding project uses different headers for source and test files, p
 
 ## Rationale
 
-Most fixes modify pre-existing source files that already carry license headers. Test files are often the new files added by a backpatch, so license consistency must be explicit.
+Most fixes modify pre-existing source files that already carry license headers. Test files are often the new files added by a patch, so license consistency should be explicit.
+
+The working group has not yet proven whether this can be enforced consistently across the full OSERA patch set. Some projects have mixed license headers, generated files, language-specific conventions, or no per-file header practice. This should run in observe mode for the v0.1.0 gate and be refined for OSERA-SP-0.2.0 consideration.
 
 ## Evidence
 

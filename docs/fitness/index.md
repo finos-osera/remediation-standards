@@ -7,7 +7,7 @@ The v0.1.0 fitness function should measure alignment to a standard pack, not cer
 
 ## Scope
 
-The first fitness function evaluates a single backpatch repository and one published backpatch release against a named standards pack, for example `OSERA-SP-0.1.0`.
+The first fitness function evaluates a single patch repository and one published patch release against a named standards pack, for example `OSERA-SP-0.1.0`.
 
 The result SHOULD identify the standards-pack version, each standard version tested, each check ID, the commit tested, the artifact digest when an artifact exists, the evidence inspected, and whether every check is `pass`, `warn`, `fail`, `not-tested`, `not-applicable`, or `manual-evidence-required`.
 
@@ -17,13 +17,11 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 
 | Standard | v0.1.0 check |
 | --- | --- |
-| FORK-001 | Repository is public under `finos-osera` and named `backpatch-<upstream-or-artifact-name>`. |
-| FORK-002 | Backpatch work happens on a `backpatch/<version>` branch for the supported line. |
-| FORK-003 | Baseline source commit is tagged `v<VERSION>+backpatch.baseline`. |
-| SRC-001 | Evidence classifies the patch as upstream backport or provider-developed fix. |
+| FORK-001 | Repository is public under `finos-osera` and named `patch-<upstream-or-artifact-name>`. |
+| FORK-002 | Patch work happens on a `patch/<version>` branch for the supported line. |
+| FORK-003 | Baseline source commit is tagged `v<VERSION>+patch.baseline`. |
 | SRC-002 | Backport evidence links to upstream commit, commit range, pull request, advisory, or release note. |
-| SRC-003 | New files added by the patch follow the surrounding license-header convention. |
-| REL-001 | Release evidence records build tool, runtime, test command, and validation result. |
+| REL-001 | Release evidence records runtime, test command or suite, test result, and any published test report. |
 | REL-002 | Release evidence records bytecode level and how it was checked against the prior released artifact. |
 | REL-003 | Official OSERA release tag and artifact version use `<UPSTREAM_VERSION>+osera-patch.NNN` and match feed purls. |
 | REL-004 | Producer identity is approved for the targeted standards pack and recorded in release evidence. |
@@ -34,8 +32,10 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 
 | Standard | Mode | Check |
 | --- | --- |
-| EVD-001 | Advisory | Recipient guidance describes what changed and what surface area should be tested using schema version `0.1.0`. |
-| FORK-004 | Observe | Repository is fully public, publicly fetchable, and contains the applicable upstream open-source license files and notices. |
+| EVD-001 | Observe | Recipient guidance describes what changed and what surface area should be tested using schema version `0.1.0`, once the expected format is defined. |
+| FORK-004 | Observe | Repository is fully public, publicly fetchable, hosted in the appropriate official fork, and released under the same applicable upstream open-source license terms. |
+| SRC-001 | Observe | Patch basis classification vocabulary and minimum provider wording are present once defined by the working group. |
+| SRC-003 | Observe | New files follow the surrounding license-header convention where the project has an enforceable convention. |
 | REL-006 | Observe | Release has a backlog item, public request, sponsor record, or equivalent authorization record. |
 | REL-007 | Observe | Producer signs an attestation linking artifact digest to source tag and release evidence. |
 | APP-001 | Observe | Feed and metadata support estate-wide automated discovery and application. |
@@ -46,7 +46,7 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 {
   "standard_pack": "OSERA-SP-0.1.0",
   "pack_checksum": "sha256:...",
-  "repository": "finos-osera/backpatch-example",
+  "repository": "finos-osera/patch-example",
   "release": "v1.2.3+osera-patch.001",
   "commit": "...",
   "artifact_digest": "sha256:...",
@@ -58,7 +58,7 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
       "standard": "FORK-003",
       "standard_version": "0.1.0",
       "status": "pass",
-      "evidence": "v1.2.3+backpatch.baseline resolves to commit ..."
+      "evidence": "v1.2.3+patch.baseline resolves to commit ..."
     }
   ]
 }

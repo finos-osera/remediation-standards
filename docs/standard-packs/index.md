@@ -100,6 +100,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 
 ### Advisory in v0.1.0
 
+{% if pack.advisory_standards and pack.advisory_standards.size > 0 %}
 <table>
   <thead>
     <tr>
@@ -121,6 +122,11 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
     {% endfor %}
   </tbody>
 </table>
+{% else %}
+
+No advisory standards are proposed for this pack. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
+
+{% endif %}
 
 ### Observe mode for v0.2.0
 

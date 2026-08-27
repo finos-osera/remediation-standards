@@ -33,7 +33,7 @@
             "implementation": "osera-fitness.src002.upstream_provenance_link",
             "evidence": [
               "upstream_fix_url",
-              "backpatch_commit_url"
+              "patch_commit_url"
             ]
           }
         ]

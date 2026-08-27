@@ -6,11 +6,11 @@ title: Change and Test Surface Guidance
 summary: Providers publish concise recipient guidance describing what changed and
   what surface area should be tested.
 doc-status: Pre-Draft
-standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
+standard-version: 0.0.1
+candidate-pack: OSERA-SP-0.2.0 observe
 ratified-in: Not ratified
 ratified-date: Not ratified
-fitness-role: Advisory evidence
+fitness-role: Observe-only check
 type: EVD
 category: Recipient Evidence
 applies-to:
@@ -27,7 +27,7 @@ requirements:
   - id: EVD-001.CHECK-001
     title: Recipient guidance uses the current guidance schema
     type: release-evidence
-    severity: advisory
+    severity: observe
     implementation: osera-fitness.evd001.recipient_guidance_schema
     evidence:
     - recipient_guidance
@@ -69,9 +69,11 @@ The draft schema is published at [`/schemas/osera-recipient-guidance-0.1.0.schem
 
 This is an intentionally early standard. The working group should refine the minimum fields and decide which parts belong in feeds, release notes, repository files, or separate evidence bundles.
 
+This is deferred from OSERA-SP-0.1.0 because the working group has not yet defined the expected format tightly enough to make it advisory or required for the first ratification decision. It should run in observe mode and be reconsidered for OSERA-SP-0.2.0.
+
 ## Observed OSERA example
 
-The `backpatch-spring-framework` CVE-2024-38816 commit gives recipients useful test-surface evidence by identifying the affected WebMvc.fn and WebFlux.fn resource lookup classes and adding regression tests under those packages:
+The historical `backpatch-spring-framework` CVE-2024-38816 commit gives recipients useful test-surface evidence by identifying the affected WebMvc.fn and WebFlux.fn resource lookup classes and adding regression tests under those packages:
 
 <https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6>
 

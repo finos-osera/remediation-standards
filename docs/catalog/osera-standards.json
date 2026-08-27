@@ -7,7 +7,7 @@
       "sequence": 10,
       "standard_id": "FORK-001",
       "title": "Repository Naming",
-      "summary": "Backpatched repositories use a consistent `backpatch-<reponame>` name in the finos-osera GitHub organization.",
+      "summary": "Patched-source repositories use a consistent `patch-<reponame>` name in the finos-osera GitHub organization.",
       "doc-status": "Draft",
       "standard-version": "0.1.0",
       "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -24,7 +24,7 @@
         {
           "id": "FORK-001.REQ-001",
           "level": "MUST",
-          "text": "Backpatched repositories must live in github.com/finos-osera unless the working group approves an exception.",
+          "text": "Patched-source repositories must live in github.com/finos-osera unless the working group approves an exception.",
           "checkability": "automated",
           "checks": [
             {
@@ -42,12 +42,12 @@
         {
           "id": "FORK-001.REQ-002",
           "level": "SHOULD",
-          "text": "Backpatched repositories should use the prefix backpatch- followed by the upstream repository or artifact name.",
+          "text": "Patched-source repositories should use the prefix patch- followed by the upstream repository or artifact name.",
           "checkability": "automated",
           "checks": [
             {
               "id": "FORK-001.CHECK-002",
-              "title": "Repository name uses the backpatch prefix",
+              "title": "Repository name uses the patch prefix",
               "type": "repository",
               "severity": "blocking",
               "implementation": "osera-fitness.fork001.repository_name",
@@ -65,8 +65,8 @@
       "schema-version": "0.1.0",
       "sequence": 20,
       "standard_id": "FORK-002",
-      "title": "Backpatch Branches",
-      "summary": "Patch providers use `backpatch/<version>` source workflow branches for every supported major or minor line.",
+      "title": "Patch Branches",
+      "summary": "Patch providers use `patch/<version>` source workflow branches for every supported major or minor line.",
       "doc-status": "Draft",
       "standard-version": "0.1.0",
       "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -83,15 +83,15 @@
         {
           "id": "FORK-002.REQ-001",
           "level": "MUST",
-          "text": "Patch providers must create version-scoped source workflow branches using backpatch/<version>.",
+          "text": "Patch providers must create version-scoped source workflow branches using patch/<version>.",
           "checkability": "automated",
           "checks": [
             {
               "id": "FORK-002.CHECK-001",
-              "title": "Supported line has a backpatch version branch",
+              "title": "Supported line has a patch version branch",
               "type": "repository",
               "severity": "blocking",
-              "implementation": "osera-fitness.fork002.backpatch_branch",
+              "implementation": "osera-fitness.fork002.patch_branch",
               "evidence": [
                 "branch_name"
               ]
@@ -99,15 +99,15 @@
           ]
         }
       ],
-      "source_path": "docs/_standards/fork-002-backpatch-branches.md",
-      "url": "/standards/fork-002-backpatch-branches/"
+      "source_path": "docs/_standards/fork-002-patch-branches.md",
+      "url": "/standards/fork-002-patch-branches/"
     },
     {
       "schema-version": "0.1.0",
       "sequence": 30,
       "standard_id": "FORK-003",
       "title": "Baseline Tags",
-      "summary": "Every backpatch line identifies its unpatched starting source SHA with a `v<VERSION>+backpatch.baseline` tag.",
+      "summary": "Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline` tag.",
       "doc-status": "Draft",
       "standard-version": "0.1.0",
       "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -124,7 +124,7 @@
         {
           "id": "FORK-003.REQ-001",
           "level": "MUST",
-          "text": "Patch providers must tag the unpatched baseline source commit using v<VERSION>+backpatch.baseline.",
+          "text": "Patch providers must tag the unpatched baseline source commit using v<VERSION>+patch.baseline.",
           "checkability": "automated",
           "checks": [
             {
@@ -148,8 +148,8 @@
       "schema-version": "0.1.0",
       "sequence": 40,
       "standard_id": "FORK-004",
-      "title": "Public Access and License Availability",
-      "summary": "Backpatch repositories should be fully public and preserve the applicable upstream open-source license files and notices.",
+      "title": "Open Source Patch Publication",
+      "summary": "Patched-source repositories should be fully public, hosted in the appropriate official fork, and released under the same open-source license terms as the original code.",
       "doc-status": "Pre-Draft",
       "standard-version": "0.0.1",
       "candidate-pack": "OSERA-SP-0.2.0 observe",
@@ -166,8 +166,8 @@
       "requirements": [
         {
           "id": "FORK-004.REQ-001",
-          "level": "SHOULD",
-          "text": "Backpatch repositories should be fully public and publicly fetchable without private credentials.",
+          "level": "MUST",
+          "text": "Patched-source repositories must be fully public and publicly fetchable without private credentials.",
           "checkability": "automated",
           "checks": [
             {
@@ -185,13 +185,13 @@
         },
         {
           "id": "FORK-004.REQ-002",
-          "level": "SHOULD",
-          "text": "Backpatch repositories should preserve applicable upstream open-source license files and notices.",
+          "level": "MUST",
+          "text": "Patched-source repositories must preserve applicable upstream open-source license files and notices and release patched source under the same applicable license terms as the original source line.",
           "checkability": "partially-automated",
           "checks": [
             {
               "id": "FORK-004.CHECK-002",
-              "title": "Upstream license files and notices are preserved",
+              "title": "Upstream license terms, files, and notices are preserved",
               "type": "repository",
               "severity": "observe",
               "implementation": "osera-fitness.fork004.license_files",
@@ -201,10 +201,30 @@
               ]
             }
           ]
+        },
+        {
+          "id": "FORK-004.REQ-003",
+          "level": "MUST",
+          "text": "Patched-source repositories must be hosted in the appropriate official OSERA fork for the upstream project or artifact line.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "FORK-004.CHECK-003",
+              "title": "Repository is the appropriate official OSERA fork",
+              "type": "repository",
+              "severity": "observe",
+              "implementation": "osera-fitness.fork004.official_fork",
+              "evidence": [
+                "repository_url",
+                "upstream_repository_url",
+                "fork_relationship"
+              ]
+            }
+          ]
         }
       ],
-      "source_path": "docs/_standards/fork-004-public-access-and-license.md",
-      "url": "/standards/fork-004-public-access-and-license/"
+      "source_path": "docs/_standards/fork-004-open-source-patch-publication.md",
+      "url": "/standards/fork-004-open-source-patch-publication/"
     },
     {
       "schema-version": "0.1.0",
@@ -212,12 +232,12 @@
       "standard_id": "SRC-001",
       "title": "Patch Basis Classification",
       "summary": "Providers distinguish upstream backports from provider-developed fixes where no upstream fix exists.",
-      "doc-status": "Draft",
-      "standard-version": "0.1.0",
-      "candidate-pack": "OSERA-SP-0.1.0 candidate",
+      "doc-status": "Pre-Draft",
+      "standard-version": "0.0.1",
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
       "ratified-in": "Not ratified",
       "ratified-date": "Not ratified",
-      "fitness-role": "Required evidence",
+      "fitness-role": "Observe-only check",
       "type": "SRC",
       "category": "Source Changes",
       "applies-to": [
@@ -229,14 +249,14 @@
         {
           "id": "SRC-001.REQ-001",
           "level": "SHOULD",
-          "text": "Patch providers should backpatch an upstream fix when one exists and identify provider-developed fixes when no upstream fix exists.",
+          "text": "Patch providers should classify whether a patch is based on an upstream fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary still to be defined by the working group.",
           "checkability": "manual",
           "checks": [
             {
               "id": "SRC-001.CHECK-001",
               "title": "Patch basis classification is present",
               "type": "release-evidence",
-              "severity": "blocking",
+              "severity": "observe",
               "implementation": "osera-fitness.src001.patch_basis",
               "evidence": [
                 "patch_basis",
@@ -282,7 +302,7 @@
               "implementation": "osera-fitness.src002.upstream_provenance_link",
               "evidence": [
                 "upstream_fix_url",
-                "backpatch_commit_url"
+                "patch_commit_url"
               ]
             }
           ]
@@ -297,12 +317,12 @@
       "standard_id": "SRC-003",
       "title": "License Headers for New Files",
       "summary": "New source or test files match the prevailing license format of the surrounding project.",
-      "doc-status": "Draft",
-      "standard-version": "0.1.0",
-      "candidate-pack": "OSERA-SP-0.1.0 candidate",
+      "doc-status": "Pre-Draft",
+      "standard-version": "0.0.1",
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
       "ratified-in": "Not ratified",
       "ratified-date": "Not ratified",
-      "fitness-role": "Required evidence",
+      "fitness-role": "Observe-only check",
       "type": "SRC",
       "category": "Source Changes",
       "applies-to": [
@@ -319,7 +339,7 @@
               "id": "SRC-003.CHECK-001",
               "title": "New files use the local license-header convention",
               "type": "source",
-              "severity": "blocking",
+              "severity": "observe",
               "implementation": "osera-fitness.src003.license_headers",
               "evidence": [
                 "new_files",
@@ -336,8 +356,8 @@
       "schema-version": "0.1.0",
       "sequence": 210,
       "standard_id": "REL-001",
-      "title": "Provider Build Process",
-      "summary": "Build and test methods are provider-dependent, but the provider records enough detail for repeatable release evidence.",
+      "title": "Provider Test Provenance",
+      "summary": "Test execution methods are provider-dependent, but the provider publishes enough test evidence for recipients to understand release validation.",
       "doc-status": "Draft",
       "standard-version": "0.1.0",
       "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -354,27 +374,27 @@
         {
           "id": "REL-001.REQ-001",
           "level": "MUST",
-          "text": "Patch providers must define the build and test process used to produce a patched artifact.",
+          "text": "Patch providers must publish test provenance for the patched artifact, including the test command or suite, runtime when relevant, and test result.",
           "checkability": "manual",
           "checks": [
             {
               "id": "REL-001.CHECK-001",
-              "title": "Build and test evidence is recorded",
+              "title": "Test provenance is recorded",
               "type": "release-evidence",
               "severity": "blocking",
-              "implementation": "osera-fitness.rel001.build_test_evidence",
+              "implementation": "osera-fitness.rel001.test_provenance",
               "evidence": [
-                "build_tool",
                 "runtime",
                 "test_command",
-                "validation_result"
+                "test_result",
+                "test_report"
               ]
             }
           ]
         }
       ],
-      "source_path": "docs/_standards/rel-001-build-process.md",
-      "url": "/standards/rel-001-build-process/"
+      "source_path": "docs/_standards/rel-001-test-provenance.md",
+      "url": "/standards/rel-001-test-provenance/"
     },
     {
       "schema-version": "0.1.0",
@@ -785,11 +805,11 @@
       "title": "Change and Test Surface Guidance",
       "summary": "Providers publish concise recipient guidance describing what changed and what surface area should be tested.",
       "doc-status": "Pre-Draft",
-      "standard-version": "0.1.0",
-      "candidate-pack": "OSERA-SP-0.1.0 candidate",
+      "standard-version": "0.0.1",
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
       "ratified-in": "Not ratified",
       "ratified-date": "Not ratified",
-      "fitness-role": "Advisory evidence",
+      "fitness-role": "Observe-only check",
       "type": "EVD",
       "category": "Recipient Evidence",
       "applies-to": [
@@ -808,7 +828,7 @@
               "id": "EVD-001.CHECK-001",
               "title": "Recipient guidance uses the current guidance schema",
               "type": "release-evidence",
-              "severity": "advisory",
+              "severity": "observe",
               "implementation": "osera-fitness.evd001.recipient_guidance_schema",
               "evidence": [
                 "recipient_guidance",

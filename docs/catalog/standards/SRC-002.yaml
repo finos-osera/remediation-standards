@@ -31,6 +31,6 @@ standard:
       implementation: osera-fitness.src002.upstream_provenance_link
       evidence:
       - upstream_fix_url
-      - backpatch_commit_url
+      - patch_commit_url
   source_path: docs/_standards/src-002-provenance-links.md
   url: "/standards/src-002-provenance-links/"

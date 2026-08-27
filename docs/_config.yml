@@ -1,5 +1,5 @@
 title: OSERA Remediation Standards
-description: Open standards for producing, publishing, and consuming OSERA backpatches.
+description: Open standards for producing, publishing, and consuming OSERA patches.
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
@@ -12,7 +12,7 @@ document_status:
   - name: Evaluation
     description: Provisional material under active review; not published as a formal standard.
   - name: Pre-Draft
-    description: Initial proposal collecting practice from OSERA backpatch work.
+    description: Initial proposal collecting practice from OSERA patch work.
   - name: Draft
     description: Written for community review and implementation feedback.
   - name: Ratification-Candidate

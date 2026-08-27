@@ -30,7 +30,7 @@ requirements:
     implementation: osera-fitness.src002.upstream_provenance_link
     evidence:
     - upstream_fix_url
-    - backpatch_commit_url
+    - patch_commit_url
 ---
 
 ## Requirement
@@ -48,13 +48,13 @@ This creates a full provenance chain when the fix was applied to a later support
 Patch evidence SHOULD include:
 
 * upstream commit URL or equivalent source;
-* OSERA backpatch commit URL;
+* OSERA patch commit URL;
 * vulnerability identifier;
 * affected and patched artifact coordinates;
 * notes on deviations from the upstream fix, if any.
 
 ## Observed OSERA example
 
-The `backpatch-spring-framework` commit for CVE-2024-38816 links to the upstream Spring Framework commit it backports and describes Java 8 source-level adaptations made while carrying the fix back to the 5.3.x line:
+The historical `backpatch-spring-framework` commit for CVE-2024-38816 links to the upstream Spring Framework commit it backports and describes Java 8 source-level adaptations made while carrying the fix back to the 5.3.x line:
 
 <https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6>

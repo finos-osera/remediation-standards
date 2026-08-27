@@ -68,17 +68,28 @@ Release tags, artifact versions, vulnerability feeds, and release evidence MUST 
 
 Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use `+osera-patch.NNN`.
 
-This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-backpatch-branches/) deliberately keeps `backpatch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately keeps `v<VERSION>+backpatch.baseline` for the unpatched source baseline.
+This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) deliberately uses `patch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately uses `v<VERSION>+patch.baseline` for the unpatched source baseline.
 
 ## Rationale
 
 This form preserves the upstream version while making the patched artifact distinguishable. It follows the [Semantic Versioning 2.0.0](https://semver.org/) build metadata shape, where metadata is appended after `+` as dot-separated identifiers.
 
-Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream backpatch providers when repository or feed metadata is not shown.
+Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream patch providers when repository or feed metadata is not shown.
 
 The numeric suffix keeps ordering simple for repeated releases on the same upstream version line. Some build tools may compare SemVer build metadata differently or rank `5.3.39+osera-patch.001` lower than the plain upstream `5.3.39`, so consumers SHOULD pin the exact patched version rather than relying on dynamic version resolution.
 
 Package URLs MUST encode `+` as `%2B`, for example `pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001`.
+
+## Open questions before ratification
+
+The working group still needs additional dialogue before the September 3, 2026 target decision on whether the SP-0.1.0 convention should remain pure SemVer build metadata, shift toward a Maven-style qualifier, or allow ecosystem-specific profiles.
+
+Open questions include:
+
+* whether SemVer build metadata or Maven qualifier ordering is better honored by Maven, Gradle, repository managers, SCA tools, and downstream policy engines;
+* whether a naming model should allow the original maintainer or another upstream-compatible actor to supersede external patch releases cleanly;
+* whether provider-specific patch names could distort consumer prioritization by making one producer appear to be the latest release for a shared namespace;
+* how OSERA should handle large numbers of patches from different producers targeting the same artifact namespace and upstream baseline.
 
 ## Examples
 

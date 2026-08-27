@@ -36,11 +36,11 @@ requirements:
 
 ## Requirement
 
-OSERA feeds and metadata SHOULD support estate-wide discovery of available backpatches, including transitive dependency use cases.
+OSERA feeds and metadata SHOULD support estate-wide discovery of available patches, including transitive dependency use cases.
 
 ## Rationale
 
-The July 7 update described applying every available backpatch across an estate using broad matching options:
+The July 7 update described applying every available patch across an estate using broad matching options:
 
 ```text
 groupId = *

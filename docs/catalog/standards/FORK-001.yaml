@@ -4,7 +4,7 @@ standard:
   sequence: 10
   standard_id: FORK-001
   title: Repository Naming
-  summary: Backpatched repositories use a consistent `backpatch-<reponame>` name in
+  summary: Patched-source repositories use a consistent `patch-<reponame>` name in
     the finos-osera GitHub organization.
   doc-status: Draft
   standard-version: 0.1.0
@@ -20,7 +20,7 @@ standard:
   requirements:
   - id: FORK-001.REQ-001
     level: MUST
-    text: Backpatched repositories must live in github.com/finos-osera unless the
+    text: Patched-source repositories must live in github.com/finos-osera unless the
       working group approves an exception.
     checkability: automated
     checks:
@@ -33,12 +33,12 @@ standard:
       - repository_url
   - id: FORK-001.REQ-002
     level: SHOULD
-    text: Backpatched repositories should use the prefix backpatch- followed by the
+    text: Patched-source repositories should use the prefix patch- followed by the
       upstream repository or artifact name.
     checkability: automated
     checks:
     - id: FORK-001.CHECK-002
-      title: Repository name uses the backpatch prefix
+      title: Repository name uses the patch prefix
       type: repository
       severity: blocking
       implementation: osera-fitness.fork001.repository_name

@@ -71,13 +71,13 @@ Feed entries SHOULD link to:
 * patch basis and provenance links;
 * provider identity and publication timestamp.
 
-OpenVEX entries SHOULD match the patched artifact by exact package URL and SHOULD include a built-artifact hash when available. The package URL MUST preserve the release metadata chosen under REL-003 so scanner results match the artifact version actually published. The status SHOULD be `fixed` when the upstream fix has been carried onto the backpatch baseline.
+OpenVEX entries SHOULD match the patched artifact by exact package URL and SHOULD include a built-artifact hash when available. The package URL MUST preserve the release metadata chosen under REL-003 so scanner results match the artifact version actually published. The status SHOULD be `fixed` when the upstream fix has been carried onto the patch baseline.
 
 CycloneDX entries SHOULD carry vulnerability analysis and SHOULD use pedigree or equivalent evidence links to connect the patched component to the backported fix.
 
 ## Example fields
 
-The current reference OpenVEX bundle uses fields such as:
+A candidate OpenVEX entry for an official OSERA patched artifact uses fields such as:
 
 ```json
 {
@@ -87,9 +87,9 @@ The current reference OpenVEX bundle uses fields such as:
   },
   "products": [
     {
-      "@id": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bbackpatch.001",
+      "@id": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bosera-patch.001",
       "identifiers": {
-        "purl": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bbackpatch.001"
+        "purl": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bosera-patch.001"
       }
     }
   ],

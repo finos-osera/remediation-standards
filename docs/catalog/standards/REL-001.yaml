@@ -3,9 +3,9 @@ standard:
   schema-version: 0.1.0
   sequence: 210
   standard_id: REL-001
-  title: Provider Build Process
-  summary: Build and test methods are provider-dependent, but the provider records
-    enough detail for repeatable release evidence.
+  title: Provider Test Provenance
+  summary: Test execution methods are provider-dependent, but the provider publishes
+    enough test evidence for recipients to understand release validation.
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 candidate
@@ -20,19 +20,19 @@ standard:
   requirements:
   - id: REL-001.REQ-001
     level: MUST
-    text: Patch providers must define the build and test process used to produce a
-      patched artifact.
+    text: Patch providers must publish test provenance for the patched artifact, including
+      the test command or suite, runtime when relevant, and test result.
     checkability: manual
     checks:
     - id: REL-001.CHECK-001
-      title: Build and test evidence is recorded
+      title: Test provenance is recorded
       type: release-evidence
       severity: blocking
-      implementation: osera-fitness.rel001.build_test_evidence
+      implementation: osera-fitness.rel001.test_provenance
       evidence:
-      - build_tool
       - runtime
       - test_command
-      - validation_result
-  source_path: docs/_standards/rel-001-build-process.md
-  url: "/standards/rel-001-build-process/"
+      - test_result
+      - test_report
+  source_path: docs/_standards/rel-001-test-provenance.md
+  url: "/standards/rel-001-test-provenance/"

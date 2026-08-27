@@ -3,13 +3,17 @@ title: Definitions
 permalink: /definitions/
 ---
 
+## Patch
+
+A security or reliability change applied to an upstream software line for OSERA-compatible remediation.
+
 ## Backpatch
 
-A security or reliability patch applied to an older software line that is not receiving the same fix through normal upstream maintenance.
+A patch applied to an older software line that is not receiving the same fix through normal upstream maintenance. This remains a useful descriptive term, but the proposed OSERA naming conventions use `patch-*`, `patch/`, and `+patch.baseline` so the standards can cover broader remediation workflows.
 
 ## Patch provider
 
-An organization or participant that produces, validates, publishes, or contributes OSERA-compatible backpatches.
+An organization or participant that produces, validates, publishes, or contributes OSERA-compatible patches.
 
 ## Recipient
 
@@ -17,7 +21,7 @@ An enterprise, vendor, or other downstream consumer that evaluates and applies O
 
 ## Baseline tag
 
-The tag identifying the original source state from which a backpatch line begins, using the `v<VERSION>+backpatch.baseline` scheme.
+The tag identifying the original source state from which a patch line begins, using the `v<VERSION>+patch.baseline` scheme.
 
 ## Approved producer
 

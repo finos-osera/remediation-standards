@@ -6,14 +6,14 @@
     "title": "OSERA Remediation Standards Pack 0.1.0",
     "status": "Revised candidate for discussion",
     "proposed_date": "2026-08-27",
-    "target_decision_date": "2026-08-27",
+    "target_decision_date": "2026-09-03",
     "target_gate_date": "2026-09-20",
     "ratified_date": "Not ratified",
     "issue": "https://github.com/finos-osera/remediation-standards/issues/12",
     "agenda_issue": "https://github.com/finos-osera/remediation-standards/issues/24",
     "standards_as_code_issue": "https://github.com/finos-osera/remediation-standards/issues/23",
     "branch": "codex/issue-23-standards-as-code-sp010",
-    "summary": "Revised candidate pack for the September 20 gate, using standards-as-code metadata, branded OSERA release identifiers, approved producers, and observe-mode checks for v0.2.0 candidates.",
+    "summary": "Revised candidate pack for the September 3 ratification decision and September 20 gate, using standards-as-code metadata, branded OSERA release identifiers, approved producers, and observe-mode checks for v0.2.0 candidates.",
     "release_metadata": {
       "official_token": "osera-patch.NNN",
       "official_example": "5.3.39+osera-patch.001",
@@ -26,7 +26,7 @@
     },
     "evidence_summary": [
       "60 public finos-osera/backpatch-* repositories observed on 2026-08-25.",
-      "59 baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.",
+      "59 legacy/proof-of-concept baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.",
       "61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.",
       "Issue 13 discussion favored visible OSERA branding in release metadata for SCA, inventory, and audit workflows.",
       "Issue 23 proposed Markdown plus structured YAML front matter, schema validation, and generated catalog artifacts as the standards-as-code model."
@@ -46,7 +46,7 @@
         "id": "FORK-001",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model.",
+        "rationale": "Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model; new standardized repositories use patch-*.",
         "checks": [
           "FORK-001.CHECK-001",
           "FORK-001.CHECK-002"
@@ -56,7 +56,7 @@
         "id": "FORK-002",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Version-scoped backpatch branches are simple to create and necessary for multiple supported lines.",
+        "rationale": "Version-scoped patch branches are simple to create and necessary for multiple supported lines.",
         "checks": [
           "FORK-002.CHECK-001"
         ]
@@ -65,18 +65,9 @@
         "id": "FORK-003",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Baseline tags are already broadly deployed and are essential for source comparison and audit evidence.",
+        "rationale": "Baseline tags are essential for source comparison and audit evidence; new standardized baseline tags use +patch.baseline.",
         "checks": [
           "FORK-003.CHECK-001"
-        ]
-      },
-      {
-        "id": "SRC-001",
-        "version": "0.1.0",
-        "role": "Required evidence",
-        "rationale": "Consumers need to distinguish upstream backports from provider-developed fixes.",
-        "checks": [
-          "SRC-001.CHECK-001"
         ]
       },
       {
@@ -89,19 +80,10 @@
         ]
       },
       {
-        "id": "SRC-003",
-        "version": "0.1.0",
-        "role": "Required evidence",
-        "rationale": "License-header consistency is low-cost and reduces avoidable review friction.",
-        "checks": [
-          "SRC-003.CHECK-001"
-        ]
-      },
-      {
         "id": "REL-001",
         "version": "0.1.0",
         "role": "Required evidence",
-        "rationale": "Build systems vary too much to mandate one CI model, but release evidence is still required.",
+        "rationale": "Test provenance stays in scope for v0.1.0, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
         "checks": [
           "REL-001.CHECK-001"
         ]
@@ -157,25 +139,36 @@
       }
     ],
     "advisory_standards": [
-      {
-        "id": "EVD-001",
-        "version": "0.1.0",
-        "role": "Advisory evidence",
-        "rationale": "Recipient guidance is valuable for routing testing and should use a versioned schema, but should not block the first gate.",
-        "checks": [
-          "EVD-001.CHECK-001"
-        ]
-      }
+
     ],
     "observe_standards": [
       {
         "id": "FORK-004",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Public source and license availability are important to recipient trust, but the exact rule needs discussion around embargoes, platform access, and multi-license projects.",
+        "rationale": "Public source, same-license release, and official-fork hosting are important to recipient trust, but exact evidence rules need v0.2.0 work.",
         "checks": [
           "FORK-004.CHECK-001",
-          "FORK-004.CHECK-002"
+          "FORK-004.CHECK-002",
+          "FORK-004.CHECK-003"
+        ]
+      },
+      {
+        "id": "SRC-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Consumers need patch-basis classification, but the working group needs a controlled vocabulary and minimum wording before it can be enforced.",
+        "checks": [
+          "SRC-001.CHECK-001"
+        ]
+      },
+      {
+        "id": "SRC-003",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "License-header consistency is useful but not yet proven enforceable across mixed-license, generated-code, and no-header projects.",
+        "checks": [
+          "SRC-003.CHECK-001"
         ]
       },
       {
@@ -198,6 +191,15 @@
         ]
       },
       {
+        "id": "EVD-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Recipient guidance is valuable for routing testing, but the expected format needs v0.2.0 refinement before it can become advisory or required.",
+        "checks": [
+          "EVD-001.CHECK-001"
+        ]
+      },
+      {
         "id": "APP-001",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -215,6 +217,18 @@
         "rationale": "Tracked in observe mode for OSERA-SP-0.1.0 and expected to be reconsidered for OSERA-SP-0.2.0."
       },
       {
+        "id": "SRC-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until patch-basis vocabulary and provider wording are defined."
+      },
+      {
+        "id": "SRC-003",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until license-header evidence is proven enforceable across representative projects."
+      },
+      {
         "id": "REL-006",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -227,6 +241,12 @@
         "rationale": "Tracked in observe mode until producer signed build provenance is specified and implemented."
       },
       {
+        "id": "EVD-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until the recipient guidance format is better defined."
+      },
+      {
         "id": "APP-001",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -234,8 +254,9 @@
       }
     ],
     "discussion_topics": [
-      "Whether the standards-as-code schema is sufficient for the September 20 gate or needs narrower scope.",
-      "Whether official OSERA signed artifacts must use `+osera-patch.NNN` while treating `+backpatch.NNN` as legacy/proof-of-concept.",
+      "Whether the standards-as-code schema is sufficient for the September 3 decision and September 20 gate or needs narrower scope.",
+      "Whether official OSERA signed artifacts should use SemVer build metadata, Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release identifiers.",
+      "Whether new standardized repositories and source branches should use `patch-*` and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept evidence.",
       "How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.",
       "Which v0.2.0 observe-mode checks should be promoted after the first gate.",
       "Whether generated catalog artifacts should also be published as signed GitHub releases or OCI artifacts after ratification."
@@ -258,7 +279,7 @@
         "id": "FORK-001",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model.",
+        "rationale": "Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model; new standardized repositories use patch-*.",
         "url": "/standards/fork-001-repository-naming/",
         "checks": [
           "FORK-001.CHECK-001",
@@ -269,8 +290,8 @@
         "id": "FORK-002",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Version-scoped backpatch branches are simple to create and necessary for multiple supported lines.",
-        "url": "/standards/fork-002-backpatch-branches/",
+        "rationale": "Version-scoped patch branches are simple to create and necessary for multiple supported lines.",
+        "url": "/standards/fork-002-patch-branches/",
         "checks": [
           "FORK-002.CHECK-001"
         ]
@@ -279,20 +300,10 @@
         "id": "FORK-003",
         "version": "0.1.0",
         "role": "Required check",
-        "rationale": "Baseline tags are already broadly deployed and are essential for source comparison and audit evidence.",
+        "rationale": "Baseline tags are essential for source comparison and audit evidence; new standardized baseline tags use +patch.baseline.",
         "url": "/standards/fork-003-baseline-tags/",
         "checks": [
           "FORK-003.CHECK-001"
-        ]
-      },
-      {
-        "id": "SRC-001",
-        "version": "0.1.0",
-        "role": "Required evidence",
-        "rationale": "Consumers need to distinguish upstream backports from provider-developed fixes.",
-        "url": "/standards/src-001-patch-basis/",
-        "checks": [
-          "SRC-001.CHECK-001"
         ]
       },
       {
@@ -306,21 +317,11 @@
         ]
       },
       {
-        "id": "SRC-003",
-        "version": "0.1.0",
-        "role": "Required evidence",
-        "rationale": "License-header consistency is low-cost and reduces avoidable review friction.",
-        "url": "/standards/src-003-license-headers/",
-        "checks": [
-          "SRC-003.CHECK-001"
-        ]
-      },
-      {
         "id": "REL-001",
         "version": "0.1.0",
         "role": "Required evidence",
-        "rationale": "Build systems vary too much to mandate one CI model, but release evidence is still required.",
-        "url": "/standards/rel-001-build-process/",
+        "rationale": "Test provenance stays in scope for v0.1.0, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
+        "url": "/standards/rel-001-test-provenance/",
         "checks": [
           "REL-001.CHECK-001"
         ]
@@ -381,27 +382,39 @@
       }
     ],
     "advisory_standards": [
-      {
-        "id": "EVD-001",
-        "version": "0.1.0",
-        "role": "Advisory evidence",
-        "rationale": "Recipient guidance is valuable for routing testing and should use a versioned schema, but should not block the first gate.",
-        "url": "/standards/evd-001-change-and-test-surface/",
-        "checks": [
-          "EVD-001.CHECK-001"
-        ]
-      }
+
     ],
     "observe_standards": [
       {
         "id": "FORK-004",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Public source and license availability are important to recipient trust, but the exact rule needs discussion around embargoes, platform access, and multi-license projects.",
-        "url": "/standards/fork-004-public-access-and-license/",
+        "rationale": "Public source, same-license release, and official-fork hosting are important to recipient trust, but exact evidence rules need v0.2.0 work.",
+        "url": "/standards/fork-004-open-source-patch-publication/",
         "checks": [
           "FORK-004.CHECK-001",
-          "FORK-004.CHECK-002"
+          "FORK-004.CHECK-002",
+          "FORK-004.CHECK-003"
+        ]
+      },
+      {
+        "id": "SRC-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Consumers need patch-basis classification, but the working group needs a controlled vocabulary and minimum wording before it can be enforced.",
+        "url": "/standards/src-001-patch-basis/",
+        "checks": [
+          "SRC-001.CHECK-001"
+        ]
+      },
+      {
+        "id": "SRC-003",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "License-header consistency is useful but not yet proven enforceable across mixed-license, generated-code, and no-header projects.",
+        "url": "/standards/src-003-license-headers/",
+        "checks": [
+          "SRC-003.CHECK-001"
         ]
       },
       {
@@ -426,6 +439,16 @@
         ]
       },
       {
+        "id": "EVD-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Recipient guidance is valuable for routing testing, but the expected format needs v0.2.0 refinement before it can become advisory or required.",
+        "url": "/standards/evd-001-change-and-test-surface/",
+        "checks": [
+          "EVD-001.CHECK-001"
+        ]
+      },
+      {
         "id": "APP-001",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -442,10 +465,31 @@
         "version": "0.0.1",
         "role": "Observe-only check",
         "rationale": "Tracked in observe mode for OSERA-SP-0.1.0 and expected to be reconsidered for OSERA-SP-0.2.0.",
-        "url": "/standards/fork-004-public-access-and-license/",
+        "url": "/standards/fork-004-open-source-patch-publication/",
         "checks": [
           "FORK-004.CHECK-001",
-          "FORK-004.CHECK-002"
+          "FORK-004.CHECK-002",
+          "FORK-004.CHECK-003"
+        ]
+      },
+      {
+        "id": "SRC-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until patch-basis vocabulary and provider wording are defined.",
+        "url": "/standards/src-001-patch-basis/",
+        "checks": [
+          "SRC-001.CHECK-001"
+        ]
+      },
+      {
+        "id": "SRC-003",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until license-header evidence is proven enforceable across representative projects.",
+        "url": "/standards/src-003-license-headers/",
+        "checks": [
+          "SRC-003.CHECK-001"
         ]
       },
       {
@@ -467,6 +511,16 @@
         "checks": [
           "REL-007.CHECK-001",
           "REL-007.CHECK-002"
+        ]
+      },
+      {
+        "id": "EVD-001",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until the recipient guidance format is better defined.",
+        "url": "/standards/evd-001-change-and-test-surface/",
+        "checks": [
+          "EVD-001.CHECK-001"
         ]
       },
       {
