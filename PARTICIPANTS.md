@@ -6,7 +6,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Dov Katz, Morgan Stanley, Aug/25/2026
 - Francesco Beltramini, ControlPlane, Aug/25/2026
 - Fabian Kammel, ControlPlane, Aug/25/2026
-- Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
+- Giovanni Baggio, ControlPlane, Aug/27/2026
 - Mark Hoare, Deutsche Bank, Aug/25/2026
 - Peter Thomas, Deutsche Bank, Aug/25/2026
 - Paul Horton, Sonatype, Inc., Aug/26/2026
