@@ -3,13 +3,17 @@
 Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediation Standards project, who have committed to the [Community Specification Contributor License Agreement](governance-documents/CS_Contributor_License_Agreement.md).
 
 ## Participants
-- Dov Katz, Morgan Stanley, Date of enrollment: Aug/25/2026
+- Dov Katz, Morgan Stanley, Aug/25/2026
 - Francesco Beltramini, ControlPlane, Aug/25/2026
 - Fabian Kammel, ControlPlane, Aug/25/2026
 - Chris Nesbitt-Smith, ControlPlane, Aug/25/2026
 - Mark Hoare, Deutsche Bank, Aug/25/2026
 - Peter Thomas, Deutsche Bank, Aug/25/2026
 - Paul Horton, Sonatype, Inc., Aug/26/2026
+- Javad Soltani Rad, Morgan Stanley, Aug/27/2026
+- Bruno Navert, Morgan Stanley, Aug/27/2026
+- Aaron Searle, Morgan Stanley, Aug/27/2026
+- Roy Crowder, Morgan Stanley, Aug/27/2026
 - <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
