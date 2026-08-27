@@ -68,9 +68,13 @@ Release tags, artifact versions, vulnerability feeds, and release evidence MUST 
 
 Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use `+osera-patch.NNN`.
 
+This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-backpatch-branches/) deliberately keeps `backpatch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately keeps `v<VERSION>+backpatch.baseline` for the unpatched source baseline.
+
 ## Rationale
 
-This form preserves the upstream version while making the patched artifact distinguishable. Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream backpatch providers when repository or feed metadata is not shown.
+This form preserves the upstream version while making the patched artifact distinguishable. It follows the [Semantic Versioning 2.0.0](https://semver.org/) build metadata shape, where metadata is appended after `+` as dot-separated identifiers.
+
+Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream backpatch providers when repository or feed metadata is not shown.
 
 The numeric suffix keeps ordering simple for repeated releases on the same upstream version line. Some build tools may compare SemVer build metadata differently or rank `5.3.39+osera-patch.001` lower than the plain upstream `5.3.39`, so consumers SHOULD pin the exact patched version rather than relying on dynamic version resolution.
 

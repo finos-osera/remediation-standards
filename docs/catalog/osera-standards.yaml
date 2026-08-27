@@ -51,8 +51,8 @@ standards:
   sequence: 20
   standard_id: FORK-002
   title: Backpatch Branches
-  summary: Patch providers use `backpatch/<version>` branches for every supported
-    major or minor line.
+  summary: Patch providers use `backpatch/<version>` source workflow branches for
+    every supported major or minor line.
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 candidate
@@ -67,7 +67,8 @@ standards:
   requirements:
   - id: FORK-002.REQ-001
     level: MUST
-    text: Patch providers must create version-scoped backpatch branches using backpatch/<version>.
+    text: Patch providers must create version-scoped source workflow branches using
+      backpatch/<version>.
     checkability: automated
     checks:
     - id: FORK-002.CHECK-001
@@ -83,8 +84,8 @@ standards:
   sequence: 30
   standard_id: FORK-003
   title: Baseline Tags
-  summary: Every backpatch line identifies its starting source SHA with a `v<VERSION>+backpatch.baseline`
-    tag.
+  summary: Every backpatch line identifies its unpatched starting source SHA with
+    a `v<VERSION>+backpatch.baseline` tag.
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 candidate
@@ -99,7 +100,7 @@ standards:
   requirements:
   - id: FORK-003.REQ-001
     level: MUST
-    text: Patch providers must tag the baseline source commit using v<VERSION>+backpatch.baseline.
+    text: Patch providers must tag the unpatched baseline source commit using v<VERSION>+backpatch.baseline.
     checkability: automated
     checks:
     - id: FORK-003.CHECK-001
