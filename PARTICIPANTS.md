@@ -12,6 +12,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Paul Horton, Sonatype, Inc., Aug/26/2026
 - Greg Allen, HeroDevs, Inc., Aug 26/2026
 - Rob Nalen, HeroDevs, Inc., Aug 26/2026
+- Aaron Searle, Morgan Stanley, Aug/27/2026
 - <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
