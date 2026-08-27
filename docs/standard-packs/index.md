@@ -51,7 +51,7 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on stan
 | Target gate date | {{ pack.target_gate_date }} |
 | Ratified date | {{ pack.ratified_date }} |
 | GitHub issue | [Issue #12]({{ pack.issue }}) |
-| Agenda issue | {{ pack.agenda_issue }} |
+| Agenda issue | [Agenda]({{ pack.agenda_issue }}) |
 | Standards-as-code issue | [Issue #23]({{ pack.standards_as_code_issue }}) |
 | Proposal branch | `{{ pack.branch }}` |
 | Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
