@@ -35,9 +35,10 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 | EVD-001 | Observe | Recipient guidance describes what changed and what surface area should be tested using schema version `0.1.0`, once the expected format is defined. |
 | FORK-004 | Observe | Repository is fully public, publicly fetchable, hosted in the appropriate official fork, and released under the same applicable upstream open-source license terms. |
 | SRC-001 | Observe | Patch basis classification vocabulary and minimum provider wording are present once defined by the working group. |
-| SRC-003 | Observe | New files follow the surrounding license-header convention where the project has an enforceable convention. |
+| SRC-003 | Observe | New files follow the surrounding license-header convention where that convention is determinable, with manual review or not-applicable rationale otherwise. |
 | REL-006 | Observe | Release has a backlog item, public request, sponsor record, or equivalent authorization record. |
-| REL-007 | Observe | Producer signs an attestation linking artifact digest to source tag and release evidence. |
+| REL-007 | Observe | Producer signs an attestation linking artifact digest to source tag and release evidence, while preserving reproducible builds as the longer-term goal. |
+| REL-008 | Observe | Build-security scan evidence identifies tooling, scope, results, and unresolved high-risk findings where ecosystem-appropriate scanning is available. |
 | APP-001 | Observe | Feed and metadata support estate-wide automated discovery and application. |
 
 ## Output shape

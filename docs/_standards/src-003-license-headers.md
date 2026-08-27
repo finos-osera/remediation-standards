@@ -42,8 +42,10 @@ When the surrounding project uses different headers for source and test files, p
 
 Most fixes modify pre-existing source files that already carry license headers. Test files are often the new files added by a patch, so license consistency should be explicit.
 
-The working group has not yet proven whether this can be enforced consistently across the full OSERA patch set. Some projects have mixed license headers, generated files, language-specific conventions, or no per-file header practice. This should run in observe mode for the v0.1.0 gate and be refined for OSERA-SP-0.2.0 consideration.
+The working group expects this standard to be enforced where the surrounding project convention is determinable. It is currently scoped for OSERA-SP-0.2.0 because the evaluation rule is not yet deterministic enough for SP-0.1.0 across mixed-license projects, generated files, language-specific conventions, or projects with no per-file header practice.
+
+During the SP-0.1.0 gate, this should run in observe mode so the working group can decide how to distinguish enforceable cases from cases that need manual review or an explicit not-applicable result.
 
 ## Evidence
 
-Review evidence SHOULD include a license-header check for new files added in the patch commit set.
+Review evidence SHOULD include a license-header check for new files added in the patch commit set, the local convention used for comparison, and any not-applicable rationale.

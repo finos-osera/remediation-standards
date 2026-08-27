@@ -166,7 +166,7 @@
         "id": "SRC-003",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "License-header consistency is useful but not yet proven enforceable across mixed-license, generated-code, and no-header projects.",
+        "rationale": "License-header consistency should be enforced where determinable, but the evaluation rule needs v0.2.0 refinement before becoming part of the v0.1.0 gate.",
         "checks": [
           "SRC-003.CHECK-001"
         ]
@@ -184,10 +184,20 @@
         "id": "REL-007",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance and publication hygiene.",
+        "rationale": "Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance, test provenance, and publication hygiene.",
         "checks": [
           "REL-007.CHECK-001",
           "REL-007.CHECK-002"
+        ]
+      },
+      {
+        "id": "REL-008",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Build-security scanning is important, but the working group needs evidence about practical scanner coverage across ecosystems before making it enforceable.",
+        "checks": [
+          "REL-008.CHECK-001",
+          "REL-008.CHECK-002"
         ]
       },
       {
@@ -226,7 +236,7 @@
         "id": "SRC-003",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Tracked in observe mode until license-header evidence is proven enforceable across representative projects."
+        "rationale": "Tracked in observe mode until the working group defines how to evaluate determinable, manual-review, and not-applicable license-header cases."
       },
       {
         "id": "REL-006",
@@ -239,6 +249,12 @@
         "version": "0.0.1",
         "role": "Observe-only check",
         "rationale": "Tracked in observe mode until producer signed build provenance is specified and implemented."
+      },
+      {
+        "id": "REL-008",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until package ecosystem scanning expectations and evidence formats are defined."
       },
       {
         "id": "EVD-001",
@@ -258,6 +274,7 @@
       "Whether official OSERA signed artifacts should use SemVer build metadata, Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release identifiers.",
       "Whether new standardized repositories and source branches should use `patch-*` and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept evidence.",
       "How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.",
+      "Which build-security scanning expectations are realistic across legacy package ecosystems and should be considered for OSERA-SP-0.2.0.",
       "Which v0.2.0 observe-mode checks should be promoted after the first gate.",
       "Whether generated catalog artifacts should also be published as signed GitHub releases or OCI artifacts after ratification."
     ]
@@ -411,7 +428,7 @@
         "id": "SRC-003",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "License-header consistency is useful but not yet proven enforceable across mixed-license, generated-code, and no-header projects.",
+        "rationale": "License-header consistency should be enforced where determinable, but the evaluation rule needs v0.2.0 refinement before becoming part of the v0.1.0 gate.",
         "url": "/standards/src-003-license-headers/",
         "checks": [
           "SRC-003.CHECK-001"
@@ -431,11 +448,22 @@
         "id": "REL-007",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance and publication hygiene.",
+        "rationale": "Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance, test provenance, and publication hygiene.",
         "url": "/standards/rel-007-build-provenance-and-signed-attestation/",
         "checks": [
           "REL-007.CHECK-001",
           "REL-007.CHECK-002"
+        ]
+      },
+      {
+        "id": "REL-008",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Build-security scanning is important, but the working group needs evidence about practical scanner coverage across ecosystems before making it enforceable.",
+        "url": "/standards/rel-008-build-security-scanning/",
+        "checks": [
+          "REL-008.CHECK-001",
+          "REL-008.CHECK-002"
         ]
       },
       {
@@ -486,7 +514,7 @@
         "id": "SRC-003",
         "version": "0.0.1",
         "role": "Observe-only check",
-        "rationale": "Tracked in observe mode until license-header evidence is proven enforceable across representative projects.",
+        "rationale": "Tracked in observe mode until the working group defines how to evaluate determinable, manual-review, and not-applicable license-header cases.",
         "url": "/standards/src-003-license-headers/",
         "checks": [
           "SRC-003.CHECK-001"
@@ -511,6 +539,17 @@
         "checks": [
           "REL-007.CHECK-001",
           "REL-007.CHECK-002"
+        ]
+      },
+      {
+        "id": "REL-008",
+        "version": "0.0.1",
+        "role": "Observe-only check",
+        "rationale": "Tracked in observe mode until package ecosystem scanning expectations and evidence formats are defined.",
+        "url": "/standards/rel-008-build-security-scanning/",
+        "checks": [
+          "REL-008.CHECK-001",
+          "REL-008.CHECK-002"
         ]
       },
       {

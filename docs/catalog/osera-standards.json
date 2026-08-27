@@ -738,6 +738,70 @@
     },
     {
       "schema-version": "0.1.0",
+      "sequence": 280,
+      "standard_id": "REL-008",
+      "title": "Build Security Scanning",
+      "summary": "Patch release builds should be checked for build-tool, dependency, and pipeline-injection risks before publication.",
+      "doc-status": "Pre-Draft",
+      "standard-version": "0.0.1",
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "ratified-in": "Not ratified",
+      "ratified-date": "Not ratified",
+      "fitness-role": "Observe-only check",
+      "type": "REL",
+      "category": "Release Process",
+      "applies-to": [
+        "Patch providers",
+        "Repository operators",
+        "Enterprise recipients"
+      ],
+      "requirements": [
+        {
+          "id": "REL-008.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch providers should run build-security scanning appropriate to the package ecosystem before publishing an official patched artifact.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-008.CHECK-001",
+              "title": "Build-security scan evidence is present",
+              "type": "release-evidence",
+              "severity": "observe",
+              "implementation": "osera-fitness.rel008.build_security_scan",
+              "evidence": [
+                "build_security_scan_tool",
+                "scan_scope",
+                "scan_result"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REL-008.REQ-002",
+          "level": "SHOULD",
+          "text": "Build-security evidence should identify unresolved high-risk findings or explain why the selected tooling is not applicable to the patched project.",
+          "checkability": "manual",
+          "checks": [
+            {
+              "id": "REL-008.CHECK-002",
+              "title": "Build-security findings are dispositioned",
+              "type": "release-evidence",
+              "severity": "observe",
+              "implementation": "osera-fitness.rel008.finding_disposition",
+              "evidence": [
+                "unresolved_findings",
+                "finding_disposition",
+                "not_applicable_rationale"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_path": "docs/_standards/rel-008-build-security-scanning.md",
+      "url": "/standards/rel-008-build-security-scanning/"
+    },
+    {
+      "schema-version": "0.1.0",
       "sequence": 310,
       "standard_id": "FEED-001",
       "title": "OpenVEX and CycloneDX Feeds",

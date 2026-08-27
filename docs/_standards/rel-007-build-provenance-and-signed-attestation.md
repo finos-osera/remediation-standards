@@ -61,6 +61,8 @@ The attestation SHOULD reference release evidence such as SBOM, VEX, test eviden
 
 SP-0.1.0 can validate source provenance, release metadata, bytecode compatibility, feed entries, producer approval, and package hygiene. It does not yet prove that a specific binary was built from a specific source tag.
 
+Reproducible builds remain an important OSERA goal. The standards group is deferring the precise proof format, build environment expectations, and source-to-binary attestation requirements because arbitrary legacy repositories use different build systems, runtimes, plugins, and publication flows.
+
 Build provenance and signed release evidence should be the first observe-mode path toward SP-0.2.0.
 
 ## Observe-mode evidence
