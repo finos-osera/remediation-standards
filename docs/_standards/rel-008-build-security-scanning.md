@@ -62,6 +62,8 @@ Build files, dependency resolution, and release pipelines can become part of the
 
 This is not proposed as a blocking SP-0.1.0 requirement because tooling differs by ecosystem and repository age. The first step should be to collect evidence about which checks are practical across representative patch repositories, then decide whether a narrower enforceable subset belongs in OSERA-SP-0.2.0.
 
+Scanner expectations should be informed by the member tooling survey in [finos-osera/operations-taskforce#6](https://github.com/finos-osera/operations-taskforce/issues/6), with responses requested by September 4, 2026.
+
 ## Observe-mode evidence
 
 Observe-mode evidence SHOULD include:

@@ -33,9 +33,9 @@ standards:
       evidence:
       - repository_url
   - id: FORK-001.REQ-002
-    level: SHOULD
-    text: Patched-source repositories should use the prefix patch- followed by the
-      upstream repository or artifact name.
+    level: MUST
+    text: Patched-source repositories must use the prefix patch- followed by the upstream
+      repository or artifact name.
     checkability: automated
     checks:
     - id: FORK-001.CHECK-002
@@ -184,7 +184,7 @@ standards:
   standard_id: SRC-001
   title: Patch Basis Classification
   summary: Providers distinguish upstream backports from provider-developed fixes
-    where no upstream fix exists.
+    for each CVE or fix item carried by a patch release.
   doc-status: Pre-Draft
   standard-version: 0.0.1
   candidate-pack: OSERA-SP-0.2.0 observe
@@ -200,9 +200,9 @@ standards:
   requirements:
   - id: SRC-001.REQ-001
     level: SHOULD
-    text: Patch providers should classify whether a patch is based on an upstream
-      fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary
-      still to be defined by the working group.
+    text: Patch providers should classify whether each CVE or fix item in a patch
+      release is based on an upstream fix, an adapted upstream fix, or a provider-developed
+      fix, using a vocabulary still to be defined by the working group.
     checkability: manual
     checks:
     - id: SRC-001.CHECK-001
@@ -211,7 +211,9 @@ standards:
       severity: observe
       implementation: osera-fitness.src001.patch_basis
       evidence:
-      - patch_basis
+      - fix_item
+      - cve_id
+      - patch_basis_by_fix
       - upstream_fix_reference
   source_path: docs/_standards/src-001-patch-basis.md
   url: "/standards/src-001-patch-basis/"
@@ -247,6 +249,21 @@ standards:
       evidence:
       - upstream_fix_url
       - patch_commit_url
+  - id: SRC-002.REQ-002
+    level: SHOULD
+    text: Backported commits carrying upstream-authored code should name the upstream
+      commit and include a Co-authored-by trailer for the upstream author where applicable.
+    checkability: manual
+    checks:
+    - id: SRC-002.CHECK-002
+      title: Upstream authorship trailer is present where applicable
+      type: source
+      severity: advisory
+      implementation: osera-fitness.src002.co_authored_by_trailer
+      evidence:
+      - upstream_commit_author
+      - co_authored_by_trailer
+      - not_applicable_rationale
   source_path: docs/_standards/src-002-provenance-links.md
   url: "/standards/src-002-provenance-links/"
 - schema-version: 0.1.0
@@ -255,12 +272,12 @@ standards:
   title: License Headers for New Files
   summary: New source or test files match the prevailing license format of the surrounding
     project.
-  doc-status: Pre-Draft
-  standard-version: 0.0.1
-  candidate-pack: OSERA-SP-0.2.0 observe
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
   ratified-in: Not ratified
   ratified-date: Not ratified
-  fitness-role: Observe-only check
+  fitness-role: Required check
   type: SRC
   category: Source Changes
   applies-to:
@@ -275,11 +292,13 @@ standards:
     - id: SRC-003.CHECK-001
       title: New files use the local license-header convention
       type: source
-      severity: observe
+      severity: blocking
       implementation: osera-fitness.src003.license_headers
       evidence:
       - new_files
+      - nearest_same_type_file
       - license_header_check
+      - not_applicable_rationale
   source_path: docs/_standards/src-003-license-headers.md
   url: "/standards/src-003-license-headers/"
 - schema-version: 0.1.0
@@ -287,7 +306,7 @@ standards:
   standard_id: REL-001
   title: Provider Test Provenance
   summary: Test execution methods are provider-dependent, but the provider publishes
-    enough test evidence for recipients to understand release validation.
+    a unit-test report artifact for recipients to understand release validation.
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 candidate
@@ -303,8 +322,9 @@ standards:
   - id: REL-001.REQ-001
     level: MUST
     text: Patch providers must publish test provenance for the patched artifact, including
-      the test command or suite, runtime when relevant, and test result.
-    checkability: manual
+      the tested commit, test command or suite, runtime when relevant, test report,
+      and passing test result.
+    checkability: automated
     checks:
     - id: REL-001.CHECK-001
       title: Test provenance is recorded
@@ -312,10 +332,12 @@ standards:
       severity: blocking
       implementation: osera-fitness.rel001.test_provenance
       evidence:
+      - tested_commit
       - runtime
       - test_command
       - test_result
-      - test_report
+      - test_report_artifact
+      - no_failed_tests
   source_path: docs/_standards/rel-001-test-provenance.md
   url: "/standards/rel-001-test-provenance/"
 - schema-version: 0.1.0
@@ -372,9 +394,9 @@ standards:
   - Enterprise recipients
   requirements:
   - id: REL-003.REQ-001
-    level: SHOULD
-    text: Official OSERA patched releases should use SemVer build metadata in the
-      form <UPSTREAM_VERSION>+osera-patch.NNN.
+    level: MUST
+    text: Official OSERA patched releases must use SemVer build metadata in the form
+      <UPSTREAM_VERSION>+osera-patch.NNN.
     checkability: automated
     checks:
     - id: REL-003.CHECK-001

@@ -6,12 +6,12 @@ standard:
   title: License Headers for New Files
   summary: New source or test files match the prevailing license format of the surrounding
     project.
-  doc-status: Pre-Draft
-  standard-version: 0.0.1
-  candidate-pack: OSERA-SP-0.2.0 observe
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
   ratified-in: Not ratified
   ratified-date: Not ratified
-  fitness-role: Observe-only check
+  fitness-role: Required check
   type: SRC
   category: Source Changes
   applies-to:
@@ -26,10 +26,12 @@ standard:
     - id: SRC-003.CHECK-001
       title: New files use the local license-header convention
       type: source
-      severity: observe
+      severity: blocking
       implementation: osera-fitness.src003.license_headers
       evidence:
       - new_files
+      - nearest_same_type_file
       - license_header_check
+      - not_applicable_rationale
   source_path: docs/_standards/src-003-license-headers.md
   url: "/standards/src-003-license-headers/"

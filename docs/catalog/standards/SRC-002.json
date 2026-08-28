@@ -37,6 +37,26 @@
             ]
           }
         ]
+      },
+      {
+        "id": "SRC-002.REQ-002",
+        "level": "SHOULD",
+        "text": "Backported commits carrying upstream-authored code should name the upstream commit and include a Co-authored-by trailer for the upstream author where applicable.",
+        "checkability": "manual",
+        "checks": [
+          {
+            "id": "SRC-002.CHECK-002",
+            "title": "Upstream authorship trailer is present where applicable",
+            "type": "source",
+            "severity": "advisory",
+            "implementation": "osera-fitness.src002.co_authored_by_trailer",
+            "evidence": [
+              "upstream_commit_author",
+              "co_authored_by_trailer",
+              "not_applicable_rationale"
+            ]
+          }
+        ]
       }
     ],
     "source_path": "docs/_standards/src-002-provenance-links.md",

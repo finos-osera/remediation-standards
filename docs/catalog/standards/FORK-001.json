@@ -39,8 +39,8 @@
       },
       {
         "id": "FORK-001.REQ-002",
-        "level": "SHOULD",
-        "text": "Patched-source repositories should use the prefix patch- followed by the upstream repository or artifact name.",
+        "level": "MUST",
+        "text": "Patched-source repositories must use the prefix patch- followed by the upstream repository or artifact name.",
         "checkability": "automated",
         "checks": [
           {

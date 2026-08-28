@@ -80,10 +80,19 @@
         ]
       },
       {
+        "id": "SRC-003",
+        "version": "0.1.0",
+        "role": "Required check",
+        "rationale": "License-header consistency can be enforced where the local convention is determinable, with a not-applicable result when no convention exists.",
+        "checks": [
+          "SRC-003.CHECK-001"
+        ]
+      },
+      {
         "id": "REL-001",
         "version": "0.1.0",
         "role": "Required evidence",
-        "rationale": "Test provenance stays in scope for v0.1.0, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
+        "rationale": "Test provenance stays in scope for v0.1.0 as a published unit-test report artifact, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
         "checks": [
           "REL-001.CHECK-001"
         ]
@@ -163,15 +172,6 @@
         ]
       },
       {
-        "id": "SRC-003",
-        "version": "0.0.1",
-        "role": "Observe-only check",
-        "rationale": "License-header consistency should be enforced where determinable, but the evaluation rule needs v0.2.0 refinement before becoming part of the v0.1.0 gate.",
-        "checks": [
-          "SRC-003.CHECK-001"
-        ]
-      },
-      {
         "id": "REL-006",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -233,12 +233,6 @@
         "rationale": "Tracked in observe mode until patch-basis vocabulary and provider wording are defined."
       },
       {
-        "id": "SRC-003",
-        "version": "0.0.1",
-        "role": "Observe-only check",
-        "rationale": "Tracked in observe mode until the working group defines how to evaluate determinable, manual-review, and not-applicable license-header cases."
-      },
-      {
         "id": "REL-006",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -274,7 +268,7 @@
       "Whether official OSERA signed artifacts should use SemVer build metadata, Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release identifiers.",
       "Whether new standardized repositories and source branches should use `patch-*` and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept evidence.",
       "How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.",
-      "Which build-security scanning expectations are realistic across legacy package ecosystems and should be considered for OSERA-SP-0.2.0.",
+      "Which build-security scanning expectations are realistic across legacy package ecosystems and should be considered for OSERA-SP-0.2.0 after the member tooling survey.",
       "Which v0.2.0 observe-mode checks should be promoted after the first gate.",
       "Whether generated catalog artifacts should also be published as signed GitHub releases or OCI artifacts after ratification."
     ]
@@ -334,10 +328,20 @@
         ]
       },
       {
+        "id": "SRC-003",
+        "version": "0.1.0",
+        "role": "Required check",
+        "rationale": "License-header consistency can be enforced where the local convention is determinable, with a not-applicable result when no convention exists.",
+        "url": "/standards/src-003-license-headers/",
+        "checks": [
+          "SRC-003.CHECK-001"
+        ]
+      },
+      {
         "id": "REL-001",
         "version": "0.1.0",
         "role": "Required evidence",
-        "rationale": "Test provenance stays in scope for v0.1.0, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
+        "rationale": "Test provenance stays in scope for v0.1.0 as a published unit-test report artifact, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
         "url": "/standards/rel-001-test-provenance/",
         "checks": [
           "REL-001.CHECK-001"
@@ -425,16 +429,6 @@
         ]
       },
       {
-        "id": "SRC-003",
-        "version": "0.0.1",
-        "role": "Observe-only check",
-        "rationale": "License-header consistency should be enforced where determinable, but the evaluation rule needs v0.2.0 refinement before becoming part of the v0.1.0 gate.",
-        "url": "/standards/src-003-license-headers/",
-        "checks": [
-          "SRC-003.CHECK-001"
-        ]
-      },
-      {
         "id": "REL-006",
         "version": "0.0.1",
         "role": "Observe-only check",
@@ -508,16 +502,6 @@
         "url": "/standards/src-001-patch-basis/",
         "checks": [
           "SRC-001.CHECK-001"
-        ]
-      },
-      {
-        "id": "SRC-003",
-        "version": "0.0.1",
-        "role": "Observe-only check",
-        "rationale": "Tracked in observe mode until the working group defines how to evaluate determinable, manual-review, and not-applicable license-header cases.",
-        "url": "/standards/src-003-license-headers/",
-        "checks": [
-          "SRC-003.CHECK-001"
         ]
       },
       {

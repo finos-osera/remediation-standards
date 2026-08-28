@@ -4,7 +4,7 @@ sequence: 210
 standard_id: REL-001
 title: Provider Test Provenance
 summary: Test execution methods are provider-dependent, but the provider publishes
-  enough test evidence for recipients to understand release validation.
+  a unit-test report artifact for recipients to understand release validation.
 doc-status: Draft
 standard-version: 0.1.0
 candidate-pack: OSERA-SP-0.1.0 candidate
@@ -20,8 +20,9 @@ requirements:
 - id: REL-001.REQ-001
   level: MUST
   text: Patch providers must publish test provenance for the patched artifact, including
-    the test command or suite, runtime when relevant, and test result.
-  checkability: manual
+    the tested commit, test command or suite, runtime when relevant, test report,
+    and passing test result.
+  checkability: automated
   checks:
   - id: REL-001.CHECK-001
     title: Test provenance is recorded
@@ -29,17 +30,21 @@ requirements:
     severity: blocking
     implementation: osera-fitness.rel001.test_provenance
     evidence:
+    - tested_commit
     - runtime
     - test_command
     - test_result
-    - test_report
+    - test_report_artifact
+    - no_failed_tests
 ---
 
 ## Requirement
 
 Patch providers MUST publish test provenance for the patched artifact.
 
-The evidence SHOULD identify the test command, test suite, runtime when relevant, test result, and any published test report or log summary.
+The evidence MUST identify the tested commit or source tag, test command or suite, runtime when relevant, a published unit-test report artifact, and the pass/fail outcome.
+
+For SP-0.1.0 alignment, the published unit-test report MUST identify no failed tests for the release being claimed.
 
 OSERA does not require every patch fork to run public GitHub Actions CI. Providers MAY use their own validation systems, but recipients need enough published test evidence to understand what was checked.
 
@@ -59,4 +64,4 @@ mod exec /path/to/project MODERNE_TEST_CHECK
 
 ## Evidence
 
-Release evidence SHOULD identify the runtime, relevant test command, test result, and any published test report or log summary used for the patched release.
+Release evidence SHOULD identify the runtime, relevant test command, test result, and published unit-test report artifact used for the patched release.

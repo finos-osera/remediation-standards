@@ -19,9 +19,9 @@ standard:
   - Enterprise recipients
   requirements:
   - id: REL-003.REQ-001
-    level: SHOULD
-    text: Official OSERA patched releases should use SemVer build metadata in the
-      form <UPSTREAM_VERSION>+osera-patch.NNN.
+    level: MUST
+    text: Official OSERA patched releases must use SemVer build metadata in the form
+      <UPSTREAM_VERSION>+osera-patch.NNN.
     checkability: automated
     checks:
     - id: REL-003.CHECK-001

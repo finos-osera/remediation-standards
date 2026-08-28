@@ -5,7 +5,7 @@
     "sequence": 210,
     "standard_id": "REL-001",
     "title": "Provider Test Provenance",
-    "summary": "Test execution methods are provider-dependent, but the provider publishes enough test evidence for recipients to understand release validation.",
+    "summary": "Test execution methods are provider-dependent, but the provider publishes a unit-test report artifact for recipients to understand release validation.",
     "doc-status": "Draft",
     "standard-version": "0.1.0",
     "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -22,8 +22,8 @@
       {
         "id": "REL-001.REQ-001",
         "level": "MUST",
-        "text": "Patch providers must publish test provenance for the patched artifact, including the test command or suite, runtime when relevant, and test result.",
-        "checkability": "manual",
+        "text": "Patch providers must publish test provenance for the patched artifact, including the tested commit, test command or suite, runtime when relevant, test report, and passing test result.",
+        "checkability": "automated",
         "checks": [
           {
             "id": "REL-001.CHECK-001",
@@ -32,10 +32,12 @@
             "severity": "blocking",
             "implementation": "osera-fitness.rel001.test_provenance",
             "evidence": [
+              "tested_commit",
               "runtime",
               "test_command",
               "test_result",
-              "test_report"
+              "test_report_artifact",
+              "no_failed_tests"
             ]
           }
         ]

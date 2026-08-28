@@ -18,8 +18,8 @@ applies-to:
 - Enterprise recipients
 requirements:
 - id: REL-003.REQ-001
-  level: SHOULD
-  text: Official OSERA patched releases should use SemVer build metadata in the form
+  level: MUST
+  text: Official OSERA patched releases must use SemVer build metadata in the form
     <UPSTREAM_VERSION>+osera-patch.NNN.
   checkability: automated
   checks:
@@ -50,7 +50,7 @@ requirements:
 
 ## Requirement
 
-Patch providers SHOULD release patched artifacts using SemVer build metadata in the form:
+Official OSERA patched releases MUST use SemVer build metadata in the form:
 
 ```text
 <UPSTREAM_VERSION>+<PATCH_INITIATIVE>.NNN
@@ -66,7 +66,7 @@ osera-patch.NNN
 
 Release tags, artifact versions, vulnerability feeds, and release evidence MUST carry the same patched-release identifier so recipients can correlate source, binary, scanner, and advisory records.
 
-Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use `+osera-patch.NNN`.
+Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment MUST use `+osera-patch.NNN`.
 
 This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) deliberately uses `patch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately uses `v<VERSION>+patch.baseline` for the unpatched source baseline.
 

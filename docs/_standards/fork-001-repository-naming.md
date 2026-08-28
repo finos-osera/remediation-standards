@@ -31,8 +31,8 @@ requirements:
     evidence:
     - repository_url
 - id: FORK-001.REQ-002
-  level: SHOULD
-  text: Patched-source repositories should use the prefix patch- followed by the
+  level: MUST
+  text: Patched-source repositories must use the prefix patch- followed by the
     upstream repository or artifact name.
   checkability: automated
   checks:
@@ -49,7 +49,7 @@ requirements:
 
 Patched-source repositories MUST live in the `github.com/finos-osera` organization unless the working group approves an exception.
 
-Patched-source repositories SHOULD use the prefix `patch-` followed by the upstream repository or artifact name.
+Patched-source repositories MUST use the prefix `patch-` followed by the upstream repository or artifact name.
 
 The repository name SHOULD NOT include `osera` when the repository already lives in the `finos-osera` organization. OSERA identity SHOULD be carried by organization ownership, feed metadata, and release evidence instead of duplicating it in every fork name.
 
