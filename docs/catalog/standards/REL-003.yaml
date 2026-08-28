@@ -1,0 +1,51 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 230
+  standard_id: REL-003
+  title: Patch Initiative Version Metadata
+  summary: Patched releases use SemVer build metadata that identifies the patching
+    initiative and release sequence.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 candidate
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Enterprise recipients
+  requirements:
+  - id: REL-003.REQ-001
+    level: MUST
+    text: Official OSERA patched releases must use SemVer build metadata in the form
+      <UPSTREAM_VERSION>+osera-patch.NNN.
+    checkability: automated
+    checks:
+    - id: REL-003.CHECK-001
+      title: Official release metadata uses the OSERA patch token
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.osera_patch_metadata
+      evidence:
+      - release_tag
+      - artifact_version
+  - id: REL-003.REQ-002
+    level: MUST
+    text: Release tags, artifact versions, vulnerability feeds, and release evidence
+      must carry the same patched-release identifier.
+    checkability: partially-automated
+    checks:
+    - id: REL-003.CHECK-002
+      title: Release identifier is consistent across source, artifact, and feeds
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.identifier_consistency
+      evidence:
+      - release_tag
+      - artifact_version
+      - feed_purl
+  source_path: docs/_standards/rel-003-version-metadata.md
+  url: "/standards/rel-003-version-metadata/"

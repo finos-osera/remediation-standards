@@ -25,9 +25,11 @@ As observed on July 10, 2026, the reference example published:
 | OpenVEX | Provider-hosted OpenVEX JSON | OpenVEX `v0.2.0`, 93 statements, `status: fixed` statements keyed to exact package URLs |
 | CycloneDX | Provider-hosted CycloneDX JSON | CycloneDX `1.6`, 84 components, 118 vulnerabilities, vulnerability analysis using `resolved_with_pedigree` |
 
-The example site explains the core consumption problem clearly: scanners may still flag a CVE because they see the old upstream version, while the backpatch coordinate carries the upstream security fix on that same baseline. The VEX feed supplies machine-readable evidence that the specific patched artifact is fixed.
+The example site explains the core consumption problem clearly: scanners may still flag a CVE because they see the old upstream version, while the patch coordinate carries the upstream security fix on that same baseline. The VEX feed supplies machine-readable evidence that the specific patched artifact is fixed.
 
-The reference OpenVEX feed covered 118 backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
+The reference OpenVEX feed covered 118 legacy backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
+
+REL-003 proposes that official OSERA signed artifacts carry the branded `+osera-patch.NNN` token. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
 
 ## Feed expectations
 
@@ -37,7 +39,7 @@ Each patched artifact should be traceable to:
 * the vulnerable coordinate or component identity;
 * the patched coordinate and version;
 * the affected vulnerability identifier;
-* the backpatch release, source branch, and baseline tag;
+* the patch release, source branch, and baseline tag;
 * the patch basis, including whether the change backports an upstream fix or uses provider judgement because no upstream fix exists.
 
 ## Scanner consumption examples
@@ -59,7 +61,7 @@ trivy sbom my-app.cdx.json --vex ./all.json
 JFrog Xray and OWASP Dependency-Track can consume CycloneDX VEX data.
 
 ```sh
-curl -fsSLO https://vex.example.org/cyclonedx/backpatch-vex.cdx.json
+curl -fsSLO https://vex.example.org/cyclonedx/patch-vex.cdx.json
 ```
 
 Dependency-Track can receive the VEX document per project:
@@ -68,24 +70,24 @@ Dependency-Track can receive the VEX document per project:
 curl -X POST https://dtrack.example.com/api/v1/vex \
   -H "X-Api-Key: $DT_API_KEY" \
   -F "project=$PROJECT_UUID" \
-  -F "vex=@backpatch-vex.cdx.json"
+  -F "vex=@patch-vex.cdx.json"
 ```
 
 ### Sonatype
 
-The reference example notes that rebuilt backpatches may clear by binary hash, and that waiver workflows can post CycloneDX VEX to Sonatype's experimental analysis API.
+The reference example notes that rebuilt patches may clear by binary hash, and that waiver workflows can post CycloneDX VEX to Sonatype's experimental analysis API.
 
 ## Statement anatomy
 
-An OpenVEX backpatch statement should include:
+An OpenVEX patch statement should include:
 
 * the CVE and aliases, including GHSA aliases where available;
-* exact patched package URLs, such as Maven purls with `%2Bbackpatch.NNN`;
+* exact patched package URLs, such as Maven purls with `%2Bosera-patch.NNN` for OSERA-managed releases;
 * hashes for built artifacts when available;
 * `status: fixed`;
 * an action statement describing that the CVE was fixed by backporting the upstream fix onto the baseline.
 
-A CycloneDX backpatch statement should include vulnerability analysis and component pedigree so recipients can follow the evidence chain to the fix commit or equivalent source.
+A CycloneDX patch statement should include vulnerability analysis and component pedigree so recipients can follow the evidence chain to the fix commit or equivalent source.
 
 ## Sample OpenVEX statement
 
@@ -104,9 +106,9 @@ A CycloneDX backpatch statement should include vulnerability analysis and compon
       },
       "products": [
         {
-          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001",
+          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001",
           "identifiers": {
-            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bbackpatch.001"
+            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
           },
           "hashes": {
             "sha-256": "..."

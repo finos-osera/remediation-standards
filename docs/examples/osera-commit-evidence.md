@@ -3,7 +3,7 @@ title: OSERA Commit Evidence
 permalink: /examples/osera-commit-evidence/
 ---
 
-The public OSERA backpatch repositories already contain concrete examples that support the draft standards. These examples are non-normative; they show patterns the working group can either standardize, refine, or reject.
+The public OSERA backpatch repositories already contain concrete examples that inform the draft standards. These examples are non-normative; they include legacy/proof-of-concept naming that predates the proposed `patch-*`, `patch/`, and `+patch.baseline` conventions.
 
 ## Branch and tag conventions
 
@@ -16,7 +16,7 @@ Observed examples:
 | `backpatch-gson` | `main` | `v2.8.8+backpatch.baseline`, `v2.8.8+backpatch.001` |
 | `backpatch-activemq` | `main` | `v5.14.5+backpatch.baseline`, `v5.14.5+backpatch.001` |
 
-These examples support the baseline-tag and backpatch-release conventions while also showing that not every repository currently uses a `backpatch/<version>` branch.
+These examples show why OSERA needs explicit source branch, baseline tag, and release metadata standards. They are historical evidence, not the proposed future naming convention.
 
 ## Upstream provenance and adaptation notes
 
@@ -52,4 +52,4 @@ The ActiveMQ repository includes a fork-maintenance commit disabling GitHub Acti
 
 * <https://github.com/finos-osera/backpatch-activemq/commit/ff29ab870ba35275f7363fda8a6653a7615722eb>
 
-This supports the release-process position that public GitHub Actions should not be required for every backpatch fork, while still leaving room for providers to publish their own build and test evidence.
+This supports the release-process position that public GitHub Actions should not be required for every patch fork, while still leaving room for providers to publish their own test evidence under `REL-001` and build provenance evidence under `REL-007`.

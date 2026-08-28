@@ -3,7 +3,7 @@ title: Backpatch Release Tags
 permalink: /examples/release-tags/
 ---
 
-As observed on July 10, 2026, the public `finos-osera/backpatch-*` repositories contained 61 release tags matching `+backpatch.NNN` across 55 repositories.
+As observed on August 25, 2026, the public `finos-osera/backpatch-*` repositories contained 61 release tags matching `+backpatch.NNN` across 55 repositories. Under the revised OSERA-SP-0.1.0 proposal, these tags are treated as legacy/proof-of-concept evidence rather than the proposed naming for official signed artifacts.
 
 The reference OpenVEX feed covered the same 59 unique release-version strings. The difference between 61 tags and 59 unique release-version strings is expected because `v2.6+backpatch.001` appears in three separate repositories: `backpatch-commons-lang`, `backpatch-commons-configuration2`, and `backpatch-commons-io`.
 
@@ -12,6 +12,7 @@ The reference OpenVEX feed covered the same 59 unique release-version strings. T
 | Source | Count |
 | --- | ---: |
 | Public `backpatch-*` repositories scanned | 60 |
+| Repositories with `+backpatch.baseline` baseline tags | 59 |
 | Repositories with `+backpatch.NNN` release tags | 55 |
 | `+backpatch.NNN` release tags | 61 |
 | Unique release-version strings in repository tags | 59 |

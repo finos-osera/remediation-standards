@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://standards.osera.finos.org/schemas/osera-standard-frontmatter-0.1.0.schema.json",
+  "title": "OSERA Standard Front Matter",
+  "schema-version": "0.1.0",
+  "type": "object",
+  "required": [
+    "schema-version",
+    "sequence",
+    "standard_id",
+    "title",
+    "summary",
+    "doc-status",
+    "standard-version",
+    "candidate-pack",
+    "ratified-in",
+    "ratified-date",
+    "fitness-role",
+    "type",
+    "category",
+    "applies-to",
+    "requirements"
+  ],
+  "properties": {
+    "schema-version": {
+      "const": "0.1.0"
+    },
+    "sequence": {
+      "type": "integer"
+    },
+    "standard_id": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[0-9]{3}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "doc-status": {
+      "enum": [
+        "Pre-Draft",
+        "Draft",
+        "Ratification-Candidate",
+        "Ratified",
+        "Superseded",
+        "Withdrawn"
+      ]
+    },
+    "standard-version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "candidate-pack": {
+      "type": "string"
+    },
+    "ratified-in": {
+      "type": "string"
+    },
+    "ratified-date": {
+      "type": "string"
+    },
+    "fitness-role": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^[A-Z]+$"
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "applies-to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    }
+  },
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "required": [
+        "id",
+        "level",
+        "text",
+        "checkability",
+        "checks"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[0-9]{3}\\.REQ-[0-9]{3}$"
+        },
+        "level": {
+          "enum": [
+            "MUST",
+            "SHOULD",
+            "MAY"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checkability": {
+          "enum": [
+            "automated",
+            "partially-automated",
+            "manual"
+          ]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/check"
+          }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "type",
+        "severity",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[0-9]{3}\\.CHECK-[0-9]{3}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "blocking",
+            "advisory",
+            "observe"
+          ]
+        },
+        "implementation": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

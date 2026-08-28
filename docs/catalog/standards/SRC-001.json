@@ -1,0 +1,48 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 110,
+    "standard_id": "SRC-001",
+    "title": "Patch Basis Classification",
+    "summary": "Providers distinguish upstream backports from provider-developed fixes for each CVE or fix item carried by a patch release.",
+    "doc-status": "Pre-Draft",
+    "standard-version": "0.0.1",
+    "candidate-pack": "OSERA-SP-0.2.0 observe",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Observe-only check",
+    "type": "SRC",
+    "category": "Source Changes",
+    "applies-to": [
+      "Patch providers",
+      "Enterprise recipients",
+      "Feed maintainers"
+    ],
+    "requirements": [
+      {
+        "id": "SRC-001.REQ-001",
+        "level": "SHOULD",
+        "text": "Patch providers should classify whether each CVE or fix item in a patch release is based on an upstream fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary still to be defined by the working group.",
+        "checkability": "manual",
+        "checks": [
+          {
+            "id": "SRC-001.CHECK-001",
+            "title": "Patch basis classification is present",
+            "type": "release-evidence",
+            "severity": "observe",
+            "implementation": "osera-fitness.src001.patch_basis",
+            "evidence": [
+              "fix_item",
+              "cve_id",
+              "patch_basis_by_fix",
+              "upstream_fix_reference"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/src-001-patch-basis.md",
+    "url": "/standards/src-001-patch-basis/"
+  }
+}

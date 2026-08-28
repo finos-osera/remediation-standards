@@ -1,0 +1,64 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 610,
+    "standard_id": "STD-001",
+    "title": "Standards-as-Code Source Metadata",
+    "summary": "OSERA standards use human-authored Markdown with structured YAML front matter as the machine-readable source of truth.",
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required check",
+    "type": "STD",
+    "category": "Standards Governance",
+    "applies-to": [
+      "OSERA maintainers",
+      "Tooling providers"
+    ],
+    "requirements": [
+      {
+        "id": "STD-001.REQ-001",
+        "level": "MUST",
+        "text": "Standard pages must include schema-versioned YAML front matter containing identifiers, lifecycle status, requirements, checks, evidence expectations, and pack references.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "STD-001.CHECK-001",
+            "title": "Standard front matter validates against the active OSERA schema",
+            "type": "standards-repository",
+            "severity": "blocking",
+            "implementation": "osera-fitness.std001.standard_frontmatter_schema",
+            "evidence": [
+              "standard_markdown",
+              "schema-version"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "STD-001.REQ-002",
+        "level": "MUST",
+        "text": "The standards repository must publish normalized catalog artifacts generated from the Markdown front matter.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "STD-001.CHECK-002",
+            "title": "Generated catalog artifacts are current",
+            "type": "standards-repository",
+            "severity": "blocking",
+            "implementation": "osera-fitness.std001.generated_catalog_current",
+            "evidence": [
+              "docs/catalog/osera-standards.yaml",
+              "docs/catalog/osera-standards.json"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/std-001-standards-as-code.md",
+    "url": "/standards/std-001-standards-as-code/"
+  }
+}

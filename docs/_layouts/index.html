@@ -6,9 +6,10 @@ layout: default
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Open remediation standards for regulated consumption</h1>
-      <p class="hero-subtitle">A provisional FINOS OSERA evaluation draft for producing, publishing, and consuming open backpatches with provenance, release evidence, vulnerability feeds, and recipient-focused test guidance. This is not published as a formal standard.</p>
+      <p class="hero-subtitle">A provisional FINOS OSERA evaluation draft for producing, publishing, and consuming open patches with provenance, release evidence, vulnerability feeds, and recipient-focused test guidance. This branch proposes an initial OSERA-SP-0.1.0 standards pack for open discussion.</p>
       <div class="hero-actions">
         <a class="button primary" href="#standards">Browse standards</a>
+        <a class="button secondary" href="{{ site.baseurl }}/standard-packs/">Review v0.1.0 pack</a>
         <a class="button secondary" href="https://osera.finos.org" target="_blank" rel="noopener">About OSERA</a>
         <a class="button secondary" href="{{ site.baseurl }}/governance/">Contribute</a>
       </div>
@@ -19,22 +20,33 @@ layout: default
     <aside class="evidence-panel" aria-label="Current OSERA evidence">
       <div class="panel-header">
         <span>Current evidence</span>
-        <strong>July 2026</strong>
+        <strong>Aug. 25, 2026</strong>
       </div>
       <dl>
         <div><dt>60</dt><dd>public <code>backpatch-*</code> repositories observed in <a href="https://github.com/finos-osera" target="_blank" rel="noopener">finos-osera</a></dd></div>
         <div><dt>61</dt><dd><code>+backpatch.NNN</code> release tags across 55 public backpatch repositories</dd></div>
+        <div><dt>59</dt><dd><code>+backpatch.baseline</code> tags across 59 public backpatch repositories</dd></div>
         <div><dt>2</dt><dd>feed formats expected: OpenVEX and CycloneDX</dd></div>
-        <div><dt>1</dt><dd>shared branch prefix: <code>backpatch/&lt;version&gt;</code></dd></div>
       </dl>
     </aside>
+  </div>
+</section>
+
+<section class="wrap section pack-callout">
+  <div>
+    <h2>Candidate standards pack</h2>
+    <p><strong>OSERA-SP-0.1.0</strong> proposes the first versioned set of remediation standards for issue #12. The pack includes conventions that current implementers can plausibly follow on day one and defers immature areas such as certification and estate-wide automated application.</p>
+  </div>
+  <div class="pack-actions">
+    <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View pack and release history</a>
+    <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
   </div>
 </section>
 
 <section class="wrap section intro-grid">
   <div>
     <h2>Why this exists</h2>
-    <p>OSERA backpatch work has moved from a small set of experiments into a larger patch library spanning older Java ecosystems, build tooling variations, and end-of-life software lines. The emerging practice now needs a stable, open, bank-consumable format.</p>
+    <p>OSERA patch work has moved from a small set of experiments into a larger patch library spanning older Java ecosystems, build tooling variations, and end-of-life software lines. The emerging practice now needs a stable, open, bank-consumable format.</p>
   </div>
   <div>
     <h2>What it standardizes</h2>
@@ -49,11 +61,32 @@ layout: default
         <h2>Standards catalog</h2>
         <p>Numbered requirements and examples, modeled on the SDLC Controls Framework catalog style and adapted for patch production and consumption.</p>
       </div>
-      <div class="search-box">
-        <label for="catalogueSearch">Search</label>
-        <input id="catalogueSearch" type="search" placeholder="Search standards, evidence, feeds">
+      <div class="catalogue-controls" aria-label="Catalog filters">
+        <div class="search-box">
+          <label for="catalogueSearch">Search</label>
+          <input id="catalogueSearch" type="search" placeholder="Search standards">
+        </div>
+        <div class="filter-box">
+          <label for="packFilter">Pack</label>
+          <select id="packFilter">
+            <option value="">All packs</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter">
+            <option value="">All categories</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+          </select>
+        </div>
       </div>
     </div>
+    <p class="catalogue-note">Standard lifecycle status and standards-pack membership are tracked separately. Ratifying a pack records the exact standard versions included in that pack; it does not rewrite every future draft into the pack. The same structured metadata is published in the <a href="{{ site.baseurl }}/catalog/osera-standards.yaml">generated standards catalog</a>.</p>
     {% include catalogue.html %}
   </div>
 </section>

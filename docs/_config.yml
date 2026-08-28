@@ -1,5 +1,5 @@
 title: OSERA Remediation Standards
-description: Open standards for producing, publishing, and consuming OSERA backpatches.
+description: Open standards for producing, publishing, and consuming OSERA patches.
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
@@ -12,13 +12,17 @@ document_status:
   - name: Evaluation
     description: Provisional material under active review; not published as a formal standard.
   - name: Pre-Draft
-    description: Initial proposal collecting practice from OSERA backpatch work.
+    description: Initial proposal collecting practice from OSERA patch work.
   - name: Draft
     description: Written for community review and implementation feedback.
-  - name: First-Reading-Approved
-    description: Accepted in principle by the working group, pending final approval.
-  - name: Working-Group-Approved
-    description: Approved by the working group for implementers.
+  - name: Ratification-Candidate
+    description: A specific version proposed for standards-group approval.
+  - name: Ratified
+    description: Approved by the standards group for use in a standards pack or as standalone guidance.
+  - name: Superseded
+    description: Replaced by a later version or another standard, while remaining available for historical reference.
+  - name: Withdrawn
+    description: Removed from the active standards path without replacement.
 
 standard_classification:
   FORK: Fork Management
@@ -27,6 +31,7 @@ standard_classification:
   FEED: Feeds and Advisories
   EVD: Recipient Evidence
   APP: Patch Application
+  STD: Standards Governance
 
 category_icons:
   FORK: branch
@@ -35,6 +40,7 @@ category_icons:
   FEED: feed
   EVD: evidence
   APP: apply
+  STD: governance
 
 collections:
   standards:
