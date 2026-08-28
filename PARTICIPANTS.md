@@ -16,6 +16,8 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Bruno Navert, Morgan Stanley, Aug/27/2026
 - Javad Soltani Rad, Morgan Stanley, Aug/27/2026
 - Roy Crowder, Morgan Stanley, Aug/27/2026
+- James McLeod, NatWest Group, Aug/27/2026
+- Terry Smith, NatWest Group, Aug/27/2026
 - <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
