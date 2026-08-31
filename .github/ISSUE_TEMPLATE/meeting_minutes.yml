@@ -21,8 +21,7 @@ body:
       label: Meeting Details
       description: Meeting link and registration information
       value: |
-        - Meeting link: {zoom-meeting-link}
-        - Register for future meetings:
+        - Meeting link: https://zoom-lfx.platform.linuxfoundation.org/meeting/92489795966?password=cf71bb7f-f934-47ea-9a89-437412aae671
   - type: textarea
     id: attendance
     attributes:
