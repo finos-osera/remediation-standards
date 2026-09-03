@@ -3,8 +3,8 @@ schema-version: 0.1.0
 sequence: 230
 standard_id: REL-003
 title: Patch Initiative Version Metadata
-summary: Patched releases use SemVer build metadata that identifies the patching initiative
-  and release sequence.
+summary: Java package patched releases use SemVer build metadata that identifies
+  the patching initiative and release sequence.
 doc-status: Draft
 standard-version: 0.1.0
 candidate-pack: OSERA-SP-0.1.0 candidate
@@ -14,13 +14,13 @@ fitness-role: Required check
 type: REL
 category: Release Process
 applies-to:
-- Patch providers
-- Enterprise recipients
+- Java package patch providers
+- Enterprise Java recipients
 requirements:
 - id: REL-003.REQ-001
   level: MUST
-  text: Official OSERA patched releases must use SemVer build metadata in the form
-    <UPSTREAM_VERSION>+osera-patch.NNN.
+  text: Official OSERA patched releases in the OSERA-SP-0.1.0 Java package profile
+    must use SemVer build metadata in the form <UPSTREAM_VERSION>+osera-patch.NNN.
   checkability: automated
   checks:
   - id: REL-003.CHECK-001
@@ -50,7 +50,9 @@ requirements:
 
 ## Requirement
 
-Official OSERA patched releases MUST use SemVer build metadata in the form:
+For OSERA-SP-0.1.0, this standard defines the proposed convention for Java package artifacts. The default OSERA intent is to preserve SemVer 2.0 semantics where practical, but each package ecosystem MAY require a package-specific profile that adapts the release identifier to the conventions, resolver behavior, repository metadata, and update tooling used by that ecosystem.
+
+Official OSERA Java package patched releases MUST use SemVer build metadata in the form:
 
 ```text
 <UPSTREAM_VERSION>+<PATCH_INITIATIVE>.NNN
@@ -66,13 +68,13 @@ osera-patch.NNN
 
 Release tags, artifact versions, vulnerability feeds, and release evidence MUST carry the same patched-release identifier so recipients can correlate source, binary, scanner, and advisory records.
 
-Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment MUST use `+osera-patch.NNN`.
+Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed Java package artifacts claiming OSERA-SP-0.1.0 alignment MUST use `+osera-patch.NNN`.
 
 This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) deliberately uses `patch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately uses `v<VERSION>+patch.baseline` for the unpatched source baseline.
 
 ## Rationale
 
-This form preserves the upstream version while making the patched artifact distinguishable. It follows the [Semantic Versioning 2.0.0](https://semver.org/) build metadata shape, where metadata is appended after `+` as dot-separated identifiers.
+This form preserves the upstream version while making the patched artifact distinguishable. It follows the [Semantic Versioning 2.0.0](https://semver.org/) build metadata shape, where metadata is appended after `+` as dot-separated identifiers. That is the default OSERA naming intent, not a claim that every package manager, repository manager, SCA tool, or dependency-update tool will interpret `+` metadata consistently.
 
 Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream patch providers when repository or feed metadata is not shown.
 
@@ -82,7 +84,7 @@ Package URLs MUST encode `+` as `%2B`, for example `pkg:maven/org.example/exampl
 
 ## Open questions before ratification
 
-The working group still needs additional dialogue before the September 3, 2026 target decision on whether the SP-0.1.0 convention should remain pure SemVer build metadata, shift toward a Maven-style qualifier, or allow ecosystem-specific profiles.
+The working group still needs additional dialogue before the September 3, 2026 target decision on whether the SP-0.1.0 Java package convention should remain pure SemVer build metadata, shift toward a Maven-style qualifier, or allow ecosystem-specific profiles.
 
 Open questions include:
 

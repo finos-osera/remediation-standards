@@ -5,7 +5,7 @@
     "sequence": 230,
     "standard_id": "REL-003",
     "title": "Patch Initiative Version Metadata",
-    "summary": "Patched releases use SemVer build metadata that identifies the patching initiative and release sequence.",
+    "summary": "Java package patched releases use SemVer build metadata that identifies the patching initiative and release sequence.",
     "doc-status": "Draft",
     "standard-version": "0.1.0",
     "candidate-pack": "OSERA-SP-0.1.0 candidate",
@@ -15,14 +15,14 @@
     "type": "REL",
     "category": "Release Process",
     "applies-to": [
-      "Patch providers",
-      "Enterprise recipients"
+      "Java package patch providers",
+      "Enterprise Java recipients"
     ],
     "requirements": [
       {
         "id": "REL-003.REQ-001",
         "level": "MUST",
-        "text": "Official OSERA patched releases must use SemVer build metadata in the form <UPSTREAM_VERSION>+osera-patch.NNN.",
+        "text": "Official OSERA patched releases in the OSERA-SP-0.1.0 Java package profile must use SemVer build metadata in the form <UPSTREAM_VERSION>+osera-patch.NNN.",
         "checkability": "automated",
         "checks": [
           {

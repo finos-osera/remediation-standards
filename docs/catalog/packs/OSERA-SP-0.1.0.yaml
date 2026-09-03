@@ -13,9 +13,13 @@ pack:
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
   branch: codex/issue-23-standards-as-code-sp010
   summary: Revised candidate pack for the September 3 ratification decision and September
-    20 gate, using standards-as-code metadata, branded OSERA release identifiers,
+    20 gate, using standards-as-code metadata, Java package release identifier guidance,
     approved producers, and observe-mode checks for v0.2.0 candidates.
   release_metadata:
+    scope: OSERA-SP-0.1.0 release metadata guidance is proposed first for Java package
+      artifacts; later profiles may adapt the convention for other package ecosystems.
+    default_intent: Preserve SemVer 2.0 semantics where practical while allowing package-specific
+      adaptations that improve effective consumption by stakeholders.
     official_token: osera-patch.NNN
     official_example: 5.3.39+osera-patch.001
     legacy_token: backpatch.NNN
@@ -97,8 +101,9 @@ pack:
   - id: REL-003
     version: 0.1.0
     role: Required check
-    rationale: Official signed artifacts should use branded OSERA release metadata
-      visible in package coordinates and scanner output.
+    rationale: Official signed Java package artifacts should use branded OSERA release
+      metadata visible in package coordinates and scanner output, while later package
+      profiles may adapt the convention for effective ecosystem consumption.
     checks:
     - REL-003.CHECK-001
     - REL-003.CHECK-002
@@ -221,9 +226,9 @@ pack:
   discussion_topics:
   - Whether the standards-as-code schema is sufficient for the September 3 decision
     and September 20 gate or needs narrower scope.
-  - Whether official OSERA signed artifacts should use SemVer build metadata, Maven-style
-    qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release
-    identifiers.
+  - Whether official OSERA Java package artifacts should use SemVer build metadata,
+    Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style
+    release identifiers.
   - Whether new standardized repositories and source branches should use `patch-*`
     and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept
     evidence.
@@ -306,8 +311,9 @@ standards:
   - id: REL-003
     version: 0.1.0
     role: Required check
-    rationale: Official signed artifacts should use branded OSERA release metadata
-      visible in package coordinates and scanner output.
+    rationale: Official signed Java package artifacts should use branded OSERA release
+      metadata visible in package coordinates and scanner output, while later package
+      profiles may adapt the convention for effective ecosystem consumption.
     url: "/standards/rel-003-version-metadata/"
     checks:
     - REL-003.CHECK-001
