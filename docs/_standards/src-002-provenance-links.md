@@ -5,11 +5,11 @@ standard_id: SRC-002
 title: Upstream Provenance Links
 summary: Backports link to the upstream commit or advisory that introduced the fix
   being carried back.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required evidence
 type: SRC
 category: Source Changes
@@ -47,7 +47,6 @@ requirements:
     - co_authored_by_trailer
     - not_applicable_rationale
 ---
-
 ## Requirement
 
 When a patch backports an upstream fix, the patch record MUST link to the upstream commit being backported.

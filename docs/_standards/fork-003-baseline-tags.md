@@ -5,11 +5,11 @@ standard_id: FORK-003
 title: Baseline Tags
 summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
   tag.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required check
 type: FORK
 category: Fork Management
@@ -31,7 +31,6 @@ requirements:
     - baseline_tag
     - baseline_commit
 ---
-
 ## Requirement
 
 Patch providers MUST tag the commit that represents the unpatched baseline source state for a patched version.
@@ -48,9 +47,9 @@ This tag scheme applies regardless of the upstream project tag convention.
 
 Recipients need an unambiguous starting point for source comparison, provenance review, and audit evidence.
 
-The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use `+osera-patch.NNN` for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
+The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched release-coordinate naming remains pending in [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) until package resolver and dependency update-tool compatibility evidence is reviewed.
 
-The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
+The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the selected patched-release identifier once [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) is ratified.
 
 ## Evidence
 

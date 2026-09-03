@@ -8,7 +8,7 @@
     "summary": "Java package patched releases use SemVer build metadata that identifies the patching initiative and release sequence.",
     "doc-status": "Draft",
     "standard-version": "0.1.0",
-    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "candidate-pack": "OSERA-SP-0.1.0 pending test results",
     "ratified-in": "Not ratified",
     "ratified-date": "Not ratified",
     "fitness-role": "Required check",

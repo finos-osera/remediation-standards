@@ -4,23 +4,23 @@
     "schema-version": "0.1.0",
     "id": "OSERA-SP-0.1.0",
     "title": "OSERA Remediation Standards Pack 0.1.0",
-    "status": "Revised candidate for discussion",
+    "status": "Ratified initial standards pack",
     "proposed_date": "2026-08-27",
     "target_decision_date": "2026-09-03",
     "target_gate_date": "2026-09-20",
-    "ratified_date": "Not ratified",
+    "ratified_date": "2026-09-04",
     "issue": "https://github.com/finos-osera/remediation-standards/issues/12",
     "agenda_issue": "https://github.com/finos-osera/remediation-standards/issues/24",
     "standards_as_code_issue": "https://github.com/finos-osera/remediation-standards/issues/23",
     "branch": "codex/issue-23-standards-as-code-sp010",
-    "summary": "Revised candidate pack for the September 3 ratification decision and September 20 gate, using standards-as-code metadata, Java package release identifier guidance, approved producers, and observe-mode checks for v0.2.0 candidates.",
+    "summary": "First ratified OSERA remediation standards pack, approved on September 4, 2026 for the September 20 gate. REL-003 remains pending compatibility test results, with a decision expected in the next 24 to 48 hours, and is not part of this ratified initial set.",
     "release_metadata": {
-      "scope": "OSERA-SP-0.1.0 release metadata guidance is proposed first for Java package artifacts; later profiles may adapt the convention for other package ecosystems.",
+      "scope": "REL-003 release metadata guidance remains pending compatibility test results, with a decision expected in the next 24 to 48 hours, and is not ratified in this initial OSERA-SP-0.1.0 set.",
       "default_intent": "Preserve SemVer 2.0 semantics where practical while allowing package-specific adaptations that improve effective consumption by stakeholders.",
       "official_token": "osera-patch.NNN",
       "official_example": "5.3.39+osera-patch.001",
       "legacy_token": "backpatch.NNN",
-      "legacy_posture": "Existing +backpatch.NNN releases are treated as legacy/proof-of-concept evidence and are not the proposed official signed-artifact naming for OSERA-SP-0.1.0."
+      "legacy_posture": "Existing +backpatch.NNN releases remain legacy/proof-of-concept evidence while REL-003 is pending."
     },
     "approved_producers": {
       "registry": "docs/_data/approved_producers.yml",
@@ -31,7 +31,8 @@
       "59 legacy/proof-of-concept baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.",
       "61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.",
       "Issue 13 discussion favored visible OSERA branding in release metadata for SCA, inventory, and audit workflows.",
-      "Issue 23 proposed Markdown plus structured YAML front matter, schema validation, and generated catalog artifacts as the standards-as-code model."
+      "Issue 23 established Markdown plus structured YAML front matter, schema validation, and generated catalog artifacts as the standards-as-code model.",
+      "On September 4, 2026, the working group ratified the initial OSERA-SP-0.1.0 standards set, excluding REL-003 pending Java package resolver and update-tool compatibility evidence expected in the next 24 to 48 hours."
     ],
     "included_standards": [
       {
@@ -109,16 +110,6 @@
         ]
       },
       {
-        "id": "REL-003",
-        "version": "0.1.0",
-        "role": "Required check",
-        "rationale": "Official signed Java package artifacts should use branded OSERA release metadata visible in package coordinates and scanner output, while later package profiles may adapt the convention for effective ecosystem consumption.",
-        "checks": [
-          "REL-003.CHECK-001",
-          "REL-003.CHECK-002"
-        ]
-      },
-      {
         "id": "REL-004",
         "version": "0.1.0",
         "role": "Required check",
@@ -146,6 +137,18 @@
         "checks": [
           "FEED-001.CHECK-001",
           "FEED-001.CHECK-002"
+        ]
+      }
+    ],
+    "pending_standards": [
+      {
+        "id": "REL-003",
+        "version": "0.1.0",
+        "role": "Pending ratification",
+        "rationale": "Version and coordinate naming remains pending until Java package resolver and dependency update-tool compatibility test results are reviewed, with a decision expected in the next 24 to 48 hours.",
+        "checks": [
+          "REL-003.CHECK-001",
+          "REL-003.CHECK-002"
         ]
       }
     ],
@@ -266,8 +269,8 @@
       }
     ],
     "discussion_topics": [
-      "Whether the standards-as-code schema is sufficient for the September 3 decision and September 20 gate or needs narrower scope.",
-      "Whether official OSERA Java package artifacts should use SemVer build metadata, Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release identifiers.",
+      "Confirm whether any post-ratification standards-as-code schema refinements are needed before the September 20 gate.",
+      "Resolve REL-003 after reviewing whether official OSERA Java package artifacts should use SemVer build metadata, Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style release identifiers.",
       "Whether new standardized repositories and source branches should use `patch-*` and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept evidence.",
       "How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.",
       "Which build-security scanning expectations are realistic across legacy package ecosystems and should be considered for OSERA-SP-0.2.0 after the member tooling survey.",
@@ -357,17 +360,6 @@
         "url": "/standards/rel-002-bytecode-compatibility/",
         "checks": [
           "REL-002.CHECK-001"
-        ]
-      },
-      {
-        "id": "REL-003",
-        "version": "0.1.0",
-        "role": "Required check",
-        "rationale": "Official signed Java package artifacts should use branded OSERA release metadata visible in package coordinates and scanner output, while later package profiles may adapt the convention for effective ecosystem consumption.",
-        "url": "/standards/rel-003-version-metadata/",
-        "checks": [
-          "REL-003.CHECK-001",
-          "REL-003.CHECK-002"
         ]
       },
       {

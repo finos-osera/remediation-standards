@@ -4,13 +4,13 @@
 
 # What OSERA Remediation Standards are
 
-This repository contains the vulnerability remediation standards used for FINOS OSERA patch production and consumption. It is intended to help OSERA members, patch providers, and enterprise recipients converge on an open, bank-consumable format before formal ratification. 
+This repository contains the vulnerability remediation standards used for FINOS OSERA patch production and consumption. It is intended to help OSERA members, patch providers, and enterprise recipients converge on an open, bank-consumable format.
 
 The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Controls Framework](https://github.com/finos-labs/SDLC-Controls-Framework), but focuses on OSERA backpatches: fork management, source provenance, release compatibility, OpenVEX and CycloneDX feeds, and the recipient evidence enterprises need to decide what changed and what to test. 
 
 ## Status
 
-The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026. A draft proposal is available at (https://standards.osera.finos.org).
+The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026. OSERA-SP-0.1.0 was ratified on September 4, 2026 as the first OSERA remediation standards pack, with REL-003 pending package resolver and dependency update-tool compatibility evidence.
 
 ## Documentation
 
@@ -25,9 +25,9 @@ bundle exec jekyll serve
 The site includes:
 
 * a searchable standards catalog;
-* numbered draft standards such as `FORK-001`, `SRC-002`, `REL-002`, `FEED-001`, and `EVD-001`;
+* numbered standards such as `FORK-001`, `SRC-002`, `REL-002`, `FEED-001`, and `EVD-001`;
 * examples for patch evidence and recipient guidance;
-* governance notes for moving from provisional evaluation content toward a Community Specification.
+* governance notes for Community Specification review and future standards-pack updates.
 
 ## Source material
 

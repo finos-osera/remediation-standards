@@ -5,11 +5,11 @@ standard_id: REL-005
 title: Artifact Publication Hygiene
 summary: Published OSERA artifacts include consistent package metadata, checksums,
   and repository evidence required by the publication gate.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required check
 type: REL
 category: Release Process
@@ -34,12 +34,12 @@ requirements:
     - checksums
 - id: REL-005.REQ-002
   level: MUST
-  text: Published package metadata must identify the patched version consistently
-    with REL-003.
+  text: Published package metadata must identify the selected patched version consistently
+    across package files and release evidence.
   checkability: automated
   checks:
   - id: REL-005.CHECK-002
-    title: Package metadata uses the approved patched version
+    title: Package metadata uses the selected patched version
     type: artifact
     severity: blocking
     implementation: osera-fitness.rel005.package_metadata_version
@@ -48,12 +48,11 @@ requirements:
     - artifact_version
     - release_tag
 ---
-
 ## Requirement
 
 Official OSERA artifacts MUST publish the expected package files and checksums for the target ecosystem.
 
-For Maven-style releases, the gate SHOULD verify the expected POM, JAR, and checksum files and SHOULD confirm that package metadata uses the patched version required by REL-003.
+For Maven-style releases, the gate SHOULD verify the expected POM, JAR, and checksum files and SHOULD confirm that package metadata uses the patched version selected for the release. REL-003 remains pending and will define the ratified release-coordinate naming requirement once package resolver and dependency update-tool compatibility evidence is reviewed.
 
 ## Rationale
 

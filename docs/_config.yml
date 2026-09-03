@@ -3,10 +3,10 @@ description: Open standards for producing, publishing, and consuming OSERA patch
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
-version: provisional-evaluation
-release-date: 2026-07-10
-status_label: Active Evaluation
-status_description: This material is provisional and has not been published as a formal FINOS standard.
+version: OSERA-SP-0.1.0
+release-date: 2026-09-04
+status_label: First Ratified Standards Pack
+status_description: OSERA-SP-0.1.0 was ratified on September 4, 2026 as the first OSERA remediation standards pack. REL-003 remains pending package resolver and dependency update-tool compatibility evidence, with a decision expected in the next 24 to 48 hours.
 
 document_status:
   - name: Evaluation

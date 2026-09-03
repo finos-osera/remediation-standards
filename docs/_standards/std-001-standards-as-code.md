@@ -5,11 +5,11 @@ standard_id: STD-001
 title: Standards-as-Code Source Metadata
 summary: OSERA standards use human-authored Markdown with structured YAML front matter
   as the machine-readable source of truth.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required check
 type: STD
 category: Standards Governance
@@ -47,7 +47,6 @@ requirements:
     - docs/catalog/osera-standards.yaml
     - docs/catalog/osera-standards.json
 ---
-
 ## Requirement
 
 OSERA standards MUST be authored as readable Markdown pages with schema-versioned YAML front matter.

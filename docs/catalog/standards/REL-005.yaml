@@ -6,11 +6,11 @@ standard:
   title: Artifact Publication Hygiene
   summary: Published OSERA artifacts include consistent package metadata, checksums,
     and repository evidence required by the publication gate.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: REL
   category: Release Process
@@ -35,12 +35,12 @@ standard:
       - checksums
   - id: REL-005.REQ-002
     level: MUST
-    text: Published package metadata must identify the patched version consistently
-      with REL-003.
+    text: Published package metadata must identify the selected patched version consistently
+      across package files and release evidence.
     checkability: automated
     checks:
     - id: REL-005.CHECK-002
-      title: Package metadata uses the approved patched version
+      title: Package metadata uses the selected patched version
       type: artifact
       severity: blocking
       implementation: osera-fitness.rel005.package_metadata_version

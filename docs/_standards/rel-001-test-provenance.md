@@ -5,11 +5,11 @@ standard_id: REL-001
 title: Provider Test Provenance
 summary: Test execution methods are provider-dependent, but the provider publishes
   a unit-test report artifact for recipients to understand release validation.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required evidence
 type: REL
 category: Release Process
@@ -37,7 +37,6 @@ requirements:
     - test_report_artifact
     - no_failed_tests
 ---
-
 ## Requirement
 
 Patch providers MUST publish test provenance for the patched artifact.

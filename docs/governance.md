@@ -5,12 +5,12 @@ permalink: /governance/
 
 This repository starts from the Community Specification process and keeps the legal and contribution structure needed for an eventual standard.
 
-The initial content is provisional and in active evaluation status. It is intended to be reviewed by OSERA starting members, patch providers, enterprise consumers, and the broader FINOS community. It has not been published as a formal FINOS standard.
+OSERA-SP-0.1.0 is the first ratified OSERA remediation standards pack. It was ratified on September 4, 2026, with REL-003 still pending package resolver and dependency update-tool compatibility evidence. The material remains part of the Community Specification process and should continue to be reviewed by OSERA starting members, patch providers, enterprise consumers, and the broader FINOS community.
 
-## Proposed path
+## Standards path
 
-1. Capture current OSERA patch-production practice as provisional markdown-backed standards.
-2. Propose a versioned `OSERA-SP-0.1.0` standards pack with individually versioned standards, inclusion rationale, deferred items, and a target decision date.
+1. Capture current OSERA patch-production practice as markdown-backed standards.
+2. Ratify versioned standards packs with individually versioned standards, inclusion rationale, deferred items, and ratification dates.
 3. Collect implementation feedback from providers and consuming banks.
 4. Split stable requirements from examples, tooling profiles, and implementation notes.
 5. Move mature requirements through the Community Specification governance process.
@@ -21,11 +21,11 @@ Each standard carries its own version. A standards pack records the exact standa
 
 This lets the working group revise one standard without implying that every other standard changed. For example, `REL-003` could move from `0.1.0` to `0.2.0` and then be included in a later standards pack while `FORK-001` remains unchanged.
 
-The proposed [standard lifecycle]({{ site.baseurl }}/lifecycle/) defines when to reuse an existing identifier, when to create a new identifier, and when to create a standards pack.
+The [standard lifecycle]({{ site.baseurl }}/lifecycle/) defines when to reuse an existing identifier, when to create a new identifier, and when to create a standards pack.
 
 ## Alignment and certification
 
-The v0.1.0 proposal should use alignment language, not certification language.
+The v0.1.0 pack should use alignment language, not certification language.
 
 Repositories can publish a fitness result showing that they are aligned to a named standards pack. The working group should defer "certified" claims until it has agreed reviewer authority, evidence retention, revocation, dispute handling, and badge or trademark rules.
 
