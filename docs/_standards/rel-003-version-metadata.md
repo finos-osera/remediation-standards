@@ -7,7 +7,7 @@ summary: Java package patched releases use SemVer build metadata that identifies
   the patching initiative and release sequence.
 doc-status: Draft
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
+candidate-pack: OSERA-SP-0.1.0 pending test results
 ratified-in: Not ratified
 ratified-date: Not ratified
 fitness-role: Required check
@@ -84,7 +84,7 @@ Package URLs MUST encode `+` as `%2B`, for example `pkg:maven/org.example/exampl
 
 ## Open questions before ratification
 
-The working group still needs additional dialogue before the September 3, 2026 target decision on whether the SP-0.1.0 Java package convention should remain pure SemVer build metadata, shift toward a Maven-style qualifier, or allow ecosystem-specific profiles.
+The working group still needs test results before deciding whether the SP-0.1.0 Java package convention should remain pure SemVer build metadata, shift toward a Maven-style qualifier, or allow ecosystem-specific profiles. The decision is expected in the next 24 to 48 hours after the initial September 4, 2026 ratification.
 
 Open questions include:
 

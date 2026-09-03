@@ -5,11 +5,11 @@ standard_id: SRC-003
 title: License Headers for New Files
 summary: New source or test files match the prevailing license format of the surrounding
   project.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required check
 type: SRC
 category: Source Changes
@@ -33,7 +33,6 @@ requirements:
     - license_header_check
     - not_applicable_rationale
 ---
-
 ## Requirement
 
 Patch providers MUST apply the repository's prevailing license header format to net new files added by a patch when the local convention is determinable.

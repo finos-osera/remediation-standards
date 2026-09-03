@@ -6,11 +6,11 @@ standard:
   title: Baseline Tags
   summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
     tag.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: FORK
   category: Fork Management

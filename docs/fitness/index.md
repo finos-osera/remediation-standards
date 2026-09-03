@@ -3,7 +3,7 @@ title: Fitness Function
 permalink: /fitness/
 ---
 
-The v0.1.0 fitness function should measure alignment to a standard pack, not certify a provider or repository. This keeps the first gate useful for implementers without implying a mature accreditation regime before the working group has agreed one.
+The v0.1.0 fitness function should measure alignment to the ratified OSERA-SP-0.1.0 standards pack, not certify a provider or repository. This keeps the first gate useful for implementers without implying a mature accreditation regime before the working group has agreed one.
 
 ## Scope
 
@@ -11,7 +11,7 @@ The first fitness function evaluates a single patch repository and one published
 
 The result SHOULD identify the standards-pack version, each standard version tested, each check ID, the commit tested, the artifact digest when an artifact exists, the evidence inspected, and whether every check is `pass`, `warn`, `fail`, `not-tested`, `not-applicable`, or `manual-evidence-required`.
 
-Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignment. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for `OSERA-SP-0.2.0` and SHOULD NOT block the v0.1.0 gate unless promoted by the standards group.
+Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignment. REL-003 remains pending and is not part of the ratified initial blocking set until package resolver and dependency update-tool compatibility evidence is accepted. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for `OSERA-SP-0.2.0` and SHOULD NOT block the v0.1.0 gate unless promoted by the standards group.
 
 ## Blocking checks
 
@@ -24,10 +24,15 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 | SRC-003 | New files match the nearest existing file of the same type in the same module, ignoring years and whitespace; result is `not-applicable` where no local header convention exists. |
 | REL-001 | Release evidence records tested commit, runtime, test command or suite, published unit-test report artifact, and no failed tests. |
 | REL-002 | Release evidence records bytecode level and how it was checked against the prior released artifact. |
-| REL-003 | Official OSERA release tag and artifact version use `<UPSTREAM_VERSION>+osera-patch.NNN` and match feed purls. |
 | REL-004 | Producer identity is approved for the targeted standards pack and recorded in release evidence. |
 | REL-005 | Package files, checksums, and package metadata are present and internally consistent. |
 | FEED-001 | OpenVEX and CycloneDX feed data can identify vulnerability, patched artifact, release, baseline, and provenance. |
+
+## Pending check
+
+| Standard | Pending decision |
+| --- | --- |
+| REL-003 | Release-coordinate naming remains pending until Java package resolver and dependency update-tool compatibility evidence is reviewed. |
 
 ## Advisory and observe checks
 

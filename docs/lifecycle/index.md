@@ -71,7 +71,7 @@ Standards packs use the existing OSERA pack naming form:
 OSERA-SP-<VERSION>
 ```
 
-For example, `OSERA-SP-0.1.0` can include `FORK-001 v0.1.0`, `REL-003 v0.1.0`, and other specific standard versions.
+For example, `OSERA-SP-0.1.0` includes `FORK-001 v0.1.0`, `SRC-002 v0.1.0`, and other specific standard versions ratified for the initial pack. REL-003 is tracked separately until its release-coordinate approach is ratified.
 
 Ratifying a pack freezes the list of included standard versions for that pack. If `FORK-001` later changes to `v0.2.0`, `OSERA-SP-0.1.0` still refers to `FORK-001 v0.1.0`. A later pack can include the revised version.
 

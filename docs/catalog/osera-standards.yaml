@@ -7,11 +7,11 @@ standards:
   title: Repository Naming
   summary: Patched-source repositories use a consistent `patch-<reponame>` name in
     the finos-osera GitHub organization.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: FORK
   category: Fork Management
@@ -53,11 +53,11 @@ standards:
   title: Patch Branches
   summary: Patch providers use `patch/<version>` source workflow branches for every
     supported major or minor line.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: FORK
   category: Fork Management
@@ -86,11 +86,11 @@ standards:
   title: Baseline Tags
   summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
     tag.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: FORK
   category: Fork Management
@@ -223,11 +223,11 @@ standards:
   title: Upstream Provenance Links
   summary: Backports link to the upstream commit or advisory that introduced the fix
     being carried back.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required evidence
   type: SRC
   category: Source Changes
@@ -272,11 +272,11 @@ standards:
   title: License Headers for New Files
   summary: New source or test files match the prevailing license format of the surrounding
     project.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: SRC
   category: Source Changes
@@ -307,11 +307,11 @@ standards:
   title: Provider Test Provenance
   summary: Test execution methods are provider-dependent, but the provider publishes
     a unit-test report artifact for recipients to understand release validation.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required evidence
   type: REL
   category: Release Process
@@ -346,11 +346,11 @@ standards:
   title: Bytecode Compatibility
   summary: Patched artifacts preserve the bytecode level of the last released artifact
     unless an explicit exception is approved.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required evidence
   type: REL
   category: Release Process
@@ -383,7 +383,7 @@ standards:
     the patching initiative and release sequence.
   doc-status: Draft
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
+  candidate-pack: OSERA-SP-0.1.0 pending test results
   ratified-in: Not ratified
   ratified-date: Not ratified
   fitness-role: Required check
@@ -430,11 +430,11 @@ standards:
   title: Approved Producers
   summary: Official OSERA signed artifacts are produced only by producers approved
     for the targeted standards pack.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: REL
   category: Release Process
@@ -480,11 +480,11 @@ standards:
   title: Artifact Publication Hygiene
   summary: Published OSERA artifacts include consistent package metadata, checksums,
     and repository evidence required by the publication gate.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: REL
   category: Release Process
@@ -509,12 +509,12 @@ standards:
       - checksums
   - id: REL-005.REQ-002
     level: MUST
-    text: Published package metadata must identify the patched version consistently
-      with REL-003.
+    text: Published package metadata must identify the selected patched version consistently
+      across package files and release evidence.
     checkability: automated
     checks:
     - id: REL-005.CHECK-002
-      title: Package metadata uses the approved patched version
+      title: Package metadata uses the selected patched version
       type: artifact
       severity: blocking
       implementation: osera-fitness.rel005.package_metadata_version
@@ -669,11 +669,11 @@ standards:
   title: OpenVEX and CycloneDX Feeds
   summary: OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX
     feed formats.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required evidence
   type: FEED
   category: Feeds and Advisories
@@ -788,11 +788,11 @@ standards:
   title: Standards-as-Code Source Metadata
   summary: OSERA standards use human-authored Markdown with structured YAML front
     matter as the machine-readable source of truth.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required check
   type: STD
   category: Standards Governance

@@ -3,13 +3,13 @@ schema-version: 0.1.0
 sequence: 10
 standard_id: FORK-001
 title: Repository Naming
-summary: Patched-source repositories use a consistent `patch-<reponame>` name in
-  the finos-osera GitHub organization.
-doc-status: Draft
+summary: Patched-source repositories use a consistent `patch-<reponame>` name in the
+  finos-osera GitHub organization.
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-04'
 fitness-role: Required check
 type: FORK
 category: Fork Management
@@ -19,8 +19,8 @@ applies-to:
 requirements:
 - id: FORK-001.REQ-001
   level: MUST
-  text: Patched-source repositories must live in github.com/finos-osera unless the working
-    group approves an exception.
+  text: Patched-source repositories must live in github.com/finos-osera unless the
+    working group approves an exception.
   checkability: automated
   checks:
   - id: FORK-001.CHECK-001
@@ -32,8 +32,8 @@ requirements:
     - repository_url
 - id: FORK-001.REQ-002
   level: MUST
-  text: Patched-source repositories must use the prefix patch- followed by the
-    upstream repository or artifact name.
+  text: Patched-source repositories must use the prefix patch- followed by the upstream
+    repository or artifact name.
   checkability: automated
   checks:
   - id: FORK-001.CHECK-002
@@ -44,7 +44,6 @@ requirements:
     evidence:
     - repository_name
 ---
-
 ## Requirement
 
 Patched-source repositories MUST live in the `github.com/finos-osera` organization unless the working group approves an exception.

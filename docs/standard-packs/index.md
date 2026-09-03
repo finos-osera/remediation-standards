@@ -5,6 +5,8 @@ permalink: /standard-packs/
 
 Standard packs collect individually versioned remediation standards into a release candidate or ratified set. A pack version is the thing an implementer targets; each included standard keeps its own version so the working group can revise one standard and include the revision in a later pack.
 
+OSERA-SP-0.1.0 is the first ratified OSERA remediation standards pack. The initial set was ratified on September 4, 2026. REL-003 remains pending Java package resolver and dependency update-tool compatibility evidence, with a decision expected in the next 24 to 48 hours, and is tracked separately until the working group ratifies its release-coordinate approach.
+
 Standard lifecycle status and standards-pack membership are separate. Ratifying `OSERA-SP-0.1.0` should record the exact standard versions included in that pack and set their pack relationship to ratified for that release set. It should not erase later draft work or imply that every future revision of those standards is automatically part of `OSERA-SP-0.1.0`.
 
 In the catalog, the primary pill shows the standard lifecycle status. The pack pill shows whether that version is a candidate, deferred item, or eventually ratified member of a standards pack.
@@ -56,11 +58,42 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on stan
 | Proposal branch | `{{ pack.branch }}` |
 | Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
 
+{% if pack.pending_standards and pack.pending_standards.size > 0 %}
+### Pending ratification
+
+The following standards are not part of the ratified initial set for this pack and remain pending working-group decision.
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Status</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for standard in pack.pending_standards %}
+    {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
+    <tr>
+      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      <td>{{ standard.version }}</td>
+      <td>{{ standard.role }}</td>
+      <td>{{ standard.rationale }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %}
+
 ### Release metadata posture
 
-Official OSERA signed artifacts proposed for this pack use `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`.
+{{ pack.release_metadata.scope }}
 
-Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the proposed official signed-artifact naming for this pack.
+The candidate OSERA release metadata token remains `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`.
+
+Existing `+{{ pack.release_metadata.legacy_token }}` releases remain legacy/proof-of-concept evidence while REL-003 is pending.
 
 ### Approved producers
 
@@ -74,7 +107,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 * {{ item }}
 {% endfor %}
 
-### Blocking in v0.1.0
+### Ratified in v0.1.0
 
 <table>
   <thead>
@@ -154,7 +187,7 @@ Observe-mode checks run during the v0.1.0 gate to collect evidence and implement
   </tbody>
 </table>
 
-### Discussion agenda
+### Follow-up topics
 
 {% for topic in pack.discussion_topics %}
 * {{ topic }}

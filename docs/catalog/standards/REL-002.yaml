@@ -6,11 +6,11 @@ standard:
   title: Bytecode Compatibility
   summary: Patched artifacts preserve the bytecode level of the last released artifact
     unless an explicit exception is approved.
-  doc-status: Draft
+  doc-status: Ratified
   standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 candidate
-  ratified-in: Not ratified
-  ratified-date: Not ratified
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-04'
   fitness-role: Required evidence
   type: REL
   category: Release Process
