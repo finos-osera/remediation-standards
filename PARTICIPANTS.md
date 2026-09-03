@@ -10,6 +10,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Mark Hoare, Deutsche Bank, Aug/25/2026
 - Peter Thomas, Deutsche Bank, Aug/25/2026
 - Paul Horton, Sonatype, Inc., Aug/26/2026
+- Brian Fox, Sonatype, Inc., Aug/26/2026
 - Greg Allen, HeroDevs, Inc., Aug 26/2026
 - Rob Nalen, HeroDevs, Inc., Aug 26/2026
 - Aaron Searle, Morgan Stanley, Aug/27/2026
