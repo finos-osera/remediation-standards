@@ -378,9 +378,10 @@ standards:
 - schema-version: 0.1.0
   sequence: 230
   standard_id: REL-003
-  title: Patch Release Ordering
-  summary: Patched releases use package-ecosystem-appropriate identifiers that make
-    the patch distinguishable, traceable, and latest on the same upstream line.
+  title: Patch Version Naming
+  summary: Patched releases use package-ecosystem-appropriate version identifiers
+    that make the patch distinguishable, traceable, and latest on the same upstream
+    line.
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 candidate
