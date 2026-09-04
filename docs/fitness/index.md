@@ -24,7 +24,8 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 | SRC-003 | New files match the nearest existing file of the same type in the same module, ignoring years and whitespace; result is `not-applicable` where no local header convention exists. |
 | REL-001 | Release evidence records tested commit, runtime, test command or suite, published unit-test report artifact, and no failed tests. |
 | REL-002 | Release evidence records bytecode level and how it was checked against the prior released artifact. |
-| REL-003 | Official OSERA release tag and artifact version use `<UPSTREAM_VERSION>+osera-patch.NNN` and match feed purls. |
+| REL-003 | Release tag, artifact version, vulnerability feeds, and release evidence use the applicable patch version naming profile, or the default SemVer form where no profile exists. |
+| REL-003-JAVA | Java release tag and artifact version use the ratified Java patch version naming pattern selected from compatibility evidence and match Maven/feed purls. |
 | REL-004 | Producer identity is approved for the targeted standards pack and recorded in release evidence. |
 | REL-005 | Package files, checksums, and package metadata are present and internally consistent. |
 | FEED-001 | OpenVEX and CycloneDX feed data can identify vulnerability, patched artifact, release, baseline, and provenance. |

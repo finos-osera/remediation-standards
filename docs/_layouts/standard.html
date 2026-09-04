@@ -18,6 +18,18 @@ layout: default
       <div><dt>Fitness</dt><dd>{{ page.fitness-role }}</dd></div>
       <div><dt>Category</dt><dd>{{ page.category | default: site.standard_classification[page.type] }}</dd></div>
       <div><dt>Applies to</dt><dd>{{ page.applies-to | join: ", " }}</dd></div>
+      {% if page.extends %}
+      {% assign parent_doc = site.standards | where: "standard_id", page.extends | first %}
+      <div><dt>Extends</dt><dd>{% if parent_doc %}<a href="{{ site.baseurl }}{{ parent_doc.url }}">{{ page.extends }}</a>{% else %}{{ page.extends }}{% endif %}</dd></div>
+      {% endif %}
+      {% if page.extended-by %}
+      <div><dt>Extended by</dt><dd>
+        {% for child in page.extended-by %}
+          {% assign child_doc = site.standards | where: "standard_id", child | first %}
+          {% if child_doc %}<a href="{{ site.baseurl }}{{ child_doc.url }}">{{ child }}</a>{% else %}{{ child }}{% endif %}{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </dd></div>
+      {% endif %}
       <div><dt>Machine-readable</dt><dd><a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.yaml">YAML</a> / <a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.json">JSON</a></dd></div>
     </dl>
   </div>
