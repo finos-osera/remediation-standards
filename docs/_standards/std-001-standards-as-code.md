@@ -54,7 +54,7 @@ OSERA standards MUST be authored as readable Markdown pages with schema-versione
 
 The YAML front matter is the machine-readable source for:
 
-* standard identifiers and versions;
+* standard identifiers, profile relationships, and versions;
 * lifecycle status;
 * pack membership;
 * requirements;
@@ -90,5 +90,7 @@ The generated artifacts are derived from the Markdown front matter. Contributors
 Standard prose pages are maintained manually in `docs/_standards/*.md`. The structured YAML front matter at the top of each page is the machine-readable source for standard IDs, versions, lifecycle status, pack membership, requirements, checks, evidence expectations, and future fitness-function bindings.
 
 The documentation site renders those Markdown files through Jekyll templates. The same front matter is also used by `tools/generate_catalog.rb` to produce normalized YAML and JSON artifacts under `docs/catalog/`.
+
+Package-ecosystem or package-manager profiles MAY extend a base standard by appending an uppercase profile suffix to the base standard identifier, for example `REL-003-JAVA`. The profile suffix uses `-PROFILE` rather than `.PROFILE` so requirement and check IDs can keep the established dotted form, such as `REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001`.
 
 The generated YAML and JSON files SHOULD NOT be edited independently. When a standard changes, update the Markdown page and rerun the generator so the rendered documentation and machine-readable catalog remain synchronized.

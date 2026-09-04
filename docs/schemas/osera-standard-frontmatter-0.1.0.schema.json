@@ -30,7 +30,18 @@
     },
     "standard_id": {
       "type": "string",
-      "pattern": "^[A-Z]+-[0-9]{3}$"
+      "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?$"
+    },
+    "extends": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?$"
+    },
+    "extended-by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?$"
+      }
     },
     "title": {
       "type": "string",
@@ -102,7 +113,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[A-Z]+-[0-9]{3}\\.REQ-[0-9]{3}$"
+          "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?\\.REQ-[0-9]{3}$"
         },
         "level": {
           "enum": [
@@ -142,7 +153,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[A-Z]+-[0-9]{3}\\.CHECK-[0-9]{3}$"
+          "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?\\.CHECK-[0-9]{3}$"
         },
         "title": {
           "type": "string",

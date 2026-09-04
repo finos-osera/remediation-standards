@@ -57,7 +57,7 @@ def validate_standard!(messages, standard, valid_statuses, valid_types)
   required.each { |key| error!(messages, "#{id || standard["source_path"]}: missing #{key}") unless standard.key?(key) }
 
   error!(messages, "#{id}: schema-version must be #{STANDARD_SCHEMA_VERSION}") unless standard["schema-version"] == STANDARD_SCHEMA_VERSION
-  error!(messages, "#{id}: invalid standard_id") unless id&.match?(/\A[A-Z]+-\d{3}\z/)
+  error!(messages, "#{id}: invalid standard_id") unless id&.match?(/\A[A-Z]+-\d{3}(?:-[A-Z][A-Z0-9]*)?\z/)
   error!(messages, "#{id}: invalid standard-version") unless standard["standard-version"].to_s.match?(/\A\d+\.\d+\.\d+\z/)
   error!(messages, "#{id}: unknown doc-status #{standard["doc-status"]}") unless valid_statuses.include?(standard["doc-status"])
   error!(messages, "#{id}: unknown type #{standard["type"]}") unless valid_types.include?(standard["type"])
