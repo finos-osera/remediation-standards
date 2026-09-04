@@ -88,6 +88,10 @@ The suffix uses `-PROFILE` rather than `.PROFILE` because requirement and check 
 
 Profiles SHOULD become more opinionated than the abstract standard. A profile can define the exact version pattern, resolver behavior tests, package URL encoding, repository-manager expectations, dependency-update-tool expectations, and any allowed exceptions for that package ecosystem.
 
+REL-003 profiles inherit the base checks unless they define the same check number. A profile check with the same numeric suffix overrides the base check for that profile. For example, `REL-003-JAVA.CHECK-001` overrides `REL-003.CHECK-001`; `REL-003-JAVA.CHECK-002` overrides `REL-003.CHECK-002`; and a future `REL-003-JAVA.CHECK-003` would add a Java-specific check after the inherited and overridden checks.
+
+Profile requirements use the same rule. A same-number requirement specializes the base requirement for that package ecosystem, while a new number adds a profile-specific requirement.
+
 ## Default SemVer Profile
 
 Where no concrete package-ecosystem profile exists, the default OSERA profile uses SemVer 2.0-compatible build metadata in the form:

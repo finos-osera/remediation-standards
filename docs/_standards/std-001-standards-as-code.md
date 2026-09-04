@@ -93,4 +93,8 @@ The documentation site renders those Markdown files through Jekyll templates. Th
 
 Package-ecosystem or package-manager profiles MAY extend a base standard by appending an uppercase profile suffix to the base standard identifier, for example `REL-003-JAVA`. The profile suffix uses `-PROFILE` rather than `.PROFILE` so requirement and check IDs can keep the established dotted form, such as `REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001`.
 
+When a profile extends a base standard, the base standard's checks automatically apply to the profile unless the profile defines a check with the same numeric suffix. The numeric suffix is the override key. For example, `REL-003-JAVA.CHECK-001` overrides `REL-003.CHECK-001`, while `REL-003-JAVA.CHECK-003` adds a new Java-specific check after the inherited and overridden checks. This mirrors method overriding in an object-oriented class extension: unchanged parent checks are inherited, same-number child checks replace the parent behavior for that profile, and new child check numbers add profile-specific behavior.
+
+Profile requirements follow the same numbering convention. A same-number profile requirement specializes the parent requirement for the profile; a new number adds a profile-specific requirement.
+
 The generated YAML and JSON files SHOULD NOT be edited independently. When a standard changes, update the Markdown page and rerun the generator so the rendered documentation and machine-readable catalog remain synchronized.

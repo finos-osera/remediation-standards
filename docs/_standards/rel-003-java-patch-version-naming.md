@@ -65,6 +65,8 @@ REL-003-JAVA extends [REL-003]({{ site.baseurl }}/standards/rel-003-version-meta
 
 The Java profile is intentionally concrete: once the working group accepts the compatibility evidence, this profile should name the exact Java version pattern and the gate checks that prove the pattern works for supported Java recipient tooling.
 
+`REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001` override `REL-003.REQ-001` and `REL-003.CHECK-001` for Java package artifacts. `REL-003-JAVA.REQ-002` and `REL-003-JAVA.CHECK-002` override the base consistency requirement and check with Java-specific Maven package URL evidence. Additional Java checks should use new numbers, starting with `REL-003-JAVA.CHECK-003`.
+
 The decision order is:
 
 * optimize the consumer outcome first;

@@ -137,6 +137,22 @@ duplicate_standards.each_key { |id| error!(messages, "duplicate standard_id #{id
 duplicate_checks = all_checks.group_by(&:itself).select { |_id, values| values.length > 1 }
 duplicate_checks.each_key { |id| error!(messages, "duplicate check id #{id}") }
 
+standards.each do |standard|
+  id = standard["standard_id"]
+  parent_id = standard["extends"]
+  if parent_id
+    error!(messages, "#{id}: extends unknown standard #{parent_id}") unless standards_by_id.key?(parent_id)
+  end
+
+  Array(standard["extended-by"]).each do |child_id|
+    child = standards_by_id[child_id]
+    error!(messages, "#{id}: extended-by references unknown standard #{child_id}") unless child
+    if child && child["extends"] != id
+      error!(messages, "#{id}: extended-by #{child_id} must declare extends: #{id}") unless child["extends"] == id
+    end
+  end
+end
+
 packs = normalize(YAML.safe_load(File.read(PACKS_FILE), permitted_classes: [Date], aliases: true))
 packs.each { |pack| validate_pack!(messages, pack, standards_by_id, all_checks) }
 

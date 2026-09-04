@@ -30,6 +30,30 @@ FORK-004 v1.1.0  Revised
 
 Do not create identifiers such as `FORK-004.1`. The dotted value belongs in `standard-version`, not in `standard_id`.
 
+Package-ecosystem or package-manager profiles may extend a base standard by adding an uppercase suffix after the base identifier:
+
+```text
+REL-003-JAVA
+REL-003-PYTHON
+REL-003-JS
+```
+
+Profiles use `-PROFILE` rather than `.PROFILE` because requirement and check IDs already use dots, for example `REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001`.
+
+## Profile extension and overrides
+
+An extended standard inherits the checks of its parent standard unless it overrides them.
+
+The check number is the override key:
+
+* `REL-003-JAVA.CHECK-001` overrides `REL-003.CHECK-001` for the Java profile;
+* `REL-003-JAVA.CHECK-002` overrides `REL-003.CHECK-002` for the Java profile;
+* `REL-003-JAVA.CHECK-003` adds a new Java-specific check.
+
+Requirement numbers follow the same convention. A profile requirement with the same number specializes the parent requirement for that profile. A new number adds a profile-specific requirement.
+
+Fitness results for a concrete profile should report the effective check set: inherited parent checks that were not overridden, profile checks that override same-number parent checks, and any additional profile-specific checks.
+
 ## When to create a new standard ID
 
 Create a new standard ID when the proposed material defines a distinct requirement area that implementers could satisfy independently.
