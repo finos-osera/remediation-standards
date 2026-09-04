@@ -47,7 +47,7 @@
         "id": "REL-003-JAVA.REQ-002",
         "level": "MUST",
         "text": "Java release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence must carry the same Java patch version identifier.",
-        "checkability": "partially-automated",
+        "checkability": "automated",
         "checks": [
           {
             "id": "REL-003-JAVA.CHECK-002",

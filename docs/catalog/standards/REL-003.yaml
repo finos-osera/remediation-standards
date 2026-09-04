@@ -45,7 +45,7 @@ standard:
     level: MUST
     text: Release tags, artifact versions, vulnerability feeds, and release evidence
       must carry the same patched-release identifier.
-    checkability: partially-automated
+    checkability: automated
     checks:
     - id: REL-003.CHECK-002
       title: Release identifier is consistent across source, artifact, and feeds

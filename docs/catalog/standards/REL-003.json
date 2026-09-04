@@ -49,7 +49,7 @@
         "id": "REL-003.REQ-002",
         "level": "MUST",
         "text": "Release tags, artifact versions, vulnerability feeds, and release evidence must carry the same patched-release identifier.",
-        "checkability": "partially-automated",
+        "checkability": "automated",
         "checks": [
           {
             "id": "REL-003.CHECK-002",

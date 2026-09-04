@@ -54,6 +54,8 @@ Requirement numbers follow the same convention. A profile requirement with the s
 
 Fitness results for a concrete profile should report the effective check set: inherited parent checks that were not overridden, profile checks that override same-number parent checks, and any additional profile-specific checks.
 
+Profile pages should remain readable as standalone implementation guidance. When a profile overrides a parent requirement or check, the profile should say so. When it inherits a parent requirement or check unchanged, the child page does not need to repeat the parent text; the effective set is derived from the parent and profile together.
+
 ## When to create a new standard ID
 
 Create a new standard ID when the proposed material defines a distinct requirement area that implementers could satisfy independently.

@@ -97,4 +97,6 @@ When a profile extends a base standard, the base standard's checks automatically
 
 Profile requirements follow the same numbering convention. A same-number profile requirement specializes the parent requirement for the profile; a new number adds a profile-specific requirement.
 
+Profile pages SHOULD be readable on their own. A profile SHOULD explicitly describe any same-number requirements or checks that override the parent. Parent requirements and checks that are inherited without modification do not need to be duplicated in the child page; catalog and fitness tooling should compute the effective requirement and check set from the parent plus the profile.
+
 The generated YAML and JSON files SHOULD NOT be edited independently. When a standard changes, update the Markdown page and rerun the generator so the rendered documentation and machine-readable catalog remain synchronized.

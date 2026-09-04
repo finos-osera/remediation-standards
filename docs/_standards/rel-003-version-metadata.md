@@ -45,7 +45,7 @@ requirements:
   level: MUST
   text: Release tags, artifact versions, vulnerability feeds, and release evidence
     must carry the same patched-release identifier.
-  checkability: partially-automated
+  checkability: automated
   checks:
   - id: REL-003.CHECK-002
     title: Release identifier is consistent across source, artifact, and feeds
@@ -123,10 +123,6 @@ Including the patching initiative in the visible component coordinate helps SCA 
 The numeric suffix in the default SemVer profile keeps ordering simple for repeated releases on the same upstream version line. Some build tools may compare SemVer build metadata differently or rank `5.3.39+osera-patch.001` lower than the plain upstream `5.3.39`. That behavior is directly relevant to profile ratification: if a format does not cause supported resolver and dependency update tooling to treat the patch as the latest applicable release on the same upstream version line, the ecosystem profile needs a different concrete identifier.
 
 Package URLs using `+` metadata MUST encode `+` as `%2B`, for example `pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001`.
-
-## Open Questions Before Ratification
-
-The working group still needs to decide how much of the profile relationship model belongs in the first schema version and which package ecosystems need concrete profiles before they can claim SP-0.1.0 alignment.
 
 ## Examples
 
