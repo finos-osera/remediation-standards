@@ -13,13 +13,15 @@ pack:
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
   branch: codex/issue-23-standards-as-code-sp010
   summary: Revised candidate pack for the September 3 ratification decision and September
-    20 gate, using standards-as-code metadata, Java package release identifier guidance,
-    approved producers, and observe-mode checks for v0.2.0 candidates.
+    20 gate, using standards-as-code metadata, abstract patch version naming with
+    a Java package profile, approved producers, and observe-mode checks for v0.2.0
+    candidates.
   release_metadata:
-    scope: OSERA-SP-0.1.0 release metadata guidance is proposed first for Java package
-      artifacts; later profiles may adapt the convention for other package ecosystems.
-    default_intent: Preserve SemVer 2.0 semantics where practical while allowing package-specific
-      adaptations that improve effective consumption by stakeholders.
+    scope: OSERA-SP-0.1.0 release metadata guidance defines an abstract REL-003 outcome
+      and a concrete REL-003-JAVA profile for Java package artifacts; later profiles
+      may adapt the convention for other package ecosystems.
+    default_intent: Optimize consumer tooling outcomes first, then preserve SemVer
+      2.0 or other common ecosystem conventions where practical.
     official_token: osera-patch.NNN
     official_example: 5.3.39+osera-patch.001
     legacy_token: backpatch.NNN
@@ -100,13 +102,22 @@ pack:
     - REL-002.CHECK-001
   - id: REL-003
     version: 0.1.0
-    role: Required check
-    rationale: Official signed Java package artifacts should use branded OSERA release
-      metadata visible in package coordinates and scanner output, while later package
-      profiles may adapt the convention for effective ecosystem consumption.
+    role: Required base requirement
+    rationale: Official signed artifacts should use package-ecosystem patch version
+      naming profiles that optimize recipient tooling outcomes before choosing a concrete
+      syntax.
     checks:
     - REL-003.CHECK-001
     - REL-003.CHECK-002
+  - id: REL-003-JAVA
+    version: 0.1.0
+    role: Required Java profile check
+    rationale: Java package artifacts need a concrete REL-003 profile whose final
+      version pattern is selected from Maven, Gradle, repository-manager, dependency-update,
+      SCA, feed, and policy-tool compatibility evidence.
+    checks:
+    - REL-003-JAVA.CHECK-001
+    - REL-003-JAVA.CHECK-002
   - id: REL-004
     version: 0.1.0
     role: Required check
@@ -226,9 +237,8 @@ pack:
   discussion_topics:
   - Whether the standards-as-code schema is sufficient for the September 3 decision
     and September 20 gate or needs narrower scope.
-  - Whether official OSERA Java package artifacts should use SemVer build metadata,
-    Maven-style qualifiers, or ecosystem-specific profiles for `+osera-patch.NNN`-style
-    release identifiers.
+  - Whether REL-003-JAVA should use SemVer build metadata, Maven-style qualifiers,
+    or another Java-specific profile pattern after compatibility testing.
   - Whether new standardized repositories and source branches should use `patch-*`
     and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept
     evidence.
@@ -310,14 +320,24 @@ standards:
     - REL-002.CHECK-001
   - id: REL-003
     version: 0.1.0
-    role: Required check
-    rationale: Official signed Java package artifacts should use branded OSERA release
-      metadata visible in package coordinates and scanner output, while later package
-      profiles may adapt the convention for effective ecosystem consumption.
+    role: Required base requirement
+    rationale: Official signed artifacts should use package-ecosystem patch version
+      naming profiles that optimize recipient tooling outcomes before choosing a concrete
+      syntax.
     url: "/standards/rel-003-version-metadata/"
     checks:
     - REL-003.CHECK-001
     - REL-003.CHECK-002
+  - id: REL-003-JAVA
+    version: 0.1.0
+    role: Required Java profile check
+    rationale: Java package artifacts need a concrete REL-003 profile whose final
+      version pattern is selected from Maven, Gradle, repository-manager, dependency-update,
+      SCA, feed, and policy-tool compatibility evidence.
+    url: "/standards/rel-003-java-patch-version-naming/"
+    checks:
+    - REL-003-JAVA.CHECK-001
+    - REL-003-JAVA.CHECK-002
   - id: REL-004
     version: 0.1.0
     role: Required check

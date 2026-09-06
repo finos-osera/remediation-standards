@@ -1,0 +1,71 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 231,
+    "standard_id": "REL-003-JAVA",
+    "title": "Java Patch Version Naming",
+    "summary": "Java patched releases use a version naming profile that optimizes Maven, Gradle, repository-manager, dependency-update, SCA, feed, and policy-tool behavior for the affected upstream version line.",
+    "extends": "REL-003",
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.1.0 candidate",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required Java profile check",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "Java package patch providers",
+      "Enterprise Java recipients",
+      "Java repository and dependency tooling"
+    ],
+    "requirements": [
+      {
+        "id": "REL-003-JAVA.REQ-001",
+        "level": "MUST",
+        "text": "Official OSERA Java patched releases must use the ratified Java patch version naming pattern selected from compatibility evidence, so supported Java resolver, dependency update, repository manager, SCA, feed, and policy tooling treats the patched artifact as the latest applicable remediation on the same upstream version line.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-003-JAVA.CHECK-001",
+            "title": "Java patch version pattern passes supported tooling compatibility tests",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_java.version_pattern_compatibility",
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "java_profile_decision",
+              "resolver_test_result",
+              "dependency_update_test_result"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-003-JAVA.REQ-002",
+        "level": "MUST",
+        "text": "Java release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence must carry the same Java patch version identifier.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-003-JAVA.CHECK-002",
+            "title": "Java release identifier is consistent across source, artifact, and feeds",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_java.identifier_consistency",
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "maven_purl",
+              "feed_purl"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-003-java-patch-version-naming.md",
+    "url": "/standards/rel-003-java-patch-version-naming/"
+  }
+}
