@@ -20,6 +20,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - James McLeod, NatWest Group, Aug/27/2026
 - Neil Imms, NatWest Group, Aug/27/2026
 - Kris West, NatWest Group, Aug/27/2026
+- Jonathan Schneider, Moderne, Sep/09/2026
 - <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
 
 ## How to enroll as a participant
