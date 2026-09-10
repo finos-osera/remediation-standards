@@ -3,7 +3,7 @@ title: Standard Packs
 permalink: /standard-packs/
 ---
 
-OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.
+OSERA-SP-0.1.0 was [ratified on **Thursday, September 10, 2026**](https://github.com/finos-osera/remediation-standards/issues/12). It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.
 
 Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard's lifecycle status and pack membership separately.
 
@@ -28,7 +28,7 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, ver
       <td>{{ pack.status }}</td>
       <td>{{ pack.proposed_date }}</td>
       <td>{{ pack.target_gate_date }}</td>
-      <td>{{ pack.ratified_date }}</td>
+      <td><a href="{{ pack.agenda_issue }}">{{ pack.ratified_date }}</a></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -44,16 +44,14 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, ver
 | Status | {{ pack.status }} |
 | Proposed date | {{ pack.proposed_date }} |
 | Target gate date | {{ pack.target_gate_date }} |
-| Ratified date | {{ pack.ratified_date }} |
-| GitHub issue | [Issue #12]({{ pack.issue }}) |
-| Standards-as-code issue | [Issue #23]({{ pack.standards_as_code_issue }}) |
+| Ratification | [{{ pack.ratified_date }} — agenda]({{ pack.agenda_issue }}) |
 | Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
 
 ### Release metadata posture
 
-{{ pack.release_metadata.scope }}
+{{ pack.release_metadata.scope | markdownify }}
 
-The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. Java artifacts follow the REL-003-JAVA profile.
+The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. Java artifacts follow the [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) profile.
 
 Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the official signed-artifact naming for this pack.
 
@@ -63,7 +61,9 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 
 {{ pack.approved_producers.lifecycle_policy }}
 
-### Observed evidence
+### Legacy proof-of-concept evidence
+
+The following snapshot records the legacy repositories and tags that informed the standards. These naming conventions predate OSERA-SP-0.1.0; the observations do not establish conformance with this pack.
 
 {% for item in pack.evidence_summary %}
 * {{ item }}

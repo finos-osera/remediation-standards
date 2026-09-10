@@ -9,16 +9,18 @@ pack:
   target_gate_date: '2026-09-20'
   ratified_date: '2026-09-10'
   issue: https://github.com/finos-osera/remediation-standards/issues/12
-  agenda_issue: https://github.com/finos-osera/remediation-standards/pull/51
+  agenda_issue: https://github.com/finos-osera/remediation-standards/issues/12
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
   branch: codex/sp-010-ratification
   summary: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines
     the first set of standards that will gate OSERA patch releases, with seven additional
     standards in observe mode for OSERA-SP-0.2.0.
   release_metadata:
-    scope: REL-003 defines the generic consumer outcome and default form where no
-      concrete ecosystem profile exists. Java artifacts use REL-003-JAVA. Source branches
-      and baseline tags are defined separately by FORK-002 and FORK-003.
+    scope: "[REL-003](../standards/rel-003-version-metadata/) defines the generic
+      consumer outcome and default form where no concrete ecosystem profile exists.
+      Java artifacts use [REL-003-JAVA](../standards/rel-003-java-patch-version-naming/).
+      Source branches and baseline tags are defined separately by [FORK-002](../standards/fork-002-patch-branches/)
+      and [FORK-003](../standards/fork-003-baseline-tags/)."
     default_intent: Optimize consumer tooling outcomes first, then preserve SemVer
       2.0 or other common ecosystem conventions where practical.
     official_token: osera-patch.NNN
@@ -31,18 +33,10 @@ pack:
     lifecycle_policy: Producer registry updates that do not change standard text or
       check semantics may be handled as patch-level standards-pack updates.
   evidence_summary:
-  - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
-  - 59 legacy/proof-of-concept baseline tags observed in the form `v<VERSION>+backpatch.baseline`
-    across 59 repositories.
-  - 61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN`
-    across 55 repositories.
-  - Issue 13 discussion favored visible OSERA branding in release metadata for SCA,
-    inventory, and audit workflows.
-  - Issue 23 established the implemented Markdown plus structured YAML front matter,
-    validation, and generated catalog model.
-  - PR 50 merged the generic REL-003 and REL-003-JAVA split, including profile inheritance
-    and same-number check overrides.
-  - OSERA-SP-0.1.0 was ratified on September 10, 2026.
+  - 60 legacy proof-of-concept forked repositories under `finos-osera/backpatch-*`,
+    observed on 2026-08-25.
+  - 59 legacy baseline tags using `v<VERSION>+backpatch.baseline` across 59 repositories.
+  - 61 legacy release tags using `v<VERSION>+backpatch.NNN` across 55 repositories.
   included_standards:
   - id: STD-001
     version: 0.1.0
