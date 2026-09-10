@@ -5,6 +5,7 @@ require "date"
 require "fileutils"
 require "json"
 require "yaml"
+require_relative "lib/profile_relationships"
 
 ROOT = File.expand_path("..", __dir__)
 DOCS = File.join(ROOT, "docs")
@@ -117,6 +118,7 @@ messages = []
 standards = Dir[File.join(STANDARDS_DIR, "*.md")].map do |path|
   data, = front_matter(path)
   id = data["standard_id"]
+  error!(messages, "#{id}: parent_relationship is generated and must not be authored") if data.key?("parent_relationship")
   data = normalize(data)
   data["source_path"] = path.delete_prefix("#{ROOT}/")
   data["url"] = "/standards/#{File.basename(path, ".md")}/"
@@ -158,6 +160,27 @@ packs.each { |pack| validate_pack!(messages, pack, standards_by_id, all_checks) 
 
 abort(messages.join("\n")) if messages.any?
 
+begin
+  profiles = ProfileRelationships.resolve(standards)
+rescue ArgumentError, KeyError, RuntimeError => e
+  abort(e.message)
+end
+relationships = {}
+standards.each do |standard|
+  next unless standard['extends']
+
+  id = standard.fetch('standard_id')
+  parent = standards_by_id.fetch(standard['extends'])
+  relationship = {
+    'parent_standard' => parent.fetch('standard_id'),
+    'parent_version' => parent.fetch('standard-version'),
+    'requirements' => profiles.fetch(id)['relationships']['requirements'],
+    'checks' => profiles.fetch(id)['relationships']['checks']
+  }
+  standard['parent_relationship'] = relationship
+  relationships[id] = relationship
+end
+
 catalog = {
   "schema-version" => STANDARD_SCHEMA_VERSION,
   "source" => "docs/_standards",
@@ -189,6 +212,7 @@ pack_catalogs = packs.to_h do |pack|
 end
 
 outputs = {
+  File.join(DOCS, "_data", "profile_relationships.yml") => yaml_dump(relationships),
   File.join(CATALOG_DIR, "osera-standards.yaml") => yaml_dump(catalog),
   File.join(CATALOG_DIR, "osera-standards.json") => JSON.pretty_generate(catalog) + "\n"
 }

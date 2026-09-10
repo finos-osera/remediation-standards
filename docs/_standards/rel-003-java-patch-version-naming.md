@@ -21,6 +21,7 @@ applies-to:
 - Java repository and dependency tooling
 requirements:
 - id: REL-003-JAVA.REQ-001
+  override-explanation: Specializes the generic applicable-profile rule with a Java-specific version convention. The exact syntax is the naming TODO; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.
   level: MUST
   text: Official OSERA Java patched releases must use the ratified Java patch
     version naming pattern selected from compatibility evidence, so supported
@@ -30,6 +31,7 @@ requirements:
   checkability: partially-automated
   checks:
   - id: REL-003-JAVA.CHECK-001
+    override-explanation: Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the exact naming pattern is the naming TODO.
     title: Java patch version pattern passes supported tooling compatibility tests
     type: release
     severity: blocking
@@ -41,6 +43,7 @@ requirements:
     - resolver_test_result
     - dependency_update_test_result
 - id: REL-003-JAVA.REQ-002
+  override-explanation: Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.
   level: MUST
   text: Java release tags, artifact versions, Maven package URLs, vulnerability
     feeds, and release evidence must carry the same Java patch version
@@ -48,6 +51,7 @@ requirements:
   checkability: automated
   checks:
   - id: REL-003-JAVA.CHECK-002
+    override-explanation: Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.
     title: Java release identifier is consistent across source, artifact, and feeds
     type: release
     severity: blocking
