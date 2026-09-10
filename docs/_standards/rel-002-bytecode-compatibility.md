@@ -5,11 +5,11 @@ standard_id: REL-002
 title: Bytecode Compatibility
 summary: Patched artifacts preserve the bytecode level of the last released artifact
   unless an explicit exception is approved.
-doc-status: Ratified
+doc-status: Draft
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 ratified
-ratified-in: OSERA-SP-0.1.0
-ratified-date: '2026-09-04'
+candidate-pack: OSERA-SP-0.1.0 candidate
+ratified-in: Not ratified
+ratified-date: Not ratified
 fitness-role: Required evidence
 type: REL
 category: Release Process
@@ -33,6 +33,7 @@ requirements:
     - bytecode_level
     - reference_artifact
 ---
+
 ## Requirement
 
 Patch providers MUST guarantee that patched Java artifacts are released at the correct bytecode version.

@@ -68,7 +68,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^[A-Z]+-[0-9]{3}$"
+            "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?$"
           },
           "version": {
             "type": "string",
@@ -84,7 +84,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[A-Z]+-[0-9]{3}\\.CHECK-[0-9]{3}$"
+              "pattern": "^[A-Z]+-[0-9]{3}(-[A-Z][A-Z0-9]*)?\\.CHECK-[0-9]{3}$"
             }
           }
         }
