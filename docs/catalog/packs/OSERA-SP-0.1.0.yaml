@@ -12,9 +12,9 @@ pack:
   agenda_issue: https://github.com/finos-osera/remediation-standards/pull/51
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
   branch: codex/sp-010-ratification
-  summary: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026 for the September
-    20 alignment gate. The pack defines required standards and a Java naming profile,
-    with seven standards in observe mode for OSERA-SP-0.2.0.
+  summary: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines
+    the first set of standards that will gate OSERA patch releases, with seven additional
+    standards in observe mode for OSERA-SP-0.2.0.
   release_metadata:
     scope: REL-003 defines the generic consumer outcome and default form where no
       concrete ecosystem profile exists. Java artifacts use REL-003-JAVA. Source branches

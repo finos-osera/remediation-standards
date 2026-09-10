@@ -12,7 +12,7 @@ The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Co
 
 The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026.
 
-OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**, targeting the September 20 alignment gate. The pack includes the generic REL-003 naming standard and its Java-specific REL-003-JAVA profile. Read the [standards pack](https://standards.osera.finos.org/standard-packs/).
+OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the first set of standards that will gate OSERA patch releases. The pack includes the generic REL-003 naming standard and its Java-specific REL-003-JAVA profile. Read the [standards pack](https://standards.osera.finos.org/standard-packs/).
 
 ## Documentation
 

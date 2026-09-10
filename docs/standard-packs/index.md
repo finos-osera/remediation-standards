@@ -3,7 +3,7 @@ title: Standard Packs
 permalink: /standard-packs/
 ---
 
-OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the required standards for the September 20 alignment gate and records seven standards in observe mode for OSERA-SP-0.2.0.
+OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.
 
 Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard's lifecycle status and pack membership separately.
 
