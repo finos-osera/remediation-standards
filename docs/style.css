@@ -392,18 +392,18 @@ code {
 .requirement-block p {
   margin: 12px 0 0;
 }
-.content-page table, .standard-body table, .structured-requirements table {
+.content-page table, .standard-body table, .structured-requirements table, .parent-relationship table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0 28px;
 }
-.content-page th, .content-page td, .standard-body th, .standard-body td, .structured-requirements th, .structured-requirements td {
+.content-page th, .content-page td, .standard-body th, .standard-body td, .structured-requirements th, .structured-requirements td, .parent-relationship th, .parent-relationship td {
   border: 1px solid var(--line);
   padding: 10px 12px;
   text-align: left;
   vertical-align: top;
 }
-.content-page th, .standard-body th, .structured-requirements th { background: var(--soft); color: var(--navy); }
+.content-page th, .standard-body th, .structured-requirements th, .parent-relationship th { background: var(--soft); color: var(--navy); }
 pre {
   max-width: 920px;
   overflow: auto;
@@ -445,3 +445,12 @@ pre code { background: transparent; border: 0; color: inherit; padding: 0; }
   .row-category, .row-badges { justify-self: start; }
   .pack-actions { justify-content: flex-start; }
 }
+
+.parent-relationship { padding-top: 26px; }
+.relationship-table { overflow-x: auto; }
+.parent-relationship table { min-width: 780px; }
+.parent-relationship th:nth-child(1) { width: 18%; }
+.parent-relationship th:nth-child(2) { width: 12%; }
+.parent-relationship th:nth-child(3) { width: 23%; }
+.parent-relationship td:nth-child(1),
+.parent-relationship td:nth-child(3) { font-family: monospace; }

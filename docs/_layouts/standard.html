@@ -41,6 +41,7 @@ layout: default
     {% assign relationship_kinds = "requirements,checks" | split: "," %}
     {% for kind in relationship_kinds %}
     <h3>{{ kind | capitalize }}</h3>
+    <div class="relationship-table">
     <table>
       <thead><tr><th>Parent item</th><th>Treatment</th><th>Effective item</th><th>What changes or remains</th></tr></thead>
       <tbody>
@@ -54,6 +55,7 @@ layout: default
         {% endfor %}
       </tbody>
     </table>
+    </div>
     {% endfor %}
   </section>
   {% endif %}
