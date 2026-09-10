@@ -65,7 +65,7 @@ requirements:
 
 ## Java naming convention
 
-OSERA-SP-0.1.0 adopts Maven Central's [CARE versioning approach](https://central.sonatype.org/policies/care-policy/#care-versioning), using `osera` in place of `care`. The decision was agreed at the [September 10, 2026 meeting](https://github.com/finos-osera/remediation-standards/issues/58) and recorded in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33). Initial compatibility findings informed the decision; detailed findings will be published separately.
+OSERA-SP-0.1.0 adopts Maven Central's [CARE versioning approach](https://central.sonatype.org/policies/care-policy/#10-care-versioning), using `osera` in place of `care`. The decision was agreed at the [September 10, 2026 meeting](https://github.com/finos-osera/remediation-standards/issues/58) and recorded in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33). Initial compatibility findings informed the decision; detailed findings will be published separately.
 
 The recorded non-OSGi example is **`5.3.39.1-osera-00001`**. It retains the upstream `5.3.39` baseline, adds a numeric remediation branch, and identifies the OSERA release with a sequence suffix. This is the OSERA example agreed in #33; it is not a verbatim CARE example.
 
@@ -83,7 +83,7 @@ These examples illustrate the adopted approach, not a claim that these artifacts
 | OSGi bundle, numeric base | `1.2.3` | `1.2.3.1-osera-00001` | The fourth component, `1-osera-00001`, is the OSGi qualifier. |
 | OSGi bundle, existing qualifier | `1.2.3.Final` | `1.2.3.Final-osera-00001` | Extends the existing fourth-component qualifier. |
 
-OSGi versions have three numeric components and an optional fourth qualifier containing letters, digits, underscores, or hyphens; a dot cannot appear inside that qualifier. See the [OSGi version grammar](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.module.html#framework.module.version). Thus `Bundle-Version: 1.2.3.1-osera-00001` is syntactically valid, but appending another dotted segment to an already qualified OSGi version is not. OSGi compares the qualifier lexically; syntactic validity alone does not establish update ordering. Check the actual bundle manifest, Maven coordinate, and resolver behavior together, especially when a packaging tool normalizes versions.
+OSGi versions have three numeric components and an optional fourth qualifier containing letters, digits, underscores, or hyphens; a dot cannot appear inside that qualifier. See the [OSGi version grammar](https://docs.osgi.org/javadoc/osgi.core/8.0.0/org/osgi/framework/Version.html). Thus `Bundle-Version: 1.2.3.1-osera-00001` is syntactically valid, but appending another dotted segment to an already qualified OSGi version is not. OSGi compares the qualifier lexically; syntactic validity alone does not establish update ordering. Check the actual bundle manifest, Maven coordinate, and resolver behavior together, especially when a packaging tool normalizes versions.
 
 ### Consistent release identity
 
