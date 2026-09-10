@@ -48,7 +48,7 @@ This tag scheme applies regardless of the upstream project tag convention.
 
 Recipients need an unambiguous starting point for source comparison, provenance review, and audit evidence.
 
-The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use `+osera-patch.NNN` for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
+The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) through the applicable ecosystem profile. The Java release pattern remains pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
 
 The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
 

@@ -11,6 +11,21 @@ In the catalog, the primary pill shows the standard lifecycle status. The pack p
 
 See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on standard identifiers, versions, ratification, and pack creation.
 
+## Ratification readiness
+
+Ratification of OSERA-SP-0.1.0 is proposed for **Thursday, September 10, 2026**. The pack and its standards remain unratified until the working group records its decision in [PR #51](https://github.com/finos-osera/remediation-standards/pull/51). The included list below is the complete proposed scope, including both REL-003 and REL-003-JAVA.
+
+The main holdout is the naming-format evidence repository/post from jkschneider. The existing discussion in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33) concerns Java artifact/release versions under REL-003-JAVA. Source branches are separately defined by FORK-002 as `patch/<version>`; the working group must explicitly confirm any branch or baseline-tag implications of the forthcoming evidence. No concrete Java format or dual-format fallback is accepted by this candidate.
+
+Before ratification is recorded:
+
+- Review and link the evidence repository/post and record the chosen naming format.
+- Update REL-003-JAVA with the exact pattern, supported tooling evidence, and any accepted exceptions; update affected examples and cross-references.
+- Confirm the included standard versions and seven observe-mode deferrals.
+- Record working-group approval and the actual ratification date, update included standard metadata, regenerate the catalogs, and obtain the required editor approval before merging PR #51.
+
+[Issue #52](https://github.com/finos-osera/remediation-standards/issues/52) separately proposes approved-producer registry fields. The registry is empty: approval ownership, fields, and initial producers need agreement before artifacts can pass REL-004 at the September 20 gate. Its proposed signed-result and account-binding rules are not added to 0.1.0 by this candidate.
+
 ## Release history
 
 <table>
@@ -19,7 +34,7 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on stan
       <th>Pack</th>
       <th>Status</th>
       <th>Proposed</th>
-      <th>Target decision</th>
+      <th>Proposed ratification</th>
       <th>Gate target</th>
       <th>Ratified</th>
     </tr>
@@ -47,18 +62,20 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on stan
 | --- | --- |
 | Status | {{ pack.status }} |
 | Proposed date | {{ pack.proposed_date }} |
-| Target decision date | {{ pack.target_decision_date }} |
+| Proposed ratification date | {{ pack.target_decision_date }} |
 | Target gate date | {{ pack.target_gate_date }} |
 | Ratified date | {{ pack.ratified_date }} |
 | GitHub issue | [Issue #12]({{ pack.issue }}) |
-| Agenda issue | [Agenda]({{ pack.agenda_issue }}) |
+| Ratification review | [PR #51]({{ pack.agenda_issue }}) |
 | Standards-as-code issue | [Issue #23]({{ pack.standards_as_code_issue }}) |
 | Proposal branch | `{{ pack.branch }}` |
 | Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
 
 ### Release metadata posture
 
-Official OSERA signed artifacts proposed for this pack use `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`.
+{{ pack.release_metadata.scope }}
+
+The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. This example does not select the Java format; Java follows REL-003-JAVA once its pattern is accepted.
 
 Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the proposed official signed-artifact naming for this pack.
 
@@ -74,7 +91,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 * {{ item }}
 {% endfor %}
 
-### Blocking in v0.1.0
+### Proposed blocking scope in v0.1.0
 
 <table>
   <thead>

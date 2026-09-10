@@ -13,10 +13,13 @@ The result SHOULD identify the standards-pack version, each standard version tes
 
 Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignment. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for `OSERA-SP-0.2.0` and SHOULD NOT block the v0.1.0 gate unless promoted by the standards group.
 
-## Blocking checks
+## Proposed blocking checks
+
+This is the complete candidate set for the proposed September 10, 2026 ratification. REL-003 is the generic naming requirement; REL-003-JAVA supplies the Java specialization and remains pending the naming-format evidence repository/post from jkschneider and the working-group choice. Listing the Java checks here does not approve a pattern or permit a Java alignment claim before ratification. For Java, same-number profile checks replace the corresponding base checks, as described in the [profile lifecycle]({{ site.baseurl }}/lifecycle/#profile-extension-and-overrides).
 
 | Standard | v0.1.0 check |
 | --- | --- |
+| STD-001 | Standard sources carry validated metadata and generate current catalogs with valid pack and check references. |
 | FORK-001 | Repository is public under `finos-osera` and named `patch-<upstream-or-artifact-name>`. |
 | FORK-002 | Patch work happens on a `patch/<version>` branch for the supported line. |
 | FORK-003 | Baseline source commit is tagged `v<VERSION>+patch.baseline`. |
@@ -43,6 +46,8 @@ Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignme
 | APP-001 | Observe | Feed and metadata support estate-wide automated discovery and application. |
 
 ## Output shape
+
+The release identifier below is illustrative. Java implementations must use the accepted REL-003-JAVA pattern once selected.
 
 ```json
 {

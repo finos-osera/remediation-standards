@@ -5,7 +5,7 @@ permalink: /governance/
 
 This repository starts from the Community Specification process and keeps the legal and contribution structure needed for an eventual standard.
 
-The initial content is provisional and in active evaluation status. It is intended to be reviewed by OSERA starting members, patch providers, enterprise consumers, and the broader FINOS community. It has not been published as a formal FINOS standard.
+OSERA-SP-0.1.0 is a ratification candidate for Thursday, September 10, 2026. The main holdout is the naming-format evidence repository/post from jkschneider and the working-group decision. The pack remains unratified until that decision is recorded; the proposed date does not establish approval. The material remains subject to the Community Specification process and review by OSERA participants.
 
 ## Proposed path
 

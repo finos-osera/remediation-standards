@@ -10,7 +10,9 @@ The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Co
 
 ## Status
 
-The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026. A draft proposal is available at (https://standards.osera.finos.org).
+The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026.
+
+OSERA-SP-0.1.0 is prepared for proposed ratification on **Thursday, September 10, 2026**, targeting the September 20 alignment gate. [PR #51](https://github.com/finos-osera/remediation-standards/pull/51) incorporates the generic REL-003 and Java-specific REL-003-JAVA split. Ratification remains pending the naming-format evidence repository/post from jkschneider and the working-group decision. No format or dual-format fallback has been approved by this candidate. The published candidate is available on the [standards site](https://standards.osera.finos.org).
 
 ## Documentation
 

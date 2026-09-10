@@ -112,7 +112,9 @@ The Java profile gate SHOULD record compatibility evidence showing whether the s
 
 ## Open Questions Before Ratification
 
-The Java profile remains pending until the working group accepts the compatibility test results.
+The Java profile remains pending until the working group accepts the compatibility test results. The main holdout for the proposed Thursday, September 10, 2026 pack ratification is the naming-format evidence repository/post from jkschneider. Record the evidence and selected pattern in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33) and [PR #51](https://github.com/finos-osera/remediation-standards/pull/51) before marking this profile or the pack ratified. A dual-format first round has been proposed in discussion but is not an accepted rule.
+
+This profile defines Java release versions. Source branch naming is separately specified in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/); any change to that convention or the FORK-003 baseline-tag form requires an explicit working-group decision.
 
 Open questions include:
 

@@ -3,10 +3,10 @@ description: Open standards for producing, publishing, and consuming OSERA patch
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
-version: provisional-evaluation
-release-date: 2026-07-10
-status_label: Active Evaluation
-status_description: This material is provisional and has not been published as a formal FINOS standard.
+version: OSERA-SP-0.1.0 candidate
+release-date: 2026-09-10
+status_label: Pending Ratification
+status_description: Ratification is proposed for Thursday, September 10, 2026. The REL-003 generic and Java profile split is incorporated; the naming-format decision awaits the evidence repository/post from jkschneider and working-group approval.
 
 document_status:
   - name: Evaluation

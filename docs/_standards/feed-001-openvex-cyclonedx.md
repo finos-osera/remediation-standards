@@ -48,6 +48,8 @@ requirements:
     - release_version
 ---
 
+Java version strings in the examples below are illustrative candidates, not a ratified naming choice. The final Java identifier is pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
 ## Requirement
 
 OSERA MUST provide OpenVEX and CycloneDX feeds to satisfy common scanning and vulnerability-management products.

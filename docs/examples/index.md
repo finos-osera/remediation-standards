@@ -3,6 +3,8 @@ title: Examples
 permalink: /examples/
 ---
 
+Java version strings in the examples below are illustrative candidates, not a ratified naming choice. The final Java identifier is pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
 These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.
 
 See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for historical examples from public `finos-osera/backpatch-*` repositories and [Backpatch Release Tags]({{ site.baseurl }}/examples/release-tags/) for the legacy/proof-of-concept release-tag inventory.

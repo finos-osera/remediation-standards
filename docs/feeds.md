@@ -3,6 +3,8 @@ title: Feeds
 permalink: /feeds/
 ---
 
+Java version strings in the examples below are illustrative candidates, not a ratified naming choice. The final Java identifier is pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
 OSERA patch consumers should be able to discover patch availability and vulnerability status through common, tool-friendly feeds.
 
 The current draft expects patch providers to contribute data in both:
@@ -29,7 +31,7 @@ The example site explains the core consumption problem clearly: scanners may sti
 
 The reference OpenVEX feed covered 118 legacy backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
 
-REL-003 proposes that official OSERA signed artifacts carry the branded `+osera-patch.NNN` token. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
+REL-003 defines the generic patch naming outcome and default form where no concrete ecosystem profile exists. Java release versions follow REL-003-JAVA, whose exact pattern remains pending compatibility evidence and working-group approval. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
 
 ## Feed expectations
 
@@ -82,7 +84,7 @@ The reference example notes that rebuilt patches may clear by binary hash, and t
 An OpenVEX patch statement should include:
 
 * the CVE and aliases, including GHSA aliases where available;
-* exact patched package URLs, such as Maven purls with `%2Bosera-patch.NNN` for OSERA-managed releases;
+* exact patched package URLs using the applicable ecosystem profile; Maven purls containing `+` encode it as `%2B`, but the Java version pattern remains pending;
 * hashes for built artifacts when available;
 * `status: fixed`;
 * an action statement describing that the CVE was fixed by backporting the upstream fix onto the baseline.

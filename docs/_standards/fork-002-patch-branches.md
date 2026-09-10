@@ -45,7 +45,7 @@ The `<version>` segment SHOULD identify the major, minor, or maintenance line be
 
 OSERA may patch multiple major or minor versions of a single upstream project. Version-scoped branches make the supported line explicit and avoid mixing unrelated maintenance histories.
 
-The `patch/` prefix is deliberately a source workflow convention, not the official patched-release identity. Official OSERA release tags and artifact versions are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use the `+osera-patch.NNN` build metadata token for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
+The `patch/` prefix is deliberately a source workflow convention, not the official patched-release identity. Official OSERA release tags and artifact versions are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) through the applicable ecosystem profile. The Java release pattern remains pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
 
 The version segment in `patch/<version>` SHOULD correspond to the upstream version or maintained line used by the baseline tag in [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) and the official patched-release identifier in [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
 

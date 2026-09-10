@@ -4,18 +4,18 @@
     "schema-version": "0.1.0",
     "id": "OSERA-SP-0.1.0",
     "title": "OSERA Remediation Standards Pack 0.1.0",
-    "status": "Revised candidate for discussion",
+    "status": "Ratification candidate — pending naming decision",
     "proposed_date": "2026-08-27",
-    "target_decision_date": "2026-09-03",
+    "target_decision_date": "2026-09-10",
     "target_gate_date": "2026-09-20",
     "ratified_date": "Not ratified",
     "issue": "https://github.com/finos-osera/remediation-standards/issues/12",
-    "agenda_issue": "https://github.com/finos-osera/remediation-standards/issues/24",
+    "agenda_issue": "https://github.com/finos-osera/remediation-standards/pull/51",
     "standards_as_code_issue": "https://github.com/finos-osera/remediation-standards/issues/23",
-    "branch": "codex/issue-23-standards-as-code-sp010",
-    "summary": "Revised candidate pack for the September 3 ratification decision and September 20 gate, using standards-as-code metadata, abstract patch version naming with a Java package profile, approved producers, and observe-mode checks for v0.2.0 candidates.",
+    "branch": "codex/sp-010-ratification",
+    "summary": "Final ratification candidate for Thursday, September 10, 2026, targeting the September 20 alignment gate. The generic REL-003 and Java-specific REL-003-JAVA split is incorporated. Ratification remains pending the naming-format evidence repository/post from jkschneider and the working-group decision; no naming option or fallback is approved by this candidate.",
     "release_metadata": {
-      "scope": "OSERA-SP-0.1.0 release metadata guidance defines an abstract REL-003 outcome and a concrete REL-003-JAVA profile for Java package artifacts; later profiles may adapt the convention for other package ecosystems.",
+      "scope": "REL-003 defines the generic consumer outcome and default form where no concrete ecosystem profile exists. REL-003-JAVA specializes it for Java; its exact version pattern remains pending compatibility evidence and working-group acceptance. Source branch naming remains a separate FORK-002 convention and must be checked against the forthcoming naming decision.",
       "default_intent": "Optimize consumer tooling outcomes first, then preserve SemVer 2.0 or other common ecosystem conventions where practical.",
       "official_token": "osera-patch.NNN",
       "official_example": "5.3.39+osera-patch.001",
@@ -31,7 +31,9 @@
       "59 legacy/proof-of-concept baseline tags observed in the form `v<VERSION>+backpatch.baseline` across 59 repositories.",
       "61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN` across 55 repositories.",
       "Issue 13 discussion favored visible OSERA branding in release metadata for SCA, inventory, and audit workflows.",
-      "Issue 23 proposed Markdown plus structured YAML front matter, schema validation, and generated catalog artifacts as the standards-as-code model."
+      "Issue 23 established the implemented Markdown plus structured YAML front matter, validation, and generated catalog model.",
+      "PR 50 merged the generic REL-003 and REL-003-JAVA split, including profile inheritance and same-number check overrides.",
+      "Ratification is proposed for September 10, 2026; the naming-format evidence repository/post from jkschneider remains outstanding."
     ],
     "included_standards": [
       {
@@ -276,13 +278,10 @@
       }
     ],
     "discussion_topics": [
-      "Whether the standards-as-code schema is sufficient for the September 3 decision and September 20 gate or needs narrower scope.",
-      "Whether REL-003-JAVA should use SemVer build metadata, Maven-style qualifiers, or another Java-specific profile pattern after compatibility testing.",
-      "Whether new standardized repositories and source branches should use `patch-*` and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept evidence.",
-      "How the approved-producer registry is approved, updated, signed, and bound to pack patch versions.",
-      "Which build-security scanning expectations are realistic across legacy package ecosystems and should be considered for OSERA-SP-0.2.0 after the member tooling survey.",
-      "Which v0.2.0 observe-mode checks should be promoted after the first gate.",
-      "Whether generated catalog artifacts should also be published as signed GitHub releases or OCI artifacts after ratification."
+      "Review the naming-format evidence repository/post from jkschneider and record the working-group choice in issue 33 and REL-003-JAVA; confirm any corresponding FORK-002 branch or FORK-003 baseline-tag implications explicitly.",
+      "Confirm the exact 0.1.0 candidate set and record the September 10 ratification decision in PR 51 only after the naming holdout is resolved.",
+      "Review issue 52 for approved-producer registry fields, approval ownership, and initial entries before the September 20 gate; the registry is currently empty.",
+      "Confirm that the September 20 gate measures standards-pack alignment and that the seven observe-mode standards remain 0.2.0 work."
     ]
   },
   "standards": {
