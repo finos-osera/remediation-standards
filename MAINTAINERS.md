@@ -9,6 +9,7 @@ This file lists the maintainers of this repository.
 | @dovops | Dov Katz | Morgan Stanley | |
 | @d1gital-f | Francesco Beltramini | ControlPlane | |
 | @grovesyp | Paul Groves | Citi | |
+| @madpah | Paul Horton | Sonatype, Inc. | |
 
 
 For information about maintainer responsibilities and resources, see the [project governance](GOVERNANCE.md).
