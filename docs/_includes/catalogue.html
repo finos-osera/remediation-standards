@@ -2,11 +2,11 @@
   {% assign standards = site.standards | sort: "sequence" %}
   {% for standard in standards %}
     {% assign standard_category = standard.category | default: site.standard_classification[standard.type] %}
-    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase }}" data-type="{{ standard.type }}" data-category="{{ standard_category }}" data-status="{{ standard.doc-status }}" data-pack="{{ standard.candidate-pack }}">
+    <a class="standard-row" href="{{ site.baseurl }}{{ standard.url }}" data-title="{{ standard.title | downcase }}" data-content="{{ standard.content | strip_html | strip_newlines | downcase | escape }}" data-type="{{ standard.type }}" data-category="{{ standard_category }}" data-status="{{ standard.doc-status }}" data-pack="{{ standard.candidate-pack }}">
       <span class="row-id">{{ standard.standard_id }}</span>
       <span class="row-main">
         <strong>{{ standard.title }}</strong>
-        <small>{{ standard.summary }}</small>
+        <small>{{ standard.summary | escape }}</small>
         <small class="row-version">v{{ standard.standard-version }} &middot; {{ standard.fitness-role }}</small>
       </span>
       <span class="row-category">{{ standard_category }}</span>
