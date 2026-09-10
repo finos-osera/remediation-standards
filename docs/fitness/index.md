@@ -47,7 +47,7 @@ The following checks define OSERA-SP-0.1.0 alignment. REL-003 is the generic nam
 
 ## Output shape
 
-The release identifier below is illustrative. Java implementations use the REL-003-JAVA pattern.
+The example below illustrates a partial CI result with only FORK-003 evaluated; the remaining blocking checks have not been tested, so the overall result is `not-tested`. Java implementations use the REL-003-JAVA release naming pattern.
 
 ```json
 {
@@ -69,8 +69,7 @@ The release identifier below is illustrative. Java implementations use the REL-0
       "upload_account": null
     }
   },
-  "result": "warn",
-  "signature": "...",
+  "result": "not-tested",
   "standards": [
     { "standard": "FORK-003", "standard_version": "0.1.0", "status": "pass" }
   ],
@@ -81,17 +80,23 @@ The release identifier below is illustrative. Java implementations use the REL-0
       "requirement": "FORK-003.REQ-001",
       "check": "FORK-003.CHECK-001",
       "status": "pass",
-      "expected": "tag v1.2.3+patch.baseline exists and points to a commit strictly before the release tag on the same history",
+      "expected": "tag v1.2.3+patch.baseline exists and resolves to the unpatched baseline source commit",
       "observed": "v1.2.3+patch.baseline resolves to commit ...",
       "evidence": [
-        { "command": "git merge-base --is-ancestor v1.2.3+patch.baseline v1.2.3.1-osera-00001", "exit": 0, "output": "" }
+        { "command": "git rev-parse --verify v1.2.3+patch.baseline^{commit}", "exit": 0, "output": "<baseline commit SHA>" }
       ]
     }
   ]
 }
 ```
 
-`checks` has one entry per requirement, `standards` one status per standard, and the rollup in `result` follows any fail, then warn, then not-tested, then pass. `expected` is the rule in words with the actual values in it, `observed` what the repository showed, `evidence` the commands and outputs that showed it. `producer_accounts.registry` is copied from the matched registry entry at `registry_ref`, `producer_accounts.observed` is what the run and the gate saw; `upload_account` is `null` in the CI result and filled by the gate in the verdict. The gate verifies the signature, reads the result, adds its own artifact checks and the upload account, and records the verdict with the same fields.
+`checks` records each evaluated check by check ID and its associated requirement ID; `standards` summarizes the evaluated checks for each standard. `expected` states the rule with the actual values, `observed` describes what the repository showed, and `evidence` records the supporting commands and outputs. Resolving the baseline tag demonstrates that it points to a commit; evidence identifying that commit as the unpatched source state is also needed.
+
+Result summaries must respect the targeted pack's check roles and severities. A failed blocking check prevents alignment. Advisory and observe-only findings remain visible but do not become blocking failures through the standard or overall summary. A blocking check marked `not-tested` or `manual-evidence-required` remains unresolved and cannot support an alignment claim until the required evaluation or review is completed. A `not-applicable` result needs an evidence-backed explanation permitted by the relevant standard; it must not silently waive a required check. A warning does not waive an unresolved blocking requirement. Only a complete evaluation satisfying all applicable blocking checks can support alignment.
+
+`producer_accounts.registry` is copied from the matched registry entry at `registry_ref`; `producer_accounts.observed` records what the run and the gate saw. The CI result may leave `upload_account` as `null` without failing REL-004. The gate records the observed upload account in its verdict, alongside the CI evidence and its own artifact checks. Differences between registry account metadata and observed actors are recorded but do not block in 0.1.0.
+
+The signed fitness-result contract and its verification behavior are tracked in [#57](https://github.com/finos-osera/remediation-standards/issues/57) for 0.2.0. This example does not add a blocking signature-verification requirement to 0.1.0.
 
 ## Certification posture
 

@@ -40,8 +40,11 @@ requirements:
     result and release evidence, as an exact-string match of the registry entry's id.
     The fitness result and the verdict must also record the registry entry's
     staging_account and github_users as copied from the registry, and separately the
-    observed release-tag actor and upload account. In 0.1.0 a difference between the
-    copied account metadata and the observed actors is recorded and does not block.
+    observed release-tag actor. The observed upload account may be null in the CI
+    fitness result because the gate observes it at upload time; this null value does
+    not fail the CI check. The gate must record the observed upload account in the
+    verdict. In 0.1.0 a difference between the copied account metadata and the
+    observed actors is recorded and does not block.
   checkability: partially-automated
   checks:
   - id: REL-004.CHECK-002
@@ -117,11 +120,11 @@ Line custody, lead-maintainer responsibilities, optional exclusivity, and line-s
 
 #### Registry version selection
 
-`applies_to_pack` names the pack, it does not pin the file contents. Producer CI and the Exchange gate resolve the same registry revision through one immutable reference: the release tag of the pack in this repository (`OSERA-SP-0.1.0` for the ratified pack, `OSERA-SP-0.1.1` and following for patch-level registry updates). Both read `docs/_data/approved_producers.yml` at that tag and record the tag as `registry_ref` in the fitness result and in the verdict, next to `pack_checksum`, the SHA-256 of `docs/catalog/packs/<pack>.json` at the same tag. A pack release without a tag is not implementable by either side.
+`applies_to_pack` names the pack, it does not pin the file contents. Producer CI and the Exchange gate resolve the same registry revision through one immutable reference: the release tag of the pack in this repository (`OSERA-SP-0.1.0` for the ratified pack, `OSERA-SP-0.1.1` and following for patch-level registry updates). Both read `docs/_data/approved_producers.yml` at that tag and record the tag as `registry_ref` in the fitness result and in the verdict, next to `pack_checksum`, the SHA-256 of `docs/catalog/packs/<pack>.json` at the same tag. A pack release without a tag is not implementable by either side. Create the pack release tag only after the consolidated pack changes have merged. Published pack tags MUST NOT be moved or reused; registry updates use a new pack release tag.
 
 #### Account reporting
 
-The fitness result carries two things that must not be confused: `producer_accounts.registry`, the `staging_account` and `github_users` copied from the matched registry entry, and `producer_accounts.observed`, what actually happened, the account that pushed the release tag (from the CI run context) and, filled in by the gate, the account that uploaded the artifact. The verdict repeats both. A difference is recorded as an observation and is not a failure in 0.1.0. Making it one is the account-binding work on #56. The [fitness function](../../fitness/) page shows the representation.
+The fitness result carries two things that must not be confused: `producer_accounts.registry`, the `staging_account` and `github_users` copied from the matched registry entry, and `producer_accounts.observed`, what actually happened, the account that pushed the release tag (from the CI run context) and, filled in by the gate, the account that uploaded the artifact. The CI result may record `producer_accounts.observed.upload_account` as `null` without failing REL-004; the gate records the observed upload account in the verdict, alongside the registry metadata and tag actor. A difference is recorded as an observation and is not a failure in 0.1.0. Making it one is the account-binding work on #56. The [fitness function](../../fitness/) page shows the representation.
 
 ## Rationale
 
