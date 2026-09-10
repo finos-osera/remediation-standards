@@ -33,6 +33,32 @@ layout: default
       <div><dt>Machine-readable</dt><dd><a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.yaml">YAML</a> / <a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.json">JSON</a></dd></div>
     </dl>
   </div>
+  {% if page.extends %}
+  {% assign relationship = site.data.profile_relationships[page.standard_id] %}
+  <section class="parent-relationship">
+    <h2>Relationship to parent</h2>
+    <p>This profile extends <a href="{{ site.baseurl }}{{ parent_doc.url }}">{{ relationship.parent_standard }}</a> version {{ relationship.parent_version }}. The tables are generated from the parent and profile metadata. Overrides specialize the parent obligation; inherited items apply unchanged.</p>
+    {% assign relationship_kinds = "requirements,checks" | split: "," %}
+    {% for kind in relationship_kinds %}
+    <h3>{{ kind | capitalize }}</h3>
+    <div class="relationship-table">
+    <table>
+      <thead><tr><th>Parent item</th><th>Treatment</th><th>Effective item</th><th>What changes or remains</th></tr></thead>
+      <tbody>
+        {% for item in relationship[kind] %}
+        <tr>
+          <td>{{ item.parent_item | default: "—" | escape }}</td>
+          <td>{{ item.treatment | escape }}</td>
+          <td>{{ item.effective_item | escape }}</td>
+          <td>{{ item.explanation | escape }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
   {% if page.requirements %}
   <section class="structured-requirements">
     <h2>Structured Requirements</h2>

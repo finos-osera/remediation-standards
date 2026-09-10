@@ -5,11 +5,11 @@ standard_id: FORK-001
 title: Repository Naming
 summary: Patched-source repositories use a consistent `patch-<reponame>` name in
   the finos-osera GitHub organization.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: FORK
 category: Fork Management
@@ -61,7 +61,7 @@ Because the repositories are public, the GitHub fork relationship with the upstr
 
 Avoiding `osera` inside each repository name keeps fork names short and leaves the upstream project name prominent. The `patch-` prefix is intended to be broad enough for backports, downstream-only security fixes, and future remediation workflows without implying that every OSERA patch is strictly a backpatch.
 
-Existing `finos-osera/backpatch-*` repositories are treated as legacy/proof-of-concept evidence that predates this standard.
+Historical proof-of-concept repository names predate this standard and do not establish pack conformance.
 
 ## Evidence
 

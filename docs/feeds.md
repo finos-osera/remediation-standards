@@ -3,9 +3,11 @@ title: Feeds
 permalink: /feeds/
 ---
 
+Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
 OSERA patch consumers should be able to discover patch availability and vulnerability status through common, tool-friendly feeds.
 
-The current draft expects patch providers to contribute data in both:
+OSERA-SP-0.1.0 requires patch providers to contribute data in both:
 
 * OpenVEX, for scanner-friendly vulnerability statements.
 * CycloneDX, for SBOM and vulnerability-management ecosystems.
@@ -14,7 +16,7 @@ Short-term feed hosting may use existing provider infrastructure with a FINOS CN
 
 ## OpenVEX page example
 
-A provider-hosted VEX page is a useful working example for OSERA feed design. The screenshot below is included as an illustrative reference only; this draft does not yet normatively link to a provider endpoint.
+A provider-hosted VEX page is a useful working example for OSERA feed design. The screenshot below is included as an illustrative reference only; this legacy proof-of-concept screenshot is illustrative only and does not establish pack conformance.
 
 ![Example OpenVEX provider page]({{ site.baseurl }}/assets/examples/openvex-reference-page.png)
 
@@ -27,9 +29,7 @@ As observed on July 10, 2026, the reference example published:
 
 The example site explains the core consumption problem clearly: scanners may still flag a CVE because they see the old upstream version, while the patch coordinate carries the upstream security fix on that same baseline. The VEX feed supplies machine-readable evidence that the specific patched artifact is fixed.
 
-The reference OpenVEX feed covered 118 legacy backpatch product references, 84 unique artifact versions, and 59 unique release-version strings. That aligns with the 59 unique release-version strings observed across public repository tags, while the repository scan found 61 total `+backpatch.NNN` tags because the same version string can appear in more than one repository.
-
-REL-003 proposes that official OSERA signed artifacts carry the branded `+osera-patch.NNN` token. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
+REL-003 defines the generic patch naming outcome and default form where no concrete ecosystem profile exists. Java release versions follow REL-003-JAVA, which defines the Java pattern. Feeds should preserve the exact published release identifier. Existing `+backpatch.NNN` releases should be treated as legacy/proof-of-concept evidence unless the standards group explicitly ratifies them for a pack.
 
 ## Feed expectations
 
@@ -82,7 +82,7 @@ The reference example notes that rebuilt patches may clear by binary hash, and t
 An OpenVEX patch statement should include:
 
 * the CVE and aliases, including GHSA aliases where available;
-* exact patched package URLs, such as Maven purls with `%2Bosera-patch.NNN` for OSERA-managed releases;
+* exact patched package URLs using the applicable ecosystem profile; Java examples use CARE-style OSERA versions such as `1.0.0.1-osera-00001`;
 * hashes for built artifacts when available;
 * `status: fixed`;
 * an action statement describing that the CVE was fixed by backporting the upstream fix onto the baseline.
@@ -106,9 +106,9 @@ A CycloneDX patch statement should include vulnerability analysis and component 
       },
       "products": [
         {
-          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001",
+          "@id": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001",
           "identifiers": {
-            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
+            "purl": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"
           },
           "hashes": {
             "sha-256": "..."

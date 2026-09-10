@@ -5,11 +5,11 @@ standard_id: REL-002
 title: Bytecode Compatibility
 summary: Patched artifacts preserve the bytecode level of the last released artifact
   unless an explicit exception is approved.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required evidence
 type: REL
 category: Release Process
@@ -52,10 +52,6 @@ The working group SHOULD define an automated publish-time check that compares by
 
 Release evidence SHOULD include the bytecode level, how it was determined, and whether the published artifact was checked before release.
 
-## Observed OSERA example
+## Illustrative evidence
 
-The historical `backpatch-logback` `backpatch/1.2.9` branch includes a compatibility-focused commit titled `ensure JDK 8 compatibility`:
-
-<https://github.com/finos-osera/backpatch-logback/commit/a721d9c51643f0a9fd113a1a3bb4e25ad7a76e4e>
-
-This is useful evidence, but a future standard should make runtime compatibility machine-verifiable at release time.
+See [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for legacy proof-of-concept illustrations. These historical examples do not establish conformance with the ratified pack. [Current release examples]({{ site.baseurl }}/examples/) use the OSERA-SP-0.1.0 naming conventions.

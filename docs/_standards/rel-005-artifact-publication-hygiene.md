@@ -5,11 +5,11 @@ standard_id: REL-005
 title: Artifact Publication Hygiene
 summary: Published OSERA artifacts include consistent package metadata, checksums,
   and repository evidence required by the publication gate.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: REL
 category: Release Process

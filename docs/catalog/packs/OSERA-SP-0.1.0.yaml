@@ -3,44 +3,37 @@ pack:
   schema-version: 0.1.0
   id: OSERA-SP-0.1.0
   title: OSERA Remediation Standards Pack 0.1.0
-  status: Revised candidate for discussion
+  status: Ratified
   proposed_date: '2026-08-27'
-  target_decision_date: '2026-09-03'
+  target_decision_date: '2026-09-10'
   target_gate_date: '2026-09-20'
-  ratified_date: Not ratified
+  ratified_date: '2026-09-10'
   issue: https://github.com/finos-osera/remediation-standards/issues/12
-  agenda_issue: https://github.com/finos-osera/remediation-standards/issues/24
+  agenda_issue: https://github.com/finos-osera/remediation-standards/issues/12
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
-  branch: codex/issue-23-standards-as-code-sp010
-  summary: Revised candidate pack for the September 3 ratification decision and September
-    20 gate, using standards-as-code metadata, abstract patch version naming with
-    a Java package profile, approved producers, and observe-mode checks for v0.2.0
-    candidates.
+  branch: codex/sp-010-ratification
+  summary: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines
+    the first set of standards that will gate OSERA patch releases, with seven additional
+    standards in observe mode for OSERA-SP-0.2.0.
   release_metadata:
-    scope: OSERA-SP-0.1.0 release metadata guidance defines an abstract REL-003 outcome
-      and a concrete REL-003-JAVA profile for Java package artifacts; later profiles
-      may adapt the convention for other package ecosystems.
+    scope: "[REL-003](../standards/rel-003-version-metadata/) defines the generic
+      consumer outcome and default form where no concrete ecosystem profile exists.
+      Java artifacts use [REL-003-JAVA](../standards/rel-003-java-patch-version-naming/).
+      Source branches and baseline tags are defined separately by [FORK-002](../standards/fork-002-patch-branches/)
+      and [FORK-003](../standards/fork-003-baseline-tags/)."
     default_intent: Optimize consumer tooling outcomes first, then preserve SemVer
       2.0 or other common ecosystem conventions where practical.
     official_token: osera-patch.NNN
     official_example: 5.3.39+osera-patch.001
-    legacy_token: backpatch.NNN
-    legacy_posture: Existing +backpatch.NNN releases are treated as legacy/proof-of-concept
-      evidence and are not the proposed official signed-artifact naming for OSERA-SP-0.1.0.
+    java_convention: Maven CARE-style versioning with the OSERA identifier, including
+      qualified-base and packaging-specific forms.
+    java_example: 5.3.39.1-osera-00001
+    java_reference: https://central.sonatype.org/policies/care-policy/
+    java_decision: https://github.com/finos-osera/remediation-standards/issues/33
   approved_producers:
     registry: docs/_data/approved_producers.yml
     lifecycle_policy: Producer registry updates that do not change standard text or
       check semantics may be handled as patch-level standards-pack updates.
-  evidence_summary:
-  - 60 public finos-osera/backpatch-* repositories observed on 2026-08-25.
-  - 59 legacy/proof-of-concept baseline tags observed in the form `v<VERSION>+backpatch.baseline`
-    across 59 repositories.
-  - 61 legacy/proof-of-concept release tags observed in the form `v<VERSION>+backpatch.NNN`
-    across 55 repositories.
-  - Issue 13 discussion favored visible OSERA branding in release metadata for SCA,
-    inventory, and audit workflows.
-  - Issue 23 proposed Markdown plus structured YAML front matter, schema validation,
-    and generated catalog artifacts as the standards-as-code model.
   included_standards:
   - id: STD-001
     version: 0.1.0
@@ -112,9 +105,9 @@ pack:
   - id: REL-003-JAVA
     version: 0.1.0
     role: Required Java profile check
-    rationale: Java package artifacts need a concrete REL-003 profile whose final
-      version pattern is selected from Maven, Gradle, repository-manager, dependency-update,
-      SCA, feed, and policy-tool compatibility evidence.
+    rationale: Java artifacts use the ratified CARE-style OSERA naming convention,
+      with compatibility evidence for the relevant packaging, resolvers, dependency-update
+      tools, and feeds.
     checks:
     - REL-003-JAVA.CHECK-001
     - REL-003-JAVA.CHECK-002
@@ -234,22 +227,6 @@ pack:
     role: Observe-only check
     rationale: Tracked in observe mode until estate-wide application workflows are
       proven.
-  discussion_topics:
-  - Whether the standards-as-code schema is sufficient for the September 3 decision
-    and September 20 gate or needs narrower scope.
-  - Whether REL-003-JAVA should use SemVer build metadata, Maven-style qualifiers,
-    or another Java-specific profile pattern after compatibility testing.
-  - Whether new standardized repositories and source branches should use `patch-*`
-    and `patch/`, while historical `backpatch-*` repositories remain legacy/proof-of-concept
-    evidence.
-  - How the approved-producer registry is approved, updated, signed, and bound to
-    pack patch versions.
-  - Which build-security scanning expectations are realistic across legacy package
-    ecosystems and should be considered for OSERA-SP-0.2.0 after the member tooling
-    survey.
-  - Which v0.2.0 observe-mode checks should be promoted after the first gate.
-  - Whether generated catalog artifacts should also be published as signed GitHub
-    releases or OCI artifacts after ratification.
 standards:
   included_standards:
   - id: STD-001
@@ -331,9 +308,9 @@ standards:
   - id: REL-003-JAVA
     version: 0.1.0
     role: Required Java profile check
-    rationale: Java package artifacts need a concrete REL-003 profile whose final
-      version pattern is selected from Maven, Gradle, repository-manager, dependency-update,
-      SCA, feed, and policy-tool compatibility evidence.
+    rationale: Java artifacts use the ratified CARE-style OSERA naming convention,
+      with compatibility evidence for the relevant packaging, resolvers, dependency-update
+      tools, and feeds.
     url: "/standards/rel-003-java-patch-version-naming/"
     checks:
     - REL-003-JAVA.CHECK-001

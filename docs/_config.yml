@@ -3,10 +3,10 @@ description: Open standards for producing, publishing, and consuming OSERA patch
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
-version: provisional-evaluation
-release-date: 2026-07-10
-status_label: Active Evaluation
-status_description: This material is provisional and has not been published as a formal FINOS standard.
+version: OSERA-SP-0.1.0
+release-date: 2026-09-10
+status_label: Ratified Standards Pack
+status_description: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines the first set of standards that will gate OSERA patch releases.
 
 document_status:
   - name: Evaluation

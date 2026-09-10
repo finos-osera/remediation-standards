@@ -7,11 +7,11 @@ summary: Java patched releases use a version naming profile that optimizes Maven
   Gradle, repository-manager, dependency-update, SCA, feed, and policy-tool
   behavior for the affected upstream version line.
 extends: REL-003
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required Java profile check
 type: REL
 category: Release Process
@@ -21,15 +21,17 @@ applies-to:
 - Java repository and dependency tooling
 requirements:
 - id: REL-003-JAVA.REQ-001
+  override-explanation: Specializes the generic applicable-profile rule with a Java-specific version convention. The CARE-style convention uses the OSERA identifier; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.
   level: MUST
   text: Official OSERA Java patched releases must use the ratified Java patch
-    version naming pattern selected from compatibility evidence, so supported
+    CARE-style version naming convention with the OSERA identifier, so supported
     Java resolver, dependency update, repository manager, SCA, feed, and policy
     tooling treats the patched artifact as the latest applicable remediation on
     the same upstream version line.
   checkability: partially-automated
   checks:
   - id: REL-003-JAVA.CHECK-001
+    override-explanation: Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.
     title: Java patch version pattern passes supported tooling compatibility tests
     type: release
     severity: blocking
@@ -41,6 +43,7 @@ requirements:
     - resolver_test_result
     - dependency_update_test_result
 - id: REL-003-JAVA.REQ-002
+  override-explanation: Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.
   level: MUST
   text: Java release tags, artifact versions, Maven package URLs, vulnerability
     feeds, and release evidence must carry the same Java patch version
@@ -48,6 +51,7 @@ requirements:
   checkability: automated
   checks:
   - id: REL-003-JAVA.CHECK-002
+    override-explanation: Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.
     title: Java release identifier is consistent across source, artifact, and feeds
     type: release
     severity: blocking
@@ -59,65 +63,59 @@ requirements:
     - feed_purl
 ---
 
+## Java naming convention
+
+OSERA-SP-0.1.0 adopts Maven Central's [CARE versioning approach](https://central.sonatype.org/policies/care-policy/#10-care-versioning), using `osera` in place of `care`. The decision was agreed at the [September 10, 2026 meeting](https://github.com/finos-osera/remediation-standards/issues/58) and recorded in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33). Initial compatibility findings informed the decision; detailed findings will be published separately.
+
+The full [CARE policy](https://central.sonatype.org/policies/care-policy/) describes numeric-base versioning, an [alternate suffix for qualified bases](https://central.sonatype.org/policies/care-policy/#alternate-format-for-qualified-base-versions), and tooling-driven deviations. OSERA adopts that approach for Java in 0.1.0, rather than imposing one concatenation rule on every historical version shape. Keep the baseline recognizable, identify OSERA, avoid taking the upstream maintainer's next ordinary version, and validate ordering and resolution in the relevant tooling. Producer identity belongs in release metadata. The `care` suffix itself remains reserved for Central-approved CARE releases; OSERA naming does not confer Central publication approval.
+
+### Examples by packaging scenario
+
+These examples illustrate the adopted approach. Validate compatibility for the actual packaging before publication.
+
+| Scenario | Upstream baseline | Illustrative OSERA version | Interpretation |
+| --- | --- | --- | --- |
+| Qualified Maven artifact | `5.6.15.Final` | `5.6.15.Final-osera-00001` | Retains `Final` and applies the CARE alternate suffix with `osera`. |
+| Qualified service release | `2.0.0.RELEASE` | `2.0.0.RELEASE-osera-00001` | Keeps the upstream qualifier visible. |
+| OSGi bundle, numeric base | `5.3.39` | `5.3.39.1-osera-00001` | The fourth component, `1-osera-00001`, is the OSGi qualifier. |
+| OSGi bundle, existing qualifier | `1.2.3.Final` | `1.2.3.Final-osera-00001` | Extends the existing fourth-component qualifier. |
+
+OSGi versions have three numeric components and an optional fourth qualifier containing letters, digits, underscores, or hyphens; a dot cannot appear inside that qualifier. See the [OSGi version grammar](https://docs.osgi.org/javadoc/osgi.core/8.0.0/org/osgi/framework/Version.html). Thus `Bundle-Version: 5.3.39.1-osera-00001` is syntactically valid, but appending another dotted segment to an already qualified OSGi version is not. OSGi compares the qualifier lexically; syntactic validity alone does not establish update ordering. Check the actual bundle manifest, Maven coordinate, and resolver behavior together, especially when a packaging tool normalizes versions.
+
+### Consistent release identity
+
+For a numeric-base Java release:
+
+```text
+Upstream version: 5.3.39
+Source branch:    patch/5.3.x
+Baseline tag:     v5.3.39+patch.baseline
+Release tag:      v5.3.39.1-osera-00001
+Artifact version: 5.3.39.1-osera-00001
+Maven purl:       pkg:maven/org.springframework/spring-core@5.3.39.1-osera-00001
+```
+
+The `v` prefix identifies the source tag; the artifact version and purl use the same release identifier without that prefix. Feed entries must use the exact published coordinate. Consumers adopt the explicit patched version through their dependency declaration, BOM, version catalog, or update workflow; repository priority alone does not change a dependency pinned to the upstream version.
+
+Java uses this profile instead of the generic `+osera-patch.NNN` default. The meeting adopted CARE-style naming for 0.1.0; it did not adopt a dual-format experiment.
+
 ## Requirement
 
 REL-003-JAVA extends [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) for Java package artifacts.
 
-The Java profile is intentionally concrete: once the working group accepts the compatibility evidence, this profile should name the exact Java version pattern and the gate checks that prove the pattern works for supported Java recipient tooling.
+Java releases MUST use the profile's selected version pattern. Release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence MUST identify the same patched release.
 
-This page is written so Java implementers can read it independently. Under the profile model, `REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001` use the same numbers as the base `REL-003` requirement and check, so they override the base behavior for Java package artifacts. `REL-003-JAVA.REQ-002` and `REL-003-JAVA.CHECK-002` similarly specialize the base consistency rule with Java-specific Maven package URL evidence. Additional Java checks should use new numbers, starting with `REL-003-JAVA.CHECK-003`.
+`REL-003-JAVA.REQ-001` and `REL-003-JAVA.CHECK-001` specialize the base naming rule for Java. `REL-003-JAVA.REQ-002` and `REL-003-JAVA.CHECK-002` specialize the consistency rule with Maven package URL evidence. Same-number profile checks override base checks; additional Java checks start at `REL-003-JAVA.CHECK-003`.
 
-The decision order is:
+Source branch naming follows [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/), and baseline tags follow [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/).
 
-* optimize the consumer outcome first;
-* preserve OSERA and upstream identity in source, artifact, feed, and evidence records;
-* follow SemVer 2.0 or other commonly used conventions where they produce the intended Java tooling behavior;
-* choose a Java-specific form where common syntax does not produce the intended resolver or update-tool outcome.
+## Compatibility evidence
 
-## Candidate Patterns Under Review
-
-The current default OSERA form is:
-
-```text
-<UPSTREAM_VERSION>+osera-patch.NNN
-```
-
-Example:
-
-```text
-5.3.39+osera-patch.001
-```
-
-This form is clear in exact coordinates, package URLs, vulnerability feeds, and inventories. It should remain available only if Java tooling preserves, resolves, displays, and recommends it in a way that meets the REL-003 consumer outcome.
-
-A Maven-style candidate may be needed if Java tooling more reliably treats it as newer than the vulnerable upstream version. Example forms under discussion include:
-
-```text
-<UPSTREAM_VERSION>.<NNN>-osera
-<UPSTREAM_VERSION>-osera-<NNN>
-```
-
-The working group should select the Java pattern based on compatibility evidence for Maven, Gradle, repository managers, dependency-update tools, SCA tools, vulnerability feeds, and downstream policy engines.
-
-## Gate Expectations
-
-The Java profile gate SHOULD record compatibility evidence showing whether the selected pattern:
+The Java profile gate SHOULD record evidence that the selected pattern:
 
 * resolves as a distinct patched artifact;
 * sorts or is recommended after the vulnerable upstream version where Java tooling supports that behavior;
 * remains visibly tied to the upstream baseline version;
 * is preserved in Maven package URLs and feed records;
-* can be discovered by common dependency-update workflows;
+* can be discovered by supported dependency-update workflows;
 * does not consume the upstream maintainer's next ordinary release version.
-
-## Open Questions Before Ratification
-
-The Java profile remains pending until the working group accepts the compatibility test results.
-
-Open questions include:
-
-* whether SemVer build metadata or Maven qualifier ordering is better honored by Maven, Gradle, repository managers, SCA tools, and downstream policy engines;
-* whether the Java profile should optimize for exact patched coordinates, automatic update recommendation, or both;
-* whether a naming model should allow the original maintainer or another upstream-compatible actor to supersede external patch releases cleanly;
-* whether provider-specific patch names could distort consumer prioritization by making one producer appear to be the latest release for a shared namespace;
-* how OSERA should handle large numbers of patches from different producers targeting the same artifact namespace and upstream baseline.

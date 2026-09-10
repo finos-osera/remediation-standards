@@ -97,10 +97,6 @@ Review evidence SHOULD include:
 * evidence that patched source files remain under the applicable upstream license terms;
 * any approved exception or embargo record.
 
-## Open questions
+## Scope of observe-mode evidence
 
-* Should any temporary security embargo workflow be allowed, and if so when must the repository become public?
-* Should public accessibility be required before release publication, feed publication, or only before claiming standards-pack alignment?
-* How should the working group handle upstream projects with multiple licenses, generated notices, or license files outside the repository root?
-* Should the fitness function fail private repositories outright or report them as not eligible for alignment?
-* What evidence is sufficient to show that every source file in a patched release remains under the same applicable open-source license terms as the original source line?
+Observe-mode results collect evidence about embargo workflows, the timing of public access, multi-license projects and generated notices, private-repository eligibility, and source-license continuity. These areas are outside the required OSERA-SP-0.1.0 checks.

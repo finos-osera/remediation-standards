@@ -3,9 +3,11 @@ title: Examples
 permalink: /examples/
 ---
 
+Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
 These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.
 
-See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for historical examples from public `finos-osera/backpatch-*` repositories and [Backpatch Release Tags]({{ site.baseurl }}/examples/release-tags/) for the legacy/proof-of-concept release-tag inventory.
+The examples below illustrate the ratified OSERA-SP-0.1.0 conventions; repository names, providers, vulnerabilities, and evidence links are illustrative, not published releases or producer approvals. See [Java release scenarios]({{ site.baseurl }}/examples/release-tags/) for packaging examples. [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) documents the legacy proof of concept for illustration only.
 
 ## Patch repository shape
 
@@ -13,18 +15,20 @@ See also [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-eviden
 github.com/finos-osera/patch-spring-framework
   branch: patch/5.3.x
   tag: v5.3.39+patch.baseline
-  release: v5.3.39+osera-patch.001
+  release: v5.3.39.1-osera-00001
 ```
 
 ## Patch evidence bundle
 
+This sketch combines 0.1.0 release evidence with optional patch-basis and recipient-guidance fields tracked in observe mode for 0.2.0; it is not a complete gate result.
+
 ```yaml
 patch:
-  provider: Moderne
+  provider: example-provider
   repository: https://github.com/finos-osera/patch-spring-framework
   branch: patch/5.3.x
   baseline_tag: v5.3.39+patch.baseline
-  release_version: 5.3.39+osera-patch.001
+  release_version: 5.3.39.1-osera-00001
   basis:
     type: upstream-backport
     upstream_commit: https://github.com/spring-projects/spring-framework/commit/example
@@ -50,7 +54,7 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
 ```json
 {
   "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://vex.example.org/openvex/example-1.0.0+osera-patch.001.json",
+  "@id": "https://vex.example.org/openvex/example-1.0.0.1-osera-00001.json",
   "author": "Example Patch Provider <security@example.org>",
   "timestamp": "2026-07-10T00:00:00Z",
   "version": 1,
@@ -62,9 +66,9 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
       },
       "products": [
         {
-          "@id": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001",
+          "@id": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001",
           "identifiers": {
-            "purl": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
+            "purl": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"
           },
           "hashes": {
             "sha-256": "..."
@@ -98,7 +102,7 @@ OpenVEX and CycloneDX examples should identify the patched artifact, vulnerabili
       },
       "affects": [
         {
-          "ref": "pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001"
+          "ref": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"
         }
       ]
     }

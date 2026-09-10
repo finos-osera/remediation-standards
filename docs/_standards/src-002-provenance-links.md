@@ -5,11 +5,11 @@ standard_id: SRC-002
 title: Upstream Provenance Links
 summary: Backports link to the upstream commit or advisory that introduced the fix
   being carried back.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required evidence
 type: SRC
 category: Source Changes
@@ -71,8 +71,6 @@ Patch evidence SHOULD include:
 * affected and patched artifact coordinates;
 * notes on deviations from the upstream fix, if any.
 
-## Observed OSERA example
+## Illustrative evidence
 
-The historical `backpatch-spring-framework` commit for CVE-2024-38816 links to the upstream Spring Framework commit it backports and describes Java 8 source-level adaptations made while carrying the fix back to the 5.3.x line:
-
-<https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6>
+See [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for legacy proof-of-concept illustrations. These historical examples do not establish conformance with the ratified pack. [Current release examples]({{ site.baseurl }}/examples/) use the OSERA-SP-0.1.0 naming conventions.

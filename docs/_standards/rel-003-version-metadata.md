@@ -7,11 +7,11 @@ summary: Patched releases use package-ecosystem-appropriate version naming profi
   that optimize recipient tooling outcomes before choosing a concrete syntax.
 extended-by:
 - REL-003-JAVA
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: REL
 category: Release Process
@@ -108,7 +108,7 @@ osera-patch.NNN
 
 `NNN` MUST be monotonically increasing for the same upstream version line and patching initiative.
 
-Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use the applicable ratified package profile identifier once that profile has been accepted.
+Historical `+backpatch.NNN` releases are legacy proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use the applicable ratified package profile identifier.
 
 This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) deliberately uses `patch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately uses `v<VERSION>+patch.baseline` for the unpatched source baseline.
 
@@ -120,9 +120,9 @@ SemVer 2.0 build metadata is OSERA's default and preferred starting point where 
 
 Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream patch providers when repository or feed metadata is not shown.
 
-The numeric suffix in the default SemVer profile keeps ordering simple for repeated releases on the same upstream version line. Some build tools may compare SemVer build metadata differently or rank `5.3.39+osera-patch.001` lower than the plain upstream `5.3.39`. That behavior is directly relevant to profile ratification: if a format does not cause supported resolver and dependency update tooling to treat the patch as the latest applicable release on the same upstream version line, the ecosystem profile needs a different concrete identifier.
+The numeric suffix distinguishes repeated releases on the same upstream version line; SemVer build metadata does not change version precedence. Some build tools may compare SemVer build metadata differently or rank `5.3.39+osera-patch.001` lower than the plain upstream `5.3.39`. That behavior is directly relevant to profile ratification: if a format does not cause supported resolver and dependency update tooling to treat the patch as the latest applicable release on the same upstream version line, the ecosystem profile needs a different concrete identifier.
 
-Package URLs using `+` metadata MUST encode `+` as `%2B`, for example `pkg:maven/org.example/example-lib@1.0.0%2Bosera-patch.001`.
+Package URLs using `+` metadata MUST encode `+` as `%2B`. Java Maven purls follow REL-003-JAVA instead, for example `pkg:maven/org.example/example-lib@1.0.0.1-osera-00001`.
 
 ## Examples
 
@@ -131,10 +131,6 @@ Package URLs using `+` metadata MUST encode `+` as `%2B`, for example `pkg:maven
 5.3.39+osera-patch.002
 ```
 
-## Observed OSERA examples
+## Java examples
 
-Public OSERA repositories currently include legacy/proof-of-concept `+backpatch.NNN` release tags such as:
-
-* `backpatch-spring-framework`: `v5.3.39+backpatch.001`
-* `backpatch-gson`: `v2.8.8+backpatch.001`
-* `backpatch-activemq`: `v5.14.5+backpatch.001`
+Java artifacts use the ratified [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) CARE-style convention, including the recorded non-OSGi example `5.3.39.1-osera-00001`. The generic SemVer examples above apply only where no concrete ecosystem profile exists.

@@ -5,11 +5,11 @@ standard_id: FORK-003
 title: Baseline Tags
 summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
   tag.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: FORK
 category: Fork Management
@@ -48,7 +48,7 @@ This tag scheme applies regardless of the upstream project tag convention.
 
 Recipients need an unambiguous starting point for source comparison, provenance review, and audit evidence.
 
-The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and use `+osera-patch.NNN` for signed artifacts claiming `OSERA-SP-0.1.0` alignment.
+The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) through the applicable ecosystem profile. Java release naming is defined in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
 
 The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
 
@@ -56,13 +56,12 @@ The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the 
 
 Patch evidence SHOULD include the baseline tag, the commit SHA it resolves to, and the corresponding upstream version or artifact.
 
-## Observed OSERA examples
+## Illustrative examples
 
-Public OSERA repositories currently include baseline tags such as:
+| Repository | Baseline tag |
+| --- | --- |
+| `patch-spring-framework` | `v5.3.39+patch.baseline` |
+| `patch-gson` | `v2.8.8+patch.baseline` |
+| `patch-activemq` | `v5.14.5+patch.baseline` |
 
-* `backpatch-spring-framework`: `v5.3.39+backpatch.baseline`
-* `backpatch-gson`: `v2.8.8+backpatch.baseline`
-* `backpatch-activemq`: `v5.14.5+backpatch.baseline`
-* `backpatch-logback`: `v1.2.9+backpatch.baseline`
-
-These observed tags are legacy/proof-of-concept evidence that predates the proposed `+patch.baseline` convention.
+These examples show the ratified naming convention, not an inventory of published patches.

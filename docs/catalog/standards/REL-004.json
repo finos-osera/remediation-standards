@@ -6,11 +6,11 @@
     "standard_id": "REL-004",
     "title": "Approved Producers",
     "summary": "Official OSERA signed artifacts are produced only by producers approved for the targeted standards pack.",
-    "doc-status": "Draft",
+    "doc-status": "Ratified",
     "standard-version": "0.1.0",
-    "candidate-pack": "OSERA-SP-0.1.0 candidate",
-    "ratified-in": "Not ratified",
-    "ratified-date": "Not ratified",
+    "candidate-pack": "OSERA-SP-0.1.0 ratified",
+    "ratified-in": "OSERA-SP-0.1.0",
+    "ratified-date": "2026-09-10",
     "fitness-role": "Required check",
     "type": "REL",
     "category": "Release Process",
@@ -23,7 +23,7 @@
       {
         "id": "REL-004.REQ-001",
         "level": "MUST",
-        "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack.",
+        "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack. Each producer record must contain id, contact, github_users, and staging_account, with a unique id matching the producer identity in release evidence and fitness results.",
         "checkability": "automated",
         "checks": [
           {
@@ -42,7 +42,7 @@
       {
         "id": "REL-004.REQ-002",
         "level": "MUST",
-        "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence.",
+        "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence, as an exact-string match of the registry entry's id. The fitness result and the verdict must also record the registry entry's staging_account and github_users as copied from the registry, and separately the observed release-tag actor. The observed upload account may be null in the CI fitness result because the gate observes it at upload time; this null value does not fail the CI check. The gate must record the observed upload account in the verdict. In 0.1.0 a difference between the copied account metadata and the observed actors is recorded and does not block.",
         "checkability": "partially-automated",
         "checks": [
           {
@@ -54,7 +54,10 @@
             "evidence": [
               "producer_identity",
               "fitness_result",
-              "release_evidence"
+              "release_evidence",
+              "registry_account_metadata",
+              "observed_tag_actor",
+              "observed_upload_account"
             ]
           }
         ]

@@ -3,7 +3,7 @@ title: Standard Lifecycle
 permalink: /lifecycle/
 ---
 
-This lifecycle defines how OSERA remediation standards and standards packs move from early proposal to ratified material. It is intentionally small so the working group can use it immediately for the first standards-pack decision.
+This lifecycle defines how OSERA remediation standards and standards packs move from early proposal to ratified material. It governs versioned publication and maintenance of the standards packs.
 
 The standards group should approve this lifecycle before, or at the same time as, the first ratified standards pack.
 
@@ -54,7 +54,7 @@ Requirement numbers follow the same convention. A profile requirement with the s
 
 Fitness results for a concrete profile should report the effective check set: inherited parent checks that were not overridden, profile checks that override same-number parent checks, and any additional profile-specific checks.
 
-Profile pages should remain readable as standalone implementation guidance. When a profile overrides a parent requirement or check, the profile should say so. When it inherits a parent requirement or check unchanged, the child page does not need to repeat the parent text; the effective set is derived from the parent and profile together.
+Profile pages expose a generated **Relationship to parent** section for requirements and checks. It identifies inherited items, same-number overrides, and added items before the profile's own requirements. Each override carries an `override-explanation` describing the specialization and preserved parent obligations. The [standards-as-code format]({{ site.baseurl }}/standards/std-001-standards-as-code/#explicit-parent-relationships) defines the source fields, generated catalog mapping, and validation rules.
 
 ## When to create a new standard ID
 

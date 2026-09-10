@@ -138,6 +138,12 @@
           "items": {
             "$ref": "#/$defs/check"
           }
+        },
+        "override-explanation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Required for a same-number parent override; explain what changes and which parent obligations remain. Omit for inherited or added items. Cross-standard validity is checked by the catalog generator."
         }
       }
     },
@@ -177,6 +183,12 @@
           "items": {
             "type": "string"
           }
+        },
+        "override-explanation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Required for a same-number parent override; explain what changes and which parent obligations remain. Omit for inherited or added items. Cross-standard validity is checked by the catalog generator."
         }
       }
     }
