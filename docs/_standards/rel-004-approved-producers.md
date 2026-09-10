@@ -37,7 +37,11 @@ requirements:
 - id: REL-004.REQ-002
   level: MUST
   text: The producer identity used at publication time must be recorded in the fitness
-    result and release evidence.
+    result and release evidence, as an exact-string match of the registry entry's id.
+    The fitness result and the verdict must also record the registry entry's
+    staging_account and github_users as copied from the registry, and separately the
+    observed release-tag actor and upload account. In 0.1.0 a difference between the
+    copied account metadata and the observed actors is recorded and does not block.
   checkability: partially-automated
   checks:
   - id: REL-004.CHECK-002
@@ -49,6 +53,9 @@ requirements:
     - producer_identity
     - fitness_result
     - release_evidence
+    - registry_account_metadata
+    - observed_tag_actor
+    - observed_upload_account
 ---
 
 ## Requirement
@@ -107,6 +114,14 @@ Line custody, lead-maintainer responsibilities, optional exclusivity, and line-s
 - `id` is matched as an exact string. The `producer` value in the release evidence and in the fitness result MUST equal the registry entry's `id`.
 - `staging_account` and `github_users` are recorded with the fitness result and the verdict in 0.1.0. Binding rules on those accounts are the 0.2.0 follow up (#56).
 - A failed REL-004 check refuses the release. The producer may resubmit the same version with corrected evidence.
+
+#### Registry version selection
+
+`applies_to_pack` names the pack, it does not pin the file contents. Producer CI and the Exchange gate resolve the same registry revision through one immutable reference: the release tag of the pack in this repository (`OSERA-SP-0.1.0` for the ratified pack, `OSERA-SP-0.1.1` and following for patch-level registry updates). Both read `docs/_data/approved_producers.yml` at that tag and record the tag as `registry_ref` in the fitness result and in the verdict, next to `pack_checksum`, the SHA-256 of `docs/catalog/packs/<pack>.json` at the same tag. A pack release without a tag is not implementable by either side.
+
+#### Account reporting
+
+The fitness result carries two things that must not be confused: `producer_accounts.registry`, the `staging_account` and `github_users` copied from the matched registry entry, and `producer_accounts.observed`, what actually happened, the account that pushed the release tag (from the CI run context) and, filled in by the gate, the account that uploaded the artifact. The verdict repeats both. A difference is recorded as an observation and is not a failure in 0.1.0. Making it one is the account-binding work on #56. The [fitness function](../../fitness/) page shows the representation.
 
 ## Rationale
 
