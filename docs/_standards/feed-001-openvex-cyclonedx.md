@@ -5,11 +5,11 @@ standard_id: FEED-001
 title: OpenVEX and CycloneDX Feeds
 summary: OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX
   feed formats.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required evidence
 type: FEED
 category: Feeds and Advisories
@@ -48,7 +48,9 @@ requirements:
     - release_version
 ---
 
-Java version strings in the examples below are illustrative candidates, not a ratified naming choice. The final Java identifier is pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
+<!-- TODO(REL-003-JAVA): Align Java example versions with the selected convention before merging. -->
 
 ## Requirement
 
@@ -79,7 +81,7 @@ CycloneDX entries SHOULD carry vulnerability analysis and SHOULD use pedigree or
 
 ## Example fields
 
-A candidate OpenVEX entry for an official OSERA patched artifact uses fields such as:
+An example OpenVEX entry for an official OSERA patched artifact uses fields such as:
 
 ```json
 {

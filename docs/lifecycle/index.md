@@ -3,7 +3,7 @@ title: Standard Lifecycle
 permalink: /lifecycle/
 ---
 
-This lifecycle defines how OSERA remediation standards and standards packs move from early proposal to ratified material. It is intentionally small so the working group can use it immediately for the first standards-pack decision.
+This lifecycle defines how OSERA remediation standards and standards packs move from early proposal to ratified material. It governs versioned publication and maintenance of the standards packs.
 
 The standards group should approve this lifecycle before, or at the same time as, the first ratified standards pack.
 

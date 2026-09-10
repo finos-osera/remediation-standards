@@ -7,11 +7,11 @@ summary: Patched releases use package-ecosystem-appropriate version naming profi
   that optimize recipient tooling outcomes before choosing a concrete syntax.
 extended-by:
 - REL-003-JAVA
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: REL
 category: Release Process
@@ -108,7 +108,7 @@ osera-patch.NNN
 
 `NNN` MUST be monotonically increasing for the same upstream version line and patching initiative.
 
-Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use the applicable ratified package profile identifier once that profile has been accepted.
+Existing OSERA backpatch repositories currently use `+backpatch.NNN`. The working group should treat that form as legacy/proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use the applicable ratified package profile identifier.
 
 This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) deliberately uses `patch/<version>` as the source branch convention, and [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/) deliberately uses `v<VERSION>+patch.baseline` for the unpatched source baseline.
 

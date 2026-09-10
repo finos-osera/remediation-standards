@@ -3,7 +3,9 @@ title: Examples
 permalink: /examples/
 ---
 
-Java version strings in the examples below are illustrative candidates, not a ratified naming choice. The final Java identifier is pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
+<!-- TODO(REL-003-JAVA): Align Java example versions with the selected convention before merging. -->
 
 These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.
 

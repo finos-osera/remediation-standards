@@ -3,28 +3,11 @@ title: Standard Packs
 permalink: /standard-packs/
 ---
 
-Standard packs collect individually versioned remediation standards into a release candidate or ratified set. A pack version is the thing an implementer targets; each included standard keeps its own version so the working group can revise one standard and include the revision in a later pack.
+OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the required standards for the September 20 alignment gate and records seven standards in observe mode for OSERA-SP-0.2.0.
 
-Standard lifecycle status and standards-pack membership are separate. Ratifying `OSERA-SP-0.1.0` should record the exact standard versions included in that pack and set their pack relationship to ratified for that release set. It should not erase later draft work or imply that every future revision of those standards is automatically part of `OSERA-SP-0.1.0`.
+Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard's lifecycle status and pack membership separately.
 
-In the catalog, the primary pill shows the standard lifecycle status. The pack pill shows whether that version is a candidate, deferred item, or eventually ratified member of a standards pack.
-
-See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for guidance on standard identifiers, versions, ratification, and pack creation.
-
-## Ratification readiness
-
-Ratification of OSERA-SP-0.1.0 is proposed for **Thursday, September 10, 2026**. The pack and its standards remain unratified until the working group records its decision in [PR #51](https://github.com/finos-osera/remediation-standards/pull/51). The included list below is the complete proposed scope, including both REL-003 and REL-003-JAVA.
-
-The main holdout is the naming-format evidence repository/post from jkschneider. The existing discussion in [issue #33](https://github.com/finos-osera/remediation-standards/issues/33) concerns Java artifact/release versions under REL-003-JAVA. Source branches are separately defined by FORK-002 as `patch/<version>`; the working group must explicitly confirm any branch or baseline-tag implications of the forthcoming evidence. No concrete Java format or dual-format fallback is accepted by this candidate.
-
-Before ratification is recorded:
-
-- Review and link the evidence repository/post and record the chosen naming format.
-- Update REL-003-JAVA with the exact pattern, supported tooling evidence, and any accepted exceptions; update affected examples and cross-references.
-- Confirm the included standard versions and seven observe-mode deferrals.
-- Record working-group approval and the actual ratification date, update included standard metadata, regenerate the catalogs, and obtain the required editor approval before merging PR #51.
-
-[Issue #52](https://github.com/finos-osera/remediation-standards/issues/52) separately proposes approved-producer registry fields. The registry is empty: approval ownership, fields, and initial producers need agreement before artifacts can pass REL-004 at the September 20 gate. Its proposed signed-result and account-binding rules are not added to 0.1.0 by this candidate.
+See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, versions, and pack maintenance.
 
 ## Release history
 
@@ -34,7 +17,6 @@ Before ratification is recorded:
       <th>Pack</th>
       <th>Status</th>
       <th>Proposed</th>
-      <th>Proposed ratification</th>
       <th>Gate target</th>
       <th>Ratified</th>
     </tr>
@@ -45,7 +27,6 @@ Before ratification is recorded:
       <td><a href="#{{ pack.id | slugify }}">{{ pack.id }}</a></td>
       <td>{{ pack.status }}</td>
       <td>{{ pack.proposed_date }}</td>
-      <td>{{ pack.target_decision_date }}</td>
       <td>{{ pack.target_gate_date }}</td>
       <td>{{ pack.ratified_date }}</td>
     </tr>
@@ -62,22 +43,19 @@ Before ratification is recorded:
 | --- | --- |
 | Status | {{ pack.status }} |
 | Proposed date | {{ pack.proposed_date }} |
-| Proposed ratification date | {{ pack.target_decision_date }} |
 | Target gate date | {{ pack.target_gate_date }} |
 | Ratified date | {{ pack.ratified_date }} |
 | GitHub issue | [Issue #12]({{ pack.issue }}) |
-| Ratification review | [PR #51]({{ pack.agenda_issue }}) |
 | Standards-as-code issue | [Issue #23]({{ pack.standards_as_code_issue }}) |
-| Proposal branch | `{{ pack.branch }}` |
 | Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
 
 ### Release metadata posture
 
 {{ pack.release_metadata.scope }}
 
-The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. This example does not select the Java format; Java follows REL-003-JAVA once its pattern is accepted.
+The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. Java artifacts follow the REL-003-JAVA profile.
 
-Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the proposed official signed-artifact naming for this pack.
+Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the official signed-artifact naming for this pack.
 
 ### Approved producers
 
@@ -91,7 +69,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 * {{ item }}
 {% endfor %}
 
-### Proposed blocking scope in v0.1.0
+### Required standards in v0.1.0
 
 <table>
   <thead>
@@ -141,13 +119,13 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 </table>
 {% else %}
 
-No advisory standards are proposed for this pack. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
+This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
 
 {% endif %}
 
 ### Observe mode for v0.2.0
 
-Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. They should not block official OSERA-SP-0.1.0 publication unless the working group explicitly promotes them before ratification.
+Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. Their results do not block OSERA-SP-0.1.0 alignment. Promotion requires inclusion in a later ratified pack.
 
 <table>
   <thead>
@@ -171,9 +149,4 @@ Observe-mode checks run during the v0.1.0 gate to collect evidence and implement
   </tbody>
 </table>
 
-### Discussion agenda
-
-{% for topic in pack.discussion_topics %}
-* {{ topic }}
-{% endfor %}
 {% endfor %}

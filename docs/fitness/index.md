@@ -11,11 +11,11 @@ The first fitness function evaluates a single patch repository and one published
 
 The result SHOULD identify the standards-pack version, each standard version tested, each check ID, the commit tested, the artifact digest when an artifact exists, the evidence inspected, and whether every check is `pass`, `warn`, `fail`, `not-tested`, `not-applicable`, or `manual-evidence-required`.
 
-Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignment. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for `OSERA-SP-0.2.0` and SHOULD NOT block the v0.1.0 gate unless promoted by the standards group.
+Blocking checks determine whether an artifact can claim `OSERA-SP-0.1.0` alignment. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for `OSERA-SP-0.2.0` and SHOULD NOT block the v0.1.0 gate unless included as blocking checks in a later ratified pack.
 
-## Proposed blocking checks
+## Blocking checks
 
-This is the complete candidate set for the proposed September 10, 2026 ratification. REL-003 is the generic naming requirement; REL-003-JAVA supplies the Java specialization and remains pending the naming-format evidence repository/post from jkschneider and the working-group choice. Listing the Java checks here does not approve a pattern or permit a Java alignment claim before ratification. For Java, same-number profile checks replace the corresponding base checks, as described in the [profile lifecycle]({{ site.baseurl }}/lifecycle/#profile-extension-and-overrides).
+The following checks define OSERA-SP-0.1.0 alignment. REL-003 is the generic naming requirement; REL-003-JAVA supplies the Java specialization. For Java, same-number profile checks replace the corresponding base checks, as described in the [profile lifecycle]({{ site.baseurl }}/lifecycle/#profile-extension-and-overrides).
 
 | Standard | v0.1.0 check |
 | --- | --- |
@@ -47,7 +47,7 @@ This is the complete candidate set for the proposed September 10, 2026 ratificat
 
 ## Output shape
 
-The release identifier below is illustrative. Java implementations must use the accepted REL-003-JAVA pattern once selected.
+The release identifier below is illustrative. Java implementations use the REL-003-JAVA pattern.
 
 ```json
 {

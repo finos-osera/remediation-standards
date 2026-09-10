@@ -3,10 +3,10 @@ description: Open standards for producing, publishing, and consuming OSERA patch
 baseurl: ""
 url: "https://standards.osera.finos.org"
 
-version: OSERA-SP-0.1.0 candidate
+version: OSERA-SP-0.1.0
 release-date: 2026-09-10
-status_label: Pending Ratification
-status_description: Ratification is proposed for Thursday, September 10, 2026. The REL-003 generic and Java profile split is incorporated; the naming-format decision awaits the evidence repository/post from jkschneider and working-group approval.
+status_label: Ratified Standards Pack
+status_description: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines the standards for the September 20 alignment gate, with seven standards tracked in observe mode for OSERA-SP-0.2.0.
 
 document_status:
   - name: Evaluation

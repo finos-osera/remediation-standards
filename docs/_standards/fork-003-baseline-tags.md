@@ -5,11 +5,11 @@ standard_id: FORK-003
 title: Baseline Tags
 summary: Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline`
   tag.
-doc-status: Draft
+doc-status: Ratified
 standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 candidate
-ratified-in: Not ratified
-ratified-date: Not ratified
+candidate-pack: OSERA-SP-0.1.0 ratified
+ratified-in: OSERA-SP-0.1.0
+ratified-date: '2026-09-10'
 fitness-role: Required check
 type: FORK
 category: Fork Management
@@ -48,7 +48,7 @@ This tag scheme applies regardless of the upstream project tag convention.
 
 Recipients need an unambiguous starting point for source comparison, provenance review, and audit evidence.
 
-The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) through the applicable ecosystem profile. The Java release pattern remains pending in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+The `+patch.baseline` suffix is deliberately a source baseline marker. It does not identify an official patched release or artifact. Official OSERA patched releases are defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) through the applicable ecosystem profile. Java release naming is defined in [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
 
 The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the source branch version in [FORK-002]({{ site.baseurl }}/standards/fork-002-patch-branches/) and the upstream version segment in the official patched-release identifier defined by [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/).
 
@@ -65,4 +65,4 @@ Public OSERA repositories currently include baseline tags such as:
 * `backpatch-activemq`: `v5.14.5+backpatch.baseline`
 * `backpatch-logback`: `v1.2.9+backpatch.baseline`
 
-These observed tags are legacy/proof-of-concept evidence that predates the proposed `+patch.baseline` convention.
+These observed tags are legacy/proof-of-concept evidence that predates the `+patch.baseline` convention.

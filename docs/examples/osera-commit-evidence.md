@@ -3,7 +3,7 @@ title: OSERA Commit Evidence
 permalink: /examples/osera-commit-evidence/
 ---
 
-The public OSERA backpatch repositories already contain concrete examples that inform the draft standards. These examples are non-normative; they include legacy/proof-of-concept naming that predates the proposed `patch-*`, `patch/`, and `+patch.baseline` conventions.
+The public OSERA backpatch repositories already contain concrete examples that inform the standards. These examples are non-normative; they include legacy/proof-of-concept naming that predates the `patch-*`, `patch/`, and `+patch.baseline` conventions.
 
 ## Branch and tag conventions
 
@@ -16,7 +16,7 @@ Observed examples:
 | `backpatch-gson` | `main` | `v2.8.8+backpatch.baseline`, `v2.8.8+backpatch.001` |
 | `backpatch-activemq` | `main` | `v5.14.5+backpatch.baseline`, `v5.14.5+backpatch.001` |
 
-These examples show why OSERA needs explicit source branch, baseline tag, and release metadata standards. They are historical evidence, not the proposed future naming convention.
+These examples show why OSERA needs explicit source branch, baseline tag, and release metadata standards. They are historical evidence, not the current naming convention.
 
 ## Upstream provenance and adaptation notes
 

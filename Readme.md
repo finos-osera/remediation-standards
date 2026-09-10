@@ -4,7 +4,7 @@
 
 # What OSERA Remediation Standards are
 
-This repository contains the vulnerability remediation standards used for FINOS OSERA patch production and consumption. It is intended to help OSERA members, patch providers, and enterprise recipients converge on an open, bank-consumable format before formal ratification. 
+This repository contains the vulnerability remediation standards used for FINOS OSERA patch production and consumption. It is intended to help OSERA members, patch providers, and enterprise recipients produce and consume patches using an open, bank-consumable standards pack.
 
 The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Controls Framework](https://github.com/finos-labs/SDLC-Controls-Framework), but focuses on OSERA backpatches: fork management, source provenance, release compatibility, OpenVEX and CycloneDX feeds, and the recipient evidence enterprises need to decide what changed and what to test. 
 
@@ -12,7 +12,7 @@ The work is inspired by the catalog-oriented approach used by the [FINOS SDLC Co
 
 The OSERA Remediation Standards project was approved by the OSERA Governing Board in August 2026.
 
-OSERA-SP-0.1.0 is prepared for proposed ratification on **Thursday, September 10, 2026**, targeting the September 20 alignment gate. [PR #51](https://github.com/finos-osera/remediation-standards/pull/51) incorporates the generic REL-003 and Java-specific REL-003-JAVA split. Ratification remains pending the naming-format evidence repository/post from jkschneider and the working-group decision. No format or dual-format fallback has been approved by this candidate. The published candidate is available on the [standards site](https://standards.osera.finos.org).
+OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**, targeting the September 20 alignment gate. The pack includes the generic REL-003 naming standard and its Java-specific REL-003-JAVA profile. Read the [standards pack](https://standards.osera.finos.org/standard-packs/).
 
 ## Documentation
 

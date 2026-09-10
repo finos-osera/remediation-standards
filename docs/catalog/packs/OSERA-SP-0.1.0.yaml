@@ -3,33 +3,29 @@ pack:
   schema-version: 0.1.0
   id: OSERA-SP-0.1.0
   title: OSERA Remediation Standards Pack 0.1.0
-  status: Ratification candidate — pending naming decision
+  status: Ratified
   proposed_date: '2026-08-27'
   target_decision_date: '2026-09-10'
   target_gate_date: '2026-09-20'
-  ratified_date: Not ratified
+  ratified_date: '2026-09-10'
   issue: https://github.com/finos-osera/remediation-standards/issues/12
   agenda_issue: https://github.com/finos-osera/remediation-standards/pull/51
   standards_as_code_issue: https://github.com/finos-osera/remediation-standards/issues/23
   branch: codex/sp-010-ratification
-  summary: Final ratification candidate for Thursday, September 10, 2026, targeting
-    the September 20 alignment gate. The generic REL-003 and Java-specific REL-003-JAVA
-    split is incorporated. Ratification remains pending the naming-format evidence
-    repository/post from jkschneider and the working-group decision; no naming option
-    or fallback is approved by this candidate.
+  summary: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026 for the September
+    20 alignment gate. The pack defines required standards and a Java naming profile,
+    with seven standards in observe mode for OSERA-SP-0.2.0.
   release_metadata:
     scope: REL-003 defines the generic consumer outcome and default form where no
-      concrete ecosystem profile exists. REL-003-JAVA specializes it for Java; its
-      exact version pattern remains pending compatibility evidence and working-group
-      acceptance. Source branch naming remains a separate FORK-002 convention and
-      must be checked against the forthcoming naming decision.
+      concrete ecosystem profile exists. Java artifacts use REL-003-JAVA. Source branches
+      and baseline tags are defined separately by FORK-002 and FORK-003.
     default_intent: Optimize consumer tooling outcomes first, then preserve SemVer
       2.0 or other common ecosystem conventions where practical.
     official_token: osera-patch.NNN
     official_example: 5.3.39+osera-patch.001
     legacy_token: backpatch.NNN
     legacy_posture: Existing +backpatch.NNN releases are treated as legacy/proof-of-concept
-      evidence and are not the proposed official signed-artifact naming for OSERA-SP-0.1.0.
+      evidence and are not the official signed-artifact naming for OSERA-SP-0.1.0.
   approved_producers:
     registry: docs/_data/approved_producers.yml
     lifecycle_policy: Producer registry updates that do not change standard text or
@@ -46,8 +42,7 @@ pack:
     validation, and generated catalog model.
   - PR 50 merged the generic REL-003 and REL-003-JAVA split, including profile inheritance
     and same-number check overrides.
-  - Ratification is proposed for September 10, 2026; the naming-format evidence repository/post
-    from jkschneider remains outstanding.
+  - OSERA-SP-0.1.0 was ratified on September 10, 2026.
   included_standards:
   - id: STD-001
     version: 0.1.0
@@ -241,16 +236,6 @@ pack:
     role: Observe-only check
     rationale: Tracked in observe mode until estate-wide application workflows are
       proven.
-  discussion_topics:
-  - Review the naming-format evidence repository/post from jkschneider and record
-    the working-group choice in issue 33 and REL-003-JAVA; confirm any corresponding
-    FORK-002 branch or FORK-003 baseline-tag implications explicitly.
-  - Confirm the exact 0.1.0 candidate set and record the September 10 ratification
-    decision in PR 51 only after the naming holdout is resolved.
-  - Review issue 52 for approved-producer registry fields, approval ownership, and
-    initial entries before the September 20 gate; the registry is currently empty.
-  - Confirm that the September 20 gate measures standards-pack alignment and that
-    the seven observe-mode standards remain 0.2.0 work.
 standards:
   included_standards:
   - id: STD-001
