@@ -6,9 +6,9 @@ REL-003-JAVA:
     treatment: Overrides
     effective_item: REL-003-JAVA.REQ-001
     explanation: Specializes the generic applicable-profile rule with a Java-specific
-      version convention. The exact syntax is the naming TODO; the parent obligations
-      to identify the latest applicable remediation on the same upstream line and
-      preserve baseline and OSERA identity remain.
+      version convention. The CARE-style convention uses the OSERA identifier; the
+      parent obligations to identify the latest applicable remediation on the same
+      upstream line and preserve baseline and OSERA identity remain.
   - parent_item: REL-003.REQ-002
     treatment: Overrides
     effective_item: REL-003-JAVA.REQ-002
@@ -21,8 +21,8 @@ REL-003-JAVA:
     effective_item: REL-003-JAVA.CHECK-001
     explanation: Replaces generic profile-selection evidence with Java profile-decision,
       resolver, and dependency-update compatibility evidence. The parent consumer
-      outcome remains the acceptance criterion; the exact naming pattern is the naming
-      TODO.
+      outcome remains the acceptance criterion; the naming convention is the CARE-style
+      OSERA form described below.
   - parent_item: REL-003.CHECK-002
     treatment: Overrides
     effective_item: REL-003-JAVA.CHECK-002

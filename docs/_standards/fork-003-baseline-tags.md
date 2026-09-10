@@ -56,13 +56,12 @@ The `<VERSION>` segment in `v<VERSION>+patch.baseline` SHOULD correspond to the 
 
 Patch evidence SHOULD include the baseline tag, the commit SHA it resolves to, and the corresponding upstream version or artifact.
 
-## Observed OSERA examples
+## Illustrative examples
 
-Public OSERA repositories currently include baseline tags such as:
+| Repository | Baseline tag |
+| --- | --- |
+| `patch-spring-framework` | `v5.3.39+patch.baseline` |
+| `patch-gson` | `v2.8.8+patch.baseline` |
+| `patch-activemq` | `v5.14.5+patch.baseline` |
 
-* `backpatch-spring-framework`: `v5.3.39+backpatch.baseline`
-* `backpatch-gson`: `v2.8.8+backpatch.baseline`
-* `backpatch-activemq`: `v5.14.5+backpatch.baseline`
-* `backpatch-logback`: `v1.2.9+backpatch.baseline`
-
-These observed tags are legacy/proof-of-concept evidence that predates the `+patch.baseline` convention.
+These examples show the ratified naming convention, not an inventory of published patches.

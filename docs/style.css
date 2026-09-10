@@ -146,7 +146,7 @@ nav a { color: var(--ink); font-size: 14px; font-weight: 700; }
 }
 .button.primary { background: var(--navy); color: #fff; }
 .button.secondary { background: #fff; color: var(--navy); border: 1px solid var(--line); }
-.evidence-panel {
+.pack-panel {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -163,23 +163,8 @@ nav a { color: var(--ink); font-size: 14px; font-weight: 700; }
   font-size: 13px;
   font-weight: 800;
 }
-.evidence-panel dl { margin: 0; }
-.evidence-panel dl div {
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
-.evidence-panel dl div:last-child { border-bottom: 0; padding-bottom: 0; }
-.evidence-panel dt {
-  font-family: Montserrat, Inter, sans-serif;
-  color: var(--navy);
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 1;
-}
-.evidence-panel dd { margin: 0; color: var(--muted); font-size: 14px; }
+.pack-panel h2 { margin: 20px 0 12px; font-size: 26px; }
+.pack-panel p { color: var(--muted); font-size: 15px; }
 code {
   font-family: "SFMono-Regular", ui-monospace, "Cascadia Code", monospace;
   background: var(--mist);
@@ -302,17 +287,8 @@ code {
   align-items: center;
   gap: 32px;
 }
-.split-band p, .pack-callout p { max-width: 760px; }
-.pack-callout {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
-  border-bottom: 1px solid var(--line);
-}
-.pack-callout h2 { margin: 0; font-size: 30px; }
-.pack-callout p { color: var(--muted); }
-.pack-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+.split-band p { max-width: 760px; }
+.pack-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
 .content-page, .standard-page {
   padding-top: 54px;
   padding-bottom: 80px;
@@ -435,7 +411,7 @@ pre code { background: transparent; border: 0; color: inherit; padding: 0; }
 .footer-grid a { color: #9fd4ec; font-weight: 700; }
 
 @media (max-width: 900px) {
-  .nav-wrap, .section-heading, .split-band, .pack-callout, .footer-grid { align-items: flex-start; flex-direction: column; }
+  .nav-wrap, .section-heading, .split-band, .footer-grid { align-items: flex-start; flex-direction: column; }
   nav { flex-direction: row; flex-wrap: wrap; gap: 10px 14px; }
   .status-banner .wrap { align-items: flex-start; flex-direction: column; gap: 2px; padding-top: 9px; padding-bottom: 9px; }
   .hero-grid, .intro-grid, .standard-header { grid-template-columns: 1fr; }

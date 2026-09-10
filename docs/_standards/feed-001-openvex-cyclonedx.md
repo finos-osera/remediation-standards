@@ -50,8 +50,6 @@ requirements:
 
 Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
 
-<!-- TODO(REL-003-JAVA): Align Java example versions with the selected convention before merging. -->
-
 ## Requirement
 
 OSERA MUST provide OpenVEX and CycloneDX feeds to satisfy common scanning and vulnerability-management products.
@@ -81,7 +79,7 @@ CycloneDX entries SHOULD carry vulnerability analysis and SHOULD use pedigree or
 
 ## Example fields
 
-An example OpenVEX entry for an official OSERA patched artifact uses fields such as:
+This illustrative OpenVEX fragment uses the ratified Java naming convention; it is not a claim that the example artifact has been published:
 
 ```json
 {
@@ -91,9 +89,9 @@ An example OpenVEX entry for an official OSERA patched artifact uses fields such
   },
   "products": [
     {
-      "@id": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bosera-patch.001",
+      "@id": "pkg:maven/org.apache.activemq/activemq-client@5.14.5.1-osera-00001",
       "identifiers": {
-        "purl": "pkg:maven/org.apache.activemq/activemq-client@5.14.5%2Bosera-patch.001"
+        "purl": "pkg:maven/org.apache.activemq/activemq-client@5.14.5.1-osera-00001"
       }
     }
   ],
@@ -102,4 +100,4 @@ An example OpenVEX entry for an official OSERA patched artifact uses fields such
 }
 ```
 
-The current CycloneDX bundle uses vulnerability analysis such as `resolved_with_pedigree` and links affected entries to exact package URLs.
+A CycloneDX bundle uses vulnerability analysis such as `resolved_with_pedigree` and links affected entries to exact package URLs.

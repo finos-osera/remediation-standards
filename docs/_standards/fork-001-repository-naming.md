@@ -61,7 +61,7 @@ Because the repositories are public, the GitHub fork relationship with the upstr
 
 Avoiding `osera` inside each repository name keeps fork names short and leaves the upstream project name prominent. The `patch-` prefix is intended to be broad enough for backports, downstream-only security fixes, and future remediation workflows without implying that every OSERA patch is strictly a backpatch.
 
-Existing `finos-osera/backpatch-*` repositories are treated as legacy/proof-of-concept evidence that predates this standard.
+Historical proof-of-concept repository names predate this standard and do not establish pack conformance.
 
 ## Evidence
 

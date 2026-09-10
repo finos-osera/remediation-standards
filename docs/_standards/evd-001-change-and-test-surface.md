@@ -71,10 +71,6 @@ This is an intentionally early standard. The working group should refine the min
 
 This is deferred from OSERA-SP-0.1.0 because the working group has not yet defined the expected format tightly enough to make it advisory or required for the first ratification decision. It should run in observe mode and be reconsidered for OSERA-SP-0.2.0.
 
-## Observed OSERA example
+## Illustrative evidence
 
-The historical `backpatch-spring-framework` CVE-2024-38816 commit gives recipients useful test-surface evidence by identifying the affected WebMvc.fn and WebFlux.fn resource lookup classes and adding regression tests under those packages:
-
-<https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6>
-
-That commit suggests a useful evidence pattern: provider notes should name the affected framework surface, list the regression tests added or run, and call out meaningful adaptations from the upstream fix.
+See [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) for legacy proof-of-concept illustrations. These historical examples do not establish conformance with the ratified pack. [Current release examples]({{ site.baseurl }}/examples/) use the OSERA-SP-0.1.0 naming conventions.

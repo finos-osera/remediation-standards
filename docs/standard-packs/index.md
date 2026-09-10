@@ -53,21 +53,13 @@ See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, ver
 
 The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. Java artifacts follow the [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) profile.
 
-Existing `+{{ pack.release_metadata.legacy_token }}` releases are legacy/proof-of-concept evidence and are not the official signed-artifact naming for this pack.
+Java in this pack adopts [Maven CARE-style versioning]({{ pack.release_metadata.java_reference }}) with `osera` in place of `care`, as [agreed in #33]({{ pack.release_metadata.java_decision }}). The recorded non-OSGi example is `{{ pack.release_metadata.java_example }}`. Qualified bases use the CARE alternate-suffix approach; OSGi packaging must respect its three numeric components and optional qualifier. See [REL-003-JAVA scenarios]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/#examples-by-packaging-scenario) for numeric, qualified, and OSGi examples. The generic SemVer default does not apply to Java artifacts.
 
 ### Approved producers
 
 The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 
 {{ pack.approved_producers.lifecycle_policy }}
-
-### Legacy proof-of-concept evidence
-
-The following snapshot records the legacy repositories and tags that informed the standards. These naming conventions predate OSERA-SP-0.1.0; the observations do not establish conformance with this pack.
-
-{% for item in pack.evidence_summary %}
-* {{ item }}
-{% endfor %}
 
 ### Required standards in v0.1.0
 

@@ -54,7 +54,7 @@ The release identifier below is illustrative. Java implementations use the REL-0
   "standard_pack": "OSERA-SP-0.1.0",
   "pack_checksum": "sha256:...",
   "repository": "finos-osera/patch-example",
-  "release": "v1.2.3+osera-patch.001",
+  "release": "v1.2.3.1-osera-00001",
   "commit": "...",
   "artifact_digest": "sha256:...",
   "producer": "example-producer",

@@ -19,15 +19,13 @@
     default_intent: Optimize consumer tooling outcomes first, then preserve SemVer 2.0 or other common ecosystem conventions where practical.
     official_token: osera-patch.NNN
     official_example: 5.3.39+osera-patch.001
-    legacy_token: backpatch.NNN
-    legacy_posture: Existing +backpatch.NNN releases are treated as legacy/proof-of-concept evidence and are not the official signed-artifact naming for OSERA-SP-0.1.0.
+    java_convention: Maven CARE-style versioning with the OSERA identifier, including qualified-base and packaging-specific forms.
+    java_example: 5.3.39.1-osera-00001
+    java_reference: https://central.sonatype.org/policies/care-policy/
+    java_decision: https://github.com/finos-osera/remediation-standards/issues/33
   approved_producers:
     registry: docs/_data/approved_producers.yml
     lifecycle_policy: Producer registry updates that do not change standard text or check semantics may be handled as patch-level standards-pack updates.
-  evidence_summary:
-    - 60 legacy proof-of-concept forked repositories under `finos-osera/backpatch-*`, observed on 2026-08-25.
-    - 59 legacy baseline tags using `v<VERSION>+backpatch.baseline` across 59 repositories.
-    - 61 legacy release tags using `v<VERSION>+backpatch.NNN` across 55 repositories.
   included_standards:
     - id: STD-001
       version: 0.1.0
@@ -89,7 +87,7 @@
     - id: REL-003-JAVA
       version: 0.1.0
       role: Required Java profile check
-      rationale: Java package artifacts need a concrete REL-003 profile whose final version pattern is selected from Maven, Gradle, repository-manager, dependency-update, SCA, feed, and policy-tool compatibility evidence.
+      rationale: Java artifacts use the ratified CARE-style OSERA naming convention, with compatibility evidence for the relevant packaging, resolvers, dependency-update tools, and feeds.
       checks:
         - REL-003-JAVA.CHECK-001
         - REL-003-JAVA.CHECK-002
@@ -191,6 +189,3 @@
       version: 0.0.1
       role: Observe-only check
       rationale: Tracked in observe mode until estate-wide application workflows are proven.
-  # TODO(REL-003-JAVA): MERGE BLOCKER — select the Java naming pattern from
-  # jkschneider's evidence repository/post; update the profile and Java examples,
-  # ratify its metadata for 2026-09-10, and regenerate catalogs before merging.

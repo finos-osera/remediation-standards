@@ -3,20 +3,9 @@ title: OSERA Commit Evidence
 permalink: /examples/osera-commit-evidence/
 ---
 
-The public OSERA backpatch repositories already contain concrete examples that inform the standards. These examples are non-normative; they include legacy/proof-of-concept naming that predates the `patch-*`, `patch/`, and `+patch.baseline` conventions.
+These examples come from OSERA's **legacy proof of concept and are illustrative only**. They explain provenance, regression-test, and compatibility evidence; they do not demonstrate compliance with the ratified OSERA-SP-0.1.0 standards. Historical names and commit references are retained as recorded, and those repositories may become unavailable.
 
-## Branch and tag conventions
-
-Observed examples:
-
-| Repository | Branch evidence | Tag evidence |
-| --- | --- | --- |
-| `backpatch-spring-framework` | `backpatch/5.3.39` | `v5.3.39+backpatch.baseline`, `v5.3.39+backpatch.001` |
-| `backpatch-logback` | `backpatch/1.2.9` | `v1.2.9+backpatch.baseline` |
-| `backpatch-gson` | `main` | `v2.8.8+backpatch.baseline`, `v2.8.8+backpatch.001` |
-| `backpatch-activemq` | `main` | `v5.14.5+backpatch.baseline`, `v5.14.5+backpatch.001` |
-
-These examples show why OSERA needs explicit source branch, baseline tag, and release metadata standards. They are historical evidence, not the current naming convention.
+A follow-up GitHub issue is planned to replace this material with evidence from new official OSERA patches. For current naming and release examples, use [Examples]({{ site.baseurl }}/examples/) and [Java Release Examples]({{ site.baseurl }}/examples/release-tags/).
 
 ## Upstream provenance and adaptation notes
 

@@ -17,29 +17,20 @@ layout: default
         <img src="{{ site.baseurl }}/assets/finos-labs-badge.svg" alt="FINOS Labs">
       </a>
     </div>
-    <aside class="evidence-panel" aria-label="Current OSERA evidence">
+    <aside class="pack-panel" aria-label="Ratified standards pack">
       <div class="panel-header">
-        <span>Current evidence</span>
-        <strong>Aug. 25, 2026</strong>
+        <span>Ratified standards pack</span>
+        <strong>Sept. 10, 2026</strong>
       </div>
-      <dl>
-        <div><dt>60</dt><dd>public <code>backpatch-*</code> repositories observed in <a href="https://github.com/finos-osera" target="_blank" rel="noopener">finos-osera</a></dd></div>
-        <div><dt>61</dt><dd><code>+backpatch.NNN</code> release tags across 55 public backpatch repositories</dd></div>
-        <div><dt>59</dt><dd><code>+backpatch.baseline</code> tags across 59 public backpatch repositories</dd></div>
-        <div><dt>2</dt><dd>feed formats expected: OpenVEX and CycloneDX</dd></div>
-      </dl>
+      <h2>OSERA-SP-0.1.0</h2>
+      <p>The first pack defines the standards that will gate OSERA patch releases, covering provenance, compatibility, release naming, and publication evidence.</p>
+      <p>Java releases adopt <a href="{{ site.baseurl }}/standards/rel-003-java-patch-version-naming/">Maven CARE-style OSERA versioning</a>.</p>
+      <p>Seven additional standards remain in observe mode for 0.2.0.</p>
+      <div class="pack-actions">
+        <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View ratified pack</a>
+        <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
+      </div>
     </aside>
-  </div>
-</section>
-
-<section class="wrap section pack-callout">
-  <div>
-    <h2>Ratified standards pack</h2>
-    <p><strong>OSERA-SP-0.1.0</strong> was ratified on September 10, 2026. It defines the first set of standards that will gate OSERA patch releases, including release naming, provenance, compatibility, and publication evidence.</p>
-  </div>
-  <div class="pack-actions">
-    <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View pack and release history</a>
-    <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
   </div>
 </section>
 
@@ -50,7 +41,7 @@ layout: default
   </div>
   <div>
     <h2>What it standardizes</h2>
-    <p>The draft focuses on fork management, source-change provenance, release compatibility, VEX/SBOM feeds, and the recipient evidence enterprises need to assess what changed and what surface area to test.</p>
+    <p>The standards focus on fork management, source-change provenance, release compatibility, VEX/SBOM feeds, and the recipient evidence enterprises need to assess what changed and what surface area to test.</p>
   </div>
 </section>
 
