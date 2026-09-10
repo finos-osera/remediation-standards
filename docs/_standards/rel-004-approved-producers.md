@@ -93,6 +93,21 @@ For 0.1.0, REL-004 requires registry membership and consistent producer identity
 
 Line custody, lead-maintainer responsibilities, optional exclusivity, and line-specific escalation contacts are also included in that 0.2.0 follow-up. The global producer allow list does not imply ownership of every line a producer may patch.
 
+### Tactical architecture for Wave 1 / MVP 1
+
+- The registry consists of one file in this repository, `docs/_data/approved_producers.yml`, bound to the standards pack through `applies_to_pack` and read at the pack version in force.
+- It is used by the fitness checks in the producer's CI workflow and by the Exchange gate, for:
+  - the REL-004 checks: the producer named in the release evidence and in the fitness result is an approved producer for the pack
+  - tracing any artifact, evidence file, fitness result or verdict back to the producer that published it, through `id`
+  - attributing an upload in the staging repository to a producer, through `staging_account`
+  - reporting who pushed the release tag and whether that account is listed for the producer, through `github_users`
+  - naming the producer in the ledger and in the published feeds for every promoted release
+  - provisioning: one upload account per producer on the staging repository, named as in `staging_account`, and the GitHub accounts granted on the producer's patch repositories
+  - escalation to the producer when a check fails or a release is withdrawn, through `contact`
+- `id` is matched as an exact string. The `producer` value in the release evidence and in the fitness result MUST equal the registry entry's `id`.
+- `staging_account` and `github_users` are recorded with the fitness result and the verdict in 0.1.0. Binding rules on those accounts are the 0.2.0 follow up (#56).
+- A failed REL-004 check refuses the release. The producer may resubmit the same version with corrected evidence.
+
 ## Rationale
 
 The publication gate needs a practical trust boundary. FINOS/OSERA should approve who is allowed to produce official artifacts; the producer signs and supplies evidence for what it built.
