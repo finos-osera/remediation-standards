@@ -37,7 +37,11 @@ requirements:
 - id: REL-004.REQ-002
   level: MUST
   text: The producer identity used at publication time must be recorded in the fitness
-    result and release evidence.
+    result and release evidence, as an exact-string match of the registry entry's id.
+    The fitness result and the verdict must also record the registry entry's
+    staging_account and github_users as copied from the registry, and separately the
+    observed release-tag actor and upload account. In 0.1.0 a difference between the
+    copied account metadata and the observed actors is recorded and does not block.
   checkability: partially-automated
   checks:
   - id: REL-004.CHECK-002
@@ -49,6 +53,9 @@ requirements:
     - producer_identity
     - fitness_result
     - release_evidence
+    - registry_account_metadata
+    - observed_tag_actor
+    - observed_upload_account
 ---
 
 ## Requirement
@@ -92,6 +99,29 @@ The authoritative registry is [`docs/_data/approved_producers.yml`](https://gith
 For 0.1.0, REL-004 requires registry membership and consistent producer identity in the fitness result and release evidence. The initial fields supply the account metadata needed by implementation teams. Detailed rules for binding authenticated upload accounts, release-tag or commit actors, and signed-result identities are tracked for [0.2.0](https://github.com/finos-osera/remediation-standards/issues/56); listing an account here does not introduce those additional blocking checks into 0.1.0.
 
 Line custody, lead-maintainer responsibilities, optional exclusivity, and line-specific escalation contacts are also included in that 0.2.0 follow-up. The global producer allow list does not imply ownership of every line a producer may patch.
+
+### Tactical architecture for Wave 1 / MVP 1
+
+- The registry consists of one file in this repository, `docs/_data/approved_producers.yml`, bound to the standards pack through `applies_to_pack` and read at the pack version in force.
+- It is used by the fitness checks in the producer's CI workflow and by the Exchange gate, for:
+  - the REL-004 checks: the producer named in the release evidence and in the fitness result is an approved producer for the pack
+  - tracing any artifact, evidence file, fitness result or verdict back to the producer that published it, through `id`
+  - attributing an upload in the staging repository to a producer, through `staging_account`
+  - reporting who pushed the release tag and whether that account is listed for the producer, through `github_users`
+  - naming the producer in the ledger and in the published feeds for every promoted release
+  - provisioning: one upload account per producer on the staging repository, named as in `staging_account`, and the GitHub accounts granted on the producer's patch repositories
+  - escalation to the producer when a check fails or a release is withdrawn, through `contact`
+- `id` is matched as an exact string. The `producer` value in the release evidence and in the fitness result MUST equal the registry entry's `id`.
+- `staging_account` and `github_users` are recorded with the fitness result and the verdict in 0.1.0. Binding rules on those accounts are the 0.2.0 follow up (#56).
+- A failed REL-004 check refuses the release. The producer may resubmit the same version with corrected evidence.
+
+#### Registry version selection
+
+`applies_to_pack` names the pack, it does not pin the file contents. Producer CI and the Exchange gate resolve the same registry revision through one immutable reference: the release tag of the pack in this repository (`OSERA-SP-0.1.0` for the ratified pack, `OSERA-SP-0.1.1` and following for patch-level registry updates). Both read `docs/_data/approved_producers.yml` at that tag and record the tag as `registry_ref` in the fitness result and in the verdict, next to `pack_checksum`, the SHA-256 of `docs/catalog/packs/<pack>.json` at the same tag. A pack release without a tag is not implementable by either side.
+
+#### Account reporting
+
+The fitness result carries two things that must not be confused: `producer_accounts.registry`, the `staging_account` and `github_users` copied from the matched registry entry, and `producer_accounts.observed`, what actually happened, the account that pushed the release tag (from the CI run context) and, filled in by the gate, the account that uploaded the artifact. The verdict repeats both. A difference is recorded as an observation and is not a failure in 0.1.0. Making it one is the account-binding work on #56. The [fitness function](../../fitness/) page shows the representation.
 
 ## Rationale
 

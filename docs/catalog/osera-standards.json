@@ -680,7 +680,7 @@
         {
           "id": "REL-004.REQ-002",
           "level": "MUST",
-          "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence.",
+          "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence, as an exact-string match of the registry entry's id. The fitness result and the verdict must also record the registry entry's staging_account and github_users as copied from the registry, and separately the observed release-tag actor and upload account. In 0.1.0 a difference between the copied account metadata and the observed actors is recorded and does not block.",
           "checkability": "partially-automated",
           "checks": [
             {
@@ -692,7 +692,10 @@
               "evidence": [
                 "producer_identity",
                 "fitness_result",
-                "release_evidence"
+                "release_evidence",
+                "registry_account_metadata",
+                "observed_tag_actor",
+                "observed_upload_account"
               ]
             }
           ]

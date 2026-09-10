@@ -53,23 +53,45 @@ The release identifier below is illustrative. Java implementations use the REL-0
 {
   "standard_pack": "OSERA-SP-0.1.0",
   "pack_checksum": "sha256:...",
+  "registry_ref": "OSERA-SP-0.1.0",
   "repository": "finos-osera/patch-example",
   "release": "v1.2.3.1-osera-00001",
   "commit": "...",
   "artifact_digest": "sha256:...",
   "producer": "example-producer",
+  "producer_accounts": {
+    "registry": {
+      "staging_account": "example-producer-upload",
+      "github_users": ["example-maintainer"]
+    },
+    "observed": {
+      "tag_actor": "example-maintainer",
+      "upload_account": null
+    }
+  },
   "result": "warn",
   "signature": "...",
+  "standards": [
+    { "standard": "FORK-003", "standard_version": "0.1.0", "status": "pass" }
+  ],
   "checks": [
     {
       "standard": "FORK-003",
       "standard_version": "0.1.0",
+      "requirement": "FORK-003.REQ-001",
+      "check": "FORK-003.CHECK-001",
       "status": "pass",
-      "evidence": "v1.2.3+patch.baseline resolves to commit ..."
+      "expected": "tag v1.2.3+patch.baseline exists and points to a commit strictly before the release tag on the same history",
+      "observed": "v1.2.3+patch.baseline resolves to commit ...",
+      "evidence": [
+        { "command": "git merge-base --is-ancestor v1.2.3+patch.baseline v1.2.3.1-osera-00001", "exit": 0, "output": "" }
+      ]
     }
   ]
 }
 ```
+
+`checks` has one entry per requirement, `standards` one status per standard, and the rollup in `result` follows any fail, then warn, then not-tested, then pass. `expected` is the rule in words with the actual values in it, `observed` what the repository showed, `evidence` the commands and outputs that showed it. `producer_accounts.registry` is copied from the matched registry entry at `registry_ref`, `producer_accounts.observed` is what the run and the gate saw; `upload_account` is `null` in the CI result and filled by the gate in the verdict. The gate verifies the signature, reads the result, adds its own artifact checks and the upload account, and records the verdict with the same fields.
 
 ## Certification posture
 
