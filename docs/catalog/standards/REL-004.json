@@ -23,7 +23,7 @@
       {
         "id": "REL-004.REQ-001",
         "level": "MUST",
-        "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack.",
+        "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack. Each producer record must contain id, contact, github_users, and staging_account, with a unique id matching the producer identity in release evidence and fitness results.",
         "checkability": "automated",
         "checks": [
           {
