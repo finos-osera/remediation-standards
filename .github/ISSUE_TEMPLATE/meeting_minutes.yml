@@ -57,28 +57,3 @@ body:
         - [ ] AOB, Q&A & Adjourn (5mins)
     validations:
       required: true
-  - type: textarea
-    id: decisions
-    attributes:
-      label: Decisions Made
-      description: List any decisions made during the meeting
-      value: |
-        - [ ] Decision 1
-        - [ ] Decision 2
-        - [ ] ...
-  - type: textarea
-    id: actions
-    attributes:
-      label: Action Items
-      description: List action items from the meeting
-      value: |
-        - [ ] Action 1
-        - [ ] Action 2
-        - [ ] ...
-  - type: textarea
-    id: minutes
-    attributes:
-      label: Meeting minutes
-      description: Add notes after the call. Leave blank until then.
-    validations:
-      required: false
