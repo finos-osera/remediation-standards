@@ -46,7 +46,7 @@ The initial content is aligned with:
 This repository follows the Community Specification process. See [`GOVERNANCE.md`](GOVERNANCE.md), [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SCOPE.md`](SCOPE.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), and remaining templates in [`governance-documents/`](governance-documents/).
 
 ## Getting involved
-Join and subscribe to the working group mailing list by emailing [osera-remediations-wg+subscribe@lists.finos.org](mailto:osera-remediations-wg+subscribe@lists.finos.org).
+If you are a FINOS member, join and subscribe to the working group mailing list by emailing membersuccess@finos.org. If you are not a FINOS member, please consider joining [here](https://www.finos.org/membership-benefits),
 
 Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). Given some firms can't access slack, this is meant for strictly heads up and banters, while official communications and vote happens on the mailing list. If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
 
