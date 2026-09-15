@@ -23,7 +23,13 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Jonathan Schneider, Moderne, Sep/09/2026
 - Thomas Cooper, RBC, Sep/10/2026
 - Deepak Sareen, Deutsche Bank, Sep/11/2026
-- <add your name, organization, Date of enrollment: MMM/DD/YYYY here>
+- Berk Bucukoglu, RapidFort, Sep/15/2026
+- George Manuelian, RapidFort, Sep/15/2026
+- Austin Sedaghatpour, RapidFort, Sep/15/2026
+- Jacob Mammoliti, RapidFort, Sep/15/2026
+- Nischal Ammatanda, RapidFort, Sep/15/2026
+- Sudha Chinnappa, RapidFort, Sep/15/2026
+- Mehran Farimani, RapidFort, Sep/15/2026
 
 ## How to enroll as a participant
 In order to enroll as a participant in the OSERA Remediation Standards project, please submit a Pull Request to this [participants](PARTICIPANTS.md) file listing your name, organization, and date of enrollment, by following the steps described below. 
