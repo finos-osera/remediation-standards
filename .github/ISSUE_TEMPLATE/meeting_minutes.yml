@@ -57,3 +57,12 @@ body:
         - [ ] AOB, Q&A & Adjourn (5mins)
     validations:
       required: true
+  - type: textarea
+    id: actions
+    attributes:
+      label: Action Items
+      description: List action items from the meeting
+      value: |
+        - [ ] Action 1
+        - [ ] Action 2
+        - [ ] ...
