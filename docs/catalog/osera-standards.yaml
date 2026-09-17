@@ -827,8 +827,9 @@ standards:
   - id: REL-009.REQ-001
     level: MUST
     text: Patch providers must publish a line declaration in the line's repository
-      naming the BOM or the artifact set that defines the line, its members, its upstream
-      baseline, and the supported lines whose BOMs pin it.
+      naming the BOM or the artifact set that defines the line, its members, the patch
+      repository each member is released from, its upstream baseline, and the supported
+      lines whose BOMs pin it.
     checkability: automated
     checks:
     - id: REL-009.CHECK-001
@@ -841,6 +842,17 @@ standards:
       - baseline_bom
       - pinning_bom_poms
       - line_members
+    - id: REL-009.CHECK-005
+      title: Every member's repository is a patch fork of the upstream that ships
+        it
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.rel009.member_repositories
+      evidence:
+      - line_declaration
+      - member_repositories
+      - fork_parents
+      - member_scm_addresses
   - id: REL-009.REQ-002
     level: MUST
     text: A patch must release every member of its line at the line's next patched
