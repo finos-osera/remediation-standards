@@ -20,8 +20,9 @@ requirements:
 - id: REL-001.REQ-001
   level: MUST
   text: Patch providers must publish test provenance for the patched artifact, including
-    the tested commit, test command or suite, runtime when relevant, test report,
-    and passing test result.
+    the tested commit, a test command or suite that runs at least the tests the fix's
+    commits added or changed, runtime when relevant, test report, and passing test
+    result.
   checkability: automated
   checks:
   - id: REL-001.CHECK-001
@@ -33,6 +34,7 @@ requirements:
     - tested_commit
     - runtime
     - test_command
+    - fix_test_files
     - test_result
     - test_report_artifact
     - no_failed_tests
@@ -63,6 +65,12 @@ Patch providers MUST publish test provenance for the patched artifact.
 The evidence MUST identify the tested commit or source tag, test command or suite, runtime when relevant, a published unit-test report artifact, and the pass/fail outcome.
 
 For SP-0.1.0 alignment, the published unit-test report MUST identify no failed tests for the release being claimed.
+
+### What the tests cover
+
+The command MUST run at least the tests the fix's commits added or changed: the regression tests that show the vulnerability closed at the tested commit. That is the floor. The command SHOULD run the suite of the module the fix touched, and MAY run the project's suite; broader evidence is accepted and preferred wherever the era's build can run it. A command that runs less than the tests the fix touched is not test provenance for the fix.
+
+The floor is set at the fix's own tests because that is what every patch can run: a backport to a release whose upstream build can no longer run in full can still compile the module and run the tests that were written for the fix. A provider that can run more records more.
 
 OSERA does not require every patch fork to run public GitHub Actions CI. Providers MAY use their own validation systems, but recipients need enough published test evidence to understand what was checked.
 
@@ -108,9 +116,11 @@ tests:
 
 Release evidence SHOULD identify the runtime, relevant test command, test result, and published unit-test report artifact used for the patched release.
 
+`REL-001.CHECK-001` stays structural. It reads the tests block, resolves the tested commit and the report's name, and now also records the test files the fix's commits added or changed between the baseline tag and the tested commit (`fix_test_files`), so the record shows the floor beside the command that claims to meet it. Whether the command ran those tests, and whether the report shows them passing, is examined at the gate from the report, as before.
+
 A release that changes no source records, in addition, the tested repository and its release tag. `REL-001.CHECK-002` reads the files changed since the previous release tag, or the baseline tag, and fails when any is a source, resource or test file; reads the named release's evidence in the named repository and fails when it is not there, when its `REL-001.CHECK-001` did not pass, or when this release does not pin it; and fails when the tests block names a commit that is not the tested commit of that release.
 
 ## Revisions
 
 * 0.1.0, ratified in OSERA-SP-0.1.0 on 2026-09-10: REL-001.REQ-001 and REL-001.CHECK-001.
-* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009. REL-001.REQ-001 and REL-001.CHECK-001 are unchanged.
+* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009; sets the floor of REL-001.REQ-001 at the tests the fix's commits added or changed, a module suite preferred, and has REL-001.CHECK-001 record those test files beside the command. The check's pass condition is unchanged.

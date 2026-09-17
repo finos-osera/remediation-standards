@@ -322,8 +322,9 @@ standards:
   - id: REL-001.REQ-001
     level: MUST
     text: Patch providers must publish test provenance for the patched artifact, including
-      the tested commit, test command or suite, runtime when relevant, test report,
-      and passing test result.
+      the tested commit, a test command or suite that runs at least the tests the
+      fix's commits added or changed, runtime when relevant, test report, and passing
+      test result.
     checkability: automated
     checks:
     - id: REL-001.CHECK-001
@@ -335,6 +336,7 @@ standards:
       - tested_commit
       - runtime
       - test_command
+      - fix_test_files
       - test_result
       - test_report_artifact
       - no_failed_tests
