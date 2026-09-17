@@ -100,8 +100,12 @@ def validate_pack!(messages, pack, standards_by_id, all_checks)
     pack[section].each do |entry|
       standard = standards_by_id[entry["id"]]
       error!(messages, "#{id}: #{section} references unknown standard #{entry["id"]}") unless standard
-      if standard && standard["standard-version"].to_s != entry["version"].to_s
-        error!(messages, "#{id}: #{entry["id"]} version #{entry["version"]} does not match standard #{standard["standard-version"]}")
+      current = standard && standard["standard-version"].to_s
+      pinned = entry["version"].to_s
+      if current && current != pinned
+        # A ratified pack freezes the versions it named; a standard revised since then leaves that pack as it was.
+        frozen = pack["status"] == "Ratified" && Gem::Version.new(current) > Gem::Version.new(pinned)
+        error!(messages, "#{id}: #{entry["id"]} version #{pinned} does not match standard #{current}") unless frozen
       end
       Array(entry["checks"]).each do |check_id|
         error!(messages, "#{id}: #{entry["id"]} references unknown check #{check_id}") unless all_checks.include?(check_id)
