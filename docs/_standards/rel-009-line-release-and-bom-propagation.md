@@ -22,8 +22,9 @@ requirements:
 - id: REL-009.REQ-001
   level: MUST
   text: Patch providers must publish a line declaration in the line's repository
-    naming the BOM or the artifact set that defines the line, its members, its
-    upstream baseline, and the supported lines whose BOMs pin it.
+    naming the BOM or the artifact set that defines the line, its members, the
+    patch repository each member is released from, its upstream baseline, and the
+    supported lines whose BOMs pin it.
   checkability: automated
   checks:
   - id: REL-009.CHECK-001
@@ -36,6 +37,16 @@ requirements:
     - baseline_bom
     - pinning_bom_poms
     - line_members
+  - id: REL-009.CHECK-005
+    title: Every member's repository is a patch fork of the upstream that ships it
+    type: repository
+    severity: blocking
+    implementation: osera-fitness.rel009.member_repositories
+    evidence:
+    - line_declaration
+    - member_repositories
+    - fork_parents
+    - member_scm_addresses
 - id: REL-009.REQ-002
   level: MUST
   text: A patch must release every member of its line at the line's next patched
@@ -83,7 +94,7 @@ requirements:
 
 ## Requirement
 
-Patch providers MUST publish a line declaration in the line's repository.
+Patch providers MUST publish a line declaration in the line's repository. The declaration MUST name the patch repository each member is released from, and each of those repositories MUST be a fork of the upstream that ships the member, named and laid out under [FORK-001]({{ site.baseurl }}/standards/fork-001-repository-naming/).
 
 A patch MUST release every member of its line at the line's next patched version, whether or not each member changed. Unchanged members MUST ship upstream's bytes with only their metadata rewritten.
 
@@ -112,6 +123,14 @@ Each line stands on a baseline: the last release upstream made in that series, n
 ### Versions
 
 A release of a line is one counter, shared by the BOM and every member, in the [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) form. Each member keeps its own baseline version in front of the counter: `spring-data-bom` `2021.2.18.1-osera-00003` pins `spring-data-commons` `2.7.18.1-osera-00003`, and the shared `00003` says they were released together. The counter and its tag live on the line's own repository under [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/), which for a BOM line is the BOM's repository.
+
+### Which fork releases a member
+
+[FORK-001]({{ site.baseurl }}/standards/fork-001-repository-naming/) says how a patch repository is named and where it lives: `patch-<upstream repository>`, a fork of the upstream, in the organization. It does not say which of a provider's repositories a given artifact is released from, and a line's members do not all come from one repository. Spring Data 2021.2 has 19 members from more than a dozen upstream repositories; Jackson 2.13 has 62 from some twenty. The exchange has inferred the repository from the uploaded POM's scm address, or from a parent POM of the same group on Central, and fallen back to `patch-<artifact>` when neither carries a GitHub address. That inference fails where upstream writes the address elsewhere: Jetty's `org.eclipse.jetty.http2`, `org.eclipse.jetty.websocket` and `org.eclipse.jetty.fcgi` modules have their parents in another group, every log4j 2 module's parent names Apache's gitbox, Jackson's `jackson-datatype-jdk8` and `jackson-datatype-jsr310` ship from `jackson-modules-java8` and `spring-data-jdbc` from `spring-data-relational`, names no POM carries. Each falls back to `patch-<artifact>`, a repository that cannot exist: GitHub allows one fork of an upstream per organization, and `FORK-001.CHECK-002` compares the name with the fork's parent. Under the Wave 1 lines, 59 of 331 members resolve that way.
+
+The declaration settles it. Each member is released from the patch repository the declaration names for it, the line's own repository unless the declaration says otherwise. The exchange resolves the repository for an uploaded artifact from the declaration of the line that lists it, and falls back to the POM-derived name only for an artifact no declaration lists. FORK-001 remains the rule for how the repository is named and laid out; this standard says which repository an artifact belongs to.
+
+Because the line releases whole, a fork exists for every member's upstream, whether or not the provider changed anything there. An unchanged member's repository carries the release tag and the evidence file like any other, and its test provenance points at the release that carried the fix, as [REL-001]({{ site.baseurl }}/standards/rel-001-test-provenance/) provides for a release that changes no source.
 
 ## Propagation
 
@@ -188,7 +207,7 @@ The checks block rather than observe because a provider who skips them saves not
 
 ## Evidence
 
-The line declaration lives at the root of the patch branch in the line's repository, the fork that carries the counter and tag under [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/). Its format is for the working group; its content is the BOM or the artifact set, the members, the baseline, and the supported lines whose BOMs pin the line:
+The line declaration lives at the root of the patch branch in the line's repository, the fork that carries the counter and tag under [FORK-003]({{ site.baseurl }}/standards/fork-003-baseline-tags/). Its format is for the working group; its content is the BOM or the artifact set, the members, the repository each member is released from, the baseline, and the supported lines whose BOMs pin the line:
 
 ```yaml
 line: tomcat-9.0
@@ -203,6 +222,7 @@ members:
   - org.apache.tomcat:tomcat-annotations-api
   - org.apache.tomcat:tomcat-jdbc
   - org.apache.tomcat:tomcat-jsp-api
+repository: patch-tomcat
 baseline: 9.0.121
 pinned-by:
   - spring-boot-2.7
@@ -210,7 +230,26 @@ pinned-by:
 
 A BOM line names `bom` in place of `artifacts`, and may name `excludes`, artifacts the BOM manages at its own version that the line leaves out.
 
+`repository` is the line's own patch repository, the one that carries the counter and tag, and the one every member is released from unless `repositories` lists it under another. A line whose members ship from several upstream repositories lists each of the others with the members it releases:
+
+```yaml
+line: jackson-2.13
+bom: com.fasterxml.jackson:jackson-bom
+repository: patch-jackson-bom
+repositories:
+  patch-jackson-core:
+    - com.fasterxml.jackson.core:jackson-core
+  patch-jackson-databind:
+    - com.fasterxml.jackson.core:jackson-databind
+  patch-jackson-modules-java8:
+    - com.fasterxml.jackson.datatype:jackson-datatype-jdk8
+    - com.fasterxml.jackson.datatype:jackson-datatype-jsr310
+    - com.fasterxml.jackson.module:jackson-module-parameter-names
+```
+
 `REL-009.CHECK-001` reads the declaration against upstream on Central. Every member exists at the baseline. For a BOM line, every artifact the BOM manages at its own version is a member or excluded, so an omission cannot pass for a decision. For an artifact line, every artifact a pinning BOM manages through the line's property is a member.
+
+`REL-009.CHECK-005` reads the declaration against GitHub. `repository` and every key of `repositories` name a repository in the provider's organization that GitHub records as a fork, named `patch-` followed by its parent's name as [FORK-001]({{ site.baseurl }}/standards/fork-001-repository-naming/) requires. Every member is released from exactly one of them. Where a member's POM, or a parent POM of its own group on Central, carries a GitHub address, that address is the parent of the repository the declaration names for it, so a declaration cannot move an artifact away from the project that ships it; a member whose POMs carry no address is placed by the declaration alone. The exchange takes the repository for an uploaded artifact from the declaration that lists it.
 
 `REL-009.CHECK-002` reads the release. Every member exists at the release version. An unchanged member's jar checksum equals the baseline's on Central, and the CycloneDX document beside it carries a pedigree whose ancestor is the baseline release and no patches; a changed member's pedigree lists each backport with the vulnerability it resolves. The check needs no jar, because the checksums are published with it.
 
