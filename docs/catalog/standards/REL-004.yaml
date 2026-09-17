@@ -23,8 +23,9 @@ standard:
     level: MUST
     text: Official OSERA signed artifacts must identify a producer that appears in
       the approved-producer registry for the targeted standards pack. Each producer
-      record must contain id, contact, github_users, and staging_account, with a unique
-      id matching the producer identity in release evidence and fitness results.
+      record must contain id, contact, github_users, staging_account, pgp_fingerprint
+      and pgp_key_urls, with a unique id matching the producer identity in release
+      evidence and fitness results.
     checkability: automated
     checks:
     - id: REL-004.CHECK-001
