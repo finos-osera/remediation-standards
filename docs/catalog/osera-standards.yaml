@@ -836,6 +836,114 @@ standards:
   source_path: docs/_standards/feed-001-openvex-cyclonedx.md
   url: "/standards/feed-001-openvex-cyclonedx/"
 - schema-version: 0.1.0
+  sequence: 320
+  standard_id: FEED-002
+  title: Artifact CycloneDX Document
+  summary: Every official OSERA artifact carries a CycloneDX document beside it that
+    identifies the artifact, the upstream release it derives from, and the vulnerabilities
+    it closes.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.2.0 required
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: FEED
+  category: Feeds and Advisories
+  applies-to:
+  - Patch providers
+  - Repository operators
+  - Enterprise recipients
+  requirements:
+  - id: FEED-002.REQ-001
+    level: MUST
+    text: Every official OSERA artifact must be published with a CycloneDX document
+      beside it, at the ecosystem's convention for a document that accompanies a release,
+      valid against the CycloneDX schema it declares, and readable by anyone who can
+      read the artifact's metadata.
+    checkability: automated
+    checks:
+    - id: FEED-002.CHECK-001
+      title: A valid CycloneDX document accompanies every published artifact
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.feed002.document_present
+      evidence:
+      - cyclonedx_document
+      - artifact_files
+      - spec_version
+  - id: FEED-002.REQ-002
+    level: MUST
+    text: The document's subject must be the artifact it accompanies, carrying the
+      published package URL and, for each file the release publishes, hashes equal
+      to the checksums published beside that file.
+    checkability: automated
+    checks:
+    - id: FEED-002.CHECK-002
+      title: The subject's package URL and hashes match the published artifact
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.feed002.subject_identifies_artifact
+      evidence:
+      - purl
+      - release_version
+      - component_hashes
+      - published_checksums
+  - id: FEED-002.REQ-003
+    level: MUST
+    text: The document must name the organization that produced it and the organization
+      that publishes the coordinate, as a manufacturer and a publisher rather than
+      as authors, and the manufacturer must be the approved producer of the release.
+    checkability: automated
+    checks:
+    - id: FEED-002.CHECK-003
+      title: Manufacturer and publisher name the producer and the distributor
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.feed002.attribution
+      evidence:
+      - metadata_manufacturer
+      - component_manufacturer
+      - component_publisher
+      - producer_identity
+  - id: FEED-002.REQ-004
+    level: MUST
+    text: The document's pedigree must identify the upstream release the artifact
+      derives from, by package URL, by the checksums the upstream repository publishes
+      for it, and by its declared licenses, and must carry one patch entry per vulnerability
+      the release closes, naming the change that closes it and the advisory it resolves.
+    checkability: automated
+    checks:
+    - id: FEED-002.CHECK-004
+      title: The pedigree identifies the baseline and the change applied to it
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.feed002.pedigree_identifies_ancestor
+      evidence:
+      - pedigree_ancestor
+      - ancestor_hashes
+      - baseline_tag
+      - patch_changeset
+      - vulnerability_id
+  - id: FEED-002.REQ-005
+    level: MUST
+    text: The document's vulnerabilities must be the ones the artifact carries a fix
+      for, each affecting only that artifact, each in the state the fix actually reached,
+      and never asserted as not affected.
+    checkability: automated
+    checks:
+    - id: FEED-002.CHECK-005
+      title: Vulnerability analysis is honest and scoped to the artifact
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.feed002.analysis_state
+      evidence:
+      - vulnerability_statement
+      - analysis_state
+      - affects
+  source_path: docs/_standards/feed-002-artifact-cyclonedx-document.md
+  url: "/standards/feed-002-artifact-cyclonedx-document/"
+- schema-version: 0.1.0
   sequence: 410
   standard_id: EVD-001
   title: Change and Test Surface Guidance
