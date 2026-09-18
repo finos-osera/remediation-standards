@@ -68,11 +68,11 @@ REL-009-JAVA:
     explanation: Checks the Java BOM pin changes that implement the generic adoption
       procedure. Inherited REL-009.CHECK-006 verifies consumer resolution, while the
       added root check verifies propagation completeness.
-  - parent_item: 
+  - parent_item:
     treatment: Added
     effective_item: REL-009-JAVA.CHECK-004
     explanation: The fix has reached every supported root
-  - parent_item: 
+  - parent_item:
     treatment: Added
     effective_item: REL-009-JAVA.CHECK-005
     explanation: Every member's repository is a patch fork of the upstream that ships
