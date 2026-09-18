@@ -14,6 +14,8 @@ The OSERA Remediation Standards project was approved by the OSERA Governing Boar
 
 OSERA-SP-0.1.0 was ratified on **Thursday, September 10, 2026**. It defines the first set of standards that will gate OSERA patch releases. The pack includes the generic REL-003 naming standard and its Java-specific REL-003-JAVA profile. Read the [standards pack](https://standards.osera.finos.org/standard-packs/).
 
+The group meets weekly on Thursday (open to all FINOS members) - please contact membersuccess@finos.org if you'd like to be added.
+
 ## Documentation
 
 The standards site lives in [`docs/`](docs/) and is designed for GitHub Pages/Jekyll.
@@ -46,7 +48,7 @@ The initial content is aligned with:
 This repository follows the Community Specification process. See [`GOVERNANCE.md`](GOVERNANCE.md), [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SCOPE.md`](SCOPE.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), and remaining templates in [`governance-documents/`](governance-documents/).
 
 ## Getting involved
-If you are a FINOS member, join and subscribe to the working group mailing list by emailing membersuccess@finos.org. If you are not a FINOS member, please consider joining [here](https://www.finos.org/membership-benefits),
+If you are a FINOS member, join and subscribe to the working group mailing list and meetings by emailing membersuccess@finos.org. If you are not a FINOS member, please consider joining [here](https://www.finos.org/membership-benefits),
 
 Discussion also happens in the [OSERA Remediation Standards Slack channel](https://app.slack.com/client/T01E7QRQH97/C0BRSPGUYQJ). Given some firms can't access slack, this is meant for strictly heads up and banters, while official communications and vote happens on the mailing list. If you are not already in the FINOS Slack workspace, email [help@finos.org](mailto:help@finos.org).
 
