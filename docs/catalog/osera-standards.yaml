@@ -809,10 +809,12 @@ standards:
 - schema-version: 0.1.0
   sequence: 290
   standard_id: REL-009
-  title: Line Release and BOM Propagation
-  summary: A patched artifact releases with every artifact in its line, and every
-    supported BOM that pins the line releases again pinning the new version, so a
-    recipient takes the fix by advancing one BOM version.
+  title: Coordinated Remediation Adoption
+  summary: Providers publish versioned remediation sets and supported adoption procedures
+    so consumers can resolve the intended patched dependencies without reconstructing
+    transitive dependency overrides themselves.
+  extended-by:
+  - REL-009-JAVA
   doc-status: Draft
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.2.0 required
@@ -822,11 +824,111 @@ standards:
   type: REL
   category: Release Process
   applies-to:
-  - Patch providers
+  - Package patch providers
   - Repository operators
   - Enterprise recipients
+  - Package ecosystem profile authors
   requirements:
   - id: REL-009.REQ-001
+    level: MUST
+    text: Providers must declare the supported dependency scope, upstream baselines,
+      applicable ecosystem profile, and consumer entry points and tooling configurations
+      for adopting a remediation set.
+    checkability: partially-automated
+    checks:
+    - id: REL-009.CHECK-001
+      title: Supported scope and adoption entry points are declared
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009.supported_scope
+      evidence:
+      - supported_dependency_scope
+      - upstream_baselines
+      - applicable_profile
+      - consumer_entry_points
+      - supported_tooling_configurations
+  - id: REL-009.REQ-002
+    level: MUST
+    text: Providers must publish an immutable, versioned remediation set identifying
+      exact artifact versions and associated remediation evidence, and disclose the
+      dependency changes, validation performed, and known limitations for adoption.
+    checkability: partially-automated
+    checks:
+    - id: REL-009.CHECK-002
+      title: Versioned remediation set identifies exact artifacts and evidence
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009.remediation_set
+      evidence:
+      - remediation_set_identity
+      - artifact_versions
+      - remediation_evidence
+    - id: REL-009.CHECK-007
+      title: Dependency changes and validation scope are disclosed
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009.change_disclosure
+      evidence:
+      - dependency_version_changes
+      - validation_evidence
+      - inherited_evidence_references
+      - known_limitations
+  - id: REL-009.REQ-003
+    level: MUST
+    text: Providers must publish a supported adoption procedure that avoids consumers
+      having to author and maintain artifact-by-artifact transitive dependency overrides,
+      verify that it resolves the intended remediations for the declared configurations,
+      and report when those remediations cannot be resolved.
+    checkability: partially-automated
+    checks:
+    - id: REL-009.CHECK-003
+      title: Supported adoption procedure is published
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009.adoption_procedure
+      evidence:
+      - adoption_procedure
+      - consumer_entry_points
+    - id: REL-009.CHECK-006
+      title: Adoption resolves the intended remediations in supported configurations
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009.consumer_resolution
+      evidence:
+      - adoption_procedure
+      - supported_tooling_configurations
+      - consumer_change
+      - resolved_versions_before
+      - resolved_versions_after
+      - resolution_result
+      - resolution_failures
+  source_path: docs/_standards/rel-009-line-release-and-bom-propagation.md
+  url: "/standards/rel-009-line-release-and-bom-propagation/"
+- schema-version: 0.1.0
+  sequence: 291
+  standard_id: REL-009-JAVA
+  title: Java Line Release and BOM Propagation
+  summary: A patched artifact releases with every artifact in its line, and every
+    supported BOM that pins the line releases again pinning the new version, so a
+    recipient takes the fix by advancing one BOM version.
+  extends: REL-009
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.2.0 required
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required Java profile check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Java package patch providers
+  - Java repository operators
+  - Enterprise Java recipients
+  requirements:
+  - id: REL-009-JAVA.REQ-001
+    override-explanation: Specializes the supported-scope declaration with Java lines,
+      upstream baselines, member repositories, and pinning BOMs. The inherited adoption
+      verification check records supported consumer entry points and tooling.
     level: MUST
     text: Patch providers must publish a line declaration in the line's repository
       naming the BOM or the artifact set that defines the line, its members, the patch
@@ -834,74 +936,146 @@ standards:
       lines whose BOMs pin it.
     checkability: automated
     checks:
-    - id: REL-009.CHECK-001
+    - id: REL-009-JAVA.CHECK-001
+      override-explanation: Checks the generic scope declaration against Java upstream
+        BOMs and artifact sets; supported consumer configurations are also recorded
+        by inherited REL-009.CHECK-006.
       title: Line declaration is present and complete against the upstream baseline
       type: repository
       severity: blocking
-      implementation: osera-fitness.rel009.line_declaration
+      implementation: osera-fitness.rel009_java.line_declaration
       evidence:
       - line_declaration
       - baseline_bom
       - pinning_bom_poms
       - line_members
-    - id: REL-009.CHECK-005
+    - id: REL-009-JAVA.CHECK-005
       title: Every member's repository is a patch fork of the upstream that ships
         it
       type: repository
       severity: blocking
-      implementation: osera-fitness.rel009.member_repositories
+      implementation: osera-fitness.rel009_java.member_repositories
       evidence:
       - line_declaration
       - member_repositories
       - fork_parents
       - member_scm_addresses
-  - id: REL-009.REQ-002
+  - id: REL-009-JAVA.REQ-002
+    override-explanation: Specializes publication of an immutable remediation set
+      by releasing every Java line member at a coordinated version, with checksums
+      and pedigree. The inherited change-disclosure check preserves the generic evidence
+      obligation.
     level: MUST
     text: A patch must release every member of its line at the line's next patched
       version, whether or not each member changed, shipping unchanged members as the
       upstream bytes with rewritten metadata.
     checkability: automated
     checks:
-    - id: REL-009.CHECK-002
+    - id: REL-009-JAVA.CHECK-002
+      override-explanation: Checks the generic versioned remediation set through coordinated
+        Java artifact versions, checksums, and pedigree.
       title: Every line member is published at the release version, unchanged members
         byte for byte
       type: artifact
       severity: blocking
-      implementation: osera-fitness.rel009.whole_line_release
+      implementation: osera-fitness.rel009_java.whole_line_release
       evidence:
       - line_release_version
       - member_artifact_versions
       - member_checksums
       - baseline_checksums
       - member_pedigree
-  - id: REL-009.REQ-003
+  - id: REL-009-JAVA.REQ-003
+    override-explanation: Specializes the supported adoption procedure with bottom-up
+      BOM propagation to every supported root. The inherited adoption verification
+      check also verifies the resolved consumer result.
     level: MUST
     text: After a line releases, every supported line whose BOM pins it must release
       at its own next patched version, with the BOM pinning the new version and no
       other managed version changed, bottom-up until every supported root has released.
     checkability: automated
     checks:
-    - id: REL-009.CHECK-003
+    - id: REL-009-JAVA.CHECK-003
+      override-explanation: Checks the Java BOM pin changes that implement the generic
+        adoption procedure. Inherited REL-009.CHECK-006 verifies consumer resolution,
+        while the added root check verifies propagation completeness.
       title: A BOM release pins the current release of every supported line it manages
         and changes nothing else
       type: release
       severity: blocking
-      implementation: osera-fitness.rel009.bom_repin
+      implementation: osera-fitness.rel009_java.bom_repin
       evidence:
       - bom_pom
       - previous_bom_pom
       - bom_pin_diff
       - pinned_line_releases
-    - id: REL-009.CHECK-004
+    - id: REL-009-JAVA.CHECK-004
       title: The fix has reached every supported root
       type: release
       severity: blocking
-      implementation: osera-fitness.rel009.root_reached
+      implementation: osera-fitness.rel009_java.root_reached
       evidence:
       - vulnerability_statement
       - root_release_versions
-  source_path: docs/_standards/rel-009-line-release-and-bom-propagation.md
-  url: "/standards/rel-009-line-release-and-bom-propagation/"
+  source_path: docs/_standards/rel-009-java-line-release-and-bom-propagation.md
+  url: "/standards/rel-009-java-line-release-and-bom-propagation/"
+  parent_relationship:
+    parent_standard: REL-009
+    parent_version: 0.1.0
+    requirements:
+    - parent_item: REL-009.REQ-001
+      treatment: Overrides
+      effective_item: REL-009-JAVA.REQ-001
+      explanation: Specializes the supported-scope declaration with Java lines, upstream
+        baselines, member repositories, and pinning BOMs. The inherited adoption verification
+        check records supported consumer entry points and tooling.
+    - parent_item: REL-009.REQ-002
+      treatment: Overrides
+      effective_item: REL-009-JAVA.REQ-002
+      explanation: Specializes publication of an immutable remediation set by releasing
+        every Java line member at a coordinated version, with checksums and pedigree.
+        The inherited change-disclosure check preserves the generic evidence obligation.
+    - parent_item: REL-009.REQ-003
+      treatment: Overrides
+      effective_item: REL-009-JAVA.REQ-003
+      explanation: Specializes the supported adoption procedure with bottom-up BOM
+        propagation to every supported root. The inherited adoption verification check
+        also verifies the resolved consumer result.
+    checks:
+    - parent_item: REL-009.CHECK-001
+      treatment: Overrides
+      effective_item: REL-009-JAVA.CHECK-001
+      explanation: Checks the generic scope declaration against Java upstream BOMs
+        and artifact sets; supported consumer configurations are also recorded by
+        inherited REL-009.CHECK-006.
+    - parent_item: REL-009.CHECK-002
+      treatment: Overrides
+      effective_item: REL-009-JAVA.CHECK-002
+      explanation: Checks the generic versioned remediation set through coordinated
+        Java artifact versions, checksums, and pedigree.
+    - parent_item: REL-009.CHECK-003
+      treatment: Overrides
+      effective_item: REL-009-JAVA.CHECK-003
+      explanation: Checks the Java BOM pin changes that implement the generic adoption
+        procedure. Inherited REL-009.CHECK-006 verifies consumer resolution, while
+        the added root check verifies propagation completeness.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-009-JAVA.CHECK-004
+      explanation: The fix has reached every supported root
+    - parent_item:
+      treatment: Added
+      effective_item: REL-009-JAVA.CHECK-005
+      explanation: Every member's repository is a patch fork of the upstream that
+        ships it
+    - parent_item: REL-009.CHECK-006
+      treatment: Inherited
+      effective_item: REL-009.CHECK-006
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-009.CHECK-007
+      treatment: Inherited
+      effective_item: REL-009.CHECK-007
+      explanation: Applies unchanged from the parent.
 - schema-version: 0.1.0
   sequence: 310
   standard_id: FEED-001
