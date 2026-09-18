@@ -76,13 +76,13 @@ OSERA does not require every patch fork to run public GitHub Actions CI. Provide
 
 ### A release that changes no source
 
-Under [REL-009]({{ site.baseurl }}/standards/rel-009-line-release-and-bom-propagation/), a line releases whole and every BOM that pins it releases again. Most of those releases change no source in their own repository: the commit under the tag moves the version the BOM pins, and nothing else. The fix was tested where it was made, in the lower line's repository at that line's release tag. There is nothing to run in the BOM's repository, and a tests block claiming a run there would be false.
+Under [REL-009-JAVA]({{ site.baseurl }}/standards/rel-009-java-line-release-and-bom-propagation/), a line releases whole and every BOM that pins it releases again. Most of those releases change no source in their own repository: the commit under the tag moves the version the BOM pins, and nothing else. The fix was tested where it was made, in the lower line's repository at that line's release tag. There is nothing to run in the BOM's repository, and a tests block claiming a run there would be false.
 
 Such a release MUST record as its test provenance the release it pins that carried the fix. The tests block names the tested repository (`repository`, the provider's patch repository of the lower line, in the same organisation) and the release tag there (`release`); `commit`, `command`, `runtime`, `report` and `result` then describe the tests of that release, as its own evidence file records them. The named release MUST be one this release pins, and its own test provenance MUST have passed.
 
 A release qualifies only when every file changed since the previous release tag, or since the baseline tag when there is none, is build metadata that declares versions, such as a POM, a Gradle build script, a properties file or a version catalog, or an OSERA plumbing file, the evidence file and the fitness workflow. A release that changes any source, resource or test file records its own tests under REL-001.REQ-001.
 
-This requirement depends on REL-009. Without line releases and BOM propagation there is no release that changes no source, and REL-001.REQ-001 applies to every release.
+This requirement depends on REL-009-JAVA. Without line releases and BOM propagation there is no release that changes no source, and REL-001.REQ-001 applies to every release.
 
 ## Rationale
 
@@ -123,4 +123,4 @@ A release that changes no source records, in addition, the tested repository and
 ## Revisions
 
 * 0.1.0, ratified in OSERA-SP-0.1.0 on 2026-09-10: REL-001.REQ-001 and REL-001.CHECK-001.
-* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009; sets the floor of REL-001.REQ-001 at the tests the fix's commits added or changed, a module suite preferred, and has REL-001.CHECK-001 record those test files beside the command. The check's pass condition is unchanged.
+* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009-JAVA; sets the floor of REL-001.REQ-001 at the tests the fix's commits added or changed, a module suite preferred, and has REL-001.CHECK-001 record those test files beside the command. The check's pass condition is unchanged.
