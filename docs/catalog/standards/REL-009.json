@@ -1,0 +1,121 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 290,
+    "standard_id": "REL-009",
+    "title": "Coordinated Remediation Adoption",
+    "summary": "Providers publish versioned remediation sets and supported adoption procedures so consumers can resolve the intended patched dependencies without reconstructing transitive dependency overrides themselves.",
+    "extended-by": [
+      "REL-009-JAVA"
+    ],
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.2.0 required",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required check",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "Package patch providers",
+      "Repository operators",
+      "Enterprise recipients",
+      "Package ecosystem profile authors"
+    ],
+    "requirements": [
+      {
+        "id": "REL-009.REQ-001",
+        "level": "MUST",
+        "text": "Providers must declare the supported dependency scope, upstream baselines, applicable ecosystem profile, and consumer entry points and tooling configurations for adopting a remediation set.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009.CHECK-001",
+            "title": "Supported scope and adoption entry points are declared",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009.supported_scope",
+            "evidence": [
+              "supported_dependency_scope",
+              "upstream_baselines",
+              "applicable_profile",
+              "consumer_entry_points",
+              "supported_tooling_configurations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-009.REQ-002",
+        "level": "MUST",
+        "text": "Providers must publish an immutable, versioned remediation set identifying exact artifact versions and associated remediation evidence, and disclose the dependency changes, validation performed, and known limitations for adoption.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009.CHECK-002",
+            "title": "Versioned remediation set identifies exact artifacts and evidence",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009.remediation_set",
+            "evidence": [
+              "remediation_set_identity",
+              "artifact_versions",
+              "remediation_evidence"
+            ]
+          },
+          {
+            "id": "REL-009.CHECK-007",
+            "title": "Dependency changes and validation scope are disclosed",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009.change_disclosure",
+            "evidence": [
+              "dependency_version_changes",
+              "validation_evidence",
+              "inherited_evidence_references",
+              "known_limitations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-009.REQ-003",
+        "level": "MUST",
+        "text": "Providers must publish a supported adoption procedure that avoids consumers having to author and maintain artifact-by-artifact transitive dependency overrides, verify that it resolves the intended remediations for the declared configurations, and report when those remediations cannot be resolved.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009.CHECK-003",
+            "title": "Supported adoption procedure is published",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009.adoption_procedure",
+            "evidence": [
+              "adoption_procedure",
+              "consumer_entry_points"
+            ]
+          },
+          {
+            "id": "REL-009.CHECK-006",
+            "title": "Adoption resolves the intended remediations in supported configurations",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009.consumer_resolution",
+            "evidence": [
+              "adoption_procedure",
+              "supported_tooling_configurations",
+              "consumer_change",
+              "resolved_versions_before",
+              "resolved_versions_after",
+              "resolution_result",
+              "resolution_failures"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-009-line-release-and-bom-propagation.md",
+    "url": "/standards/rel-009-line-release-and-bom-propagation/"
+  }
+}
