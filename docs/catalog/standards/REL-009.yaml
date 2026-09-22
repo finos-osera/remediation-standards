@@ -1,0 +1,98 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 290
+  standard_id: REL-009
+  title: Line Release and BOM Propagation
+  summary: A patched artifact releases with every artifact in its line, and every
+    supported BOM that pins the line releases again pinning the new version, so a
+    recipient takes the fix by advancing one BOM version.
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.2.0 required
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Patch providers
+  - Repository operators
+  - Enterprise recipients
+  requirements:
+  - id: REL-009.REQ-001
+    level: MUST
+    text: Patch providers must publish a line declaration in the line's repository
+      naming the BOM or the artifact set that defines the line, its members, the patch
+      repository each member is released from, its upstream baseline, and the supported
+      lines whose BOMs pin it.
+    checkability: automated
+    checks:
+    - id: REL-009.CHECK-001
+      title: Line declaration is present and complete against the upstream baseline
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.rel009.line_declaration
+      evidence:
+      - line_declaration
+      - baseline_bom
+      - pinning_bom_poms
+      - line_members
+    - id: REL-009.CHECK-005
+      title: Every member's repository is a patch fork of the upstream that ships
+        it
+      type: repository
+      severity: blocking
+      implementation: osera-fitness.rel009.member_repositories
+      evidence:
+      - line_declaration
+      - member_repositories
+      - fork_parents
+      - member_scm_addresses
+  - id: REL-009.REQ-002
+    level: MUST
+    text: A patch must release every member of its line at the line's next patched
+      version, whether or not each member changed, shipping unchanged members as the
+      upstream bytes with rewritten metadata.
+    checkability: automated
+    checks:
+    - id: REL-009.CHECK-002
+      title: Every line member is published at the release version, unchanged members
+        byte for byte
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel009.whole_line_release
+      evidence:
+      - line_release_version
+      - member_artifact_versions
+      - member_checksums
+      - baseline_checksums
+      - member_pedigree
+  - id: REL-009.REQ-003
+    level: MUST
+    text: After a line releases, every supported line whose BOM pins it must release
+      at its own next patched version, with the BOM pinning the new version and no
+      other managed version changed, bottom-up until every supported root has released.
+    checkability: automated
+    checks:
+    - id: REL-009.CHECK-003
+      title: A BOM release pins the current release of every supported line it manages
+        and changes nothing else
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel009.bom_repin
+      evidence:
+      - bom_pom
+      - previous_bom_pom
+      - bom_pin_diff
+      - pinned_line_releases
+    - id: REL-009.CHECK-004
+      title: The fix has reached every supported root
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel009.root_reached
+      evidence:
+      - vulnerability_statement
+      - root_release_versions
+  source_path: docs/_standards/rel-009-line-release-and-bom-propagation.md
+  url: "/standards/rel-009-line-release-and-bom-propagation/"
