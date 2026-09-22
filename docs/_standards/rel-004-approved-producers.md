@@ -22,8 +22,9 @@ requirements:
   level: MUST
   text: Official OSERA signed artifacts must identify a producer that appears in the
     approved-producer registry for the targeted standards pack. Each producer record
-    must contain id, contact, github_users, and staging_account, with a unique id
-    matching the producer identity in release evidence and fitness results.
+    must contain id, contact, github_users, staging_account, pgp_fingerprint and
+    pgp_key_urls, with a unique id matching the producer identity in release evidence
+    and fitness results.
   checkability: automated
   checks:
   - id: REL-004.CHECK-001
@@ -79,6 +80,8 @@ The initial registry is a YAML document bound to a standards pack through `appli
 | `contact` | Email address string | Contact for producer coordination and escalation. |
 | `github_users` | Non-empty list of GitHub usernames | Accounts authorized by the producer to push release tags on its patch repositories. Store usernames without the `@` prefix. |
 | `staging_account` | Non-empty string | Producer's upload-account identifier in the staging repository for the initial implementation. |
+| `pgp_fingerprint` | 40 hexadecimal characters, no spaces | The fingerprint of the one OpenPGP key the producer signs its artifacts with. The producer writes it into its own entry, so the record shows which key that producer declared. The gate verifies the `.asc` signature uploaded with every jar and pom against this key. |
+| `pgp_key_urls` | Non-empty list of URLs | Where the public key for `pgp_fingerprint` is fetched from. Only `keys.openpgp.org` and `keyserver.ubuntu.com` are accepted. No key material is kept in this repository. |
 
 The `producer` value in release evidence and fitness results MUST match the registry entry's `id`. These fields identify the producer and its initial operational accounts; they do not assert that any particular source line is exclusively assigned to that producer.
 
@@ -93,6 +96,10 @@ producers:
     github_users:
       - example-maintainer
     staging_account: example-producer-upload
+    pgp_fingerprint: 0123456789ABCDEF0123456789ABCDEF01234567
+    pgp_key_urls:
+      - https://keys.openpgp.org/vks/v1/by-fingerprint/0123456789ABCDEF0123456789ABCDEF01234567
+      - https://keyserver.ubuntu.com/pks/lookup?op=get&options=mr&search=0x0123456789ABCDEF0123456789ABCDEF01234567
 ```
 
 The authoritative registry is [`docs/_data/approved_producers.yml`](https://github.com/finos-osera/remediation-standards/blob/main/docs/_data/approved_producers.yml). An empty `producers` list means that no producers are registered; the example above is not a registry entry.
@@ -110,6 +117,7 @@ Line custody, lead-maintainer responsibilities, optional exclusivity, and line-s
   - the REL-004 checks: the producer named in the release evidence and in the fitness result is an approved producer for the pack
   - tracing any artifact, evidence file, fitness result or verdict back to the producer that published it, through `id`
   - attributing an upload in the staging repository to a producer, through `staging_account`
+  - verifying the signature uploaded with each jar and pom against the producer's key, through `pgp_fingerprint`, with the key fetched from `pgp_key_urls`
   - reporting who pushed the release tag and whether that account is listed for the producer, through `github_users`
   - naming the producer in the ledger and in the published feeds for every promoted release
   - provisioning: one upload account per producer on the staging repository, named as in `staging_account`, and the GitHub accounts granted on the producer's patch repositories
