@@ -28,3 +28,60 @@ REL-003-JAVA:
     effective_item: REL-003-JAVA.CHECK-002
     explanation: Uses Maven package URL evidence for the parent consistency check
       while retaining release-tag, artifact-version, and feed identity matching.
+REL-009-JAVA:
+  parent_standard: REL-009
+  parent_version: 0.1.0
+  requirements:
+  - parent_item: REL-009.REQ-001
+    treatment: Overrides
+    effective_item: REL-009-JAVA.REQ-001
+    explanation: Specializes the supported-scope declaration with Java lines, upstream
+      baselines, member repositories, and pinning BOMs. The inherited adoption verification
+      check records supported consumer entry points and tooling.
+  - parent_item: REL-009.REQ-002
+    treatment: Overrides
+    effective_item: REL-009-JAVA.REQ-002
+    explanation: Specializes publication of an immutable remediation set by releasing
+      every Java line member at a coordinated version, with checksums and pedigree.
+      The inherited change-disclosure check preserves the generic evidence obligation.
+  - parent_item: REL-009.REQ-003
+    treatment: Overrides
+    effective_item: REL-009-JAVA.REQ-003
+    explanation: Specializes the supported adoption procedure with bottom-up BOM propagation
+      to every supported root. The inherited adoption verification check also verifies
+      the resolved consumer result.
+  checks:
+  - parent_item: REL-009.CHECK-001
+    treatment: Overrides
+    effective_item: REL-009-JAVA.CHECK-001
+    explanation: Checks the generic scope declaration against Java upstream BOMs and
+      artifact sets; supported consumer configurations are also recorded by inherited
+      REL-009.CHECK-006.
+  - parent_item: REL-009.CHECK-002
+    treatment: Overrides
+    effective_item: REL-009-JAVA.CHECK-002
+    explanation: Checks the generic versioned remediation set through coordinated
+      Java artifact versions, checksums, and pedigree.
+  - parent_item: REL-009.CHECK-003
+    treatment: Overrides
+    effective_item: REL-009-JAVA.CHECK-003
+    explanation: Checks the Java BOM pin changes that implement the generic adoption
+      procedure. Inherited REL-009.CHECK-006 verifies consumer resolution, while the
+      added root check verifies propagation completeness.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-009-JAVA.CHECK-004
+    explanation: The fix has reached every supported root
+  - parent_item:
+    treatment: Added
+    effective_item: REL-009-JAVA.CHECK-005
+    explanation: Every member's repository is a patch fork of the upstream that ships
+      it
+  - parent_item: REL-009.CHECK-006
+    treatment: Inherited
+    effective_item: REL-009.CHECK-006
+    explanation: Applies unchanged from the parent.
+  - parent_item: REL-009.CHECK-007
+    treatment: Inherited
+    effective_item: REL-009.CHECK-007
+    explanation: Applies unchanged from the parent.
