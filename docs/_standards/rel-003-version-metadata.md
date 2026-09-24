@@ -7,6 +7,7 @@ summary: Patched releases use package-ecosystem-appropriate version naming profi
   that optimize recipient tooling outcomes before choosing a concrete syntax.
 extended-by:
 - REL-003-JAVA
+- REL-003-JAVASCRIPT
 doc-status: Ratified
 standard-version: 0.1.0
 candidate-pack: OSERA-SP-0.1.0 ratified
@@ -81,8 +82,8 @@ Release tags, artifact versions, vulnerability feeds, and release evidence MUST 
 Concrete profiles extend REL-003 by adding an uppercase profile suffix to the standard ID, for example:
 
 * [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) for Java package tooling;
-* `REL-003-PYTHON` for a future Python package profile;
-* `REL-003-JS` for a future JavaScript package profile.
+* [REL-003-JAVASCRIPT]({{ site.baseurl }}/standards/rel-003-javascript-patch-version-naming/) for npm package tooling;
+* `REL-003-PYTHON` for a future Python package profile.
 
 The suffix uses `-PROFILE` rather than `.PROFILE` because requirement and check IDs already use dots, such as `REL-003.CHECK-001`.
 

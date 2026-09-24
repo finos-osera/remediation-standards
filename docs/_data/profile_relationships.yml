@@ -28,3 +28,49 @@ REL-003-JAVA:
     effective_item: REL-003-JAVA.CHECK-002
     explanation: Uses Maven package URL evidence for the parent consistency check
       while retaining release-tag, artifact-version, and feed identity matching.
+REL-003-JAVASCRIPT:
+  parent_standard: REL-003
+  parent_version: 0.1.0
+  requirements:
+  - parent_item: REL-003.REQ-001
+    treatment: Overrides
+    effective_item: REL-003-JAVASCRIPT.REQ-001
+    explanation: Specializes the generic applicable-profile rule with the npm form.
+      The default `+osera-patch.NNN` build metadata is excluded from precedence under
+      SemVer and cannot be selected on npm, so the profile uses a prerelease of the
+      next patch version instead; the parent obligations to identify the latest applicable
+      remediation on the same upstream line and preserve baseline and OSERA identity
+      remain.
+  - parent_item: REL-003.REQ-002
+    treatment: Overrides
+    effective_item: REL-003-JAVASCRIPT.REQ-002
+    explanation: Specializes the parent identifier-consistency obligation for npm
+      packages by including npm package URLs. The same patched-release identity must
+      still connect source tags, artifacts, feeds, and evidence.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-003-JAVASCRIPT.REQ-003
+    explanation: Each backpatch on a baseline must carry every fix of the backpatches
+      published before it on that baseline.
+  checks:
+  - parent_item: REL-003.CHECK-001
+    treatment: Overrides
+    effective_item: REL-003-JAVASCRIPT.CHECK-001
+    explanation: Replaces generic profile-selection evidence with the npm pattern
+      and resolver evidence. The parent consumer outcome remains the acceptance criterion;
+      the form is the one described below.
+  - parent_item: REL-003.CHECK-002
+    treatment: Overrides
+    effective_item: REL-003-JAVASCRIPT.CHECK-002
+    explanation: Uses npm package URL evidence for the parent consistency check while
+      retaining release-tag, artifact-version, and feed identity matching.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-003-JAVASCRIPT.CHECK-003
+    explanation: Upstream has not released the version the backpatch precedes, and
+      the backpatch is not tagged latest
+  - parent_item:
+    treatment: Added
+    effective_item: REL-003-JAVASCRIPT.CHECK-004
+    explanation: A backpatch closes every vulnerability its predecessors on the same
+      baseline closed

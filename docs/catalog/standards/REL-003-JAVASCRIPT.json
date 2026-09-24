@@ -1,0 +1,156 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 232,
+    "standard_id": "REL-003-JAVASCRIPT",
+    "title": "JavaScript Patch Version Naming",
+    "summary": "A JavaScript patched release is a SemVer prerelease of the maintainer's next patch version, so npm tooling sorts it above the release it patches and below the maintainer's own fix.",
+    "extends": "REL-003",
+    "doc-status": "Draft",
+    "standard-version": "0.1.0",
+    "candidate-pack": "OSERA-SP-0.2.0 required",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Required JavaScript profile check",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "JavaScript package patch providers",
+      "Enterprise JavaScript recipients",
+      "npm registry and dependency tooling"
+    ],
+    "requirements": [
+      {
+        "id": "REL-003-JAVASCRIPT.REQ-001",
+        "override-explanation": "Specializes the generic applicable-profile rule with the npm form. The default `+osera-patch.NNN` build metadata is excluded from precedence under SemVer and cannot be selected on npm, so the profile uses a prerelease of the next patch version instead; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.",
+        "level": "MUST",
+        "text": "Official OSERA JavaScript patched releases must be published under the upstream package name at a version of the form `<MAJOR>.<MINOR>.<PATCH+1>-osera-<NNNNN>`, a SemVer prerelease of the version after the upstream baseline, where upstream has not released `<MAJOR>.<MINOR>.<PATCH+1>`.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-003-JAVASCRIPT.CHECK-001",
+            "override-explanation": "Replaces generic profile-selection evidence with the npm pattern and resolver evidence. The parent consumer outcome remains the acceptance criterion; the form is the one described below.",
+            "title": "npm patch version is a prerelease of the baseline's next patch and orders between the baseline and that patch",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_javascript.version_pattern",
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "baseline_version",
+              "resolver_test_result"
+            ]
+          },
+          {
+            "id": "REL-003-JAVASCRIPT.CHECK-003",
+            "title": "Upstream has not released the version the backpatch precedes, and the backpatch is not tagged latest",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_javascript.upstream_headroom",
+            "evidence": [
+              "artifact_version",
+              "upstream_versions",
+              "dist_tags"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-003-JAVASCRIPT.REQ-002",
+        "override-explanation": "Specializes the parent identifier-consistency obligation for npm packages by including npm package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.",
+        "level": "MUST",
+        "text": "JavaScript release tags, package versions, npm package URLs, vulnerability feeds, and release evidence must carry the same patched version identifier.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-003-JAVASCRIPT.CHECK-002",
+            "override-explanation": "Uses npm package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.",
+            "title": "JavaScript release identifier is consistent across source, package, and feeds",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_javascript.identifier_consistency",
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "npm_purl",
+              "feed_purl"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-003-JAVASCRIPT.REQ-003",
+        "level": "MUST",
+        "text": "Each backpatch on a baseline must carry every fix of the backpatches published before it on that baseline.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-003-JAVASCRIPT.CHECK-004",
+            "title": "A backpatch closes every vulnerability its predecessors on the same baseline closed",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_javascript.cumulative",
+            "evidence": [
+              "artifact_version",
+              "previous_backpatch_versions",
+              "vulnerability_statements"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-003-javascript-patch-version-naming.md",
+    "url": "/standards/rel-003-javascript-patch-version-naming/",
+    "parent_relationship": {
+      "parent_standard": "REL-003",
+      "parent_version": "0.1.0",
+      "requirements": [
+        {
+          "parent_item": "REL-003.REQ-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-JAVASCRIPT.REQ-001",
+          "explanation": "Specializes the generic applicable-profile rule with the npm form. The default `+osera-patch.NNN` build metadata is excluded from precedence under SemVer and cannot be selected on npm, so the profile uses a prerelease of the next patch version instead; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain."
+        },
+        {
+          "parent_item": "REL-003.REQ-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-JAVASCRIPT.REQ-002",
+          "explanation": "Specializes the parent identifier-consistency obligation for npm packages by including npm package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence."
+        },
+        {
+          "parent_item": null,
+          "treatment": "Added",
+          "effective_item": "REL-003-JAVASCRIPT.REQ-003",
+          "explanation": "Each backpatch on a baseline must carry every fix of the backpatches published before it on that baseline."
+        }
+      ],
+      "checks": [
+        {
+          "parent_item": "REL-003.CHECK-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-JAVASCRIPT.CHECK-001",
+          "explanation": "Replaces generic profile-selection evidence with the npm pattern and resolver evidence. The parent consumer outcome remains the acceptance criterion; the form is the one described below."
+        },
+        {
+          "parent_item": "REL-003.CHECK-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-JAVASCRIPT.CHECK-002",
+          "explanation": "Uses npm package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching."
+        },
+        {
+          "parent_item": null,
+          "treatment": "Added",
+          "effective_item": "REL-003-JAVASCRIPT.CHECK-003",
+          "explanation": "Upstream has not released the version the backpatch precedes, and the backpatch is not tagged latest"
+        },
+        {
+          "parent_item": null,
+          "treatment": "Added",
+          "effective_item": "REL-003-JAVASCRIPT.CHECK-004",
+          "explanation": "A backpatch closes every vulnerability its predecessors on the same baseline closed"
+        }
+      ]
+    }
+  }
+}
