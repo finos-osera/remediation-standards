@@ -6,9 +6,9 @@
     "standard_id": "REL-001",
     "title": "Provider Test Provenance",
     "summary": "Test execution methods are provider-dependent, but the provider publishes a unit-test report artifact for recipients to understand release validation.",
-    "doc-status": "Ratified",
-    "standard-version": "0.1.0",
-    "candidate-pack": "OSERA-SP-0.1.0 ratified",
+    "doc-status": "Draft",
+    "standard-version": "0.2.0",
+    "candidate-pack": "OSERA-SP-0.2.0 required",
     "ratified-in": "OSERA-SP-0.1.0",
     "ratified-date": "2026-09-10",
     "fitness-role": "Required evidence",
@@ -22,7 +22,7 @@
       {
         "id": "REL-001.REQ-001",
         "level": "MUST",
-        "text": "Patch providers must publish test provenance for the patched artifact, including the tested commit, test command or suite, runtime when relevant, test report, and passing test result.",
+        "text": "Patch providers must publish test provenance for the patched artifact, including the tested commit, a test command or suite that runs at least the tests the fix's commits added or changed, runtime when relevant, test report, and passing test result.",
         "checkability": "automated",
         "checks": [
           {
@@ -35,9 +35,32 @@
               "tested_commit",
               "runtime",
               "test_command",
+              "fix_test_files",
               "test_result",
               "test_report_artifact",
               "no_failed_tests"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-001.REQ-002",
+        "level": "MUST",
+        "text": "A release that changes no source in its repository, only the versions its build pins and the OSERA plumbing files, must record as its test provenance the release it pins that carried the fix, whose own test provenance passed.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-001.CHECK-002",
+            "title": "A release that changes no source names the tested release it carries",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel001.carried_test_provenance",
+            "evidence": [
+              "changed_files",
+              "tested_repository",
+              "tested_release",
+              "tested_commit",
+              "carried_test_result"
             ]
           }
         ]

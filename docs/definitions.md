@@ -23,6 +23,14 @@ An enterprise, vendor, or other downstream consumer that evaluates and applies O
 
 The tag identifying the original source state from which a patch line begins, using the `v<VERSION>+patch.baseline` scheme.
 
+## Remediation set
+
+An immutable, versioned set of exact artifact versions and associated remediation evidence, with a supported adoption procedure and declared dependency scope under [REL-009]({{ site.baseurl }}/standards/rel-009-line-release-and-bom-propagation/). Its representation is defined by the applicable ecosystem profile.
+
+## Line
+
+In [REL-009-JAVA]({{ site.baseurl }}/standards/rel-009-java-line-release-and-bom-propagation/), the set of artifacts an upstream project releases together under one version: a BOM and the artifacts it manages at its own version, or a BOM-less set that downstream BOMs version through one property. A line is the unit a patch releases, and every supported BOM that pins it releases again to pin the new version.
+
 ## Approved producer
 
 A producer approved by the standards group or other agreed OSERA governance process to publish official OSERA artifacts for a named standards pack.
