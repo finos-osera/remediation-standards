@@ -7,7 +7,8 @@
     "title": "Patch Version Naming",
     "summary": "Patched releases use package-ecosystem-appropriate version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.",
     "extended-by": [
-      "REL-003-JAVA"
+      "REL-003-JAVA",
+      "REL-003-JAVASCRIPT"
     ],
     "doc-status": "Ratified",
     "standard-version": "0.1.0",

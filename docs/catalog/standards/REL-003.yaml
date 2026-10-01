@@ -8,6 +8,7 @@ standard:
     that optimize recipient tooling outcomes before choosing a concrete syntax.
   extended-by:
   - REL-003-JAVA
+  - REL-003-JAVASCRIPT
   doc-status: Ratified
   standard-version: 0.1.0
   candidate-pack: OSERA-SP-0.1.0 ratified
