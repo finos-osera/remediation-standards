@@ -57,3 +57,9 @@ To become a voting participant, please follow the enrollment process described a
 ## License
 
 This project uses the **Community Specification License 1.0** for its specifications and **Apache License v2** for the underlying source code; you can read more in the [LICENSE](LICENSE) file.
+
+## Ratified release archives
+
+Working standards remain in `docs/_standards/`. Prepared review snapshots live in `release-candidates/`; confirmed immutable payloads live in `releases/`. Build the complete site with `python3 tools/build_site.py` after installing the gems in `docs/`.
+
+See the [publishing playbook](docs/release-playbook.md) for preparation, baseline approval, promotion, repository tags, GitHub Releases and recovery. The included 0.1.0 snapshot is a historical baseline candidate, not an official release tag.

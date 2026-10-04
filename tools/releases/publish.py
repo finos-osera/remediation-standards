@@ -3,9 +3,7 @@
 import argparse
 import json
 import subprocess
-import tempfile
-from pathlib import Path
-from release import ROOT, REPO, SITE, digest, pack_id, run, validate
+from release import ROOT, SITE, digest, pack_id, run, validate, validate_approval
 
 
 def api(path, method='GET', body=None, missing=False):
@@ -55,9 +53,32 @@ def verify_assets(repo, release, paths, allow_missing=False):
     return set(expected) - set(assets)
 
 
+
+def find_release(repo, id_):
+    # The tag endpoint returns published releases only. List releases with the
+    # write-capable credential to recover an interrupted draft publication.
+    published = api(f'repos/{repo}/releases/tags/{id_}', missing=True)
+    if published:
+        return published
+    page = 1
+    while True:
+        releases = api(f'repos/{repo}/releases?per_page=100&page={page}')
+        matches = [item for item in releases if item['tag_name'] == id_]
+        if len(matches) > 1:
+            raise ValueError('Multiple draft releases for the same tag; inspect before publishing')
+        if matches:
+            return matches[0]
+        if len(releases) < 100:
+            return None
+        page += 1
+
+
 def publish(args):
     id_ = pack_id(args.pack)
     repo = args.repo
+    import re
+    if not re.fullmatch(r'[a-f0-9]{40}', args.commit):
+        raise ValueError('Publication requires the full reviewed commit SHA, not a moving ref')
     commit = run('git', 'rev-parse', '--verify', args.commit + '^{commit}')
     if commit != run('git', 'rev-parse', 'HEAD'):
         raise ValueError('Check out the exact publication commit before publishing')
@@ -69,11 +90,7 @@ def publish(args):
     root = ROOT / 'releases' / id_
     manifest = validate(root)
     approval = json.loads((ROOT / 'release-approvals' / f'{id_}.json').read_text())
-    if (approval.get('baseline_confirmed') is not True or approval.get('pack') != id_
-            or approval.get('source_commit') != manifest['source_commit']
-            or approval.get('payload_sha256') != digest(root / 'SHA256SUMS')
-            or not approval.get('approved_by') or not approval.get('approval_url')):
-        raise ValueError('Missing approval for this exact source and payload')
+    validate_approval(root, manifest, approval)
     controls(repo)
     if not args.publish:
         print('Publication preflight passed; no remote changes. Add --publish to stamp the reviewed release.')
@@ -89,7 +106,7 @@ def publish(args):
     else:
         tag = api(f'{prefix}/git/tags', 'POST', {'tag': id_, 'message': f'{id_}\nApproved payload: {approval["payload_sha256"]}\nDecision: {approval["approval_url"]}', 'object': commit, 'type': 'commit'})
         api(f'{prefix}/git/refs', 'POST', {'ref': f'refs/tags/{id_}', 'sha': tag['sha']})
-    release = api(f'{prefix}/releases/tags/{id_}', missing=True)
+    release = find_release(repo, id_)
     paths = [root / f'{id_}.zip', root / f'{id_}.zip.sha256', root / 'SHA256SUMS', root / 'manifest.json']
     notes = (f'Ratified standards pack {id_}.\n\n'
              f'Permanent archive: {SITE}/releases/{id_}/\n\n'

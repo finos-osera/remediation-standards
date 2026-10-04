@@ -13,3 +13,6 @@
 # Keep snapshot URLs and bytes intact; no HTML/CSS/JS rewriting or pretty URLs.
 [build.processing]
   skip_processing = true
+
+[build.processing.html]
+  pretty_urls = false

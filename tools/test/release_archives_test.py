@@ -173,6 +173,12 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(publish.verify_assets('example/repo', value, [asset]), set())
 
 
+    def test_interrupted_draft_release_is_found_on_retry(self):
+        draft = {'tag_name': 'OSERA-SP-0.1.0', 'draft': True, 'id': 42}
+        with patch.object(publish, 'api', side_effect=[None, [draft]]) as remote:
+            self.assertEqual(publish.find_release('example/repo', 'OSERA-SP-0.1.0'), draft)
+            self.assertIn('page=1', remote.call_args.args[0])
+
     def test_external_assets_rejected(self):
         (self.candidate / 'index.html').write_text('<img src="https://example.test/live.png">')
         with self.assertRaisesRegex(ValueError, 'not self-contained'):

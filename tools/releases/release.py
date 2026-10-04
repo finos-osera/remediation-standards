@@ -353,17 +353,30 @@ def protect(base, root=ROOT):
             raise ValueError(f'Existing release/approval is immutable: {name}')
 
 
+
+def validate_approval(root, manifest, approval):
+    required = {'pack': manifest['id'], 'payload_sha256': digest(root / 'SHA256SUMS'),
+                'source_commit': manifest['source_commit'], 'baseline_confirmed': True}
+    if (any(approval.get(k) != v for k, v in required.items())
+            or not isinstance(approval.get('approval_url'), str)
+            or not approval['approval_url'].startswith('https://')
+            or not isinstance(approval.get('approved_by'), list)
+            or not approval['approved_by']
+            or not all(isinstance(name, str) and name.strip() for name in approval['approved_by'])):
+        raise ValueError('Approval must confirm the exact payload, source, decision URL and baseline')
+    if manifest['source_pack_status'] != 'Ratified':
+        raise ValueError('Cannot promote an unratified source pack')
+    for standard in manifest['standards'].values():
+        if {'included_standards', 'advisory_standards'} & set(standard['roles']) and not standard['ratified']:
+            raise ValueError('Required/advisory standards must have ratified source metadata before publication')
+
+
 def promote(args):
     candidate = Path(args.candidate).resolve()
     manifest = validate(candidate)
     id_ = manifest['id']
     approval = json.loads(Path(args.approval).read_text())
-    required = {'pack': id_, 'payload_sha256': digest(candidate / 'SHA256SUMS'),
-                'source_commit': manifest['source_commit'], 'baseline_confirmed': True}
-    if any(approval.get(k) != v for k, v in required.items()) or not approval.get('approval_url') or not approval.get('approved_by'):
-        raise ValueError('Approval must confirm the exact payload, source, decision URL and baseline')
-    if manifest['source_pack_status'] != 'Ratified':
-        raise ValueError('Cannot promote an unratified source pack')
+    validate_approval(candidate, manifest, approval)
     output = ROOT / 'releases' / id_
     if output.exists():
         validate(output)

@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import sys
 sys.path.insert(0, str(Path(__file__).parent / 'releases'))
-from release import ROOT, REPO, digest, files, validate, write_json
+from release import ROOT, REPO, digest, files, validate, validate_approval, write_json
 
 
 def release_history(root=ROOT):
@@ -23,8 +23,7 @@ def release_history(root=ROOT):
             seen.add(id_)
             if kind == 'releases':
                 approval = json.loads((root / 'release-approvals' / f'{id_}.json').read_text())
-                if approval.get('payload_sha256') != digest(manifest_path.parent / 'SHA256SUMS') or approval.get('baseline_confirmed') is not True:
-                    raise ValueError(f'{id_}: missing matching approval')
+                validate_approval(manifest_path.parent, manifest, approval)
             entry = {k: manifest[k] for k in ('id', 'ratified_date', 'prepared_date', 'source_commit', 'decision', 'provenance')}
             entry.update(url=f'/{folder}/{id_}/', published=kind == 'releases',
                          tag_url=f'{REPO}/tree/{id_}', github_release=f'{REPO}/releases/tag/{id_}',

@@ -63,7 +63,7 @@ python3 tools/releases/release.py validate release-candidates/OSERA-SP-0.1.0
 python3 tools/build_site.py
 ```
 
-Open a PR; Netlify runs the same build. Review `/releases/`, the working standard's version history, the candidate under `/release-candidates/OSERA-SP-0.1.0/`, the ZIP, manifest and checksums. Extract the ZIP and open `index.html` locally.
+Open a PR; Netlify runs the same build. Netlify may inject its collaboration toolbar into preview HTML; the downloadable ZIP and manifest are the byte-verifiable review artifacts. The canonical GitHub Pages deployment serves the stored snapshot output. Review `/releases/`, the working standard's version history, the candidate under `/release-candidates/OSERA-SP-0.1.0/`, the ZIP, manifest and checksums. Extract the ZIP and open `index.html` locally.
 
 Reviewers must confirm the exact source, pack roles and effective checks, supporting schemas/registry, original ratification decision, and the SHA-256 of `SHA256SUMS` printed by preparation. Original ratification and approval of a reconstructed archive are separate facts. If any payload changes, its digest changes and approval must be renewed. Do not rebuild after approval.
 
