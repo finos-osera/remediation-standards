@@ -25,7 +25,7 @@
       "java_decision": "https://github.com/finos-osera/remediation-standards/issues/33"
     },
     "approved_producers": {
-      "registry": "docs/_data/approved_producers.yml",
+      "registry": "../../source/docs/_data/approved_producers.yml",
       "lifecycle_policy": "Producer registry updates that do not change standard text or check semantics may be handled as patch-level standards-pack updates."
     },
     "included_standards": [

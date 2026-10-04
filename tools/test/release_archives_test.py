@@ -1,6 +1,6 @@
 import argparse
-import copy
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -171,6 +171,68 @@ class ReleaseTests(unittest.TestCase):
                 publish.verify_assets('example/repo', value, [asset])
         with patch.object(publish.subprocess, 'check_output', return_value=asset.read_bytes()):
             self.assertEqual(publish.verify_assets('example/repo', value, [asset]), set())
+
+
+    def test_external_assets_rejected(self):
+        (self.candidate / 'index.html').write_text('<img src="https://example.test/live.png">')
+        with self.assertRaisesRegex(ValueError, 'not self-contained'):
+            release.check_links(self.candidate)
+
+    def test_published_release_retry_is_read_only_and_checks_tag(self):
+        official = fixture(self.root / 'releases/OSERA-SP-0.1.0')
+        release.write_json(self.root / 'release-approvals/OSERA-SP-0.1.0.json', approval(official))
+        commit = 'b' * 40
+        args = argparse.Namespace(pack='OSERA-SP-0.1.0', commit=commit, repo='example/repo', publish=True)
+        def git(*args, **kwargs):
+            if args[:2] == ('git', 'rev-parse'): return commit
+            return ''
+        calls = []
+        def remote(path, method='GET', body=None, missing=False):
+            calls.append(method)
+            if '/git/ref/tags/' in path: return {'object': {'type': 'tag', 'sha': 'c' * 40}}
+            if '/git/tags/' in path: return {'object': {'type': 'commit', 'sha': commit}}
+            return {'draft': False, 'immutable': True, 'assets': []}
+        with patch.object(publish, 'ROOT', self.root), patch.object(publish, 'run', git), patch.object(publish, 'controls'), patch.object(publish, 'api', remote), patch.object(publish, 'verify_assets') as assets:
+            publish.publish(args)
+            assets.assert_called_once()
+            self.assertEqual(set(calls), {'GET'})
+        def wrong_tag(path, **kwargs):
+            if '/git/ref/tags/' in path: return {'object': {'type': 'tag', 'sha': 'c' * 40}}
+            return {'object': {'type': 'commit', 'sha': 'd' * 40}}
+        with patch.object(publish, 'ROOT', self.root), patch.object(publish, 'run', git), patch.object(publish, 'controls'), patch.object(publish, 'api', wrong_tag):
+            with self.assertRaisesRegex(ValueError, 'never move'):
+                publish.publish(args)
+
+    def test_prepare_next_pack_from_live_templates(self):
+        # Exercise the real generator against a private fixture commit. This
+        # must work even after live pages acquire release-history navigation.
+        repo = self.root / 'next-pack-fixture'
+        repo.mkdir()
+        shutil.copytree(release.ROOT / 'docs', repo / 'docs',
+                        ignore=shutil.ignore_patterns('_site', '.jekyll-cache', '.bundle'))
+        shutil.copytree(release.ROOT / 'tools', repo / 'tools', ignore=shutil.ignore_patterns('__pycache__'))
+        if (release.ROOT / 'docs/.bundle').exists():
+            shutil.copytree(release.ROOT / 'docs/.bundle', repo / 'docs/.bundle')
+        code = """require 'yaml'; require 'date'; pth='docs/_data/standard_packs.yml'; packs=YAML.safe_load(File.read(pth),permitted_classes:[Date]); p=packs.first; p['id']='OSERA-SP-0.2.0'; all=Dir['docs/_standards/*.md'].map{|f| d=YAML.safe_load(File.read(f).split('---')[1],permitted_classes:[Date]); [d['standard_id'],d['standard-version']]}.to_h; %w[included_standards advisory_standards observe_standards deferred_standards].each{|k| Array(p[k]).each{|e|e['version']=all[e['id']]}}; File.write(pth,YAML.dump([p]));"""
+        subprocess.run(['ruby', '-e', code], cwd=repo, check=True)
+        for args in (['init'], ['add', 'docs'], ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.test', 'commit', '-m', 'Private fixture']):
+            subprocess.run(['git', *args], cwd=repo, check=True, capture_output=True)
+        sha = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
+        args = argparse.Namespace(pack='OSERA-SP-0.2.0', source=sha, decision='https://example.test/fixture', date='2026-10-04', provenance='Unpublished local test fixture', output=str(repo / 'snapshot'))
+        original_run = release.run
+        def fixture_run(*args, **kwargs):
+            kwargs.setdefault('cwd', repo)
+            return original_run(*args, **kwargs)
+        with patch.object(release, 'ROOT', repo), patch.object(release, 'run', fixture_run):
+            release.prepare(args)
+        manifest = release.validate(repo / 'snapshot')
+        self.assertEqual(manifest['id'], 'OSERA-SP-0.2.0')
+        page = (repo / 'snapshot/standards/rel-001-test-provenance/index.html').read_text()
+        self.assertNotIn('version-history', page)
+        self.assertIn('Preserved release snapshot', page)
+        self.assertIn('0.2.0', page)
+        pack_page = (repo / 'snapshot/standard-packs/index.html').read_text()
+        self.assertIn('OSERA-SP-0.2.0 pack definition', pack_page)
 
 
 if __name__ == '__main__':

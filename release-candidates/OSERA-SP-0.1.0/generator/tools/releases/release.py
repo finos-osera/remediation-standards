@@ -7,7 +7,6 @@ from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
-import posixpath
 import re
 import shutil
 import subprocess
@@ -84,7 +83,7 @@ def selected_metadata(data):
 class Links(HTMLParser):
     def __init__(self, text):
         super().__init__()
-        self.links, self.ids = [], set()
+        self.links, self.ids, self.assets = [], set(), []
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
@@ -94,6 +93,13 @@ class Links(HTMLParser):
         for name in ('href', 'src', 'poster'):
             if name in attrs:
                 self.links.append(attrs[name])
+                if name in ('src', 'poster') or (tag == 'link' and name == 'href' and attrs.get('rel') == 'stylesheet'):
+                    self.assets.append(attrs[name])
+        if 'srcset' in attrs:
+            for item in attrs['srcset'].split(','):
+                value = item.strip().split()[0]
+                self.links.append(value)
+                self.assets.append(value)
 
 
 def local_target(root, path, url):
@@ -112,8 +118,11 @@ def local_target(root, path, url):
 
 def check_links(root):
     root = root.resolve()
-    pages = {p.resolve(): Links(p.read_text()) for p in root.rglob('*.html') if 'source' not in p.relative_to(root).parts}
+    pages = {p.resolve(): Links(p.read_text()) for p in root.rglob('*.html') if 'source' not in p.relative_to(root).parts and 'generator' not in p.relative_to(root).parts}
     for path, page in pages.items():
+        for asset in page.assets:
+            if urlsplit(asset).netloc or urlsplit(asset).scheme not in ('', 'data'):
+                raise ValueError(f'External asset is not self-contained: {asset}')
         for url in page.links:
             target, anchor = local_target(root, path, url)
             if target is None:
@@ -135,6 +144,8 @@ def portable_html(root):
         def replace(match):
             name, quote, value = match.groups()
             parsed = urlsplit(html.unescape(value))
+            if parsed.path == '/releases/' and not parsed.netloc and not parsed.scheme:
+                return f'{name}={quote}{SITE}/releases/{quote}'
             if value == SITE + '/releases/':
                 return match.group(0)
             if parsed.netloc == 'standards.osera.finos.org':
@@ -258,14 +269,45 @@ def prepare(args):
         source_docs = src / 'docs'
         for name in ('releases', 'release-candidates'):
             shutil.rmtree(source_docs / name, ignore_errors=True)
+        for name in ('release-playbook.md', 'release-baseline.md'):
+            (source_docs / name).unlink(missing_ok=True)
+        # Render just this pack, including when the source knows older packs.
+        # JSON is also valid YAML; this file retains the historical template API.
+        write_json(source_docs / '_data/standard_packs.yml', [data['pack']])
+        write_json(source_docs / '_data/release_history.json', {'packs': {id_: {
+            'published': True, 'standard_urls': {
+                sid: '/' + item['url'] for sid, item in selected.items()}}}})
+        standard_layout = source_docs / '_layouts/standard.html'
+        standard_layout.write_text(standard_layout.read_text().replace(
+            '{% include version-history.html %}', '').replace(' · see version history', ''))
         # Frozen banner is accurate both before and after publication; status lives
         # in the mutable register, so promotion never changes reviewed bytes.
         layout = source_docs / '_layouts/default.html'
         banner = f'''<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>{id_} · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="{SITE}/releases/">release register</a>. It does not follow working-draft edits.</p><a href="/">Snapshot contents and downloads</a> · <a href="{REPO}/commit/{source}">Source revision</a></aside>'''
-        layout.write_text(layout.read_text().replace('<body>', '<body>\n' + banner))
+        layout_text = re.sub(r'<nav\b.*?</nav>', '<nav aria-label="Snapshot navigation"><a href="/#standards">Snapshot standards</a><a href="/standard-packs/">Pack</a><a href="/fitness/">Fitness</a><a href="/examples/">Examples</a><a href="' + SITE + '/releases/">Release register</a></nav>', layout.read_text(), flags=re.S)
+        layout.write_text(layout_text.replace('<body>', '<body>\n' + banner))
         rows = '\n'.join(f"| [{id2}]({s['url']}) | {s['version']} | {', '.join(s['roles'])} |" for id2, s in selected.items())
         landing = f'''---\ntitle: {id_} release snapshot\nlayout: page\n---\n\nThis is a self-contained snapshot prepared from an exact repository revision. **Publication status is recorded in the [release register]({SITE}/releases/).**\n\nRatification recorded in source: **{manifest['ratified_date']}**. Archive prepared: **{args.date}**.\n\n[Decision record]({args.decision}) · [Source revision]({REPO}/commit/{source})\n\n## Download and inspect\n\n[Download complete ZIP]({id_}.zip) · [ZIP checksum]({id_}.zip.sha256) · [File checksums](SHA256SUMS) · [Release manifest](manifest.json) · [Resolved definitions](resolved.json)\n\nOpen `index.html` after extracting the ZIP. All local pages and assets are bundled. External references still require a connection.\n\n<h2 id="standards">Standards in this snapshot</h2>\n\n| Standard | Version | Pack membership |\n| --- | --- | --- |\n{rows}\n\n## Supporting material\n\n[Pack details](standard-packs/index.html) · [Fitness guidance](fitness/index.html) · [Lifecycle](lifecycle/index.html) · [Examples](examples/index.html) · [JSON catalog](catalog/osera-standards.json) · [YAML catalog](catalog/osera-standards.yaml)\n\nThe complete original documentation source, including schemas and registries, is bundled under `source/docs/`. Pack membership determines which standards are required, advisory, observed or deferred; inclusion in this archive does not ratify every supporting page.\n\n## Provenance\n\n{args.provenance}\n'''
         (source_docs / 'index.md').write_text(landing)
+        pack_page = f"---\ntitle: {id_} pack definition\npermalink: /standard-packs/\n---\n\n{data['pack'].get('summary', '')}\n\n[Decision record]({args.decision}) · [Complete resolved pack and definitions](/resolved.json)\n\n"
+        for section in SECTIONS:
+            entries = data['pack'].get(section, [])
+            pack_page += f"## {section.replace('_', ' ').capitalize()}\n\n"
+            if not entries:
+                pack_page += "None.\n\n"
+                continue
+            pack_page += "| Standard | Version | Role | Selected checks | Rationale |\n| --- | --- | --- | --- | --- |\n"
+            for entry in entries:
+                standard = selected[entry['id']]
+                pack_page += f"| [{entry['id']}](/" + standard['url'] + f") | {entry['version']} | {entry.get('role', '')} | {', '.join(entry.get('checks', [])) or 'See role; no selected gate checks'} | {entry.get('rationale', '').replace('|', '&#124;')} |\n"
+            pack_page += "\n"
+        pack_page += "## Supporting pack metadata\n\nThe recorded metadata below is preserved from the selected source. Source paths refer to the bundled original tree under `source/`.\n\n"
+        supporting = {key: value for key, value in data['pack'].items() if key not in SECTIONS}
+        pack_page += "```json\n" + json.dumps(supporting, indent=2) + "\n```\n"
+        registry = data['pack'].get('approved_producers', {}).get('registry')
+        if registry:
+            pack_page += f"\n[Read the preserved approved-producer registry](/source/{registry}).\n"
+        (source_docs / 'standard-packs/index.md').write_text(pack_page)
         env = dict(os.environ, BUNDLE_GEMFILE=str(ROOT / 'docs/Gemfile'))
         run('bundle', 'exec', 'jekyll', 'build', '--source', str(source_docs), '--destination', str(dest), '--baseurl', '', cwd=ROOT / 'docs', env=env)
         # Jekyll destination cleanup removes non-site files: restore review metadata.
@@ -286,6 +328,7 @@ def prepare(args):
             if path.suffix not in ('.json', '.yaml'):
                 continue
             text = path.read_text()
+            text = text.replace('docs/_data/approved_producers.yml', os.path.relpath(dest / 'source/docs/_data/approved_producers.yml', path.parent))
             text = re.sub(r'/standards/([a-z0-9-]+)/', lambda m: os.path.relpath(dest / 'standards' / m[1] / 'index.html', path.parent), text)
             path.write_text(text)
         portable_html(dest)
