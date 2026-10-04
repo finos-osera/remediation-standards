@@ -17,6 +17,18 @@ layout: default
         <img src="{{ site.baseurl }}/assets/finos-labs-badge.svg" alt="FINOS Labs">
       </a>
     </div>
+    {% assign latest_release = site.data.release_history.latest %}
+    {% if latest_release %}
+    <aside class="pack-panel" aria-label="Latest official release">
+      <div class="panel-header"><span>Latest official release</span><strong>{{ latest_release.ratified_date }}</strong></div>
+      <h2>{{ latest_release.id }}</h2>
+      <p>A preserved set of ratified standard versions, complete with source, catalogs and downloadable artifacts.</p>
+      <div class="pack-actions">
+        <a class="button primary" href="{{ latest_release.url }}">Read latest official release</a>
+        <a class="button secondary" href="{{ site.baseurl }}/releases/">All releases &amp; history</a>
+      </div>
+    </aside>
+    {% else %}
     <aside class="pack-panel" aria-label="Ratified standards pack">
       <div class="panel-header">
         <span>Ratified standards pack</span>
@@ -31,6 +43,7 @@ layout: default
         <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
       </div>
     </aside>
+    {% endif %}
   </div>
 </section>
 

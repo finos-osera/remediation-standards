@@ -63,7 +63,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 
 {{ pack.approved_producers.lifecycle_policy }}
 
-### Required standards in v0.1.0
+### Required standards in {{ pack.id }}
 
 <table>
   <thead>
@@ -88,7 +88,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
   </tbody>
 </table>
 
-### Advisory in v0.1.0
+### Advisory in {{ pack.id }}
 
 {% if pack.advisory_standards and pack.advisory_standards.size > 0 %}
 <table>
@@ -115,13 +115,13 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 </table>
 {% else %}
 
-This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
+This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for later packs.
 
 {% endif %}
 
-### Observe mode for v0.2.0
+### Observe-mode standards
 
-Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. Their results do not block OSERA-SP-0.1.0 alignment. Promotion requires inclusion in a later ratified pack.
+Observe-mode checks collect evidence and implementation feedback. Their results do not block {{ pack.id }} alignment. Promotion requires inclusion in a later ratified pack.
 
 <table>
   <thead>
