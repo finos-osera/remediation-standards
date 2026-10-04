@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repository Naming | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / FORK-001</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">FORK-001</span>
+      <h1>Repository Naming</h1>
+      <p>Patched-source repositories use a consistent `patch-<reponame>` name in the finos-osera GitHub organization.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required check</dd></div>
+      <div><dt>Category</dt><dd>Fork Management</dd></div>
+      <div><dt>Applies to</dt><dd>Patch providers, OSERA maintainers</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/FORK-001.yaml">YAML</a> / <a href="../../catalog/standards/FORK-001.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">FORK-001.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Patched-source repositories must live in github.com/finos-osera unless the working group approves an exception.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>FORK-001.CHECK-001</strong><br>
+                    Repository is in the finos-osera organization
+                  </td>
+                  <td>blocking</td>
+                  <td>repository_url</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">FORK-001.REQ-002</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Patched-source repositories must use the prefix patch- followed by the upstream repository or artifact name.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>FORK-001.CHECK-002</strong><br>
+                    Repository name uses the patch prefix
+                  </td>
+                  <td>blocking</td>
+                  <td>repository_name</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Patched-source repositories MUST live in the <code class="language-plaintext highlighter-rouge">github.com/finos-osera</code> organization unless the working group approves an exception.</p>
+
+<p>Patched-source repositories MUST use the prefix <code class="language-plaintext highlighter-rouge">patch-</code> followed by the upstream repository or artifact name.</p>
+
+<p>The repository name SHOULD NOT include <code class="language-plaintext highlighter-rouge">osera</code> when the repository already lives in the <code class="language-plaintext highlighter-rouge">finos-osera</code> organization. OSERA identity SHOULD be carried by organization ownership, feed metadata, and release evidence instead of duplicating it in every fork name.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>The prefix distinguishes forked upstream projects from OSERA governance, tooling, and operations repositories.</p>
+
+<p>Because the repositories are public, the GitHub fork relationship with the upstream project SHOULD be preserved where possible.</p>
+
+<p>Avoiding <code class="language-plaintext highlighter-rouge">osera</code> inside each repository name keeps fork names short and leaves the upstream project name prominent. The <code class="language-plaintext highlighter-rouge">patch-</code> prefix is intended to be broad enough for backports, downstream-only security fixes, and future remediation workflows without implying that every OSERA patch is strictly a backpatch.</p>
+
+<p>Historical proof-of-concept repository names predate this standard and do not establish pack conformance.</p>
+
+<h2 id="evidence">Evidence</h2>
+
+<p>Consumers SHOULD be able to identify:</p>
+
+<ul>
+  <li>the OSERA fork URL;</li>
+  <li>the upstream project URL;</li>
+  <li>whether GitHub retains the fork relationship;</li>
+  <li>the artifact coordinates covered by the repository.</li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

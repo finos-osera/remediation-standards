@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standard Packs | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../index.html#standards">Standards</a>
+        <a href="index.html">Packs</a>
+        <a href="../lifecycle/index.html">Lifecycle</a>
+        <a href="../fitness/index.html">Fitness</a>
+        <a href="../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../examples/index.html">Examples</a>
+        <a href="../feeds/index.html">Feeds</a>
+        <a href="../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Standard Packs</div>
+  <h1>Standard Packs</h1>
+  <p>OSERA-SP-0.1.0 was <a href="https://github.com/finos-osera/remediation-standards/issues/12">ratified on <strong>Thursday, September 10, 2026</strong></a>. It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.</p>
+
+<p>Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard’s lifecycle status and pack membership separately.</p>
+
+<p>See the <a href="../lifecycle/index.html">standard lifecycle</a> for identifiers, versions, and pack maintenance.</p>
+
+<h2 id="release-history">Release history</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pack</th>
+      <th>Status</th>
+      <th>Proposed</th>
+      <th>Gate target</th>
+      <th>Ratified</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><a href="#osera-sp-0-1-0">OSERA-SP-0.1.0</a></td>
+      <td>Ratified</td>
+      <td>2026-08-27</td>
+      <td>2026-09-20</td>
+      <td><a href="https://github.com/finos-osera/remediation-standards/issues/12">2026-09-10</a></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<h2 id="osera-sp-0-1-0">OSERA-SP-0.1.0: OSERA Remediation Standards Pack 0.1.0</h2>
+
+<p>OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines the first set of standards that will gate OSERA patch releases, with seven additional standards in observe mode for OSERA-SP-0.2.0.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Status</td>
+      <td>Ratified</td>
+    </tr>
+    <tr>
+      <td>Proposed date</td>
+      <td>2026-08-27</td>
+    </tr>
+    <tr>
+      <td>Target gate date</td>
+      <td>2026-09-20</td>
+    </tr>
+    <tr>
+      <td>Ratification</td>
+      <td><a href="https://github.com/finos-osera/remediation-standards/issues/12">2026-09-10 — agenda</a></td>
+    </tr>
+    <tr>
+      <td>Machine-readable</td>
+      <td><a href="../catalog/packs/OSERA-SP-0.1.0.yaml">YAML</a> / <a href="../catalog/packs/OSERA-SP-0.1.0.json">JSON</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="release-metadata-posture">Release metadata posture</h3>
+
+<p><a href="../standards/rel-003-version-metadata/index.html">REL-003</a> defines the generic consumer outcome and default form where no concrete ecosystem profile exists. Java artifacts use <a href="../standards/rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a>. Source branches and baseline tags are defined separately by <a href="../standards/fork-002-patch-branches/index.html">FORK-002</a> and <a href="../standards/fork-003-baseline-tags/index.html">FORK-003</a>.</p>
+
+<p>The generic default form is <code class="language-plaintext highlighter-rouge">+osera-patch.NNN</code>, for example <code class="language-plaintext highlighter-rouge">5.3.39+osera-patch.001</code>, where no concrete ecosystem profile exists. Java artifacts follow the <a href="../standards/rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a> profile.</p>
+
+<p>Java in this pack adopts <a href="https://central.sonatype.org/policies/care-policy/">Maven CARE-style versioning</a> with <code class="language-plaintext highlighter-rouge">osera</code> in place of <code class="language-plaintext highlighter-rouge">care</code>, as <a href="https://github.com/finos-osera/remediation-standards/issues/33">agreed in #33</a>. The recorded non-OSGi example is <code class="language-plaintext highlighter-rouge">5.3.39.1-osera-00001</code>. Qualified bases use the CARE alternate-suffix approach; OSGi packaging must respect its three numeric components and optional qualifier. See <a href="../standards/rel-003-java-patch-version-naming/index.html#examples-by-packaging-scenario">REL-003-JAVA scenarios</a> for numeric, qualified, and OSGi examples. The generic SemVer default does not apply to Java artifacts.</p>
+
+<h3 id="approved-producers">Approved producers</h3>
+
+<p>The approved-producer registry is <code class="language-plaintext highlighter-rouge">docs/_data/approved_producers.yml</code>.</p>
+
+<p>Producer registry updates that do not change standard text or check semantics may be handled as patch-level standards-pack updates.</p>
+
+<h3 id="required-standards-in-v010">Required standards in v0.1.0</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Fitness role</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    <tr>
+      <td><a href="../standards/std-001-standards-as-code/index.html">STD-001</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>The standards group needs a machine-readable source format before ratifying a pack that acceptance gates can consume.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/fork-001-repository-naming/index.html">FORK-001</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model; new standardized repositories use patch-*.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/fork-002-patch-branches/index.html">FORK-002</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>Version-scoped patch branches are simple to create and necessary for multiple supported lines.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/fork-003-baseline-tags/index.html">FORK-003</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>Baseline tags are essential for source comparison and audit evidence; new standardized baseline tags use +patch.baseline.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/src-002-provenance-links/index.html">SRC-002</a></td>
+      <td>0.1.0</td>
+      <td>Required evidence</td>
+      <td>Provenance links are central to reviewability and auditability.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/src-003-license-headers/index.html">SRC-003</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>License-header consistency can be enforced where the local convention is determinable, with a not-applicable result when no convention exists.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-001-test-provenance/index.html">REL-001</a></td>
+      <td>0.1.0</td>
+      <td>Required evidence</td>
+      <td>Test provenance stays in scope for v0.1.0 as a published unit-test report artifact, while build provenance and signed source-to-binary proof move to REL-007 observe mode.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-002-bytecode-compatibility/index.html">REL-002</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>Runtime compatibility is a high-impact recipient concern and can be measured at publication time.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-003-version-metadata/index.html">REL-003</a></td>
+      <td>0.1.0</td>
+      <td>Required base requirement</td>
+      <td>Official signed artifacts should use package-ecosystem patch version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a></td>
+      <td>0.1.0</td>
+      <td>Required Java profile check</td>
+      <td>Java artifacts use the ratified CARE-style OSERA naming convention, with compatibility evidence for the relevant packaging, resolvers, dependency-update tools, and feeds.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-004-approved-producers/index.html">REL-004</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>The gate needs an approved-producer allow list so official artifacts come from a known participant.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-005-artifact-publication-hygiene/index.html">REL-005</a></td>
+      <td>0.1.0</td>
+      <td>Required check</td>
+      <td>Package metadata and checksum hygiene are practical for the September 20 gate and necessary for reliable consumption.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/feed-001-openvex-cyclonedx/index.html">FEED-001</a></td>
+      <td>0.1.0</td>
+      <td>Required evidence</td>
+      <td>Feeds are necessary for enterprise consumption, and the gate can verify exact purl coverage for official artifacts.</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<h3 id="advisory-in-v010">Advisory in v0.1.0</h3>
+
+<p>This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.</p>
+
+<h3 id="observe-mode-for-v020">Observe mode for v0.2.0</h3>
+
+<p>Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. Their results do not block OSERA-SP-0.1.0 alignment. Promotion requires inclusion in a later ratified pack.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Fitness role</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    <tr>
+      <td><a href="../standards/fork-004-open-source-patch-publication/index.html">FORK-004</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Public source, same-license release, and official-fork hosting are important to recipient trust, but exact evidence rules need v0.2.0 work.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/src-001-patch-basis/index.html">SRC-001</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Consumers need patch-basis classification, but the working group needs a controlled vocabulary and minimum wording before it can be enforced.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-006-patch-request-authorization/index.html">REL-006</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Patch request or backlog authorization is useful, but public/private sponsorship policy is not ready to enforce.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-007-build-provenance-and-signed-attestation/index.html">REL-007</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance, test provenance, and publication hygiene.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/rel-008-build-security-scanning/index.html">REL-008</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Build-security scanning is important, but the working group needs evidence about practical scanner coverage across ecosystems before making it enforceable.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/evd-001-change-and-test-surface/index.html">EVD-001</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Recipient guidance is valuable for routing testing, but the expected format needs v0.2.0 refinement before it can become advisory or required.</td>
+    </tr>
+    
+    
+    <tr>
+      <td><a href="../standards/app-001-estate-application/index.html">APP-001</a></td>
+      <td>0.0.1</td>
+      <td>Observe-only check</td>
+      <td>Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for the first gate.</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

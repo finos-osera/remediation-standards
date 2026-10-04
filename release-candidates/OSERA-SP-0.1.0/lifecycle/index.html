@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standard Lifecycle | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../index.html#standards">Standards</a>
+        <a href="../standard-packs/index.html">Packs</a>
+        <a href="index.html">Lifecycle</a>
+        <a href="../fitness/index.html">Fitness</a>
+        <a href="../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../examples/index.html">Examples</a>
+        <a href="../feeds/index.html">Feeds</a>
+        <a href="../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Standard Lifecycle</div>
+  <h1>Standard Lifecycle</h1>
+  <p>This lifecycle defines how OSERA remediation standards and standards packs move from early proposal to ratified material. It governs versioned publication and maintenance of the standards packs.</p>
+
+<p>The standards group should approve this lifecycle before, or at the same time as, the first ratified standards pack.</p>
+
+<h2 id="identifiers-and-versions">Identifiers and versions</h2>
+
+<p>Standards use the existing OSERA identifier form:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;CATEGORY&gt;-&lt;NNN&gt;
+</code></pre></div></div>
+
+<p>Examples include <code class="language-plaintext highlighter-rouge">FORK-001</code>, <code class="language-plaintext highlighter-rouge">REL-003</code>, and <code class="language-plaintext highlighter-rouge">FORK-004</code>.</p>
+
+<p>The identifier is stable for the life of the standard. A standard also carries a separate <code class="language-plaintext highlighter-rouge">standard-version</code> value. The version changes when the standard text changes; the identifier does not.</p>
+
+<p>Use a new version of the same identifier when the standard is still about the same requirement area:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FORK-004 v0.0.1  Pre-Draft
+FORK-004 v0.1.0  Draft
+FORK-004 v1.0.0  Ratified
+FORK-004 v1.1.0  Revised
+</code></pre></div></div>
+
+<p>Do not create identifiers such as <code class="language-plaintext highlighter-rouge">FORK-004.1</code>. The dotted value belongs in <code class="language-plaintext highlighter-rouge">standard-version</code>, not in <code class="language-plaintext highlighter-rouge">standard_id</code>.</p>
+
+<p>Package-ecosystem or package-manager profiles may extend a base standard by adding an uppercase suffix after the base identifier:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REL-003-JAVA
+REL-003-PYTHON
+REL-003-JS
+</code></pre></div></div>
+
+<p>Profiles use <code class="language-plaintext highlighter-rouge">-PROFILE</code> rather than <code class="language-plaintext highlighter-rouge">.PROFILE</code> because requirement and check IDs already use dots, for example <code class="language-plaintext highlighter-rouge">REL-003-JAVA.REQ-001</code> and <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code>.</p>
+
+<h2 id="profile-extension-and-overrides">Profile extension and overrides</h2>
+
+<p>An extended standard inherits the checks of its parent standard unless it overrides them.</p>
+
+<p>The check number is the override key:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code> overrides <code class="language-plaintext highlighter-rouge">REL-003.CHECK-001</code> for the Java profile;</li>
+  <li><code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-002</code> overrides <code class="language-plaintext highlighter-rouge">REL-003.CHECK-002</code> for the Java profile;</li>
+  <li><code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-003</code> adds a new Java-specific check.</li>
+</ul>
+
+<p>Requirement numbers follow the same convention. A profile requirement with the same number specializes the parent requirement for that profile. A new number adds a profile-specific requirement.</p>
+
+<p>Fitness results for a concrete profile should report the effective check set: inherited parent checks that were not overridden, profile checks that override same-number parent checks, and any additional profile-specific checks.</p>
+
+<p>Profile pages expose a generated <strong>Relationship to parent</strong> section for requirements and checks. It identifies inherited items, same-number overrides, and added items before the profile’s own requirements. Each override carries an <code class="language-plaintext highlighter-rouge">override-explanation</code> describing the specialization and preserved parent obligations. The <a href="../standards/std-001-standards-as-code/index.html#explicit-parent-relationships">standards-as-code format</a> defines the source fields, generated catalog mapping, and validation rules.</p>
+
+<h2 id="when-to-create-a-new-standard-id">When to create a new standard ID</h2>
+
+<p>Create a new standard ID when the proposed material defines a distinct requirement area that implementers could satisfy independently.</p>
+
+<p>Use a new ID when:</p>
+
+<ul>
+  <li>the requirement has a different category or compliance surface;</li>
+  <li>the change would be clearer as a separate checklist item in a fitness result;</li>
+  <li>the old and new requirements may be included in different standards packs;</li>
+  <li>the new requirement can be deferred while the existing standard remains stable.</li>
+</ul>
+
+<p>Do not create a new ID when:</p>
+
+<ul>
+  <li>the change clarifies wording without changing the requirement area;</li>
+  <li>the change adds examples, rationale, or evidence fields to the same requirement;</li>
+  <li>the change tightens or relaxes the same requirement after implementation feedback;</li>
+  <li>the change corrects an error in the current text.</li>
+</ul>
+
+<p>When a new standard replaces an older one, keep the older standard addressable and mark the relationship with <code class="language-plaintext highlighter-rouge">supersedes</code> and <code class="language-plaintext highlighter-rouge">superseded-by</code> metadata.</p>
+
+<h2 id="standard-statuses">Standard statuses</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pre-Draft</td>
+      <td>Early proposal or discussion item. It may be useful direction but is not ready to become a required alignment check.</td>
+    </tr>
+    <tr>
+      <td>Draft</td>
+      <td>Written for working-group review and implementation feedback. Draft standards may be included in a candidate standards pack.</td>
+    </tr>
+    <tr>
+      <td>Ratification-Candidate</td>
+      <td>The working group is considering a specific version for approval. Changes should be limited to review feedback and explicit meeting decisions.</td>
+    </tr>
+    <tr>
+      <td>Ratified</td>
+      <td>Approved by the standards group for use in an OSERA standards pack or as standalone guidance.</td>
+    </tr>
+    <tr>
+      <td>Superseded</td>
+      <td>Replaced by a later version or another standard. The old text remains available for historical pack references.</td>
+    </tr>
+    <tr>
+      <td>Withdrawn</td>
+      <td>Removed from the active standards path without replacement.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="standards-packs">Standards packs</h2>
+
+<p>A standards pack records a named set of standard versions. The pack, not an individual standard, is what implementers target for alignment.</p>
+
+<p>Standards packs use the existing OSERA pack naming form:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OSERA-SP-&lt;VERSION&gt;
+</code></pre></div></div>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code> can include <code class="language-plaintext highlighter-rouge">FORK-001 v0.1.0</code>, <code class="language-plaintext highlighter-rouge">REL-003 v0.1.0</code>, and other specific standard versions.</p>
+
+<p>Ratifying a pack freezes the list of included standard versions for that pack. If <code class="language-plaintext highlighter-rouge">FORK-001</code> later changes to <code class="language-plaintext highlighter-rouge">v0.2.0</code>, <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code> still refers to <code class="language-plaintext highlighter-rouge">FORK-001 v0.1.0</code>. A later pack can include the revised version.</p>
+
+<h2 id="pack-patch-versions-and-approved-producers">Pack patch versions and approved producers</h2>
+
+<p>Standards-pack versions use SemVer.</p>
+
+<p>Patch-level pack versions MAY update administrative pack metadata, such as an approved-producer registry, when the standard text, standard versions, check IDs, and check semantics do not change.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.1</code> MAY update the approved-producer registry for the same gate rules as <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code>.</p>
+
+<p>Minor or major pack versions SHOULD be used when standards text, blocking check semantics, or included standard versions change.</p>
+
+<h2 id="when-to-create-a-standards-pack">When to create a standards pack</h2>
+
+<p>Create a standards pack when the working group wants implementers to target a coherent set of requirements together.</p>
+
+<p>Common reasons include:</p>
+
+<ul>
+  <li>establishing an initial acceptance gate;</li>
+  <li>publishing a new group of requirements after implementation feedback;</li>
+  <li>replacing a prior pack with revised standard versions;</li>
+  <li>separating required checks from advisory or deferred material.</li>
+</ul>
+
+<p>A pack should identify:</p>
+
+<ul>
+  <li>pack ID and status;</li>
+  <li>proposed date and ratified date, if any;</li>
+  <li>target decision date for candidate packs;</li>
+  <li>exact included standard IDs and versions;</li>
+  <li>deferred standards and rationale;</li>
+  <li>issue or meeting record for the decision;</li>
+  <li>expected fitness-function checks.</li>
+  <li>approved-producer registry or binding, if official signed artifacts depend on producer approval.</li>
+</ul>
+
+<h2 id="ratification-effect">Ratification effect</h2>
+
+<p>Ratifying a standards pack does not automatically ratify future edits to its included standards.</p>
+
+<p>Ratification means the standards group has approved a specific pack record and the exact standard versions named in that record. Later revisions need their own review and inclusion in a later pack.</p>
+
+<h2 id="fitness-function-relationship">Fitness function relationship</h2>
+
+<p>The fitness function should report the standards pack tested, the exact standard versions tested, and the result for each check.</p>
+
+<p>For v0.1.0, repositories should claim standards-pack alignment only against a named ratified pack. Certification language should wait until the working group approves a certification or accreditation process.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

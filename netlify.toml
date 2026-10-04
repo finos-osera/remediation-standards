@@ -1,6 +1,6 @@
 [build]
   base = "docs"
-  command = "bundle exec jekyll build"
+  command = "python3 ../tools/build_site.py"
   publish = "_site"
 
 [build.environment]

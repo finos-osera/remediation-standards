@@ -1,0 +1,37 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 510
+  standard_id: APP-001
+  title: Estate-Wide Patch Application
+  summary: Patch feeds should support automated discovery and application across dependency
+    estates.
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: OSERA-SP-0.2.0 observe
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Observe-only check
+  type: APP
+  category: Patch Application
+  applies-to:
+  - Enterprise recipients
+  - Tooling providers
+  - Patch providers
+  requirements:
+  - id: APP-001.REQ-001
+    level: SHOULD
+    text: Patch feeds and metadata should support estate-wide discovery and application
+      across dependency estates.
+    checkability: partially-automated
+    checks:
+    - id: APP-001.CHECK-001
+      title: Estate-wide discovery metadata is present
+      type: feed-metadata
+      severity: observe
+      implementation: osera-fitness.app001.estate_discovery_metadata
+      evidence:
+      - feed_entries
+      - dependency_coordinates
+  source_path: docs/_standards/app-001-estate-application.md
+  url: "/standards/app-001-estate-application/"

@@ -1,0 +1,8 @@
+{
+  "name": "Immutable standards-pack tags",
+  "target": "tag",
+  "enforcement": "active",
+  "bypass_actors": [],
+  "conditions": {"ref_name": {"include": ["refs/tags/OSERA-SP-*"], "exclude": []}},
+  "rules": [{"type": "update"}, {"type": "deletion"}]
+}

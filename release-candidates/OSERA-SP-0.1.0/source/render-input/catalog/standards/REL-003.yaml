@@ -1,0 +1,60 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 230
+  standard_id: REL-003
+  title: Patch Version Naming
+  summary: Patched releases use package-ecosystem-appropriate version naming profiles
+    that optimize recipient tooling outcomes before choosing a concrete syntax.
+  extended-by:
+  - REL-003-JAVA
+  doc-status: Ratified
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.1.0 ratified
+  ratified-in: OSERA-SP-0.1.0
+  ratified-date: '2026-09-10'
+  fitness-role: Required check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Package patch providers
+  - Enterprise recipients
+  - Package ecosystem profile authors
+  requirements:
+  - id: REL-003.REQ-001
+    level: MUST
+    text: Official OSERA patched releases must use the applicable package-ecosystem
+      patch version naming profile, or the default SemVer 2.0-compatible OSERA form
+      where no concrete profile exists, so supported package resolver, dependency
+      update, repository manager, SCA, feed, and policy tooling can identify the patched
+      artifact as the latest applicable remediation on the same upstream version line.
+    checkability: partially-automated
+    checks:
+    - id: REL-003.CHECK-001
+      title: Applicable patch version naming profile is selected
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.remediation_identifier
+      evidence:
+      - release_tag
+      - artifact_version
+      - applicable_profile
+      - ecosystem_profile
+      - resolver_test_result
+  - id: REL-003.REQ-002
+    level: MUST
+    text: Release tags, artifact versions, vulnerability feeds, and release evidence
+      must carry the same patched-release identifier.
+    checkability: automated
+    checks:
+    - id: REL-003.CHECK-002
+      title: Release identifier is consistent across source, artifact, and feeds
+      type: release
+      severity: blocking
+      implementation: osera-fitness.rel003.identifier_consistency
+      evidence:
+      - release_tag
+      - artifact_version
+      - feed_purl
+  source_path: docs/_standards/rel-003-version-metadata.md
+  url: "/standards/rel-003-version-metadata/"

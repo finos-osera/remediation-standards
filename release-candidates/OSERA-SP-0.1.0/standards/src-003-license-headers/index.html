@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>License Headers for New Files | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / SRC-003</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">SRC-003</span>
+      <h1>License Headers for New Files</h1>
+      <p>New source or test files match the prevailing license format of the surrounding project.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required check</dd></div>
+      <div><dt>Category</dt><dd>Source Changes</dd></div>
+      <div><dt>Applies to</dt><dd>Patch providers</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/SRC-003.yaml">YAML</a> / <a href="../../catalog/standards/SRC-003.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">SRC-003.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>New source or test files added by a patch must follow the prevailing license-header convention of the surrounding project.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>SRC-003.CHECK-001</strong><br>
+                    New files use the local license-header convention
+                  </td>
+                  <td>blocking</td>
+                  <td>new_files, nearest_same_type_file, license_header_check, not_applicable_rationale</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Patch providers MUST apply the repository’s prevailing license header format to net new files added by a patch when the local convention is determinable.</p>
+
+<p>When the surrounding project uses different headers for source and test files, providers SHOULD follow the local file-family convention.</p>
+
+<p>For the SP-0.1.0 gate, the check SHOULD compare a new file against the nearest existing file of the same type in the same module. The comparison SHOULD ignore copyright years and whitespace-only differences.</p>
+
+<p>The result SHOULD be <code class="language-plaintext highlighter-rouge">not-applicable</code> when the module has no determinable license-header convention.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Most fixes modify pre-existing source files that already carry license headers. Test files are often the new files added by a patch, so license consistency should be explicit.</p>
+
+<p>The working group expects this standard to be enforced where the surrounding project convention is determinable. The fail-open rule keeps the SP-0.1.0 gate focused on clear cases while allowing <code class="language-plaintext highlighter-rouge">not-applicable</code> where no local convention exists.</p>
+
+<h2 id="evidence">Evidence</h2>
+
+<p>Review evidence SHOULD include a license-header check for new files added in the patch commit set, the nearest same-type file used for comparison, the local convention used for comparison, and any not-applicable rationale.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

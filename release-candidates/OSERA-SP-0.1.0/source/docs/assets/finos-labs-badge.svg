@@ -1,0 +1,30 @@
+<svg height="20" width="122" xmlns="http://www.w3.org/2000/svg">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect fill="#fff" height="20" rx="3" width="122"/>
+  </mask>
+  <g mask="url(#a)">
+    <path d="M0 0h55v20H0z" fill="#555"/>
+    <path d="M55 0h67v20H55z" fill="#0086bf"/>
+    <path d="M0 0h122v20H0z" fill="url(#b)"/>
+  </g>
+  <clipPath id="Clip_1">
+    <path d="M2.015,1.967 L17.893,1.967 L17.893,18.434 L2.015,18.434 z"/>
+  </clipPath>
+  <g id="Logo">
+    <path d="M12.577,1.429 L12.577,5.043 L3.487,7.953 L3.487,4.349 L12.568,1.432 z" fill="#FFFFFF" id="path14"/>
+    <path d="M3.487,10.231 L3.487,16.626 L7.021,16.626 L7.021,12.702 L12.577,10.925 L12.577,7.321 z" fill="#FFFFFF" id="path18"/>
+    <g id="g40" opacity="0.6">
+      <path d="M12.577,7.301 C12.577,7.297 12.575,7.293 12.572,7.29 C12.57,7.287 12.566,7.286 12.566,7.286 L9.068,6.166 L3.487,7.953 L3.487,7.972 C3.487,7.976 3.488,7.98 3.492,7.983 C3.494,7.986 3.498,7.987 3.498,7.987 L6.997,9.107 L12.577,7.321 z" fill="#FFFFFF" id="path36"/>
+    </g>
+  </g>
+  <g fill="#fff" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11" text-anchor="middle">
+    <text fill="#010101" fill-opacity=".3" x="34.5" y="15">FINOS</text>
+    <text x="34.5" y="14">FINOS</text>
+    <text fill="#010101" fill-opacity=".3" x="87.5" y="15">labs</text>
+    <text x="87.5" y="14">labs</text>
+  </g>
+</svg>

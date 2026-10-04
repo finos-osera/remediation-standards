@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="{{ site.baseurl }}/assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="{{ site.baseurl }}/">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="{{ site.baseurl }}/#standards">Standards</a>
+        <a href="{{ site.baseurl }}/standard-packs/">Packs</a>
+        <a href="{{ site.baseurl }}/lifecycle/">Lifecycle</a>
+        <a href="{{ site.baseurl }}/fitness/">Fitness</a>
+        <a href="{{ site.baseurl }}/catalog/osera-standards.yaml">Catalog</a>
+        <a href="{{ site.baseurl }}/examples/">Examples</a>
+        <a href="{{ site.baseurl }}/feeds/">Feeds</a>
+        <a href="{{ site.baseurl }}/governance/">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="{{ site.baseurl }}/assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ site.baseurl }}/site.js"></script>
+</body>
+</html>

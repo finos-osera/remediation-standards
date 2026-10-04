@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Governance | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../index.html#standards">Standards</a>
+        <a href="../standard-packs/index.html">Packs</a>
+        <a href="../lifecycle/index.html">Lifecycle</a>
+        <a href="../fitness/index.html">Fitness</a>
+        <a href="../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../examples/index.html">Examples</a>
+        <a href="../feeds/index.html">Feeds</a>
+        <a href="index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Governance</div>
+  <h1>Governance</h1>
+  <p>OSERA Remediation Standards follow the repository’s Community Specification governance and contribution process.</p>
+
+<p>OSERA-SP-0.1.0 was ratified on <strong>Thursday, September 10, 2026</strong>. It records the standard versions used by the September 20 alignment gate. Changes are reviewed through pull requests and incorporated into subsequent pack releases under the <a href="../lifecycle/index.html">standard lifecycle</a>.</p>
+
+<h2 id="versioning-model">Versioning model</h2>
+
+<p>Each standard carries its own version. A standards pack records the exact standard versions included in a candidate or ratified release set.</p>
+
+<p>This lets the working group revise one standard without implying that every other standard changed. For example, <code class="language-plaintext highlighter-rouge">REL-003</code> could move from <code class="language-plaintext highlighter-rouge">0.1.0</code> to <code class="language-plaintext highlighter-rouge">0.2.0</code> and then be included in a later standards pack while <code class="language-plaintext highlighter-rouge">FORK-001</code> remains unchanged.</p>
+
+<p>The <a href="../lifecycle/index.html">standard lifecycle</a> defines when to reuse an existing identifier, when to create a new identifier, and when to create a standards pack.</p>
+
+<h2 id="alignment-and-certification">Alignment and certification</h2>
+
+<p>OSERA-SP-0.1.0 defines standards-pack alignment. It does not establish provider certification.</p>
+
+<p>Repositories can publish a fitness result showing that they are aligned to a named standards pack. The working group should defer “certified” claims until it has agreed reviewer authority, evidence retention, revocation, dispute handling, and badge or trademark rules.</p>
+
+<h2 id="contribution-focus">Contribution focus</h2>
+
+<p>Useful contributions include:</p>
+
+<ul>
+  <li>evidence from additional backpatch providers;</li>
+  <li>recipient requirements from enterprise remediation teams;</li>
+  <li>feed examples for OpenVEX and CycloneDX;</li>
+  <li>examples of “what changed” and “what surface area should we test” metadata;</li>
+  <li>acceptance checks for bytecode level, baseline tags, provenance links, and version metadata.</li>
+</ul>
+
+<h2 id="licensing-note">Licensing note</h2>
+
+<p>The repository’s <a href="https://github.com/finos-osera/remediation-standards/blob/main/CONTRIBUTING.md">license and contribution documents</a> govern contributions and use of the material.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

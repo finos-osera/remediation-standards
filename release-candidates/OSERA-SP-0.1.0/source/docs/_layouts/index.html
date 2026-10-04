@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Open remediation standards for regulated consumption</h1>
+      <p class="hero-subtitle">The ratified OSERA-SP-0.1.0 standards pack for producing, publishing, and consuming open patches with provenance, release evidence, and vulnerability feeds.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#standards">Browse standards</a>
+        <a class="button secondary" href="{{ site.baseurl }}/standard-packs/">Review v0.1.0 pack</a>
+        <a class="button secondary" href="https://osera.finos.org" target="_blank" rel="noopener">About OSERA</a>
+        <a class="button secondary" href="{{ site.baseurl }}/governance/">Contribute</a>
+      </div>
+      <a class="labs-badge" href="https://community.finos.org/docs/governance/lifecycle-stages/labs" target="_blank" rel="noopener" aria-label="FINOS Labs lifecycle stage">
+        <img src="{{ site.baseurl }}/assets/finos-labs-badge.svg" alt="FINOS Labs">
+      </a>
+    </div>
+    <aside class="pack-panel" aria-label="Ratified standards pack">
+      <div class="panel-header">
+        <span>Ratified standards pack</span>
+        <strong>Sept. 10, 2026</strong>
+      </div>
+      <h2>OSERA-SP-0.1.0</h2>
+      <p>The first pack defines the standards that will gate OSERA patch releases, covering provenance, compatibility, release naming, and publication evidence.</p>
+      <p>Java releases adopt <a href="{{ site.baseurl }}/standards/rel-003-java-patch-version-naming/">Maven CARE-style OSERA versioning</a>.</p>
+      <p>Seven additional standards remain in observe mode for 0.2.0.</p>
+      <div class="pack-actions">
+        <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View ratified pack</a>
+        <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="wrap section intro-grid">
+  <div>
+    <h2>Why this exists</h2>
+    <p>OSERA patch work has moved from a small set of experiments into a larger patch library spanning older Java ecosystems, build tooling variations, and end-of-life software lines. The emerging practice now needs a stable, open, bank-consumable format.</p>
+  </div>
+  <div>
+    <h2>What it standardizes</h2>
+    <p>The standards focus on fork management, source-change provenance, release compatibility, VEX/SBOM feeds, and the recipient evidence enterprises need to assess what changed and what surface area to test.</p>
+  </div>
+</section>
+
+<section id="standards" class="catalogue-section">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <h2>Standards catalog</h2>
+        <p>Numbered requirements and examples, modeled on the SDLC Controls Framework catalog style and adapted for patch production and consumption.</p>
+      </div>
+      <div class="catalogue-controls" aria-label="Catalog filters">
+        <div class="search-box">
+          <label for="catalogueSearch">Search</label>
+          <input id="catalogueSearch" type="search" placeholder="Search standards">
+        </div>
+        <div class="filter-box">
+          <label for="packFilter">Pack</label>
+          <select id="packFilter">
+            <option value="">All packs</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter">
+            <option value="">All categories</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <p class="catalogue-note">Standard lifecycle status and standards-pack membership are tracked separately. Ratifying a pack records the exact standard versions included in that pack; it does not rewrite every future draft into the pack. The same structured metadata is published in the <a href="{{ site.baseurl }}/catalog/osera-standards.yaml">generated standards catalog</a>.</p>
+    {% include catalogue.html %}
+  </div>
+</section>
+
+<section class="wrap section split-band">
+  <div>
+    <h2>Recipient guidance in observe mode</h2>
+    <p>EVD-001 collects recipient guidance for 0.2.0: what changed, why it changed, and what application surface area recipients should consider testing. It does not block 0.1.0 alignment.</p>
+  </div>
+  <a class="button primary" href="{{ site.baseurl }}/standards/evd-001-change-and-test-surface/">Review EVD-001</a>
+</section>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Definitions | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../index.html#standards">Standards</a>
+        <a href="../standard-packs/index.html">Packs</a>
+        <a href="../lifecycle/index.html">Lifecycle</a>
+        <a href="../fitness/index.html">Fitness</a>
+        <a href="../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../examples/index.html">Examples</a>
+        <a href="../feeds/index.html">Feeds</a>
+        <a href="../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Definitions</div>
+  <h1>Definitions</h1>
+  <h2 id="patch">Patch</h2>
+
+<p>A security or reliability change applied to an upstream software line for OSERA-compatible remediation.</p>
+
+<h2 id="backpatch">Backpatch</h2>
+
+<p>A patch applied to an older software line that is not receiving the same fix through normal upstream maintenance. This remains a useful descriptive term, but the proposed OSERA naming conventions use <code class="language-plaintext highlighter-rouge">patch-*</code>, <code class="language-plaintext highlighter-rouge">patch/</code>, and <code class="language-plaintext highlighter-rouge">+patch.baseline</code> so the standards can cover broader remediation workflows.</p>
+
+<h2 id="patch-provider">Patch provider</h2>
+
+<p>An organization or participant that produces, validates, publishes, or contributes OSERA-compatible patches.</p>
+
+<h2 id="recipient">Recipient</h2>
+
+<p>An enterprise, vendor, or other downstream consumer that evaluates and applies OSERA-compatible patches.</p>
+
+<h2 id="baseline-tag">Baseline tag</h2>
+
+<p>The tag identifying the original source state from which a patch line begins, using the <code class="language-plaintext highlighter-rouge">v&lt;VERSION&gt;+patch.baseline</code> scheme.</p>
+
+<h2 id="approved-producer">Approved producer</h2>
+
+<p>A producer approved by the standards group or other agreed OSERA governance process to publish official OSERA artifacts for a named standards pack.</p>
+
+<h2 id="patch-basis">Patch basis</h2>
+
+<p>The reason and source for a patch change. A patch basis can be an upstream commit backported to an older line, or a provider-developed fix where no upstream fix exists.</p>
+
+<h2 id="recipient-evidence">Recipient evidence</h2>
+
+<p>Metadata and human-readable guidance that helps recipients understand what changed, why it changed, and what they should test before adopting the patch.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

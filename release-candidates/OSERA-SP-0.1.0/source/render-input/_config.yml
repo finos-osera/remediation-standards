@@ -1,0 +1,63 @@
+title: OSERA Remediation Standards
+description: Open standards for producing, publishing, and consuming OSERA patches.
+baseurl: ""
+url: "https://standards.osera.finos.org"
+
+version: OSERA-SP-0.1.0
+release-date: 2026-09-10
+status_label: Ratified Standards Pack
+status_description: OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines the first set of standards that will gate OSERA patch releases.
+
+document_status:
+  - name: Evaluation
+    description: Provisional material under active review; not published as a formal standard.
+  - name: Pre-Draft
+    description: Initial proposal collecting practice from OSERA patch work.
+  - name: Draft
+    description: Written for community review and implementation feedback.
+  - name: Ratification-Candidate
+    description: A specific version proposed for standards-group approval.
+  - name: Ratified
+    description: Approved by the standards group for use in a standards pack or as standalone guidance.
+  - name: Superseded
+    description: Replaced by a later version or another standard, while remaining available for historical reference.
+  - name: Withdrawn
+    description: Removed from the active standards path without replacement.
+
+standard_classification:
+  FORK: Fork Management
+  SRC: Source Changes
+  REL: Release Process
+  FEED: Feeds and Advisories
+  EVD: Recipient Evidence
+  APP: Patch Application
+  STD: Standards Governance
+
+category_icons:
+  FORK: branch
+  SRC: code
+  REL: package
+  FEED: feed
+  EVD: evidence
+  APP: apply
+  STD: governance
+
+collections:
+  standards:
+    output: true
+    permalink: /standards/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: standards
+    values:
+      layout: standard
+  - scope:
+      path: ""
+    values:
+      layout: page
+
+exclude:
+  - Gemfile
+  - Gemfile.lock

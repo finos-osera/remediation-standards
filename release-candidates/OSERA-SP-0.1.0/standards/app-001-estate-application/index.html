@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estate-Wide Patch Application | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / APP-001</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">APP-001</span>
+      <h1>Estate-Wide Patch Application</h1>
+      <p>Patch feeds should support automated discovery and application across dependency estates.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Pre-Draft</dd></div>
+      <div><dt>Version</dt><dd>0.0.1</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.2.0 observe</dd></div>
+      <div><dt>Ratified</dt><dd>Not ratified</dd></div>
+      <div><dt>Fitness</dt><dd>Observe-only check</dd></div>
+      <div><dt>Category</dt><dd>Patch Application</dd></div>
+      <div><dt>Applies to</dt><dd>Enterprise recipients, Tooling providers, Patch providers</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/APP-001.yaml">YAML</a> / <a href="../../catalog/standards/APP-001.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">APP-001.REQ-001</span>
+          <span class="row-status">SHOULD</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>Patch feeds and metadata should support estate-wide discovery and application across dependency estates.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>APP-001.CHECK-001</strong><br>
+                    Estate-wide discovery metadata is present
+                  </td>
+                  <td>observe</td>
+                  <td>feed_entries, dependency_coordinates</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>OSERA feeds and metadata SHOULD support estate-wide discovery of available patches, including transitive dependency use cases.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>The July 7 update described applying every available patch across an estate using broad matching options:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>groupId = *
+artifactId = *
+transitive = true
+</code></pre></div></div>
+
+<p>This model depends on reliable feed metadata, predictable versions, and recipient evidence that lets enterprises route validation.</p>
+
+<h2 id="evidence">Evidence</h2>
+
+<p>Tooling SHOULD be able to show which applications, dependency paths, and artifact coordinates would change before applying patches.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

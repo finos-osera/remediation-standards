@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patch Request Authorization | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-006</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-006</span>
+      <h1>Patch Request Authorization</h1>
+      <p>Patch releases should trace to an approved backlog item, request, sponsor record, or equivalent authorization record.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Pre-Draft</dd></div>
+      <div><dt>Version</dt><dd>0.0.1</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.2.0 observe</dd></div>
+      <div><dt>Ratified</dt><dd>Not ratified</dd></div>
+      <div><dt>Fitness</dt><dd>Observe-only check</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>OSERA maintainers, Patch providers, Repository operators</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-006.yaml">YAML</a> / <a href="../../catalog/standards/REL-006.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-006.REQ-001</span>
+          <span class="row-status">SHOULD</span>
+          <span class="row-pack">manual</span>
+        </div>
+        <p>Patch releases should identify the backlog item, public request, sponsor record, or equivalent authorization record for the patched coordinate and line.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-006.CHECK-001</strong><br>
+                    Patch request authorization evidence is present
+                  </td>
+                  <td>observe</td>
+                  <td>backlog_item, sponsor_record, coordinate_line</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Patch releases SHOULD identify the backlog item, public request, sponsor record, or equivalent authorization record for the patched coordinate and line.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>The publication gate may need to know that a producer was authorized to release a patch for a specific coordinate and maintenance line.</p>
+
+<p>This is deferred to observe mode because the working group has not yet decided whether the backlog is always public, whether privately sponsored requests are allowed, or what evidence should be visible to recipients.</p>
+
+<h2 id="observe-mode-evidence">Observe-mode evidence</h2>
+
+<p>Observe-mode evidence SHOULD identify:</p>
+
+<ul>
+  <li>patched coordinate;</li>
+  <li>upstream version line;</li>
+  <li>public backlog item, if available;</li>
+  <li>sponsor or request record, if the backlog item is not public;</li>
+  <li>approval or exception record.</li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

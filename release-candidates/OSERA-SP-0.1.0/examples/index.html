@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examples | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../index.html#standards">Standards</a>
+        <a href="../standard-packs/index.html">Packs</a>
+        <a href="../lifecycle/index.html">Lifecycle</a>
+        <a href="../fitness/index.html">Fitness</a>
+        <a href="../catalog/osera-standards.yaml">Catalog</a>
+        <a href="index.html">Examples</a>
+        <a href="../feeds/index.html">Feeds</a>
+        <a href="../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Examples</div>
+  <h1>Examples</h1>
+  <p>Version strings in the examples are illustrative. Java release identifiers follow <a href="../standards/rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a>.</p>
+
+<p>These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.</p>
+
+<p>The examples below illustrate the ratified OSERA-SP-0.1.0 conventions; repository names, providers, vulnerabilities, and evidence links are illustrative, not published releases or producer approvals. See <a href="release-tags/index.html">Java release scenarios</a> for packaging examples. <a href="osera-commit-evidence/index.html">OSERA Commit Evidence</a> documents the legacy proof of concept for illustration only.</p>
+
+<h2 id="patch-repository-shape">Patch repository shape</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>github.com/finos-osera/patch-spring-framework
+  branch: patch/5.3.x
+  tag: v5.3.39+patch.baseline
+  release: v5.3.39.1-osera-00001
+</code></pre></div></div>
+
+<h2 id="patch-evidence-bundle">Patch evidence bundle</h2>
+
+<p>This sketch combines 0.1.0 release evidence with optional patch-basis and recipient-guidance fields tracked in observe mode for 0.2.0; it is not a complete gate result.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">patch</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">example-provider</span>
+  <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/finos-osera/patch-spring-framework</span>
+  <span class="na">branch</span><span class="pi">:</span> <span class="s">patch/5.3.x</span>
+  <span class="na">baseline_tag</span><span class="pi">:</span> <span class="s">v5.3.39+patch.baseline</span>
+  <span class="na">release_version</span><span class="pi">:</span> <span class="s">5.3.39.1-osera-00001</span>
+  <span class="na">basis</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">upstream-backport</span>
+    <span class="na">upstream_commit</span><span class="pi">:</span> <span class="s">https://github.com/spring-projects/spring-framework/commit/example</span>
+  <span class="na">compatibility</span><span class="pi">:</span>
+    <span class="na">bytecode_source</span><span class="pi">:</span> <span class="s">last-released-artifact</span>
+    <span class="na">bytecode_level</span><span class="pi">:</span> <span class="m">8</span>
+  <span class="na">recipient_guidance</span><span class="pi">:</span>
+    <span class="na">what_changed</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Tightened parsing of affected input path.</span>
+      <span class="pi">-</span> <span class="s">Added regression coverage for malicious payload handling.</span>
+    <span class="na">suggested_test_surface</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Applications using the affected parser or endpoint.</span>
+      <span class="pi">-</span> <span class="s">Integration tests that exercise custom serialization or deserialization.</span>
+      <span class="pi">-</span> <span class="s">Smoke tests for dependent frameworks that wrap the affected API.</span>
+</code></pre></div></div>
+
+<h2 id="feed-statement-sketch">Feed statement sketch</h2>
+
+<p>OpenVEX and CycloneDX examples should identify the patched artifact, vulnerability, status, and provenance links. The exact schema should be maintained in feed-specific examples as the working group converges.</p>
+
+<h3 id="openvex-style-example">OpenVEX-style example</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://openvex.dev/ns/v0.2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://vex.example.org/openvex/example-1.0.0.1-osera-00001.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Patch Provider &lt;security@example.org&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-10T00:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"statements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"vulnerability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CVE-2026-0001"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aliases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"GHSA-example-example-example"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"purl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"hashes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"sha-256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"action_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CVE-2026-0001 fixed by backporting the upstream fix onto the 1.0.0 baseline."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="cyclonedx-style-example">CycloneDX-style example</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"bomFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycloneDX"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"specVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vulnerabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CVE-2026-0001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NVD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nvd.nist.gov/vuln/detail/CVE-2026-0001"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"analysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolved_with_pedigree"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fixed by backporting the upstream fix onto the 1.0.0 baseline; see component pedigree."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"affects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

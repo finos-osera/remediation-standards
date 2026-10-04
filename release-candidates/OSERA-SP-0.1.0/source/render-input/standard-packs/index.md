@@ -1,0 +1,144 @@
+---
+title: Standard Packs
+permalink: /standard-packs/
+---
+
+OSERA-SP-0.1.0 was [ratified on **Thursday, September 10, 2026**](https://github.com/finos-osera/remediation-standards/issues/12). It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.
+
+Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard's lifecycle status and pack membership separately.
+
+See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, versions, and pack maintenance.
+
+## Release history
+
+<table>
+  <thead>
+    <tr>
+      <th>Pack</th>
+      <th>Status</th>
+      <th>Proposed</th>
+      <th>Gate target</th>
+      <th>Ratified</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pack in site.data.standard_packs %}
+    <tr>
+      <td><a href="#{{ pack.id | slugify }}">{{ pack.id }}</a></td>
+      <td>{{ pack.status }}</td>
+      <td>{{ pack.proposed_date }}</td>
+      <td>{{ pack.target_gate_date }}</td>
+      <td><a href="{{ pack.agenda_issue }}">{{ pack.ratified_date }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% for pack in site.data.standard_packs %}
+<h2 id="{{ pack.id | slugify }}">{{ pack.id }}: {{ pack.title }}</h2>
+
+{{ pack.summary }}
+
+| Field | Value |
+| --- | --- |
+| Status | {{ pack.status }} |
+| Proposed date | {{ pack.proposed_date }} |
+| Target gate date | {{ pack.target_gate_date }} |
+| Ratification | [{{ pack.ratified_date }} — agenda]({{ pack.agenda_issue }}) |
+| Machine-readable | [YAML]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.yaml) / [JSON]({{ site.baseurl }}/catalog/packs/{{ pack.id }}.json) |
+
+### Release metadata posture
+
+{{ pack.release_metadata.scope | markdownify }}
+
+The generic default form is `+{{ pack.release_metadata.official_token }}`, for example `{{ pack.release_metadata.official_example }}`, where no concrete ecosystem profile exists. Java artifacts follow the [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) profile.
+
+Java in this pack adopts [Maven CARE-style versioning]({{ pack.release_metadata.java_reference }}) with `osera` in place of `care`, as [agreed in #33]({{ pack.release_metadata.java_decision }}). The recorded non-OSGi example is `{{ pack.release_metadata.java_example }}`. Qualified bases use the CARE alternate-suffix approach; OSGi packaging must respect its three numeric components and optional qualifier. See [REL-003-JAVA scenarios]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/#examples-by-packaging-scenario) for numeric, qualified, and OSGi examples. The generic SemVer default does not apply to Java artifacts.
+
+### Approved producers
+
+The approved-producer registry is `{{ pack.approved_producers.registry }}`.
+
+{{ pack.approved_producers.lifecycle_policy }}
+
+### Required standards in v0.1.0
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Fitness role</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for standard in pack.included_standards %}
+    {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
+    <tr>
+      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      <td>{{ standard.version }}</td>
+      <td>{{ standard.role }}</td>
+      <td>{{ standard.rationale }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+### Advisory in v0.1.0
+
+{% if pack.advisory_standards and pack.advisory_standards.size > 0 %}
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Fitness role</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for standard in pack.advisory_standards %}
+    {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
+    <tr>
+      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      <td>{{ standard.version }}</td>
+      <td>{{ standard.role }}</td>
+      <td>{{ standard.rationale }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+
+This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
+
+{% endif %}
+
+### Observe mode for v0.2.0
+
+Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. Their results do not block OSERA-SP-0.1.0 alignment. Promotion requires inclusion in a later ratified pack.
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Version</th>
+      <th>Fitness role</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for standard in pack.observe_standards %}
+    {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
+    <tr>
+      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      <td>{{ standard.version }}</td>
+      <td>{{ standard.role }}</td>
+      <td>{{ standard.rationale }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endfor %}

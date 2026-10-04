@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Change and Test Surface Guidance | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / EVD-001</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">EVD-001</span>
+      <h1>Change and Test Surface Guidance</h1>
+      <p>Providers publish concise recipient guidance describing what changed and what surface area should be tested.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Pre-Draft</dd></div>
+      <div><dt>Version</dt><dd>0.0.1</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.2.0 observe</dd></div>
+      <div><dt>Ratified</dt><dd>Not ratified</dd></div>
+      <div><dt>Fitness</dt><dd>Observe-only check</dd></div>
+      <div><dt>Category</dt><dd>Recipient Evidence</dd></div>
+      <div><dt>Applies to</dt><dd>Patch providers, Enterprise recipients, Tooling providers</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/EVD-001.yaml">YAML</a> / <a href="../../catalog/standards/EVD-001.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">EVD-001.REQ-001</span>
+          <span class="row-status">SHOULD</span>
+          <span class="row-pack">manual</span>
+        </div>
+        <p>Patch providers should publish versioned recipient guidance describing what changed and what surface area should be tested.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>EVD-001.CHECK-001</strong><br>
+                    Recipient guidance uses the current guidance schema
+                  </td>
+                  <td>observe</td>
+                  <td>recipient_guidance, schema_version</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Patch providers SHOULD publish a recipient-facing summary alongside each patch that describes:</p>
+
+<ul>
+  <li>what changed;</li>
+  <li>why the change was made;</li>
+  <li>whether the patch is an upstream backport or provider-developed fix;</li>
+  <li>what application surface area recipients should consider testing;</li>
+  <li>references to OpenRewrite recipes, markdown, LLM-friendly context, or other machine-readable guidance when available.</li>
+</ul>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Financial services consumers need more than a coordinate. They need enough context to evaluate the patch, route testing, and explain adoption decisions internally.</p>
+
+<h2 id="suggested-schema">Suggested schema</h2>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">recipient_guidance</span><span class="pi">:</span>
+  <span class="na">schema_version</span><span class="pi">:</span> <span class="s">0.1.0</span>
+  <span class="na">what_changed</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Short, concrete change summary.</span>
+  <span class="na">suggested_test_surface</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">APIs, frameworks, configuration paths, or runtime behaviors to test.</span>
+  <span class="na">automation</span><span class="pi">:</span>
+    <span class="na">openrewrite_recipes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">org.example.security.ExampleRecipe</span>
+    <span class="na">llm_context</span><span class="pi">:</span> <span class="s">docs/patch-context.md</span>
+</code></pre></div></div>
+
+<p>The draft schema is published at <a href="../../schemas/osera-recipient-guidance-0.1.0.schema.json"><code class="language-plaintext highlighter-rouge">/schemas/osera-recipient-guidance-0.1.0.schema.json</code></a>.</p>
+
+<h2 id="maturity-note">Maturity note</h2>
+
+<p>This is an intentionally early standard. The working group should refine the minimum fields and decide which parts belong in feeds, release notes, repository files, or separate evidence bundles.</p>
+
+<p>This is deferred from OSERA-SP-0.1.0 because the working group has not yet defined the expected format tightly enough to make it advisory or required for the first ratification decision. It should run in observe mode and be reconsidered for OSERA-SP-0.2.0.</p>
+
+<h2 id="illustrative-evidence">Illustrative evidence</h2>
+
+<p>See <a href="../../examples/osera-commit-evidence/index.html">OSERA Commit Evidence</a> for legacy proof-of-concept illustrations. These historical examples do not establish conformance with the ratified pack. <a href="../../examples/index.html">Current release examples</a> use the OSERA-SP-0.1.0 naming conventions.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

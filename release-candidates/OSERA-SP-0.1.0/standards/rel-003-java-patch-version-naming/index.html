@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java Patch Version Naming | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-003-JAVA</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-003-JAVA</span>
+      <h1>Java Patch Version Naming</h1>
+      <p>Java patched releases use a version naming profile that optimizes Maven, Gradle, repository-manager, dependency-update, SCA, feed, and policy-tool behavior for the affected upstream version line.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required Java profile check</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>Java package patch providers, Enterprise Java recipients, Java repository and dependency tooling</dd></div>
+      
+      
+      <div><dt>Extends</dt><dd><a href="../rel-003-version-metadata/index.html">REL-003</a></dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-003-JAVA.yaml">YAML</a> / <a href="../../catalog/standards/REL-003-JAVA.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="parent-relationship">
+    <h2>Relationship to parent</h2>
+    <p>This profile extends <a href="../rel-003-version-metadata/index.html">REL-003</a> version 0.1.0. The tables are generated from the parent and profile metadata. Overrides specialize the parent obligation; inherited items apply unchanged.</p>
+    
+    
+    <h3>Requirements</h3>
+    <div class="relationship-table">
+    <table>
+      <thead><tr><th>Parent item</th><th>Treatment</th><th>Effective item</th><th>What changes or remains</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          <td>REL-003.REQ-001</td>
+          <td>Overrides</td>
+          <td>REL-003-JAVA.REQ-001</td>
+          <td>Specializes the generic applicable-profile rule with a Java-specific version convention. The CARE-style convention uses the OSERA identifier; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.</td>
+        </tr>
+        
+        <tr>
+          <td>REL-003.REQ-002</td>
+          <td>Overrides</td>
+          <td>REL-003-JAVA.REQ-002</td>
+          <td>Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    </div>
+    
+    <h3>Checks</h3>
+    <div class="relationship-table">
+    <table>
+      <thead><tr><th>Parent item</th><th>Treatment</th><th>Effective item</th><th>What changes or remains</th></tr></thead>
+      <tbody>
+        
+        <tr>
+          <td>REL-003.CHECK-001</td>
+          <td>Overrides</td>
+          <td>REL-003-JAVA.CHECK-001</td>
+          <td>Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.</td>
+        </tr>
+        
+        <tr>
+          <td>REL-003.CHECK-002</td>
+          <td>Overrides</td>
+          <td>REL-003-JAVA.CHECK-002</td>
+          <td>Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    </div>
+    
+  </section>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-003-JAVA.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>Official OSERA Java patched releases must use the ratified Java patch CARE-style version naming convention with the OSERA identifier, so supported Java resolver, dependency update, repository manager, SCA, feed, and policy tooling treats the patched artifact as the latest applicable remediation on the same upstream version line.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-003-JAVA.CHECK-001</strong><br>
+                    Java patch version pattern passes supported tooling compatibility tests
+                  </td>
+                  <td>blocking</td>
+                  <td>release_tag, artifact_version, java_profile_decision, resolver_test_result, dependency_update_test_result</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-003-JAVA.REQ-002</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Java release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence must carry the same Java patch version identifier.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-003-JAVA.CHECK-002</strong><br>
+                    Java release identifier is consistent across source, artifact, and feeds
+                  </td>
+                  <td>blocking</td>
+                  <td>release_tag, artifact_version, maven_purl, feed_purl</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="java-naming-convention">Java naming convention</h2>
+
+<p>OSERA-SP-0.1.0 adopts Maven Central’s <a href="https://central.sonatype.org/policies/care-policy/#10-care-versioning">CARE versioning approach</a>, using <code class="language-plaintext highlighter-rouge">osera</code> in place of <code class="language-plaintext highlighter-rouge">care</code>. The decision was agreed at the <a href="https://github.com/finos-osera/remediation-standards/issues/58">September 10, 2026 meeting</a> and recorded in <a href="https://github.com/finos-osera/remediation-standards/issues/33">issue #33</a>. Initial compatibility findings informed the decision; detailed findings will be published separately.</p>
+
+<p>The full <a href="https://central.sonatype.org/policies/care-policy/">CARE policy</a> describes numeric-base versioning, an <a href="https://central.sonatype.org/policies/care-policy/#alternate-format-for-qualified-base-versions">alternate suffix for qualified bases</a>, and tooling-driven deviations. OSERA adopts that approach for Java in 0.1.0, rather than imposing one concatenation rule on every historical version shape. Keep the baseline recognizable, identify OSERA, avoid taking the upstream maintainer’s next ordinary version, and validate ordering and resolution in the relevant tooling. Producer identity belongs in release metadata. The <code class="language-plaintext highlighter-rouge">care</code> suffix itself remains reserved for Central-approved CARE releases; OSERA naming does not confer Central publication approval.</p>
+
+<h3 id="examples-by-packaging-scenario">Examples by packaging scenario</h3>
+
+<p>These examples illustrate the adopted approach. Validate compatibility for the actual packaging before publication.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Upstream baseline</th>
+      <th>Illustrative OSERA version</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Qualified Maven artifact</td>
+      <td><code class="language-plaintext highlighter-rouge">5.6.15.Final</code></td>
+      <td><code class="language-plaintext highlighter-rouge">5.6.15.Final-osera-00001</code></td>
+      <td>Retains <code class="language-plaintext highlighter-rouge">Final</code> and applies the CARE alternate suffix with <code class="language-plaintext highlighter-rouge">osera</code>.</td>
+    </tr>
+    <tr>
+      <td>Qualified service release</td>
+      <td><code class="language-plaintext highlighter-rouge">2.0.0.RELEASE</code></td>
+      <td><code class="language-plaintext highlighter-rouge">2.0.0.RELEASE-osera-00001</code></td>
+      <td>Keeps the upstream qualifier visible.</td>
+    </tr>
+    <tr>
+      <td>OSGi bundle, numeric base</td>
+      <td><code class="language-plaintext highlighter-rouge">5.3.39</code></td>
+      <td><code class="language-plaintext highlighter-rouge">5.3.39.1-osera-00001</code></td>
+      <td>The fourth component, <code class="language-plaintext highlighter-rouge">1-osera-00001</code>, is the OSGi qualifier.</td>
+    </tr>
+    <tr>
+      <td>OSGi bundle, existing qualifier</td>
+      <td><code class="language-plaintext highlighter-rouge">1.2.3.Final</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2.3.Final-osera-00001</code></td>
+      <td>Extends the existing fourth-component qualifier.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>OSGi versions have three numeric components and an optional fourth qualifier containing letters, digits, underscores, or hyphens; a dot cannot appear inside that qualifier. See the <a href="https://docs.osgi.org/javadoc/osgi.core/8.0.0/org/osgi/framework/Version.html">OSGi version grammar</a>. Thus <code class="language-plaintext highlighter-rouge">Bundle-Version: 5.3.39.1-osera-00001</code> is syntactically valid, but appending another dotted segment to an already qualified OSGi version is not. OSGi compares the qualifier lexically; syntactic validity alone does not establish update ordering. Check the actual bundle manifest, Maven coordinate, and resolver behavior together, especially when a packaging tool normalizes versions.</p>
+
+<h3 id="consistent-release-identity">Consistent release identity</h3>
+
+<p>For a numeric-base Java release:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Upstream version: 5.3.39
+Source branch:    patch/5.3.x
+Baseline tag:     v5.3.39+patch.baseline
+Release tag:      v5.3.39.1-osera-00001
+Artifact version: 5.3.39.1-osera-00001
+Maven purl:       pkg:maven/org.springframework/spring-core@5.3.39.1-osera-00001
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">v</code> prefix identifies the source tag; the artifact version and purl use the same release identifier without that prefix. Feed entries must use the exact published coordinate. Consumers adopt the explicit patched version through their dependency declaration, BOM, version catalog, or update workflow; repository priority alone does not change a dependency pinned to the upstream version.</p>
+
+<p>Java uses this profile instead of the generic <code class="language-plaintext highlighter-rouge">+osera-patch.NNN</code> default. The meeting adopted CARE-style naming for 0.1.0; it did not adopt a dual-format experiment.</p>
+
+<h2 id="requirement">Requirement</h2>
+
+<p>REL-003-JAVA extends <a href="../rel-003-version-metadata/index.html">REL-003</a> for Java package artifacts.</p>
+
+<p>Java releases MUST use the profile’s selected version pattern. Release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence MUST identify the same patched release.</p>
+
+<p><code class="language-plaintext highlighter-rouge">REL-003-JAVA.REQ-001</code> and <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code> specialize the base naming rule for Java. <code class="language-plaintext highlighter-rouge">REL-003-JAVA.REQ-002</code> and <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-002</code> specialize the consistency rule with Maven package URL evidence. Same-number profile checks override base checks; additional Java checks start at <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-003</code>.</p>
+
+<p>Source branch naming follows <a href="../fork-002-patch-branches/index.html">FORK-002</a>, and baseline tags follow <a href="../fork-003-baseline-tags/index.html">FORK-003</a>.</p>
+
+<h2 id="compatibility-evidence">Compatibility evidence</h2>
+
+<p>The Java profile gate SHOULD record evidence that the selected pattern:</p>
+
+<ul>
+  <li>resolves as a distinct patched artifact;</li>
+  <li>sorts or is recommended after the vulnerable upstream version where Java tooling supports that behavior;</li>
+  <li>remains visibly tied to the upstream baseline version;</li>
+  <li>is preserved in Maven package URLs and feed records;</li>
+  <li>can be discovered by supported dependency-update workflows;</li>
+  <li>does not consume the upstream maintainer’s next ordinary release version.</li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

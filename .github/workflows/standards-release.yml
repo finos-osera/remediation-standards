@@ -1,0 +1,34 @@
+name: Publish standards release
+on:
+  workflow_dispatch:
+    inputs:
+      pack:
+        description: Exact approved pack ID (OSERA-SP-x.y.z)
+        required: true
+      commit:
+        description: Full merged publication commit containing the reviewed snapshot and approval
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: standards-release-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: standards-release
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.commit }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Publish reviewed bytes without rebuilding
+        env:
+          GH_TOKEN: ${{ secrets.STANDARDS_RELEASE_TOKEN }}
+          PACK: ${{ inputs.pack }}
+          PUBLICATION_COMMIT: ${{ inputs.commit }}
+        run: python3 tools/releases/publish.py --pack "$PACK" --commit "$PUBLICATION_COMMIT" --publish

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java Release Examples | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / Java Release Examples</div>
+  <h1>Java Release Examples</h1>
+  <p>These illustrative examples use OSERA-SP-0.1.0 naming. They are not an inventory of published patches or evidence of conformance. <a href="../../standards/rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a> defines the adopted <a href="https://central.sonatype.org/policies/care-policy/">Maven CARE-style approach</a> and packaging validation requirements.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Baseline tag</th>
+      <th>Release tag</th>
+      <th>Artifact version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Numeric Maven base (decision example)</td>
+      <td><code class="language-plaintext highlighter-rouge">v5.3.39+patch.baseline</code></td>
+      <td><code class="language-plaintext highlighter-rouge">v5.3.39.1-osera-00001</code></td>
+      <td><code class="language-plaintext highlighter-rouge">5.3.39.1-osera-00001</code></td>
+    </tr>
+    <tr>
+      <td>Qualified Maven base</td>
+      <td><code class="language-plaintext highlighter-rouge">v5.6.15.Final+patch.baseline</code></td>
+      <td><code class="language-plaintext highlighter-rouge">v5.6.15.Final-osera-00001</code></td>
+      <td><code class="language-plaintext highlighter-rouge">5.6.15.Final-osera-00001</code></td>
+    </tr>
+    <tr>
+      <td>OSGi bundle with a numeric base</td>
+      <td><code class="language-plaintext highlighter-rouge">v1.2.3+patch.baseline</code></td>
+      <td><code class="language-plaintext highlighter-rouge">v1.2.3.1-osera-00001</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2.3.1-osera-00001</code></td>
+    </tr>
+    <tr>
+      <td>OSGi bundle with a qualifier</td>
+      <td><code class="language-plaintext highlighter-rouge">v1.2.3.Final+patch.baseline</code></td>
+      <td><code class="language-plaintext highlighter-rouge">v1.2.3.Final-osera-00001</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1.2.3.Final-osera-00001</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The qualified and OSGi rows illustrate applications of the adopted approach; validate each actual package before publication. In the OSGi rows, everything after the third dot is a single qualifier. Do not introduce another dot inside it. See the <a href="../../standards/rel-003-java-patch-version-naming/index.html#examples-by-packaging-scenario">profile’s OSGi explanation</a>.</p>
+
+<p>Source repositories use <code class="language-plaintext highlighter-rouge">patch-&lt;upstream-project&gt;</code> and branches use <code class="language-plaintext highlighter-rouge">patch/&lt;version&gt;</code> under <a href="../../standards/fork-001-repository-naming/index.html">FORK-001</a> and <a href="../../standards/fork-002-patch-branches/index.html">FORK-002</a>. Baseline tags keep the <a href="../../standards/fork-003-baseline-tags/index.html">FORK-003</a> convention, independently of the Java artifact version.</p>
+
+<p>For the numeric Maven example, the feed identifies the artifact as <code class="language-plaintext highlighter-rouge">pkg:maven/org.springframework/spring-core@5.3.39.1-osera-00001</code>. Source tag, artifact version, feed, and release evidence must refer to the same patched release.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

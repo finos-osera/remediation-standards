@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build Provenance and Signed Attestation | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#standards">Standards</a>
+        <a href="../../standard-packs/index.html">Packs</a>
+        <a href="../../lifecycle/index.html">Lifecycle</a>
+        <a href="../../fitness/index.html">Fitness</a>
+        <a href="../../catalog/osera-standards.yaml">Catalog</a>
+        <a href="../../examples/index.html">Examples</a>
+        <a href="../../feeds/index.html">Feeds</a>
+        <a href="../../governance/index.html">Governance</a>
+        <a class="nav-button" href="https://github.com/finos-osera" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-007</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-007</span>
+      <h1>Build Provenance and Signed Attestation</h1>
+      <p>Producers should sign an attestation linking the published artifact digest to the source tag, build process, SBOM, VEX, test evidence, and license audit.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Pre-Draft</dd></div>
+      <div><dt>Version</dt><dd>0.0.1</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.2.0 observe</dd></div>
+      <div><dt>Ratified</dt><dd>Not ratified</dd></div>
+      <div><dt>Fitness</dt><dd>Observe-only check</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>Patch providers, Repository operators, Enterprise recipients</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-007.yaml">YAML</a> / <a href="../../catalog/standards/REL-007.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-007.REQ-001</span>
+          <span class="row-status">SHOULD</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>Producers should sign an attestation linking the artifact digest to the source tag and build provenance.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-007.CHECK-001</strong><br>
+                    Signed build provenance attestation is present
+                  </td>
+                  <td>observe</td>
+                  <td>artifact_digest, source_tag, attestation_signature</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-007.REQ-002</span>
+          <span class="row-status">SHOULD</span>
+          <span class="row-pack">manual</span>
+        </div>
+        <p>The attestation should reference SBOM, VEX, test evidence, and license audit material for the release.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-007.CHECK-002</strong><br>
+                    Attestation references release evidence bundle
+                  </td>
+                  <td>observe</td>
+                  <td>sbom, vex, test_evidence, license_audit</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Producers SHOULD sign an attestation linking the published artifact digest to the source tag and build provenance.</p>
+
+<p>The attestation SHOULD reference release evidence such as SBOM, VEX, test evidence, and license audit material.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>SP-0.1.0 can validate source provenance, release metadata, bytecode compatibility, feed entries, producer approval, and package hygiene. It does not yet prove that a specific binary was built from a specific source tag.</p>
+
+<p>Reproducible builds remain an important OSERA goal. The standards group is deferring the precise proof format, build environment expectations, and source-to-binary attestation requirements because arbitrary legacy repositories use different build systems, runtimes, plugins, and publication flows.</p>
+
+<p>Build provenance and signed release evidence should be the first observe-mode path toward SP-0.2.0.</p>
+
+<h2 id="observe-mode-evidence">Observe-mode evidence</h2>
+
+<p>Observe-mode evidence SHOULD include:</p>
+
+<ul>
+  <li>artifact digest;</li>
+  <li>source repository and tag;</li>
+  <li>producer identity;</li>
+  <li>signed attestation;</li>
+  <li>build system reference;</li>
+  <li>SBOM and VEX references;</li>
+  <li>test evidence;</li>
+  <li>license audit reference.</li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>
