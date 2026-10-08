@@ -1,3 +1,4 @@
+import StatusLabel from "../components/StatusLabel";
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -65,7 +66,9 @@ export default function Home() {
             <aside className="release-panel">
               <p className="eyebrow">THE STANDARDS JOURNEY</p>
               <div className="journey-entry">
-                <span className="status-pill ratified">Recorded ratified</span>
+                <span className="status-pill ratified">
+                  <StatusLabel status="Recorded ratified" />
+                </span>
                 <h2>0.1.0</h2>
                 <p>September 10, 2026 · 13 included standards</p>
                 <p className="small">
@@ -76,7 +79,9 @@ export default function Home() {
                 </Link>
               </div>
               <div className="journey-entry">
-                <span className="status-pill draft">Draft</span>
+                <span className="status-pill draft">
+                  <StatusLabel status="Draft" />
+                </span>
                 <h2>0.2.0</h2>
                 <p>The next collection, open for review.</p>
                 <Link to="/versions/">
@@ -140,7 +145,10 @@ export default function Home() {
               onChange={setStatus}
               options={options(
                 Array.from(new Set(standards.map((s) => s.status))).sort(),
-              )}
+              ).map((option) => ({
+                ...option,
+                label: <StatusLabel status={option.label} />,
+              }))}
             />
           </div>
           <div className="filter-context">
@@ -160,7 +168,9 @@ export default function Home() {
                 key={`${s.collection}-${s.id}`}
               >
                 <div className="card-top">
-                  <Link className="standard-id" to={s.href}>{s.id}</Link>
+                  <Link className="standard-id" to={s.href}>
+                    {s.id}
+                  </Link>
                   <span className="version-small">v{s.version}</span>
                 </div>
                 <h3>
@@ -170,7 +180,7 @@ export default function Home() {
                   <span
                     className={`status-pill ${s.status === "Recorded ratified" ? "ratified" : "draft"}`}
                   >
-                    {s.status}
+                    <StatusLabel status={s.status} />
                   </span>
                   <span className="collection-label">
                     {s.collection === "current"

@@ -1,3 +1,4 @@
+import StatusLabel from "../components/StatusLabel";
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -18,13 +19,15 @@ export default function Versions() {
         <div className="history-notice">
           <strong>Ratification and archive publication are separate.</strong>{" "}
           The 0.1.0 decision is recorded, but the reconstructed source baseline
-          still needs confirmation. The asterisk in “0.1.0 · Ratified*” refers
+          still needs confirmation. The asterisk in “0.1.0 · ✓ Ratified*” refers
           to that distinction. No official release tag or GitHub Release was
           found during this exploration.
         </div>
         <section className="release-row">
           <div>
-            <span className="status-pill draft">Working draft</span>
+            <span className="status-pill draft">
+              <StatusLabel status="Working draft" />
+            </span>
             <h2>0.2.0</h2>
             <p>Next collection · not ratified</p>
           </div>
@@ -50,7 +53,9 @@ export default function Versions() {
         </section>
         <section className="release-row">
           <div>
-            <span className="status-pill ratified">Recorded ratified</span>
+            <span className="status-pill ratified">
+              <StatusLabel status="Recorded ratified" />
+            </span>
             <h2>0.1.0</h2>
             <p>September 10, 2026</p>
             <small>Archive candidate</small>
