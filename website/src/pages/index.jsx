@@ -160,7 +160,7 @@ export default function Home() {
                 key={`${s.collection}-${s.id}`}
               >
                 <div className="card-top">
-                  <span className="standard-id">{s.id}</span>
+                  <Link className="standard-id" to={s.href}>{s.id}</Link>
                   <span className="version-small">v{s.version}</span>
                 </div>
                 <h3>
