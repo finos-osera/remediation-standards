@@ -10,6 +10,9 @@ This file lists the maintainers of this repository.
 | @d1gital-f | Francesco Beltramini | ControlPlane | |
 | @grovesyp | Paul Groves | Citi | |
 | @madpah | Paul Horton | Sonatype, Inc. | |
+| @kriswest | Kris West | NatWest Group | kristopher.west@natwest.com |
+| @neil-imms-nw | Neil Imms | NatWest Group | neil.imms@natwest.com |
+
 
 
 For information about maintainer responsibilities and resources, see the [project governance](GOVERNANCE.md).
