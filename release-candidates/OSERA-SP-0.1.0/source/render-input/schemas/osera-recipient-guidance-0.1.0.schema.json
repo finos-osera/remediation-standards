@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://standards.osera.finos.org/schemas/osera-recipient-guidance-0.1.0.schema.json",
+  "title": "OSERA Recipient Guidance",
+  "schema-version": "0.1.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "what_changed",
+    "suggested_test_surface"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "what_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "suggested_test_surface": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "automation": {
+      "type": "object",
+      "properties": {
+        "openrewrite_recipes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "llm_context": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

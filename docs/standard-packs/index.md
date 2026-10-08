@@ -5,6 +5,8 @@ permalink: /standard-packs/
 
 OSERA-SP-0.1.0 was [ratified on **Thursday, September 10, 2026**](https://github.com/finos-osera/remediation-standards/issues/12). It defines the first set of standards that will gate OSERA patch releases. Seven additional standards are tracked in observe mode for OSERA-SP-0.2.0.
 
+See [release archives and version history]({{ site.baseurl }}/releases/) for preserved copies and publication status. Historical archive candidates are explicitly labeled until their baseline is confirmed.
+
 Each pack fixes the exact versions of its included standards. Later revisions do not change an existing pack. The catalog shows each standard's lifecycle status and pack membership separately.
 
 See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, versions, and pack maintenance.
@@ -61,7 +63,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 
 {{ pack.approved_producers.lifecycle_policy }}
 
-### Required standards in v0.1.0
+### Required standards in {{ pack.id }}
 
 <table>
   <thead>
@@ -76,7 +78,8 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
     {% for standard in pack.included_standards %}
     {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
     <tr>
-      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      {% assign archived_pack = site.data.release_history.packs[pack.id] %}
+      <td>{% if archived_pack %}<a href="{{ archived_pack.standard_urls[standard.id] }}">{{ standard.id }}</a>{% unless archived_pack.published %} <small>(archive candidate)</small>{% endunless %}{% else %}{{ standard.id }} <small>(archive unavailable)</small>{% endif %}</td>
       <td>{{ standard.version }}</td>
       <td>{{ standard.role }}</td>
       <td>{{ standard.rationale }}</td>
@@ -85,7 +88,7 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
   </tbody>
 </table>
 
-### Advisory in v0.1.0
+### Advisory in {{ pack.id }}
 
 {% if pack.advisory_standards and pack.advisory_standards.size > 0 %}
 <table>
@@ -101,7 +104,8 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
     {% for standard in pack.advisory_standards %}
     {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
     <tr>
-      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      {% assign archived_pack = site.data.release_history.packs[pack.id] %}
+      <td>{% if archived_pack %}<a href="{{ archived_pack.standard_urls[standard.id] }}">{{ standard.id }}</a>{% unless archived_pack.published %} <small>(archive candidate)</small>{% endunless %}{% else %}{{ standard.id }} <small>(archive unavailable)</small>{% endif %}</td>
       <td>{{ standard.version }}</td>
       <td>{{ standard.role }}</td>
       <td>{{ standard.rationale }}</td>
@@ -111,13 +115,13 @@ The approved-producer registry is `{{ pack.approved_producers.registry }}`.
 </table>
 {% else %}
 
-This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for v0.2.0 consideration.
+This pack has no advisory standards. Items that need more implementation evidence are tracked in observe mode for later packs.
 
 {% endif %}
 
-### Observe mode for v0.2.0
+### Observe-mode standards
 
-Observe-mode checks run during the v0.1.0 gate to collect evidence and implementation feedback. Their results do not block OSERA-SP-0.1.0 alignment. Promotion requires inclusion in a later ratified pack.
+Observe-mode checks collect evidence and implementation feedback. Their results do not block {{ pack.id }} alignment. Promotion requires inclusion in a later ratified pack.
 
 <table>
   <thead>
@@ -132,7 +136,8 @@ Observe-mode checks run during the v0.1.0 gate to collect evidence and implement
     {% for standard in pack.observe_standards %}
     {% assign standard_doc = site.standards | where: "standard_id", standard.id | first %}
     <tr>
-      <td><a href="{{ site.baseurl }}{{ standard_doc.url }}">{{ standard.id }}</a></td>
+      {% assign archived_pack = site.data.release_history.packs[pack.id] %}
+      <td>{% if archived_pack %}<a href="{{ archived_pack.standard_urls[standard.id] }}">{{ standard.id }}</a>{% unless archived_pack.published %} <small>(archive candidate)</small>{% endunless %}{% else %}{{ standard.id }} <small>(archive unavailable)</small>{% endif %}</td>
       <td>{{ standard.version }}</td>
       <td>{{ standard.role }}</td>
       <td>{{ standard.rationale }}</td>

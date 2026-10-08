@@ -6,10 +6,10 @@ layout: default
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Open remediation standards for regulated consumption</h1>
-      <p class="hero-subtitle">The ratified OSERA-SP-0.1.0 standards pack for producing, publishing, and consuming open patches with provenance, release evidence, and vulnerability feeds.</p>
+      <p class="hero-subtitle">Ratified release history and working standards for producing, publishing, and consuming open patches with provenance, release evidence, and vulnerability feeds.</p>
       <div class="hero-actions">
-        <a class="button primary" href="#standards">Browse standards</a>
-        <a class="button secondary" href="{{ site.baseurl }}/standard-packs/">Review v0.1.0 pack</a>
+        <a class="button primary" href="#standards">Browse working standards</a>
+        <a class="button secondary" href="{{ site.baseurl }}/releases/">Ratified releases &amp; history</a>
         <a class="button secondary" href="https://osera.finos.org" target="_blank" rel="noopener">About OSERA</a>
         <a class="button secondary" href="{{ site.baseurl }}/governance/">Contribute</a>
       </div>
@@ -17,6 +17,18 @@ layout: default
         <img src="{{ site.baseurl }}/assets/finos-labs-badge.svg" alt="FINOS Labs">
       </a>
     </div>
+    {% assign latest_release = site.data.release_history.latest %}
+    {% if latest_release %}
+    <aside class="pack-panel" aria-label="Latest official release">
+      <div class="panel-header"><span>Latest official release</span><strong>{{ latest_release.ratified_date }}</strong></div>
+      <h2>{{ latest_release.id }}</h2>
+      <p>A preserved set of ratified standard versions, complete with source, catalogs and downloadable artifacts.</p>
+      <div class="pack-actions">
+        <a class="button primary" href="{{ latest_release.url }}">Read latest official release</a>
+        <a class="button secondary" href="{{ site.baseurl }}/releases/">All releases &amp; history</a>
+      </div>
+    </aside>
+    {% else %}
     <aside class="pack-panel" aria-label="Ratified standards pack">
       <div class="panel-header">
         <span>Ratified standards pack</span>
@@ -27,10 +39,11 @@ layout: default
       <p>Java releases adopt <a href="{{ site.baseurl }}/standards/rel-003-java-patch-version-naming/">Maven CARE-style OSERA versioning</a>.</p>
       <p>Seven additional standards remain in observe mode for 0.2.0.</p>
       <div class="pack-actions">
-        <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View ratified pack</a>
+        <a class="button primary" href="{{ site.baseurl }}/standard-packs/">View recorded pack</a>
         <a class="button secondary" href="{{ site.baseurl }}/fitness/">Review fitness function</a>
       </div>
     </aside>
+    {% endif %}
   </div>
 </section>
 
@@ -49,7 +62,7 @@ layout: default
   <div class="wrap">
     <div class="section-heading">
       <div>
-        <h2>Standards catalog</h2>
+        <h2>Working standards catalog</h2>
         <p>Numbered requirements and examples, modeled on the SDLC Controls Framework catalog style and adapted for patch production and consumption.</p>
       </div>
       <div class="catalogue-controls" aria-label="Catalog filters">

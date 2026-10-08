@@ -1,0 +1,23 @@
+---
+title: Ratified releases & version history
+permalink: /releases/
+---
+<p>Ratified standards packs are permanent sets of exact standard versions. Working drafts evolve separately. Each published archive contains its own standards, catalogs, schemas, source, and downloadable copy.</p>
+{% assign history = site.data.release_history %}
+{% if history.latest %}
+<div class="version-notice official"><span class="version-eyebrow">Latest official archive</span><h2><a href="{{ history.latest.url }}">{{ history.latest.id }}</a></h2><p>Ratified {{ history.latest.ratified_date }} · <a href="{{ history.latest.github_release }}">GitHub Release and tag</a></p></div>
+{% else %}
+<div class="version-notice"><span class="version-eyebrow">Historical archive confirmation pending</span><h2>OSERA-SP-0.1.0 was ratified on September 10, 2026</h2><p>The historical archive below is prepared for baseline review. No official archive or release tag has been published by this implementation yet. The original ratification remains recorded; archive confirmation is a separate step.</p><a href="{{ site.baseurl }}/standard-packs/">View the recorded pack membership</a></div>
+{% endif %}
+<h2>Published archives</h2>
+{% for release in history.releases %}
+<article class="release-card"><span class="version-eyebrow">Ratified {{ release.ratified_date }}</span><h3><a href="{{ release.url }}">{{ release.id }}</a></h3><p><a href="{{ release.url }}{{ release.id }}.zip">Download ZIP</a> · <a href="{{ release.url }}SHA256SUMS">Checksums</a> · <a href="{{ release.tag_url }}">Repository tag</a> · <a href="{{ release.github_release }}">GitHub Release</a> · <a href="{{ release.decision }}">Ratification record</a></p></article>
+{% else %}<p>No confirmed archives have been published yet.</p>{% endfor %}
+<h2>Prepared snapshots for review</h2>
+<p>These are review candidates, not official release archives. A candidate is a preserved copy of a proposed source revision; it does not follow edits to the working site.</p>
+{% for release in history.candidates %}
+<article class="release-card"><span class="version-eyebrow">Baseline review · not published</span><h3><a href="{{ release.url }}">{{ release.id }} archive candidate</a></h3><p>{{ release.provenance }}</p><p><a href="{{ release.url }}">Browse snapshot</a> · <a href="{{ release.url }}{{ release.id }}.zip">Download ZIP</a> · <a href="{{ release.url }}manifest.json">Manifest</a> · <a href="{{ release.url }}SHA256SUMS">Checksums</a></p></article>
+{% else %}<p>No prepared candidates.</p>{% endfor %}
+<h2>Working toward the next pack</h2>
+<p><a href="{{ site.baseurl }}/#standards">Browse working standards</a> for current versions and review status. Their pages link to ratified version history. Unversioned catalog URLs also describe the working copy and can change; use a published archive for stable conformance definitions.</p>
+<p><a href="{{ site.baseurl }}/release-playbook/">Read the release publishing playbook</a> · <a href="{{ site.baseurl }}/release-baseline/">Review the 0.1.0 baseline audit</a></p>

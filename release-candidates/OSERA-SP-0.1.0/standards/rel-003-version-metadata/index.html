@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patch Version Naming | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../../index.html#standards">Snapshot standards</a><a href="../../standard-packs/index.html">Pack</a><a href="../../fitness/index.html">Fitness</a><a href="../../examples/index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-003</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-003</span>
+      <h1>Patch Version Naming</h1>
+      <p>Patched releases use package-ecosystem-appropriate version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required check</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>Package patch providers, Enterprise recipients, Package ecosystem profile authors</dd></div>
+      
+      
+      <div><dt>Extended by</dt><dd>
+        
+          
+          <a href="../rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a>
+        
+      </dd></div>
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-003.yaml">YAML</a> / <a href="../../catalog/standards/REL-003.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-003.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>Official OSERA patched releases must use the applicable package-ecosystem patch version naming profile, or the default SemVer 2.0-compatible OSERA form where no concrete profile exists, so supported package resolver, dependency update, repository manager, SCA, feed, and policy tooling can identify the patched artifact as the latest applicable remediation on the same upstream version line.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-003.CHECK-001</strong><br>
+                    Applicable patch version naming profile is selected
+                  </td>
+                  <td>blocking</td>
+                  <td>release_tag, artifact_version, applicable_profile, ecosystem_profile, resolver_test_result</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-003.REQ-002</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Release tags, artifact versions, vulnerability feeds, and release evidence must carry the same patched-release identifier.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-003.CHECK-002</strong><br>
+                    Release identifier is consistent across source, artifact, and feeds
+                  </td>
+                  <td>blocking</td>
+                  <td>release_tag, artifact_version, feed_purl</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>REL-003 is the abstract patch version naming requirement. It defines the consumer outcome that every concrete package-ecosystem profile must optimize for before choosing a version syntax.</p>
+
+<p>Official OSERA patched releases MUST use the applicable package-ecosystem patch version naming profile. Where no concrete profile exists, producers MUST use the default OSERA SemVer 2.0-compatible form described below.</p>
+
+<p>Every REL-003 profile MUST choose a patch version identifier that:</p>
+
+<ul>
+  <li>causes supported package resolver and dependency update tooling to treat the patched artifact as the latest applicable release on the same upstream version line;</li>
+  <li>preserves the upstream baseline identity;</li>
+  <li>distinguishes the patched artifact from the unpatched upstream release;</li>
+  <li>allows release tags, artifact versions, vulnerability feeds, and release evidence to refer to the same patched release;</li>
+  <li>avoids treating standard syntax as more important than the recipient tooling behavior needed to adopt the patch.</li>
+</ul>
+
+<p>The default OSERA intent is to preserve <a href="https://semver.org/">Semantic Versioning 2.0.0</a> semantics where practical, but standard syntax is secondary to recipient tooling behavior. Each package ecosystem or package manager MAY define a concrete profile that adapts the version identifier to the conventions, resolver behavior, repository metadata, and update tooling used by that ecosystem.</p>
+
+<p>Release tags, artifact versions, vulnerability feeds, and release evidence MUST carry the same patched-release identifier so recipients can correlate source, binary, scanner, and advisory records.</p>
+
+<h2 id="profile-model">Profile model</h2>
+
+<p>Concrete profiles extend REL-003 by adding an uppercase profile suffix to the standard ID, for example:</p>
+
+<ul>
+  <li><a href="../rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a> for Java package tooling;</li>
+  <li><code class="language-plaintext highlighter-rouge">REL-003-PYTHON</code> for a future Python package profile;</li>
+  <li><code class="language-plaintext highlighter-rouge">REL-003-JS</code> for a future JavaScript package profile.</li>
+</ul>
+
+<p>The suffix uses <code class="language-plaintext highlighter-rouge">-PROFILE</code> rather than <code class="language-plaintext highlighter-rouge">.PROFILE</code> because requirement and check IDs already use dots, such as <code class="language-plaintext highlighter-rouge">REL-003.CHECK-001</code>.</p>
+
+<p>Profiles SHOULD become more opinionated than the abstract standard. A profile can define the exact version pattern, resolver behavior tests, package URL encoding, repository-manager expectations, dependency-update-tool expectations, and any allowed exceptions for that package ecosystem.</p>
+
+<p>REL-003 profiles inherit the base checks unless they define the same check number. A profile check with the same numeric suffix overrides the base check for that profile. For example, <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code> overrides <code class="language-plaintext highlighter-rouge">REL-003.CHECK-001</code>; <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-002</code> overrides <code class="language-plaintext highlighter-rouge">REL-003.CHECK-002</code>; and a future <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-003</code> would add a Java-specific check after the inherited and overridden checks.</p>
+
+<p>Profile requirements use the same rule. A same-number requirement specializes the base requirement for that package ecosystem, while a new number adds a profile-specific requirement.</p>
+
+<h2 id="default-semver-profile">Default SemVer Profile</h2>
+
+<p>Where no concrete package-ecosystem profile exists, the default OSERA profile uses SemVer 2.0-compatible build metadata in the form:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;UPSTREAM_VERSION&gt;+&lt;PATCH_INITIATIVE&gt;.NNN
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;PATCH_INITIATIVE&gt;</code> SHOULD identify the patching initiative, provider, or organization responsible for the patched release. For OSERA-managed releases, the default metadata token is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osera-patch.NNN
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">NNN</code> MUST be monotonically increasing for the same upstream version line and patching initiative.</p>
+
+<p>Historical <code class="language-plaintext highlighter-rouge">+backpatch.NNN</code> releases are legacy proof-of-concept evidence. Official signed artifacts claiming OSERA-SP-0.1.0 alignment SHOULD use the applicable ratified package profile identifier.</p>
+
+<p>This standard defines the official patched-release identity. It does not rename source workflow branches or baseline tags. <a href="../fork-002-patch-branches/index.html">FORK-002</a> deliberately uses <code class="language-plaintext highlighter-rouge">patch/&lt;version&gt;</code> as the source branch convention, and <a href="../fork-003-baseline-tags/index.html">FORK-003</a> deliberately uses <code class="language-plaintext highlighter-rouge">v&lt;VERSION&gt;+patch.baseline</code> for the unpatched source baseline.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>The version name is useful only if recipients and their tools gravitate toward the patched release as the right update. The patched artifact needs to be treated by resolver and dependency update tooling as the newest or latest applicable release on the same upstream version line. It also needs to remain visibly distinct from the unpatched upstream release so recipients can understand why that latest release exists.</p>
+
+<p>SemVer 2.0 build metadata is OSERA’s default and preferred starting point where the package ecosystem preserves, displays, resolves, and orders it correctly. That preference should be applied within the constraints of the recipient tooling OSERA expects consumers to use; it is not a claim that every package manager, repository manager, SCA tool, or dependency-update tool will interpret <code class="language-plaintext highlighter-rouge">+</code> metadata consistently.</p>
+
+<p>Including the patching initiative in the visible component coordinate helps SCA tools, inventories, and approval workflows distinguish OSERA-managed releases from other downstream patch providers when repository or feed metadata is not shown.</p>
+
+<p>The numeric suffix distinguishes repeated releases on the same upstream version line; SemVer build metadata does not change version precedence. Some build tools may compare SemVer build metadata differently or rank <code class="language-plaintext highlighter-rouge">5.3.39+osera-patch.001</code> lower than the plain upstream <code class="language-plaintext highlighter-rouge">5.3.39</code>. That behavior is directly relevant to profile ratification: if a format does not cause supported resolver and dependency update tooling to treat the patch as the latest applicable release on the same upstream version line, the ecosystem profile needs a different concrete identifier.</p>
+
+<p>Package URLs using <code class="language-plaintext highlighter-rouge">+</code> metadata MUST encode <code class="language-plaintext highlighter-rouge">+</code> as <code class="language-plaintext highlighter-rouge">%2B</code>. Java Maven purls follow REL-003-JAVA instead, for example <code class="language-plaintext highlighter-rouge">pkg:maven/org.example/example-lib@1.0.0.1-osera-00001</code>.</p>
+
+<h2 id="examples">Examples</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5.3.39+osera-patch.001
+5.3.39+osera-patch.002
+</code></pre></div></div>
+
+<h2 id="java-examples">Java examples</h2>
+
+<p>Java artifacts use the ratified <a href="../rel-003-java-patch-version-naming/index.html">REL-003-JAVA</a> CARE-style convention, including the recorded non-OSGi example <code class="language-plaintext highlighter-rouge">5.3.39.1-osera-00001</code>. The generic SemVer examples above apply only where no concrete ecosystem profile exists.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

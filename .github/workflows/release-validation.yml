@@ -1,0 +1,33 @@
+name: Release archive validation
+on:
+  pull_request:
+  push:
+    branches: [main, 'codex/**']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: docs
+      - name: Prevent edits to existing release bytes and approvals
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -n "$BASE" ] && [ "$BASE" != "0000000000000000000000000000000000000000" ]; then
+            python3 tools/releases/release.py protect --base "$BASE"
+          fi
+      - name: Release behavior tests
+        run: python3 -m unittest discover -s tools/test -p 'release_*_test.py' -v
+      - name: Build site and verify copied snapshots
+        run: python3 tools/build_site.py

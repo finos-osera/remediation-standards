@@ -430,3 +430,18 @@ pre code { background: transparent; border: 0; color: inherit; padding: 0; }
 .parent-relationship th:nth-child(3) { width: 23%; }
 .parent-relationship td:nth-child(1),
 .parent-relationship td:nth-child(3) { font-family: monospace; }
+
+/* Release status and chronological version history. */
+.version-notice { margin: 1.5rem 0 2rem; padding: 1.5rem 1.75rem; border: 1px solid #dbbd70; border-left: 5px solid #b97b15; border-radius: 12px; background: #fff9e9; color: #303c4c; }
+.version-notice.official { background: #edf8f2; border-color: #88b7a1; border-left-color: #227456; }
+.version-notice h2 { margin: .5rem 0; font-size: 1.5rem; }
+.version-notice p { max-width: 85ch; }
+.version-notice .button { margin-right: 1rem; }
+.version-eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.version-history { margin: 2rem 0; padding: 1.5rem; border: 1px solid #dce3ec; border-radius: 12px; background: #f7f9fc; }
+.version-timeline { list-style: none; margin: 1rem 0; padding: 0 0 0 1.4rem; border-left: 2px solid #bcc9dc; }
+.version-timeline li { position: relative; padding: .3rem 0 1.2rem .6rem; }
+.version-timeline li::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #246aa0; position: absolute; left: -1.78rem; top: .65rem; border: 3px solid #f7f9fc; }
+.version-timeline p { margin: .45rem 0 0; }
+.release-card { border: 1px solid #dce3ec; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; background: #f7f9fc; }
+.release-card h3 { margin: .4rem 0; }

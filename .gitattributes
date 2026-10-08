@@ -1,0 +1,3 @@
+# Frozen source/rendered artifacts preserve original bytes, including whitespace.
+release-candidates/** linguist-generated=true -whitespace
+releases/** linguist-generated=true -whitespace

@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<article class="wrap standard-page">
+  <div class="breadcrumb"><a href="{{ site.baseurl }}/">Home</a> / <a href="{{ site.baseurl }}/#standards">Standards</a> / {{ page.standard_id }}</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">{{ page.standard_id }}</span>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.summary }}</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>{{ page.doc-status }}</dd></div>
+      <div><dt>Version</dt><dd>{{ page.standard-version }}</dd></div>
+      <div><dt>Pack</dt><dd>{{ page.candidate-pack }}</dd></div>
+      <div><dt>Ratified</dt><dd>{{ page.ratified-date }}</dd></div>
+      <div><dt>Fitness</dt><dd>{{ page.fitness-role }}</dd></div>
+      <div><dt>Category</dt><dd>{{ page.category | default: site.standard_classification[page.type] }}</dd></div>
+      <div><dt>Applies to</dt><dd>{{ page.applies-to | join: ", " }}</dd></div>
+      {% if page.extends %}
+      {% assign parent_doc = site.standards | where: "standard_id", page.extends | first %}
+      <div><dt>Extends</dt><dd>{% if parent_doc %}<a href="{{ site.baseurl }}{{ parent_doc.url }}">{{ page.extends }}</a>{% else %}{{ page.extends }}{% endif %}</dd></div>
+      {% endif %}
+      {% if page.extended-by %}
+      <div><dt>Extended by</dt><dd>
+        {% for child in page.extended-by %}
+          {% assign child_doc = site.standards | where: "standard_id", child | first %}
+          {% if child_doc %}<a href="{{ site.baseurl }}{{ child_doc.url }}">{{ child }}</a>{% else %}{{ child }}{% endif %}{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </dd></div>
+      {% endif %}
+      <div><dt>Machine-readable</dt><dd><a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.yaml">YAML</a> / <a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  {% if page.extends %}
+  {% assign relationship = site.data.profile_relationships[page.standard_id] %}
+  <section class="parent-relationship">
+    <h2>Relationship to parent</h2>
+    <p>This profile extends <a href="{{ site.baseurl }}{{ parent_doc.url }}">{{ relationship.parent_standard }}</a> version {{ relationship.parent_version }}. The tables are generated from the parent and profile metadata. Overrides specialize the parent obligation; inherited items apply unchanged.</p>
+    {% assign relationship_kinds = "requirements,checks" | split: "," %}
+    {% for kind in relationship_kinds %}
+    <h3>{{ kind | capitalize }}</h3>
+    <div class="relationship-table">
+    <table>
+      <thead><tr><th>Parent item</th><th>Treatment</th><th>Effective item</th><th>What changes or remains</th></tr></thead>
+      <tbody>
+        {% for item in relationship[kind] %}
+        <tr>
+          <td>{{ item.parent_item | default: "—" | escape }}</td>
+          <td>{{ item.treatment | escape }}</td>
+          <td>{{ item.effective_item | escape }}</td>
+          <td>{{ item.explanation | escape }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+  {% if page.requirements %}
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    {% for requirement in page.requirements %}
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">{{ requirement.id }}</span>
+          <span class="row-status">{{ requirement.level }}</span>
+          <span class="row-pack">{{ requirement.checkability }}</span>
+        </div>
+        <p>{{ requirement.text }}</p>
+        {% if requirement.checks %}
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for check in requirement.checks %}
+                <tr>
+                  <td>
+                    <strong>{{ check.id }}</strong><br>
+                    {{ check.title }}
+                  </td>
+                  <td>{{ check.severity }}</td>
+                  <td>{{ check.evidence | join: ", " }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+  <div class="standard-body">
+    {{ content }}
+  </div>
+</article>

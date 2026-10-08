@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Provider Test Provenance | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../../index.html#standards">Snapshot standards</a><a href="../../standard-packs/index.html">Pack</a><a href="../../fitness/index.html">Fitness</a><a href="../../examples/index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-001</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-001</span>
+      <h1>Provider Test Provenance</h1>
+      <p>Test execution methods are provider-dependent, but the provider publishes a unit-test report artifact for recipients to understand release validation.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required evidence</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>Patch providers, Enterprise recipients</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-001.yaml">YAML</a> / <a href="../../catalog/standards/REL-001.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-001.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Patch providers must publish test provenance for the patched artifact, including the tested commit, test command or suite, runtime when relevant, test report, and passing test result.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-001.CHECK-001</strong><br>
+                    Test provenance is recorded
+                  </td>
+                  <td>blocking</td>
+                  <td>tested_commit, runtime, test_command, test_result, test_report_artifact, no_failed_tests</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Patch providers MUST publish test provenance for the patched artifact.</p>
+
+<p>The evidence MUST identify the tested commit or source tag, test command or suite, runtime when relevant, a published unit-test report artifact, and the pass/fail outcome.</p>
+
+<p>For SP-0.1.0 alignment, the published unit-test report MUST identify no failed tests for the release being claimed.</p>
+
+<p>OSERA does not require every patch fork to run public GitHub Actions CI. Providers MAY use their own validation systems, but recipients need enough published test evidence to understand what was checked.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Older projects can require specialized tooling such as Apache Ant, Gradle 2-5, Java 6-7, or OSGi. A single public CI model is unlikely to fit every patch repository.</p>
+
+<p>This standard is intentionally scoped to test provenance for OSERA-SP-0.1.0. Build provenance, including evidence that a specific binary was built from a specific source tag, is deferred to <a href="../rel-007-build-provenance-and-signed-attestation/index.html">REL-007</a> for OSERA-SP-0.2.0 observe-mode work.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The July 7 update noted that Moderne uses <code class="language-plaintext highlighter-rouge">mod</code> CLI for repeatable project validation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mod exec /path/to/project MODERNE_TEST_CHECK
+</code></pre></div></div>
+
+<h2 id="evidence">Evidence</h2>
+
+<p>Release evidence SHOULD identify the runtime, relevant test command, test result, and published unit-test report artifact used for the patched release.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

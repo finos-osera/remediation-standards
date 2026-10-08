@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approved Producers | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../../index.html#standards">Snapshot standards</a><a href="../../standard-packs/index.html">Pack</a><a href="../../fitness/index.html">Fitness</a><a href="../../examples/index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / REL-004</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">REL-004</span>
+      <h1>Approved Producers</h1>
+      <p>Official OSERA signed artifacts are produced only by producers approved for the targeted standards pack.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required check</dd></div>
+      <div><dt>Category</dt><dd>Release Process</dd></div>
+      <div><dt>Applies to</dt><dd>OSERA maintainers, Patch providers, Repository operators</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/REL-004.yaml">YAML</a> / <a href="../../catalog/standards/REL-004.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-004.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack. Each producer record must contain id, contact, github_users, and staging_account, with a unique id matching the producer identity in release evidence and fitness results.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-004.CHECK-001</strong><br>
+                    Producer is approved for the targeted standards pack
+                  </td>
+                  <td>blocking</td>
+                  <td>producer_identity, approved_producer_registry</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">REL-004.REQ-002</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">partially-automated</span>
+        </div>
+        <p>The producer identity used at publication time must be recorded in the fitness result and release evidence, as an exact-string match of the registry entry's id. The fitness result and the verdict must also record the registry entry's staging_account and github_users as copied from the registry, and separately the observed release-tag actor. The observed upload account may be null in the CI fitness result because the gate observes it at upload time; this null value does not fail the CI check. The gate must record the observed upload account in the verdict. In 0.1.0 a difference between the copied account metadata and the observed actors is recorded and does not block.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>REL-004.CHECK-002</strong><br>
+                    Producer identity is recorded in release evidence
+                  </td>
+                  <td>blocking</td>
+                  <td>producer_identity, fitness_result, release_evidence, registry_account_metadata, observed_tag_actor, observed_upload_account</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>Official OSERA signed artifacts MUST be produced by an approved producer for the targeted standards pack.</p>
+
+<p>The publication gate MUST record the producer identity in the fitness result and release evidence.</p>
+
+<p>The approved-producer registry SHOULD be versioned with, or explicitly bound to, the standards pack used by the gate.</p>
+
+<h2 id="initial-producer-registry-format">Initial producer registry format</h2>
+
+<p>The initial registry is a YAML document bound to a standards pack through <code class="language-plaintext highlighter-rouge">applies_to_pack</code>. Each entry in <code class="language-plaintext highlighter-rouge">producers</code> MUST contain the following fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Non-empty string</td>
+      <td>Stable producer identifier used consistently in release evidence and the fitness result. It is unique within the registry.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">contact</code></td>
+      <td>Email address string</td>
+      <td>Contact for producer coordination and escalation.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">github_users</code></td>
+      <td>Non-empty list of GitHub usernames</td>
+      <td>Accounts authorized by the producer to push release tags on its patch repositories. Store usernames without the <code class="language-plaintext highlighter-rouge">@</code> prefix.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">staging_account</code></td>
+      <td>Non-empty string</td>
+      <td>Producer’s upload-account identifier in the staging repository for the initial implementation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">producer</code> value in release evidence and fitness results MUST match the registry entry’s <code class="language-plaintext highlighter-rouge">id</code>. These fields identify the producer and its initial operational accounts; they do not assert that any particular source line is exclusively assigned to that producer.</p>
+
+<p>The example is illustrative and does not approve a real producer:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">schema-version</span><span class="pi">:</span> <span class="s">0.1.0</span>
+<span class="na">applies_to_pack</span><span class="pi">:</span> <span class="s">OSERA-SP-0.1.0</span>
+<span class="na">producers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">example-producer</span>
+    <span class="na">contact</span><span class="pi">:</span> <span class="s">patches@example.org</span>
+    <span class="na">github_users</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">example-maintainer</span>
+    <span class="na">staging_account</span><span class="pi">:</span> <span class="s">example-producer-upload</span>
+</code></pre></div></div>
+
+<p>The authoritative registry is <a href="https://github.com/finos-osera/remediation-standards/blob/main/docs/_data/approved_producers.yml"><code class="language-plaintext highlighter-rouge">docs/_data/approved_producers.yml</code></a>. An empty <code class="language-plaintext highlighter-rouge">producers</code> list means that no producers are registered; the example above is not a registry entry.</p>
+
+<h3 id="gate-scope">Gate scope</h3>
+
+<p>For 0.1.0, REL-004 requires registry membership and consistent producer identity in the fitness result and release evidence. The initial fields supply the account metadata needed by implementation teams. Detailed rules for binding authenticated upload accounts, release-tag or commit actors, and signed-result identities are tracked for <a href="https://github.com/finos-osera/remediation-standards/issues/56">0.2.0</a>; listing an account here does not introduce those additional blocking checks into 0.1.0.</p>
+
+<p>Line custody, lead-maintainer responsibilities, optional exclusivity, and line-specific escalation contacts are also included in that 0.2.0 follow-up. The global producer allow list does not imply ownership of every line a producer may patch.</p>
+
+<h3 id="tactical-architecture-for-wave-1--mvp-1">Tactical architecture for Wave 1 / MVP 1</h3>
+
+<ul>
+  <li>The registry consists of one file in this repository, <code class="language-plaintext highlighter-rouge">docs/_data/approved_producers.yml</code>, bound to the standards pack through <code class="language-plaintext highlighter-rouge">applies_to_pack</code> and read at the pack version in force.</li>
+  <li>It is used by the fitness checks in the producer’s CI workflow and by the Exchange gate, for:
+    <ul>
+      <li>the REL-004 checks: the producer named in the release evidence and in the fitness result is an approved producer for the pack</li>
+      <li>tracing any artifact, evidence file, fitness result or verdict back to the producer that published it, through <code class="language-plaintext highlighter-rouge">id</code></li>
+      <li>attributing an upload in the staging repository to a producer, through <code class="language-plaintext highlighter-rouge">staging_account</code></li>
+      <li>reporting who pushed the release tag and whether that account is listed for the producer, through <code class="language-plaintext highlighter-rouge">github_users</code></li>
+      <li>naming the producer in the ledger and in the published feeds for every promoted release</li>
+      <li>provisioning: one upload account per producer on the staging repository, named as in <code class="language-plaintext highlighter-rouge">staging_account</code>, and the GitHub accounts granted on the producer’s patch repositories</li>
+      <li>escalation to the producer when a check fails or a release is withdrawn, through <code class="language-plaintext highlighter-rouge">contact</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">id</code> is matched as an exact string. The <code class="language-plaintext highlighter-rouge">producer</code> value in the release evidence and in the fitness result MUST equal the registry entry’s <code class="language-plaintext highlighter-rouge">id</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">staging_account</code> and <code class="language-plaintext highlighter-rouge">github_users</code> are recorded with the fitness result and the verdict in 0.1.0. Binding rules on those accounts are the 0.2.0 follow up (#56).</li>
+  <li>A failed REL-004 check refuses the release. The producer may resubmit the same version with corrected evidence.</li>
+</ul>
+
+<h4 id="registry-version-selection">Registry version selection</h4>
+
+<p><code class="language-plaintext highlighter-rouge">applies_to_pack</code> names the pack, it does not pin the file contents. Producer CI and the Exchange gate resolve the same registry revision through one immutable reference: the release tag of the pack in this repository (<code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code> for the ratified pack, <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.1</code> and following for patch-level registry updates). Both read <code class="language-plaintext highlighter-rouge">docs/_data/approved_producers.yml</code> at that tag and record the tag as <code class="language-plaintext highlighter-rouge">registry_ref</code> in the fitness result and in the verdict, next to <code class="language-plaintext highlighter-rouge">pack_checksum</code>, the SHA-256 of <code class="language-plaintext highlighter-rouge">docs/catalog/packs/&lt;pack&gt;.json</code> at the same tag. A pack release without a tag is not implementable by either side. Create the pack release tag only after the consolidated pack changes have merged. Published pack tags MUST NOT be moved or reused; registry updates use a new pack release tag.</p>
+
+<h4 id="account-reporting">Account reporting</h4>
+
+<p>The fitness result carries two things that must not be confused: <code class="language-plaintext highlighter-rouge">producer_accounts.registry</code>, the <code class="language-plaintext highlighter-rouge">staging_account</code> and <code class="language-plaintext highlighter-rouge">github_users</code> copied from the matched registry entry, and <code class="language-plaintext highlighter-rouge">producer_accounts.observed</code>, what actually happened, the account that pushed the release tag (from the CI run context) and, filled in by the gate, the account that uploaded the artifact. The CI result may record <code class="language-plaintext highlighter-rouge">producer_accounts.observed.upload_account</code> as <code class="language-plaintext highlighter-rouge">null</code> without failing REL-004; the gate records the observed upload account in the verdict, alongside the registry metadata and tag actor. A difference is recorded as an observation and is not a failure in 0.1.0. Making it one is the account-binding work on #56. The <a href="../../fitness/index.html">fitness function</a> page shows the representation.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>The publication gate needs a practical trust boundary. FINOS/OSERA should approve who is allowed to produce official artifacts; the producer signs and supplies evidence for what it built.</p>
+
+<p>This supports “aligned, not certified” language for v0.1.0. A passing gate means an approved producer published evidence that satisfied the selected standards pack. It does not mean FINOS guarantees the patched code.</p>
+
+<h2 id="pack-lifecycle">Pack lifecycle</h2>
+
+<p>Approved-producer changes MAY be handled as patch-level standards-pack updates when the standards text and checks do not change.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.1</code> MAY update the approved-producer registry while still using the same standard versions as <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code>.</p>
+
+<p>Requirement changes, new blocking checks, or changed check semantics SHOULD move to a later minor or major standards-pack version.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

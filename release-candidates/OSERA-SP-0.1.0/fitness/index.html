@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fitness Function | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../index.html#standards">Snapshot standards</a><a href="../standard-packs/index.html">Pack</a><a href="index.html">Fitness</a><a href="../examples/index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Fitness Function</div>
+  <h1>Fitness Function</h1>
+  <p>The v0.1.0 fitness function should measure alignment to a standard pack, not certify a provider or repository. This keeps the first gate useful for implementers without implying a mature accreditation regime before the working group has agreed one.</p>
+
+<h2 id="scope">Scope</h2>
+
+<p>The first fitness function evaluates a single patch repository and one published patch release against a named standards pack, for example <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code>.</p>
+
+<p>The result SHOULD identify the standards-pack version, each standard version tested, each check ID, the commit tested, the artifact digest when an artifact exists, the evidence inspected, and whether every check is <code class="language-plaintext highlighter-rouge">pass</code>, <code class="language-plaintext highlighter-rouge">warn</code>, <code class="language-plaintext highlighter-rouge">fail</code>, <code class="language-plaintext highlighter-rouge">not-tested</code>, <code class="language-plaintext highlighter-rouge">not-applicable</code>, or <code class="language-plaintext highlighter-rouge">manual-evidence-required</code>.</p>
+
+<p>Blocking checks determine whether an artifact can claim <code class="language-plaintext highlighter-rouge">OSERA-SP-0.1.0</code> alignment. Observe-mode checks SHOULD run during the same gate, but their results collect implementation data for <code class="language-plaintext highlighter-rouge">OSERA-SP-0.2.0</code> and SHOULD NOT block the v0.1.0 gate unless included as blocking checks in a later ratified pack.</p>
+
+<h2 id="blocking-checks">Blocking checks</h2>
+
+<p>The following checks define OSERA-SP-0.1.0 alignment. REL-003 is the generic naming requirement; REL-003-JAVA supplies the Java specialization. For Java, same-number profile checks replace the corresponding base checks, as described in the <a href="../lifecycle/index.html#profile-extension-and-overrides">profile lifecycle</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>v0.1.0 check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>STD-001</td>
+      <td>Standard sources carry validated metadata and generate current catalogs with valid pack and check references.</td>
+    </tr>
+    <tr>
+      <td>FORK-001</td>
+      <td>Repository is public under <code class="language-plaintext highlighter-rouge">finos-osera</code> and named <code class="language-plaintext highlighter-rouge">patch-&lt;upstream-or-artifact-name&gt;</code>.</td>
+    </tr>
+    <tr>
+      <td>FORK-002</td>
+      <td>Patch work happens on a <code class="language-plaintext highlighter-rouge">patch/&lt;version&gt;</code> branch for the supported line.</td>
+    </tr>
+    <tr>
+      <td>FORK-003</td>
+      <td>Baseline source commit is tagged <code class="language-plaintext highlighter-rouge">v&lt;VERSION&gt;+patch.baseline</code>.</td>
+    </tr>
+    <tr>
+      <td>SRC-002</td>
+      <td>Backport evidence links to upstream commit, commit range, pull request, advisory, or release note.</td>
+    </tr>
+    <tr>
+      <td>SRC-003</td>
+      <td>New files match the nearest existing file of the same type in the same module, ignoring years and whitespace; result is <code class="language-plaintext highlighter-rouge">not-applicable</code> where no local header convention exists.</td>
+    </tr>
+    <tr>
+      <td>REL-001</td>
+      <td>Release evidence records tested commit, runtime, test command or suite, published unit-test report artifact, and no failed tests.</td>
+    </tr>
+    <tr>
+      <td>REL-002</td>
+      <td>Release evidence records bytecode level and how it was checked against the prior released artifact.</td>
+    </tr>
+    <tr>
+      <td>REL-003</td>
+      <td>Release tag, artifact version, vulnerability feeds, and release evidence use the applicable patch version naming profile, or the default SemVer form where no profile exists.</td>
+    </tr>
+    <tr>
+      <td>REL-003-JAVA</td>
+      <td>Java release tag and artifact version use the ratified Java patch version naming pattern selected from compatibility evidence and match Maven/feed purls.</td>
+    </tr>
+    <tr>
+      <td>REL-004</td>
+      <td>Producer identity is approved for the targeted standards pack and recorded in release evidence.</td>
+    </tr>
+    <tr>
+      <td>REL-005</td>
+      <td>Package files, checksums, and package metadata are present and internally consistent.</td>
+    </tr>
+    <tr>
+      <td>FEED-001</td>
+      <td>OpenVEX and CycloneDX feed data can identify vulnerability, patched artifact, release, baseline, and provenance.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="advisory-and-observe-checks">Advisory and observe checks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Mode</th>
+      <th>Check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EVD-001</td>
+      <td>Observe</td>
+      <td>Recipient guidance describes what changed and what surface area should be tested using schema version <code class="language-plaintext highlighter-rouge">0.1.0</code>, once the expected format is defined.</td>
+    </tr>
+    <tr>
+      <td>FORK-004</td>
+      <td>Observe</td>
+      <td>Repository is fully public, publicly fetchable, hosted in the appropriate official fork, and released under the same applicable upstream open-source license terms.</td>
+    </tr>
+    <tr>
+      <td>SRC-001</td>
+      <td>Observe</td>
+      <td>Patch basis classification vocabulary and minimum provider wording are present once defined by the working group.</td>
+    </tr>
+    <tr>
+      <td>REL-006</td>
+      <td>Observe</td>
+      <td>Release has a backlog item, public request, sponsor record, or equivalent authorization record.</td>
+    </tr>
+    <tr>
+      <td>REL-007</td>
+      <td>Observe</td>
+      <td>Producer signs an attestation linking artifact digest to source tag and release evidence, while preserving reproducible builds as the longer-term goal.</td>
+    </tr>
+    <tr>
+      <td>REL-008</td>
+      <td>Observe</td>
+      <td>Build-security scan evidence identifies tooling, scope, results, and unresolved high-risk findings where ecosystem-appropriate scanning is available.</td>
+    </tr>
+    <tr>
+      <td>APP-001</td>
+      <td>Observe</td>
+      <td>Feed and metadata support estate-wide automated discovery and application.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="output-shape">Output shape</h2>
+
+<p>The example below illustrates a partial CI result with only FORK-003 evaluated; the remaining blocking checks have not been tested, so the overall result is <code class="language-plaintext highlighter-rouge">not-tested</code>. Java implementations use the REL-003-JAVA release naming pattern.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"standard_pack"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OSERA-SP-0.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pack_checksum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha256:..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"registry_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OSERA-SP-0.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"repository"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finos-osera/patch-example"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1.2.3.1-osera-00001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"commit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"artifact_digest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha256:..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"producer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-producer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"producer_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"registry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"staging_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-producer-upload"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"github_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"example-maintainer"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"observed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"tag_actor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-maintainer"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"upload_account"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not-tested"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"standards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"standard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORK-003"</span><span class="p">,</span><span class="w"> </span><span class="nl">"standard_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w"> </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"checks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"standard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORK-003"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"standard_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"requirement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORK-003.REQ-001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FORK-003.CHECK-001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"expected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag v1.2.3+patch.baseline exists and resolves to the unpatched baseline source commit"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"observed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1.2.3+patch.baseline resolves to commit ..."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"evidence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git rev-parse --verify v1.2.3+patch.baseline^{commit}"</span><span class="p">,</span><span class="w"> </span><span class="nl">"exit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;baseline commit SHA&gt;"</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">checks</code> records each evaluated check by check ID and its associated requirement ID; <code class="language-plaintext highlighter-rouge">standards</code> summarizes the evaluated checks for each standard. <code class="language-plaintext highlighter-rouge">expected</code> states the rule with the actual values, <code class="language-plaintext highlighter-rouge">observed</code> describes what the repository showed, and <code class="language-plaintext highlighter-rouge">evidence</code> records the supporting commands and outputs. Resolving the baseline tag demonstrates that it points to a commit; evidence identifying that commit as the unpatched source state is also needed.</p>
+
+<p>Result summaries must respect the targeted pack’s check roles and severities. A failed blocking check prevents alignment. Advisory and observe-only findings remain visible but do not become blocking failures through the standard or overall summary. A blocking check marked <code class="language-plaintext highlighter-rouge">not-tested</code> or <code class="language-plaintext highlighter-rouge">manual-evidence-required</code> remains unresolved and cannot support an alignment claim until the required evaluation or review is completed. A <code class="language-plaintext highlighter-rouge">not-applicable</code> result needs an evidence-backed explanation permitted by the relevant standard; it must not silently waive a required check. A warning does not waive an unresolved blocking requirement. Only a complete evaluation satisfying all applicable blocking checks can support alignment.</p>
+
+<p><code class="language-plaintext highlighter-rouge">producer_accounts.registry</code> is copied from the matched registry entry at <code class="language-plaintext highlighter-rouge">registry_ref</code>; <code class="language-plaintext highlighter-rouge">producer_accounts.observed</code> records what the run and the gate saw. The CI result may leave <code class="language-plaintext highlighter-rouge">upload_account</code> as <code class="language-plaintext highlighter-rouge">null</code> without failing REL-004. The gate records the observed upload account in its verdict, alongside the CI evidence and its own artifact checks. Differences between registry account metadata and observed actors are recorded but do not block in 0.1.0.</p>
+
+<p>The signed fitness-result contract and its verification behavior are tracked in <a href="https://github.com/finos-osera/remediation-standards/issues/57">#57</a> for 0.2.0. This example does not add a blocking signature-verification requirement to 0.1.0.</p>
+
+<h2 id="certification-posture">Certification posture</h2>
+
+<p>For v0.1.0, the working group SHOULD use “OSERA-SP-0.1.0 aligned” only when a repository publishes the fitness result and all blocking checks pass. The working group SHOULD NOT use “certified” until it has agreed reviewer identity, evidence retention, revocation, dispute handling, and trademark or badge rules.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+</html>

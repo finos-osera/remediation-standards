@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - docs/**
+      - releases/**
+      - release-candidates/**
+      - release-approvals/**
+      - tools/**
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -37,7 +41,7 @@ jobs:
 
       - name: Build with Jekyll
         working-directory: docs
-        run: bundle exec jekyll build --baseurl "" --destination ../_site
+        run: python3 ../tools/build_site.py --destination ../_site
         env:
           JEKYLL_ENV: production
 

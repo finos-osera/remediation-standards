@@ -1,0 +1,111 @@
+---
+title: Examples
+permalink: /examples/
+---
+
+Version strings in the examples are illustrative. Java release identifiers follow [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/).
+
+These examples are intentionally concise and implementation-oriented. They are meant to help providers publish consistent patch evidence and help enterprise recipients automate ingestion.
+
+The examples below illustrate the ratified OSERA-SP-0.1.0 conventions; repository names, providers, vulnerabilities, and evidence links are illustrative, not published releases or producer approvals. See [Java release scenarios]({{ site.baseurl }}/examples/release-tags/) for packaging examples. [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) documents the legacy proof of concept for illustration only.
+
+## Patch repository shape
+
+```text
+github.com/finos-osera/patch-spring-framework
+  branch: patch/5.3.x
+  tag: v5.3.39+patch.baseline
+  release: v5.3.39.1-osera-00001
+```
+
+## Patch evidence bundle
+
+This sketch combines 0.1.0 release evidence with optional patch-basis and recipient-guidance fields tracked in observe mode for 0.2.0; it is not a complete gate result.
+
+```yaml
+patch:
+  provider: example-provider
+  repository: https://github.com/finos-osera/patch-spring-framework
+  branch: patch/5.3.x
+  baseline_tag: v5.3.39+patch.baseline
+  release_version: 5.3.39.1-osera-00001
+  basis:
+    type: upstream-backport
+    upstream_commit: https://github.com/spring-projects/spring-framework/commit/example
+  compatibility:
+    bytecode_source: last-released-artifact
+    bytecode_level: 8
+  recipient_guidance:
+    what_changed:
+      - Tightened parsing of affected input path.
+      - Added regression coverage for malicious payload handling.
+    suggested_test_surface:
+      - Applications using the affected parser or endpoint.
+      - Integration tests that exercise custom serialization or deserialization.
+      - Smoke tests for dependent frameworks that wrap the affected API.
+```
+
+## Feed statement sketch
+
+OpenVEX and CycloneDX examples should identify the patched artifact, vulnerability, status, and provenance links. The exact schema should be maintained in feed-specific examples as the working group converges.
+
+### OpenVEX-style example
+
+```json
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://vex.example.org/openvex/example-1.0.0.1-osera-00001.json",
+  "author": "Example Patch Provider <security@example.org>",
+  "timestamp": "2026-07-10T00:00:00Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0001",
+        "aliases": ["GHSA-example-example-example"]
+      },
+      "products": [
+        {
+          "@id": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001",
+          "identifiers": {
+            "purl": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"
+          },
+          "hashes": {
+            "sha-256": "..."
+          }
+        }
+      ],
+      "status": "fixed",
+      "action_statement": "CVE-2026-0001 fixed by backporting the upstream fix onto the 1.0.0 baseline."
+    }
+  ]
+}
+```
+
+### CycloneDX-style example
+
+```json
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "vulnerabilities": [
+    {
+      "id": "CVE-2026-0001",
+      "source": {
+        "name": "NVD",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-0001"
+      },
+      "analysis": {
+        "state": "resolved_with_pedigree",
+        "detail": "Fixed by backporting the upstream fix onto the 1.0.0 baseline; see component pedigree."
+      },
+      "affects": [
+        {
+          "ref": "pkg:maven/org.example/example-lib@1.0.0.1-osera-00001"
+        }
+      ]
+    }
+  ]
+}
+```

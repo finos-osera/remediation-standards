@@ -1,0 +1,29 @@
+{% assign history = site.data.release_history.standards[page.standard_id] %}
+<section class="version-notice {% if history.official and history.changed == false %}official{% endif %}" aria-labelledby="version-status">
+  <span class="version-eyebrow">Working copy · {{ page.doc-status }} · {{ page.standard-version }}</span>
+  {% if history %}
+    {% assign baseline = history.official | default: history.recorded %}
+    {% if history.changed %}
+    <h2 id="version-status">This working copy has moved on</h2>
+    <p>The text differs from the {% if history.official %}latest official archive{% else %}proposed historical baseline{% endif %}. {% if page.doc-status != 'Ratified' %}Version {{ page.standard-version }} is under review and is not ratified.{% else %}The “Ratified” source label does not approve later edits; use the preserved version for release-specific requirements.{% endif %}</p>
+    {% else %}<h2 id="version-status">Compare with the preserved version</h2><p>This working copy matches the {% if history.official %}latest official archive{% else %}proposed historical baseline{% endif %}.</p>{% endif %}
+    <p><strong>{% if history.official %}Latest official version{% else %}Latest recorded ratified version{% endif %}: {{ baseline.version }}</strong> · {{ baseline.id }} · {{ baseline.ratified_date }}.</p>
+    {% if history.official %}<a class="button primary" href="{{ history.official.url }}">Read latest official version</a>{% else %}<p>Its archive is awaiting baseline confirmation. <a href="{{ baseline.url }}">Review the proposed {{ baseline.version }} archive</a>.</p>{% endif %}
+    <a href="#version-history">View version history ↓</a>
+  {% else %}
+    <h2 id="version-status">No ratified version in the release register</h2>
+    <p>This is working material for review. Inclusion in an observe-mode list does not ratify it.</p>
+  {% endif %}
+</section>
+{% if history %}
+<section class="version-history" id="version-history" aria-labelledby="history-heading">
+  <h2 id="history-heading">Version history</h2>
+  <ol class="version-timeline">
+    <li><strong>{{ page.standard-version }} · Working copy</strong><p>{{ page.doc-status }} · {{ page.candidate-pack }}. {% if history.changed %}Changed from the preserved baseline.{% endif %}</p></li>
+    {% for version in history.versions %}
+    <li><strong><a href="{{ version.url }}">{{ version.version }} · {{ version.id }}</a></strong><p>Ratified {{ version.ratified_date }} · {% if version.published %}Official archive{% else %}Recorded ratification; archive candidate awaiting confirmation{% endif %} · <a href="{{ version.decision }}">Decision record</a></p></li>
+    {% endfor %}
+  </ol>
+  <p><a href="{{ site.baseurl }}/releases/">All standards-pack releases</a></p>
+</section>
+{% endif %}

@@ -1,0 +1,29 @@
+{
+  "packs": {
+    "OSERA-SP-0.1.0": {
+      "published": true,
+      "standard_urls": {
+        "APP-001": "/standards/app-001-estate-application/index.html",
+        "EVD-001": "/standards/evd-001-change-and-test-surface/index.html",
+        "FEED-001": "/standards/feed-001-openvex-cyclonedx/index.html",
+        "FORK-001": "/standards/fork-001-repository-naming/index.html",
+        "FORK-002": "/standards/fork-002-patch-branches/index.html",
+        "FORK-003": "/standards/fork-003-baseline-tags/index.html",
+        "FORK-004": "/standards/fork-004-open-source-patch-publication/index.html",
+        "REL-001": "/standards/rel-001-test-provenance/index.html",
+        "REL-002": "/standards/rel-002-bytecode-compatibility/index.html",
+        "REL-003": "/standards/rel-003-version-metadata/index.html",
+        "REL-003-JAVA": "/standards/rel-003-java-patch-version-naming/index.html",
+        "REL-004": "/standards/rel-004-approved-producers/index.html",
+        "REL-005": "/standards/rel-005-artifact-publication-hygiene/index.html",
+        "REL-006": "/standards/rel-006-patch-request-authorization/index.html",
+        "REL-007": "/standards/rel-007-build-provenance-and-signed-attestation/index.html",
+        "REL-008": "/standards/rel-008-build-security-scanning/index.html",
+        "SRC-001": "/standards/src-001-patch-basis/index.html",
+        "SRC-002": "/standards/src-002-provenance-links/index.html",
+        "SRC-003": "/standards/src-003-license-headers/index.html",
+        "STD-001": "/standards/std-001-standards-as-code/index.html"
+      }
+    }
+  }
+}

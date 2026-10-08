@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OSERA Commit Evidence | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../../index.html#standards">Snapshot standards</a><a href="../../standard-packs/index.html">Pack</a><a href="../../fitness/index.html">Fitness</a><a href="../index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap content-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / OSERA Commit Evidence</div>
+  <h1>OSERA Commit Evidence</h1>
+  <p>These examples come from OSERA’s <strong>legacy proof of concept and are illustrative only</strong>. They explain provenance, regression-test, and compatibility evidence; they do not demonstrate compliance with the ratified OSERA-SP-0.1.0 standards. Historical names and commit references are retained as recorded, and those repositories may become unavailable.</p>
+
+<p>A follow-up GitHub issue is planned to replace this material with evidence from new official OSERA patches. For current naming and release examples, use <a href="../index.html">Examples</a> and <a href="../release-tags/index.html">Java Release Examples</a>.</p>
+
+<h2 id="upstream-provenance-and-adaptation-notes">Upstream provenance and adaptation notes</h2>
+
+<p>The Spring Framework backpatch commit for CVE-2024-38816 is a strong example of provenance-oriented commit evidence:</p>
+
+<ul>
+  <li>OSERA commit: <a href="https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6">https://github.com/finos-osera/backpatch-spring-framework/commit/dfaa2e9a99173fc9cbb22a76c99f9acfe616ede6</a></li>
+  <li>Upstream commit referenced by the OSERA commit: <code class="language-plaintext highlighter-rouge">spring-projects/spring-framework@d86bf8b2056429edf5494456cffcb2b243331c49</code></li>
+  <li>The commit explains the CVE/GHSA, identifies the upstream source line, and describes source-level adaptations needed for Java 8 compatibility.</li>
+  <li>The commit lists the patched WebMvc.fn and WebFlux.fn resource lookup classes.</li>
+</ul>
+
+<p>This is the kind of source-change evidence <code class="language-plaintext highlighter-rouge">SRC-002</code> should encourage: the recipient can trace the patch back to the upstream fix and understand meaningful deviations from the upstream implementation.</p>
+
+<h2 id="regression-test-evidence">Regression test evidence</h2>
+
+<p>The same Spring Framework commit adds two public regression test files:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spring-webmvc/src/test/java/org/springframework/web/servlet/function/PathResourceLookupFunctionPathTraversalTests.java</code></li>
+  <li><code class="language-plaintext highlighter-rouge">spring-webflux/src/test/java/org/springframework/web/reactive/function/server/PathResourceLookupFunctionPathTraversalTests.java</code></li>
+</ul>
+
+<p>The test locations identify the affected framework surfaces and give recipients a practical signal for their own validation planning: applications using WebMvc.fn or WebFlux.fn static resource handling from filesystem locations should consider targeted regression coverage.</p>
+
+<h2 id="runtime-compatibility-evidence">Runtime compatibility evidence</h2>
+
+<p>The Logback <code class="language-plaintext highlighter-rouge">backpatch/1.2.9</code> branch includes a commit titled <code class="language-plaintext highlighter-rouge">ensure JDK 8 compatibility</code>:</p>
+
+<ul>
+  <li><a href="https://github.com/finos-osera/backpatch-logback/commit/a721d9c51643f0a9fd113a1a3bb4e25ad7a76e4e">https://github.com/finos-osera/backpatch-logback/commit/a721d9c51643f0a9fd113a1a3bb4e25ad7a76e4e</a></li>
+</ul>
+
+<p>This supports the need for an explicit compatibility standard. A future acceptance check should make runtime or bytecode compatibility machine-verifiable rather than relying only on commit history.</p>
+
+<h2 id="provider-process-evidence">Provider process evidence</h2>
+
+<p>The ActiveMQ repository includes a fork-maintenance commit disabling GitHub Actions on the fork:</p>
+
+<ul>
+  <li><a href="https://github.com/finos-osera/backpatch-activemq/commit/ff29ab870ba35275f7363fda8a6653a7615722eb">https://github.com/finos-osera/backpatch-activemq/commit/ff29ab870ba35275f7363fda8a6653a7615722eb</a></li>
+</ul>
+
+<p>This supports the release-process position that public GitHub Actions should not be required for every patch fork, while still leaving room for providers to publish their own test evidence under <code class="language-plaintext highlighter-rouge">REL-001</code> and build provenance evidence under <code class="language-plaintext highlighter-rouge">REL-007</code>.</p>
+
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

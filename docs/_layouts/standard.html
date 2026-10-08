@@ -14,7 +14,7 @@ layout: default
       <div><dt>Status</dt><dd>{{ page.doc-status }}</dd></div>
       <div><dt>Version</dt><dd>{{ page.standard-version }}</dd></div>
       <div><dt>Pack</dt><dd>{{ page.candidate-pack }}</dd></div>
-      <div><dt>Ratified</dt><dd>{{ page.ratified-date }}</dd></div>
+      {% if page.doc-status == "Ratified" %}<div><dt>Recorded ratification</dt><dd>{{ page.ratified-date }} · see version history</dd></div>{% endif %}
       <div><dt>Fitness</dt><dd>{{ page.fitness-role }}</dd></div>
       <div><dt>Category</dt><dd>{{ page.category | default: site.standard_classification[page.type] }}</dd></div>
       <div><dt>Applies to</dt><dd>{{ page.applies-to | join: ", " }}</dd></div>
@@ -33,6 +33,7 @@ layout: default
       <div><dt>Machine-readable</dt><dd><a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.yaml">YAML</a> / <a href="{{ site.baseurl }}/catalog/standards/{{ page.standard_id }}.json">JSON</a></dd></div>
     </dl>
   </div>
+  {% include version-history.html %}
   {% if page.extends %}
   {% assign relationship = site.data.profile_relationships[page.standard_id] %}
   <section class="parent-relationship">

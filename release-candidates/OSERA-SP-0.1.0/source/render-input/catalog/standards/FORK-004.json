@@ -1,0 +1,85 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 40,
+    "standard_id": "FORK-004",
+    "title": "Open Source Patch Publication",
+    "summary": "Patched-source repositories should be fully public, hosted in the appropriate official fork, and released under the same open-source license terms as the original code.",
+    "doc-status": "Pre-Draft",
+    "standard-version": "0.0.1",
+    "candidate-pack": "OSERA-SP-0.2.0 observe",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Observe-only check",
+    "type": "FORK",
+    "category": "Fork Management",
+    "applies-to": [
+      "Patch providers",
+      "OSERA maintainers",
+      "Enterprise recipients"
+    ],
+    "requirements": [
+      {
+        "id": "FORK-004.REQ-001",
+        "level": "MUST",
+        "text": "Patched-source repositories must be fully public and publicly fetchable without private credentials.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "FORK-004.CHECK-001",
+            "title": "Repository is publicly fetchable",
+            "type": "repository",
+            "severity": "observe",
+            "implementation": "osera-fitness.fork004.public_fetch",
+            "evidence": [
+              "repository_url",
+              "fetch_result"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "FORK-004.REQ-002",
+        "level": "MUST",
+        "text": "Patched-source repositories must preserve applicable upstream open-source license files and notices and release patched source under the same applicable license terms as the original source line.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "FORK-004.CHECK-002",
+            "title": "Upstream license terms, files, and notices are preserved",
+            "type": "repository",
+            "severity": "observe",
+            "implementation": "osera-fitness.fork004.license_files",
+            "evidence": [
+              "license_files",
+              "upstream_license_files"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "FORK-004.REQ-003",
+        "level": "MUST",
+        "text": "Patched-source repositories must be hosted in the appropriate official OSERA fork for the upstream project or artifact line.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "FORK-004.CHECK-003",
+            "title": "Repository is the appropriate official OSERA fork",
+            "type": "repository",
+            "severity": "observe",
+            "implementation": "osera-fitness.fork004.official_fork",
+            "evidence": [
+              "repository_url",
+              "upstream_repository_url",
+              "fork_relationship"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/fork-004-open-source-patch-publication.md",
+    "url": "/standards/fork-004-open-source-patch-publication/"
+  }
+}

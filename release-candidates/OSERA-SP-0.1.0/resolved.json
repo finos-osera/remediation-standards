@@ -1,0 +1,2678 @@
+{
+  "pack": {
+    "advisory_standards": [],
+    "agenda_issue": "https://github.com/finos-osera/remediation-standards/issues/12",
+    "approved_producers": {
+      "lifecycle_policy": "Producer registry updates that do not change standard text or check semantics may be handled as patch-level standards-pack updates.",
+      "registry": "docs/_data/approved_producers.yml"
+    },
+    "branch": "codex/sp-010-ratification",
+    "deferred_standards": [
+      {
+        "id": "FORK-004",
+        "rationale": "Tracked in observe mode for OSERA-SP-0.1.0 and expected to be reconsidered for OSERA-SP-0.2.0.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "SRC-001",
+        "rationale": "Tracked in observe mode until patch-basis vocabulary and provider wording are defined.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "REL-006",
+        "rationale": "Tracked in observe mode until the backlog and private sponsorship model is settled.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "REL-007",
+        "rationale": "Tracked in observe mode until producer signed build provenance is specified and implemented.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "REL-008",
+        "rationale": "Tracked in observe mode until package ecosystem scanning expectations and evidence formats are defined.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "EVD-001",
+        "rationale": "Tracked in observe mode until the recipient guidance format is better defined.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "id": "APP-001",
+        "rationale": "Tracked in observe mode until estate-wide application workflows are proven.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      }
+    ],
+    "id": "OSERA-SP-0.1.0",
+    "included_standards": [
+      {
+        "checks": [
+          "STD-001.CHECK-001",
+          "STD-001.CHECK-002"
+        ],
+        "id": "STD-001",
+        "rationale": "The standards group needs a machine-readable source format before ratifying a pack that acceptance gates can consume.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "FORK-001.CHECK-001",
+          "FORK-001.CHECK-002"
+        ],
+        "id": "FORK-001",
+        "rationale": "Repository naming and canonical finos-osera location remain the simplest v0.1.0 provenance model; new standardized repositories use patch-*.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "FORK-002.CHECK-001"
+        ],
+        "id": "FORK-002",
+        "rationale": "Version-scoped patch branches are simple to create and necessary for multiple supported lines.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "FORK-003.CHECK-001"
+        ],
+        "id": "FORK-003",
+        "rationale": "Baseline tags are essential for source comparison and audit evidence; new standardized baseline tags use +patch.baseline.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "SRC-002.CHECK-001"
+        ],
+        "id": "SRC-002",
+        "rationale": "Provenance links are central to reviewability and auditability.",
+        "role": "Required evidence",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "SRC-003.CHECK-001"
+        ],
+        "id": "SRC-003",
+        "rationale": "License-header consistency can be enforced where the local convention is determinable, with a not-applicable result when no convention exists.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-001.CHECK-001"
+        ],
+        "id": "REL-001",
+        "rationale": "Test provenance stays in scope for v0.1.0 as a published unit-test report artifact, while build provenance and signed source-to-binary proof move to REL-007 observe mode.",
+        "role": "Required evidence",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-002.CHECK-001"
+        ],
+        "id": "REL-002",
+        "rationale": "Runtime compatibility is a high-impact recipient concern and can be measured at publication time.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-003.CHECK-001",
+          "REL-003.CHECK-002"
+        ],
+        "id": "REL-003",
+        "rationale": "Official signed artifacts should use package-ecosystem patch version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.",
+        "role": "Required base requirement",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-003-JAVA.CHECK-001",
+          "REL-003-JAVA.CHECK-002"
+        ],
+        "id": "REL-003-JAVA",
+        "rationale": "Java artifacts use the ratified CARE-style OSERA naming convention, with compatibility evidence for the relevant packaging, resolvers, dependency-update tools, and feeds.",
+        "role": "Required Java profile check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-004.CHECK-001",
+          "REL-004.CHECK-002"
+        ],
+        "id": "REL-004",
+        "rationale": "The gate needs an approved-producer allow list so official artifacts come from a known participant.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "REL-005.CHECK-001",
+          "REL-005.CHECK-002"
+        ],
+        "id": "REL-005",
+        "rationale": "Package metadata and checksum hygiene are practical for the September 20 gate and necessary for reliable consumption.",
+        "role": "Required check",
+        "version": "0.1.0"
+      },
+      {
+        "checks": [
+          "FEED-001.CHECK-001",
+          "FEED-001.CHECK-002"
+        ],
+        "id": "FEED-001",
+        "rationale": "Feeds are necessary for enterprise consumption, and the gate can verify exact purl coverage for official artifacts.",
+        "role": "Required evidence",
+        "version": "0.1.0"
+      }
+    ],
+    "issue": "https://github.com/finos-osera/remediation-standards/issues/12",
+    "observe_standards": [
+      {
+        "checks": [
+          "FORK-004.CHECK-001",
+          "FORK-004.CHECK-002",
+          "FORK-004.CHECK-003"
+        ],
+        "id": "FORK-004",
+        "rationale": "Public source, same-license release, and official-fork hosting are important to recipient trust, but exact evidence rules need v0.2.0 work.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "SRC-001.CHECK-001"
+        ],
+        "id": "SRC-001",
+        "rationale": "Consumers need patch-basis classification, but the working group needs a controlled vocabulary and minimum wording before it can be enforced.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "REL-006.CHECK-001"
+        ],
+        "id": "REL-006",
+        "rationale": "Patch request or backlog authorization is useful, but public/private sponsorship policy is not ready to enforce.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "REL-007.CHECK-001",
+          "REL-007.CHECK-002"
+        ],
+        "id": "REL-007",
+        "rationale": "Build provenance and signed attestation should be the first v0.2.0 track while the v0.1.0 gate focuses on source provenance, test provenance, and publication hygiene.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "REL-008.CHECK-001",
+          "REL-008.CHECK-002"
+        ],
+        "id": "REL-008",
+        "rationale": "Build-security scanning is important, but the working group needs evidence about practical scanner coverage across ecosystems before making it enforceable.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "EVD-001.CHECK-001"
+        ],
+        "id": "EVD-001",
+        "rationale": "Recipient guidance is valuable for routing testing, but the expected format needs v0.2.0 refinement before it can become advisory or required.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      },
+      {
+        "checks": [
+          "APP-001.CHECK-001"
+        ],
+        "id": "APP-001",
+        "rationale": "Estate-wide automated application depends on downstream tooling and recipient operating models that are not proven enough for the first gate.",
+        "role": "Observe-only check",
+        "version": "0.0.1"
+      }
+    ],
+    "proposed_date": "2026-08-27",
+    "ratified_date": "2026-09-10",
+    "release_metadata": {
+      "default_intent": "Optimize consumer tooling outcomes first, then preserve SemVer 2.0 or other common ecosystem conventions where practical.",
+      "java_convention": "Maven CARE-style versioning with the OSERA identifier, including qualified-base and packaging-specific forms.",
+      "java_decision": "https://github.com/finos-osera/remediation-standards/issues/33",
+      "java_example": "5.3.39.1-osera-00001",
+      "java_reference": "https://central.sonatype.org/policies/care-policy/",
+      "official_example": "5.3.39+osera-patch.001",
+      "official_token": "osera-patch.NNN",
+      "scope": "[REL-003](../standards/rel-003-version-metadata/) defines the generic consumer outcome and default form where no concrete ecosystem profile exists. Java artifacts use [REL-003-JAVA](../standards/rel-003-java-patch-version-naming/). Source branches and baseline tags are defined separately by [FORK-002](../standards/fork-002-patch-branches/) and [FORK-003](../standards/fork-003-baseline-tags/)."
+    },
+    "schema-version": "0.1.0",
+    "standards_as_code_issue": "https://github.com/finos-osera/remediation-standards/issues/23",
+    "status": "Ratified",
+    "summary": "OSERA-SP-0.1.0 was ratified on Thursday, September 10, 2026. It defines the first set of standards that will gate OSERA patch releases, with seven additional standards in observe mode for OSERA-SP-0.2.0.",
+    "target_decision_date": "2026-09-10",
+    "target_gate_date": "2026-09-20",
+    "title": "OSERA Remediation Standards Pack 0.1.0"
+  },
+  "profiles": {
+    "APP-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "feed_entries",
+              "dependency_coordinates"
+            ],
+            "id": "APP-001.CHECK-001",
+            "implementation": "osera-fitness.app001.estate_discovery_metadata",
+            "severity": "observe",
+            "title": "Estate-wide discovery metadata is present",
+            "type": "feed-metadata"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "feed_entries",
+                  "dependency_coordinates"
+                ],
+                "id": "APP-001.CHECK-001",
+                "implementation": "osera-fitness.app001.estate_discovery_metadata",
+                "severity": "observe",
+                "title": "Estate-wide discovery metadata is present",
+                "type": "feed-metadata"
+              }
+            ],
+            "id": "APP-001.REQ-001",
+            "level": "SHOULD",
+            "text": "Patch feeds and metadata should support estate-wide discovery and application across dependency estates."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "EVD-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "recipient_guidance",
+              "schema_version"
+            ],
+            "id": "EVD-001.CHECK-001",
+            "implementation": "osera-fitness.evd001.recipient_guidance_schema",
+            "severity": "observe",
+            "title": "Recipient guidance uses the current guidance schema",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "recipient_guidance",
+                  "schema_version"
+                ],
+                "id": "EVD-001.CHECK-001",
+                "implementation": "osera-fitness.evd001.recipient_guidance_schema",
+                "severity": "observe",
+                "title": "Recipient guidance uses the current guidance schema",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "EVD-001.REQ-001",
+            "level": "SHOULD",
+            "text": "Patch providers should publish versioned recipient guidance describing what changed and what surface area should be tested."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "FEED-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "openvex_entry",
+              "cyclonedx_entry"
+            ],
+            "id": "FEED-001.CHECK-001",
+            "implementation": "osera-fitness.feed001.feed_entry_presence",
+            "severity": "blocking",
+            "title": "OpenVEX and CycloneDX entries exist for the release",
+            "type": "feed"
+          },
+          "002": {
+            "evidence": [
+              "purl",
+              "release_version"
+            ],
+            "id": "FEED-001.CHECK-002",
+            "implementation": "osera-fitness.feed001.exact_purl_match",
+            "severity": "blocking",
+            "title": "Feed purls match the published patched artifact identifier",
+            "type": "feed"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "openvex_entry",
+                  "cyclonedx_entry"
+                ],
+                "id": "FEED-001.CHECK-001",
+                "implementation": "osera-fitness.feed001.feed_entry_presence",
+                "severity": "blocking",
+                "title": "OpenVEX and CycloneDX entries exist for the release",
+                "type": "feed"
+              }
+            ],
+            "id": "FEED-001.REQ-001",
+            "level": "MUST",
+            "text": "OSERA-compatible releases must be represented in OpenVEX and CycloneDX feed data."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "purl",
+                  "release_version"
+                ],
+                "id": "FEED-001.CHECK-002",
+                "implementation": "osera-fitness.feed001.exact_purl_match",
+                "severity": "blocking",
+                "title": "Feed purls match the published patched artifact identifier",
+                "type": "feed"
+              }
+            ],
+            "id": "FEED-001.REQ-002",
+            "level": "MUST",
+            "text": "Feed entries must preserve the exact patched package URL, including encoded release metadata."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "FORK-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "repository_url"
+            ],
+            "id": "FORK-001.CHECK-001",
+            "implementation": "osera-fitness.fork001.repository_owner",
+            "severity": "blocking",
+            "title": "Repository is in the finos-osera organization",
+            "type": "repository"
+          },
+          "002": {
+            "evidence": [
+              "repository_name"
+            ],
+            "id": "FORK-001.CHECK-002",
+            "implementation": "osera-fitness.fork001.repository_name",
+            "severity": "blocking",
+            "title": "Repository name uses the patch prefix",
+            "type": "repository"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "repository_url"
+                ],
+                "id": "FORK-001.CHECK-001",
+                "implementation": "osera-fitness.fork001.repository_owner",
+                "severity": "blocking",
+                "title": "Repository is in the finos-osera organization",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-001.REQ-001",
+            "level": "MUST",
+            "text": "Patched-source repositories must live in github.com/finos-osera unless the working group approves an exception."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "repository_name"
+                ],
+                "id": "FORK-001.CHECK-002",
+                "implementation": "osera-fitness.fork001.repository_name",
+                "severity": "blocking",
+                "title": "Repository name uses the patch prefix",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-001.REQ-002",
+            "level": "MUST",
+            "text": "Patched-source repositories must use the prefix patch- followed by the upstream repository or artifact name."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "FORK-002": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "branch_name"
+            ],
+            "id": "FORK-002.CHECK-001",
+            "implementation": "osera-fitness.fork002.patch_branch",
+            "severity": "blocking",
+            "title": "Supported line has a patch version branch",
+            "type": "repository"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "branch_name"
+                ],
+                "id": "FORK-002.CHECK-001",
+                "implementation": "osera-fitness.fork002.patch_branch",
+                "severity": "blocking",
+                "title": "Supported line has a patch version branch",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-002.REQ-001",
+            "level": "MUST",
+            "text": "Patch providers must create version-scoped source workflow branches using patch/<version>."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "FORK-003": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "baseline_tag",
+              "baseline_commit"
+            ],
+            "id": "FORK-003.CHECK-001",
+            "implementation": "osera-fitness.fork003.baseline_tag",
+            "severity": "blocking",
+            "title": "Baseline tag exists and resolves to a commit",
+            "type": "repository"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "baseline_tag",
+                  "baseline_commit"
+                ],
+                "id": "FORK-003.CHECK-001",
+                "implementation": "osera-fitness.fork003.baseline_tag",
+                "severity": "blocking",
+                "title": "Baseline tag exists and resolves to a commit",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-003.REQ-001",
+            "level": "MUST",
+            "text": "Patch providers must tag the unpatched baseline source commit using v<VERSION>+patch.baseline."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "FORK-004": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "repository_url",
+              "fetch_result"
+            ],
+            "id": "FORK-004.CHECK-001",
+            "implementation": "osera-fitness.fork004.public_fetch",
+            "severity": "observe",
+            "title": "Repository is publicly fetchable",
+            "type": "repository"
+          },
+          "002": {
+            "evidence": [
+              "license_files",
+              "upstream_license_files"
+            ],
+            "id": "FORK-004.CHECK-002",
+            "implementation": "osera-fitness.fork004.license_files",
+            "severity": "observe",
+            "title": "Upstream license terms, files, and notices are preserved",
+            "type": "repository"
+          },
+          "003": {
+            "evidence": [
+              "repository_url",
+              "upstream_repository_url",
+              "fork_relationship"
+            ],
+            "id": "FORK-004.CHECK-003",
+            "implementation": "osera-fitness.fork004.official_fork",
+            "severity": "observe",
+            "title": "Repository is the appropriate official OSERA fork",
+            "type": "repository"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "repository_url",
+                  "fetch_result"
+                ],
+                "id": "FORK-004.CHECK-001",
+                "implementation": "osera-fitness.fork004.public_fetch",
+                "severity": "observe",
+                "title": "Repository is publicly fetchable",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-004.REQ-001",
+            "level": "MUST",
+            "text": "Patched-source repositories must be fully public and publicly fetchable without private credentials."
+          },
+          "002": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "license_files",
+                  "upstream_license_files"
+                ],
+                "id": "FORK-004.CHECK-002",
+                "implementation": "osera-fitness.fork004.license_files",
+                "severity": "observe",
+                "title": "Upstream license terms, files, and notices are preserved",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-004.REQ-002",
+            "level": "MUST",
+            "text": "Patched-source repositories must preserve applicable upstream open-source license files and notices and release patched source under the same applicable license terms as the original source line."
+          },
+          "003": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "repository_url",
+                  "upstream_repository_url",
+                  "fork_relationship"
+                ],
+                "id": "FORK-004.CHECK-003",
+                "implementation": "osera-fitness.fork004.official_fork",
+                "severity": "observe",
+                "title": "Repository is the appropriate official OSERA fork",
+                "type": "repository"
+              }
+            ],
+            "id": "FORK-004.REQ-003",
+            "level": "MUST",
+            "text": "Patched-source repositories must be hosted in the appropriate official OSERA fork for the upstream project or artifact line."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "tested_commit",
+              "runtime",
+              "test_command",
+              "test_result",
+              "test_report_artifact",
+              "no_failed_tests"
+            ],
+            "id": "REL-001.CHECK-001",
+            "implementation": "osera-fitness.rel001.test_provenance",
+            "severity": "blocking",
+            "title": "Test provenance is recorded",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "tested_commit",
+                  "runtime",
+                  "test_command",
+                  "test_result",
+                  "test_report_artifact",
+                  "no_failed_tests"
+                ],
+                "id": "REL-001.CHECK-001",
+                "implementation": "osera-fitness.rel001.test_provenance",
+                "severity": "blocking",
+                "title": "Test provenance is recorded",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-001.REQ-001",
+            "level": "MUST",
+            "text": "Patch providers must publish test provenance for the patched artifact, including the tested commit, test command or suite, runtime when relevant, test report, and passing test result."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-002": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "artifact_digest",
+              "bytecode_level",
+              "reference_artifact"
+            ],
+            "id": "REL-002.CHECK-001",
+            "implementation": "osera-fitness.rel002.bytecode_level",
+            "severity": "blocking",
+            "title": "Bytecode level matches the prior released artifact",
+            "type": "artifact"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "artifact_digest",
+                  "bytecode_level",
+                  "reference_artifact"
+                ],
+                "id": "REL-002.CHECK-001",
+                "implementation": "osera-fitness.rel002.bytecode_level",
+                "severity": "blocking",
+                "title": "Bytecode level matches the prior released artifact",
+                "type": "artifact"
+              }
+            ],
+            "id": "REL-002.REQ-001",
+            "level": "MUST",
+            "text": "Patched Java artifacts must preserve the bytecode level of the last released artifact unless an exception is approved."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-003": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "applicable_profile",
+              "ecosystem_profile",
+              "resolver_test_result"
+            ],
+            "id": "REL-003.CHECK-001",
+            "implementation": "osera-fitness.rel003.remediation_identifier",
+            "severity": "blocking",
+            "title": "Applicable patch version naming profile is selected",
+            "type": "release"
+          },
+          "002": {
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "feed_purl"
+            ],
+            "id": "REL-003.CHECK-002",
+            "implementation": "osera-fitness.rel003.identifier_consistency",
+            "severity": "blocking",
+            "title": "Release identifier is consistent across source, artifact, and feeds",
+            "type": "release"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "release_tag",
+                  "artifact_version",
+                  "applicable_profile",
+                  "ecosystem_profile",
+                  "resolver_test_result"
+                ],
+                "id": "REL-003.CHECK-001",
+                "implementation": "osera-fitness.rel003.remediation_identifier",
+                "severity": "blocking",
+                "title": "Applicable patch version naming profile is selected",
+                "type": "release"
+              }
+            ],
+            "id": "REL-003.REQ-001",
+            "level": "MUST",
+            "text": "Official OSERA patched releases must use the applicable package-ecosystem patch version naming profile, or the default SemVer 2.0-compatible OSERA form where no concrete profile exists, so supported package resolver, dependency update, repository manager, SCA, feed, and policy tooling can identify the patched artifact as the latest applicable remediation on the same upstream version line."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "release_tag",
+                  "artifact_version",
+                  "feed_purl"
+                ],
+                "id": "REL-003.CHECK-002",
+                "implementation": "osera-fitness.rel003.identifier_consistency",
+                "severity": "blocking",
+                "title": "Release identifier is consistent across source, artifact, and feeds",
+                "type": "release"
+              }
+            ],
+            "id": "REL-003.REQ-002",
+            "level": "MUST",
+            "text": "Release tags, artifact versions, vulnerability feeds, and release evidence must carry the same patched-release identifier."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-003-JAVA": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "java_profile_decision",
+              "resolver_test_result",
+              "dependency_update_test_result"
+            ],
+            "id": "REL-003-JAVA.CHECK-001",
+            "implementation": "osera-fitness.rel003_java.version_pattern_compatibility",
+            "override-explanation": "Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.",
+            "severity": "blocking",
+            "title": "Java patch version pattern passes supported tooling compatibility tests",
+            "type": "release"
+          },
+          "002": {
+            "evidence": [
+              "release_tag",
+              "artifact_version",
+              "maven_purl",
+              "feed_purl"
+            ],
+            "id": "REL-003-JAVA.CHECK-002",
+            "implementation": "osera-fitness.rel003_java.identifier_consistency",
+            "override-explanation": "Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.",
+            "severity": "blocking",
+            "title": "Java release identifier is consistent across source, artifact, and feeds",
+            "type": "release"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "release_tag",
+                  "artifact_version",
+                  "java_profile_decision",
+                  "resolver_test_result",
+                  "dependency_update_test_result"
+                ],
+                "id": "REL-003-JAVA.CHECK-001",
+                "implementation": "osera-fitness.rel003_java.version_pattern_compatibility",
+                "override-explanation": "Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.",
+                "severity": "blocking",
+                "title": "Java patch version pattern passes supported tooling compatibility tests",
+                "type": "release"
+              }
+            ],
+            "id": "REL-003-JAVA.REQ-001",
+            "level": "MUST",
+            "override-explanation": "Specializes the generic applicable-profile rule with a Java-specific version convention. The CARE-style convention uses the OSERA identifier; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.",
+            "text": "Official OSERA Java patched releases must use the ratified Java patch CARE-style version naming convention with the OSERA identifier, so supported Java resolver, dependency update, repository manager, SCA, feed, and policy tooling treats the patched artifact as the latest applicable remediation on the same upstream version line."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "release_tag",
+                  "artifact_version",
+                  "maven_purl",
+                  "feed_purl"
+                ],
+                "id": "REL-003-JAVA.CHECK-002",
+                "implementation": "osera-fitness.rel003_java.identifier_consistency",
+                "override-explanation": "Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.",
+                "severity": "blocking",
+                "title": "Java release identifier is consistent across source, artifact, and feeds",
+                "type": "release"
+              }
+            ],
+            "id": "REL-003-JAVA.REQ-002",
+            "level": "MUST",
+            "override-explanation": "Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.",
+            "text": "Java release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence must carry the same Java patch version identifier."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [
+          {
+            "effective_item": "REL-003-JAVA.CHECK-001",
+            "explanation": "Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.",
+            "parent_item": "REL-003.CHECK-001",
+            "treatment": "Overrides"
+          },
+          {
+            "effective_item": "REL-003-JAVA.CHECK-002",
+            "explanation": "Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.",
+            "parent_item": "REL-003.CHECK-002",
+            "treatment": "Overrides"
+          }
+        ],
+        "requirements": [
+          {
+            "effective_item": "REL-003-JAVA.REQ-001",
+            "explanation": "Specializes the generic applicable-profile rule with a Java-specific version convention. The CARE-style convention uses the OSERA identifier; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.",
+            "parent_item": "REL-003.REQ-001",
+            "treatment": "Overrides"
+          },
+          {
+            "effective_item": "REL-003-JAVA.REQ-002",
+            "explanation": "Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.",
+            "parent_item": "REL-003.REQ-002",
+            "treatment": "Overrides"
+          }
+        ]
+      }
+    },
+    "REL-004": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "producer_identity",
+              "approved_producer_registry"
+            ],
+            "id": "REL-004.CHECK-001",
+            "implementation": "osera-fitness.rel004.approved_producer",
+            "severity": "blocking",
+            "title": "Producer is approved for the targeted standards pack",
+            "type": "publication-gate"
+          },
+          "002": {
+            "evidence": [
+              "producer_identity",
+              "fitness_result",
+              "release_evidence",
+              "registry_account_metadata",
+              "observed_tag_actor",
+              "observed_upload_account"
+            ],
+            "id": "REL-004.CHECK-002",
+            "implementation": "osera-fitness.rel004.producer_identity_evidence",
+            "severity": "blocking",
+            "title": "Producer identity is recorded in release evidence",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "producer_identity",
+                  "approved_producer_registry"
+                ],
+                "id": "REL-004.CHECK-001",
+                "implementation": "osera-fitness.rel004.approved_producer",
+                "severity": "blocking",
+                "title": "Producer is approved for the targeted standards pack",
+                "type": "publication-gate"
+              }
+            ],
+            "id": "REL-004.REQ-001",
+            "level": "MUST",
+            "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack. Each producer record must contain id, contact, github_users, and staging_account, with a unique id matching the producer identity in release evidence and fitness results."
+          },
+          "002": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "producer_identity",
+                  "fitness_result",
+                  "release_evidence",
+                  "registry_account_metadata",
+                  "observed_tag_actor",
+                  "observed_upload_account"
+                ],
+                "id": "REL-004.CHECK-002",
+                "implementation": "osera-fitness.rel004.producer_identity_evidence",
+                "severity": "blocking",
+                "title": "Producer identity is recorded in release evidence",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-004.REQ-002",
+            "level": "MUST",
+            "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence, as an exact-string match of the registry entry's id. The fitness result and the verdict must also record the registry entry's staging_account and github_users as copied from the registry, and separately the observed release-tag actor. The observed upload account may be null in the CI fitness result because the gate observes it at upload time; this null value does not fail the CI check. The gate must record the observed upload account in the verdict. In 0.1.0 a difference between the copied account metadata and the observed actors is recorded and does not block."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-005": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "artifact_files",
+              "checksums"
+            ],
+            "id": "REL-005.CHECK-001",
+            "implementation": "osera-fitness.rel005.package_checksum_hygiene",
+            "severity": "blocking",
+            "title": "Package files and checksums are present",
+            "type": "artifact"
+          },
+          "002": {
+            "evidence": [
+              "pom",
+              "artifact_version",
+              "release_tag"
+            ],
+            "id": "REL-005.CHECK-002",
+            "implementation": "osera-fitness.rel005.package_metadata_version",
+            "severity": "blocking",
+            "title": "Package metadata uses the approved patched version",
+            "type": "artifact"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "artifact_files",
+                  "checksums"
+                ],
+                "id": "REL-005.CHECK-001",
+                "implementation": "osera-fitness.rel005.package_checksum_hygiene",
+                "severity": "blocking",
+                "title": "Package files and checksums are present",
+                "type": "artifact"
+              }
+            ],
+            "id": "REL-005.REQ-001",
+            "level": "MUST",
+            "text": "Official OSERA artifacts must publish expected package files and checksums for the ecosystem being released."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "pom",
+                  "artifact_version",
+                  "release_tag"
+                ],
+                "id": "REL-005.CHECK-002",
+                "implementation": "osera-fitness.rel005.package_metadata_version",
+                "severity": "blocking",
+                "title": "Package metadata uses the approved patched version",
+                "type": "artifact"
+              }
+            ],
+            "id": "REL-005.REQ-002",
+            "level": "MUST",
+            "text": "Published package metadata must identify the patched version consistently with REL-003."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-006": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "backlog_item",
+              "sponsor_record",
+              "coordinate_line"
+            ],
+            "id": "REL-006.CHECK-001",
+            "implementation": "osera-fitness.rel006.patch_request_authorization",
+            "severity": "observe",
+            "title": "Patch request authorization evidence is present",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "backlog_item",
+                  "sponsor_record",
+                  "coordinate_line"
+                ],
+                "id": "REL-006.CHECK-001",
+                "implementation": "osera-fitness.rel006.patch_request_authorization",
+                "severity": "observe",
+                "title": "Patch request authorization evidence is present",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-006.REQ-001",
+            "level": "SHOULD",
+            "text": "Patch releases should identify the backlog item, public request, sponsor record, or equivalent authorization record for the patched coordinate and line."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-007": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "artifact_digest",
+              "source_tag",
+              "attestation_signature"
+            ],
+            "id": "REL-007.CHECK-001",
+            "implementation": "osera-fitness.rel007.signed_build_attestation",
+            "severity": "observe",
+            "title": "Signed build provenance attestation is present",
+            "type": "release-evidence"
+          },
+          "002": {
+            "evidence": [
+              "sbom",
+              "vex",
+              "test_evidence",
+              "license_audit"
+            ],
+            "id": "REL-007.CHECK-002",
+            "implementation": "osera-fitness.rel007.evidence_bundle_references",
+            "severity": "observe",
+            "title": "Attestation references release evidence bundle",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "artifact_digest",
+                  "source_tag",
+                  "attestation_signature"
+                ],
+                "id": "REL-007.CHECK-001",
+                "implementation": "osera-fitness.rel007.signed_build_attestation",
+                "severity": "observe",
+                "title": "Signed build provenance attestation is present",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-007.REQ-001",
+            "level": "SHOULD",
+            "text": "Producers should sign an attestation linking the artifact digest to the source tag and build provenance."
+          },
+          "002": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "sbom",
+                  "vex",
+                  "test_evidence",
+                  "license_audit"
+                ],
+                "id": "REL-007.CHECK-002",
+                "implementation": "osera-fitness.rel007.evidence_bundle_references",
+                "severity": "observe",
+                "title": "Attestation references release evidence bundle",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-007.REQ-002",
+            "level": "SHOULD",
+            "text": "The attestation should reference SBOM, VEX, test evidence, and license audit material for the release."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "REL-008": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "build_security_scan_tool",
+              "scan_scope",
+              "scan_result"
+            ],
+            "id": "REL-008.CHECK-001",
+            "implementation": "osera-fitness.rel008.build_security_scan",
+            "severity": "observe",
+            "title": "Build-security scan evidence is present",
+            "type": "release-evidence"
+          },
+          "002": {
+            "evidence": [
+              "unresolved_findings",
+              "finding_disposition",
+              "not_applicable_rationale"
+            ],
+            "id": "REL-008.CHECK-002",
+            "implementation": "osera-fitness.rel008.finding_disposition",
+            "severity": "observe",
+            "title": "Build-security findings are dispositioned",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "build_security_scan_tool",
+                  "scan_scope",
+                  "scan_result"
+                ],
+                "id": "REL-008.CHECK-001",
+                "implementation": "osera-fitness.rel008.build_security_scan",
+                "severity": "observe",
+                "title": "Build-security scan evidence is present",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-008.REQ-001",
+            "level": "SHOULD",
+            "text": "Patch providers should run build-security scanning appropriate to the package ecosystem before publishing an official patched artifact."
+          },
+          "002": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "unresolved_findings",
+                  "finding_disposition",
+                  "not_applicable_rationale"
+                ],
+                "id": "REL-008.CHECK-002",
+                "implementation": "osera-fitness.rel008.finding_disposition",
+                "severity": "observe",
+                "title": "Build-security findings are dispositioned",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "REL-008.REQ-002",
+            "level": "SHOULD",
+            "text": "Build-security evidence should identify unresolved high-risk findings or explain why the selected tooling is not applicable to the patched project."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "SRC-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "fix_item",
+              "cve_id",
+              "patch_basis_by_fix",
+              "upstream_fix_reference"
+            ],
+            "id": "SRC-001.CHECK-001",
+            "implementation": "osera-fitness.src001.patch_basis",
+            "severity": "observe",
+            "title": "Patch basis classification is present",
+            "type": "release-evidence"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "fix_item",
+                  "cve_id",
+                  "patch_basis_by_fix",
+                  "upstream_fix_reference"
+                ],
+                "id": "SRC-001.CHECK-001",
+                "implementation": "osera-fitness.src001.patch_basis",
+                "severity": "observe",
+                "title": "Patch basis classification is present",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "SRC-001.REQ-001",
+            "level": "SHOULD",
+            "text": "Patch providers should classify whether each CVE or fix item in a patch release is based on an upstream fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary still to be defined by the working group."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "SRC-002": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "upstream_fix_url",
+              "patch_commit_url"
+            ],
+            "id": "SRC-002.CHECK-001",
+            "implementation": "osera-fitness.src002.upstream_provenance_link",
+            "severity": "blocking",
+            "title": "Upstream provenance link is present",
+            "type": "release-evidence"
+          },
+          "002": {
+            "evidence": [
+              "upstream_commit_author",
+              "co_authored_by_trailer",
+              "not_applicable_rationale"
+            ],
+            "id": "SRC-002.CHECK-002",
+            "implementation": "osera-fitness.src002.co_authored_by_trailer",
+            "severity": "advisory",
+            "title": "Upstream authorship trailer is present where applicable",
+            "type": "source"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "upstream_fix_url",
+                  "patch_commit_url"
+                ],
+                "id": "SRC-002.CHECK-001",
+                "implementation": "osera-fitness.src002.upstream_provenance_link",
+                "severity": "blocking",
+                "title": "Upstream provenance link is present",
+                "type": "release-evidence"
+              }
+            ],
+            "id": "SRC-002.REQ-001",
+            "level": "MUST",
+            "text": "Backport evidence must link to the upstream commit, commit range, pull request, advisory, or release note defining the fix."
+          },
+          "002": {
+            "checkability": "manual",
+            "checks": [
+              {
+                "evidence": [
+                  "upstream_commit_author",
+                  "co_authored_by_trailer",
+                  "not_applicable_rationale"
+                ],
+                "id": "SRC-002.CHECK-002",
+                "implementation": "osera-fitness.src002.co_authored_by_trailer",
+                "severity": "advisory",
+                "title": "Upstream authorship trailer is present where applicable",
+                "type": "source"
+              }
+            ],
+            "id": "SRC-002.REQ-002",
+            "level": "SHOULD",
+            "text": "Backported commits carrying upstream-authored code should name the upstream commit and include a Co-authored-by trailer for the upstream author where applicable."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "SRC-003": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "new_files",
+              "nearest_same_type_file",
+              "license_header_check",
+              "not_applicable_rationale"
+            ],
+            "id": "SRC-003.CHECK-001",
+            "implementation": "osera-fitness.src003.license_headers",
+            "severity": "blocking",
+            "title": "New files use the local license-header convention",
+            "type": "source"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "partially-automated",
+            "checks": [
+              {
+                "evidence": [
+                  "new_files",
+                  "nearest_same_type_file",
+                  "license_header_check",
+                  "not_applicable_rationale"
+                ],
+                "id": "SRC-003.CHECK-001",
+                "implementation": "osera-fitness.src003.license_headers",
+                "severity": "blocking",
+                "title": "New files use the local license-header convention",
+                "type": "source"
+              }
+            ],
+            "id": "SRC-003.REQ-001",
+            "level": "MUST",
+            "text": "New source or test files added by a patch must follow the prevailing license-header convention of the surrounding project."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    },
+    "STD-001": {
+      "effective": {
+        "checks": {
+          "001": {
+            "evidence": [
+              "standard_markdown",
+              "schema-version"
+            ],
+            "id": "STD-001.CHECK-001",
+            "implementation": "osera-fitness.std001.standard_frontmatter_schema",
+            "severity": "blocking",
+            "title": "Standard front matter validates against the active OSERA schema",
+            "type": "standards-repository"
+          },
+          "002": {
+            "evidence": [
+              "docs/catalog/osera-standards.yaml",
+              "docs/catalog/osera-standards.json"
+            ],
+            "id": "STD-001.CHECK-002",
+            "implementation": "osera-fitness.std001.generated_catalog_current",
+            "severity": "blocking",
+            "title": "Generated catalog artifacts are current",
+            "type": "standards-repository"
+          }
+        },
+        "requirements": {
+          "001": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "standard_markdown",
+                  "schema-version"
+                ],
+                "id": "STD-001.CHECK-001",
+                "implementation": "osera-fitness.std001.standard_frontmatter_schema",
+                "severity": "blocking",
+                "title": "Standard front matter validates against the active OSERA schema",
+                "type": "standards-repository"
+              }
+            ],
+            "id": "STD-001.REQ-001",
+            "level": "MUST",
+            "text": "Standard pages must include schema-versioned YAML front matter containing identifiers, lifecycle status, requirements, checks, evidence expectations, and pack references."
+          },
+          "002": {
+            "checkability": "automated",
+            "checks": [
+              {
+                "evidence": [
+                  "docs/catalog/osera-standards.yaml",
+                  "docs/catalog/osera-standards.json"
+                ],
+                "id": "STD-001.CHECK-002",
+                "implementation": "osera-fitness.std001.generated_catalog_current",
+                "severity": "blocking",
+                "title": "Generated catalog artifacts are current",
+                "type": "standards-repository"
+              }
+            ],
+            "id": "STD-001.REQ-002",
+            "level": "MUST",
+            "text": "The standards repository must publish normalized catalog artifacts generated from the Markdown front matter."
+          }
+        }
+      },
+      "relationships": {
+        "checks": [],
+        "requirements": []
+      }
+    }
+  },
+  "standards": [
+    {
+      "applies-to": [
+        "Enterprise recipients",
+        "Tooling providers",
+        "Patch providers"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Patch Application",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "feed_entries",
+                "dependency_coordinates"
+              ],
+              "id": "APP-001.CHECK-001",
+              "implementation": "osera-fitness.app001.estate_discovery_metadata",
+              "severity": "observe",
+              "title": "Estate-wide discovery metadata is present",
+              "type": "feed-metadata"
+            }
+          ],
+          "id": "APP-001.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch feeds and metadata should support estate-wide discovery and application across dependency estates."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 510,
+      "source_path": "docs/_standards/app-001-estate-application.md",
+      "standard-version": "0.0.1",
+      "standard_id": "APP-001",
+      "summary": "Patch feeds should support automated discovery and application across dependency estates.",
+      "title": "Estate-Wide Patch Application",
+      "type": "APP",
+      "url": "/standards/app-001-estate-application/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients",
+        "Tooling providers"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Recipient Evidence",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "recipient_guidance",
+                "schema_version"
+              ],
+              "id": "EVD-001.CHECK-001",
+              "implementation": "osera-fitness.evd001.recipient_guidance_schema",
+              "severity": "observe",
+              "title": "Recipient guidance uses the current guidance schema",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "EVD-001.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch providers should publish versioned recipient guidance describing what changed and what surface area should be tested."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 410,
+      "source_path": "docs/_standards/evd-001-change-and-test-surface.md",
+      "standard-version": "0.0.1",
+      "standard_id": "EVD-001",
+      "summary": "Providers publish concise recipient guidance describing what changed and what surface area should be tested.",
+      "title": "Change and Test Surface Guidance",
+      "type": "EVD",
+      "url": "/standards/evd-001-change-and-test-surface/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Feed maintainers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Feeds and Advisories",
+      "doc-status": "Ratified",
+      "fitness-role": "Required evidence",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "openvex_entry",
+                "cyclonedx_entry"
+              ],
+              "id": "FEED-001.CHECK-001",
+              "implementation": "osera-fitness.feed001.feed_entry_presence",
+              "severity": "blocking",
+              "title": "OpenVEX and CycloneDX entries exist for the release",
+              "type": "feed"
+            }
+          ],
+          "id": "FEED-001.REQ-001",
+          "level": "MUST",
+          "text": "OSERA-compatible releases must be represented in OpenVEX and CycloneDX feed data."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "purl",
+                "release_version"
+              ],
+              "id": "FEED-001.CHECK-002",
+              "implementation": "osera-fitness.feed001.exact_purl_match",
+              "severity": "blocking",
+              "title": "Feed purls match the published patched artifact identifier",
+              "type": "feed"
+            }
+          ],
+          "id": "FEED-001.REQ-002",
+          "level": "MUST",
+          "text": "Feed entries must preserve the exact patched package URL, including encoded release metadata."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 310,
+      "source_path": "docs/_standards/feed-001-openvex-cyclonedx.md",
+      "standard-version": "0.1.0",
+      "standard_id": "FEED-001",
+      "summary": "OSERA-compatible providers contribute patch data to both OpenVEX and CycloneDX feed formats.",
+      "title": "OpenVEX and CycloneDX Feeds",
+      "type": "FEED",
+      "url": "/standards/feed-001-openvex-cyclonedx/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "OSERA maintainers"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Fork Management",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "repository_url"
+              ],
+              "id": "FORK-001.CHECK-001",
+              "implementation": "osera-fitness.fork001.repository_owner",
+              "severity": "blocking",
+              "title": "Repository is in the finos-osera organization",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-001.REQ-001",
+          "level": "MUST",
+          "text": "Patched-source repositories must live in github.com/finos-osera unless the working group approves an exception."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "repository_name"
+              ],
+              "id": "FORK-001.CHECK-002",
+              "implementation": "osera-fitness.fork001.repository_name",
+              "severity": "blocking",
+              "title": "Repository name uses the patch prefix",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-001.REQ-002",
+          "level": "MUST",
+          "text": "Patched-source repositories must use the prefix patch- followed by the upstream repository or artifact name."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 10,
+      "source_path": "docs/_standards/fork-001-repository-naming.md",
+      "standard-version": "0.1.0",
+      "standard_id": "FORK-001",
+      "summary": "Patched-source repositories use a consistent `patch-<reponame>` name in the finos-osera GitHub organization.",
+      "title": "Repository Naming",
+      "type": "FORK",
+      "url": "/standards/fork-001-repository-naming/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "OSERA maintainers"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Fork Management",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "branch_name"
+              ],
+              "id": "FORK-002.CHECK-001",
+              "implementation": "osera-fitness.fork002.patch_branch",
+              "severity": "blocking",
+              "title": "Supported line has a patch version branch",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-002.REQ-001",
+          "level": "MUST",
+          "text": "Patch providers must create version-scoped source workflow branches using patch/<version>."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 20,
+      "source_path": "docs/_standards/fork-002-patch-branches.md",
+      "standard-version": "0.1.0",
+      "standard_id": "FORK-002",
+      "summary": "Patch providers use `patch/<version>` source workflow branches for every supported major or minor line.",
+      "title": "Patch Branches",
+      "type": "FORK",
+      "url": "/standards/fork-002-patch-branches/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Fork Management",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "baseline_tag",
+                "baseline_commit"
+              ],
+              "id": "FORK-003.CHECK-001",
+              "implementation": "osera-fitness.fork003.baseline_tag",
+              "severity": "blocking",
+              "title": "Baseline tag exists and resolves to a commit",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-003.REQ-001",
+          "level": "MUST",
+          "text": "Patch providers must tag the unpatched baseline source commit using v<VERSION>+patch.baseline."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 30,
+      "source_path": "docs/_standards/fork-003-baseline-tags.md",
+      "standard-version": "0.1.0",
+      "standard_id": "FORK-003",
+      "summary": "Every patch line identifies its unpatched starting source SHA with a `v<VERSION>+patch.baseline` tag.",
+      "title": "Baseline Tags",
+      "type": "FORK",
+      "url": "/standards/fork-003-baseline-tags/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "OSERA maintainers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Fork Management",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "repository_url",
+                "fetch_result"
+              ],
+              "id": "FORK-004.CHECK-001",
+              "implementation": "osera-fitness.fork004.public_fetch",
+              "severity": "observe",
+              "title": "Repository is publicly fetchable",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-004.REQ-001",
+          "level": "MUST",
+          "text": "Patched-source repositories must be fully public and publicly fetchable without private credentials."
+        },
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "license_files",
+                "upstream_license_files"
+              ],
+              "id": "FORK-004.CHECK-002",
+              "implementation": "osera-fitness.fork004.license_files",
+              "severity": "observe",
+              "title": "Upstream license terms, files, and notices are preserved",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-004.REQ-002",
+          "level": "MUST",
+          "text": "Patched-source repositories must preserve applicable upstream open-source license files and notices and release patched source under the same applicable license terms as the original source line."
+        },
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "repository_url",
+                "upstream_repository_url",
+                "fork_relationship"
+              ],
+              "id": "FORK-004.CHECK-003",
+              "implementation": "osera-fitness.fork004.official_fork",
+              "severity": "observe",
+              "title": "Repository is the appropriate official OSERA fork",
+              "type": "repository"
+            }
+          ],
+          "id": "FORK-004.REQ-003",
+          "level": "MUST",
+          "text": "Patched-source repositories must be hosted in the appropriate official OSERA fork for the upstream project or artifact line."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 40,
+      "source_path": "docs/_standards/fork-004-open-source-patch-publication.md",
+      "standard-version": "0.0.1",
+      "standard_id": "FORK-004",
+      "summary": "Patched-source repositories should be fully public, hosted in the appropriate official fork, and released under the same open-source license terms as the original code.",
+      "title": "Open Source Patch Publication",
+      "type": "FORK",
+      "url": "/standards/fork-004-open-source-patch-publication/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "fitness-role": "Required evidence",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "tested_commit",
+                "runtime",
+                "test_command",
+                "test_result",
+                "test_report_artifact",
+                "no_failed_tests"
+              ],
+              "id": "REL-001.CHECK-001",
+              "implementation": "osera-fitness.rel001.test_provenance",
+              "severity": "blocking",
+              "title": "Test provenance is recorded",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-001.REQ-001",
+          "level": "MUST",
+          "text": "Patch providers must publish test provenance for the patched artifact, including the tested commit, test command or suite, runtime when relevant, test report, and passing test result."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 210,
+      "source_path": "docs/_standards/rel-001-test-provenance.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-001",
+      "summary": "Test execution methods are provider-dependent, but the provider publishes a unit-test report artifact for recipients to understand release validation.",
+      "title": "Provider Test Provenance",
+      "type": "REL",
+      "url": "/standards/rel-001-test-provenance/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "fitness-role": "Required evidence",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "artifact_digest",
+                "bytecode_level",
+                "reference_artifact"
+              ],
+              "id": "REL-002.CHECK-001",
+              "implementation": "osera-fitness.rel002.bytecode_level",
+              "severity": "blocking",
+              "title": "Bytecode level matches the prior released artifact",
+              "type": "artifact"
+            }
+          ],
+          "id": "REL-002.REQ-001",
+          "level": "MUST",
+          "text": "Patched Java artifacts must preserve the bytecode level of the last released artifact unless an exception is approved."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 220,
+      "source_path": "docs/_standards/rel-002-bytecode-compatibility.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-002",
+      "summary": "Patched artifacts preserve the bytecode level of the last released artifact unless an explicit exception is approved.",
+      "title": "Bytecode Compatibility",
+      "type": "REL",
+      "url": "/standards/rel-002-bytecode-compatibility/"
+    },
+    {
+      "applies-to": [
+        "Java package patch providers",
+        "Enterprise Java recipients",
+        "Java repository and dependency tooling"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "extends": "REL-003",
+      "fitness-role": "Required Java profile check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "release_tag",
+                "artifact_version",
+                "java_profile_decision",
+                "resolver_test_result",
+                "dependency_update_test_result"
+              ],
+              "id": "REL-003-JAVA.CHECK-001",
+              "implementation": "osera-fitness.rel003_java.version_pattern_compatibility",
+              "override-explanation": "Replaces generic profile-selection evidence with Java profile-decision, resolver, and dependency-update compatibility evidence. The parent consumer outcome remains the acceptance criterion; the naming convention is the CARE-style OSERA form described below.",
+              "severity": "blocking",
+              "title": "Java patch version pattern passes supported tooling compatibility tests",
+              "type": "release"
+            }
+          ],
+          "id": "REL-003-JAVA.REQ-001",
+          "level": "MUST",
+          "override-explanation": "Specializes the generic applicable-profile rule with a Java-specific version convention. The CARE-style convention uses the OSERA identifier; the parent obligations to identify the latest applicable remediation on the same upstream line and preserve baseline and OSERA identity remain.",
+          "text": "Official OSERA Java patched releases must use the ratified Java patch CARE-style version naming convention with the OSERA identifier, so supported Java resolver, dependency update, repository manager, SCA, feed, and policy tooling treats the patched artifact as the latest applicable remediation on the same upstream version line."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "release_tag",
+                "artifact_version",
+                "maven_purl",
+                "feed_purl"
+              ],
+              "id": "REL-003-JAVA.CHECK-002",
+              "implementation": "osera-fitness.rel003_java.identifier_consistency",
+              "override-explanation": "Uses Maven package URL evidence for the parent consistency check while retaining release-tag, artifact-version, and feed identity matching.",
+              "severity": "blocking",
+              "title": "Java release identifier is consistent across source, artifact, and feeds",
+              "type": "release"
+            }
+          ],
+          "id": "REL-003-JAVA.REQ-002",
+          "level": "MUST",
+          "override-explanation": "Specializes the parent identifier-consistency obligation for Java artifacts by explicitly including Maven package URLs. The same patched-release identity must still connect source tags, artifacts, feeds, and evidence.",
+          "text": "Java release tags, artifact versions, Maven package URLs, vulnerability feeds, and release evidence must carry the same Java patch version identifier."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 231,
+      "source_path": "docs/_standards/rel-003-java-patch-version-naming.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-003-JAVA",
+      "summary": "Java patched releases use a version naming profile that optimizes Maven, Gradle, repository-manager, dependency-update, SCA, feed, and policy-tool behavior for the affected upstream version line.",
+      "title": "Java Patch Version Naming",
+      "type": "REL",
+      "url": "/standards/rel-003-java-patch-version-naming/"
+    },
+    {
+      "applies-to": [
+        "Package patch providers",
+        "Enterprise recipients",
+        "Package ecosystem profile authors"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "extended-by": [
+        "REL-003-JAVA"
+      ],
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "release_tag",
+                "artifact_version",
+                "applicable_profile",
+                "ecosystem_profile",
+                "resolver_test_result"
+              ],
+              "id": "REL-003.CHECK-001",
+              "implementation": "osera-fitness.rel003.remediation_identifier",
+              "severity": "blocking",
+              "title": "Applicable patch version naming profile is selected",
+              "type": "release"
+            }
+          ],
+          "id": "REL-003.REQ-001",
+          "level": "MUST",
+          "text": "Official OSERA patched releases must use the applicable package-ecosystem patch version naming profile, or the default SemVer 2.0-compatible OSERA form where no concrete profile exists, so supported package resolver, dependency update, repository manager, SCA, feed, and policy tooling can identify the patched artifact as the latest applicable remediation on the same upstream version line."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "release_tag",
+                "artifact_version",
+                "feed_purl"
+              ],
+              "id": "REL-003.CHECK-002",
+              "implementation": "osera-fitness.rel003.identifier_consistency",
+              "severity": "blocking",
+              "title": "Release identifier is consistent across source, artifact, and feeds",
+              "type": "release"
+            }
+          ],
+          "id": "REL-003.REQ-002",
+          "level": "MUST",
+          "text": "Release tags, artifact versions, vulnerability feeds, and release evidence must carry the same patched-release identifier."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 230,
+      "source_path": "docs/_standards/rel-003-version-metadata.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-003",
+      "summary": "Patched releases use package-ecosystem-appropriate version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.",
+      "title": "Patch Version Naming",
+      "type": "REL",
+      "url": "/standards/rel-003-version-metadata/"
+    },
+    {
+      "applies-to": [
+        "OSERA maintainers",
+        "Patch providers",
+        "Repository operators"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "producer_identity",
+                "approved_producer_registry"
+              ],
+              "id": "REL-004.CHECK-001",
+              "implementation": "osera-fitness.rel004.approved_producer",
+              "severity": "blocking",
+              "title": "Producer is approved for the targeted standards pack",
+              "type": "publication-gate"
+            }
+          ],
+          "id": "REL-004.REQ-001",
+          "level": "MUST",
+          "text": "Official OSERA signed artifacts must identify a producer that appears in the approved-producer registry for the targeted standards pack. Each producer record must contain id, contact, github_users, and staging_account, with a unique id matching the producer identity in release evidence and fitness results."
+        },
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "producer_identity",
+                "fitness_result",
+                "release_evidence",
+                "registry_account_metadata",
+                "observed_tag_actor",
+                "observed_upload_account"
+              ],
+              "id": "REL-004.CHECK-002",
+              "implementation": "osera-fitness.rel004.producer_identity_evidence",
+              "severity": "blocking",
+              "title": "Producer identity is recorded in release evidence",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-004.REQ-002",
+          "level": "MUST",
+          "text": "The producer identity used at publication time must be recorded in the fitness result and release evidence, as an exact-string match of the registry entry's id. The fitness result and the verdict must also record the registry entry's staging_account and github_users as copied from the registry, and separately the observed release-tag actor. The observed upload account may be null in the CI fitness result because the gate observes it at upload time; this null value does not fail the CI check. The gate must record the observed upload account in the verdict. In 0.1.0 a difference between the copied account metadata and the observed actors is recorded and does not block."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 240,
+      "source_path": "docs/_standards/rel-004-approved-producers.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-004",
+      "summary": "Official OSERA signed artifacts are produced only by producers approved for the targeted standards pack.",
+      "title": "Approved Producers",
+      "type": "REL",
+      "url": "/standards/rel-004-approved-producers/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Repository operators",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Release Process",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "artifact_files",
+                "checksums"
+              ],
+              "id": "REL-005.CHECK-001",
+              "implementation": "osera-fitness.rel005.package_checksum_hygiene",
+              "severity": "blocking",
+              "title": "Package files and checksums are present",
+              "type": "artifact"
+            }
+          ],
+          "id": "REL-005.REQ-001",
+          "level": "MUST",
+          "text": "Official OSERA artifacts must publish expected package files and checksums for the ecosystem being released."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "pom",
+                "artifact_version",
+                "release_tag"
+              ],
+              "id": "REL-005.CHECK-002",
+              "implementation": "osera-fitness.rel005.package_metadata_version",
+              "severity": "blocking",
+              "title": "Package metadata uses the approved patched version",
+              "type": "artifact"
+            }
+          ],
+          "id": "REL-005.REQ-002",
+          "level": "MUST",
+          "text": "Published package metadata must identify the patched version consistently with REL-003."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 250,
+      "source_path": "docs/_standards/rel-005-artifact-publication-hygiene.md",
+      "standard-version": "0.1.0",
+      "standard_id": "REL-005",
+      "summary": "Published OSERA artifacts include consistent package metadata, checksums, and repository evidence required by the publication gate.",
+      "title": "Artifact Publication Hygiene",
+      "type": "REL",
+      "url": "/standards/rel-005-artifact-publication-hygiene/"
+    },
+    {
+      "applies-to": [
+        "OSERA maintainers",
+        "Patch providers",
+        "Repository operators"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Release Process",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "backlog_item",
+                "sponsor_record",
+                "coordinate_line"
+              ],
+              "id": "REL-006.CHECK-001",
+              "implementation": "osera-fitness.rel006.patch_request_authorization",
+              "severity": "observe",
+              "title": "Patch request authorization evidence is present",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-006.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch releases should identify the backlog item, public request, sponsor record, or equivalent authorization record for the patched coordinate and line."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 260,
+      "source_path": "docs/_standards/rel-006-patch-request-authorization.md",
+      "standard-version": "0.0.1",
+      "standard_id": "REL-006",
+      "summary": "Patch releases should trace to an approved backlog item, request, sponsor record, or equivalent authorization record.",
+      "title": "Patch Request Authorization",
+      "type": "REL",
+      "url": "/standards/rel-006-patch-request-authorization/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Repository operators",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Release Process",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "artifact_digest",
+                "source_tag",
+                "attestation_signature"
+              ],
+              "id": "REL-007.CHECK-001",
+              "implementation": "osera-fitness.rel007.signed_build_attestation",
+              "severity": "observe",
+              "title": "Signed build provenance attestation is present",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-007.REQ-001",
+          "level": "SHOULD",
+          "text": "Producers should sign an attestation linking the artifact digest to the source tag and build provenance."
+        },
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "sbom",
+                "vex",
+                "test_evidence",
+                "license_audit"
+              ],
+              "id": "REL-007.CHECK-002",
+              "implementation": "osera-fitness.rel007.evidence_bundle_references",
+              "severity": "observe",
+              "title": "Attestation references release evidence bundle",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-007.REQ-002",
+          "level": "SHOULD",
+          "text": "The attestation should reference SBOM, VEX, test evidence, and license audit material for the release."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 270,
+      "source_path": "docs/_standards/rel-007-build-provenance-and-signed-attestation.md",
+      "standard-version": "0.0.1",
+      "standard_id": "REL-007",
+      "summary": "Producers should sign an attestation linking the published artifact digest to the source tag, build process, SBOM, VEX, test evidence, and license audit.",
+      "title": "Build Provenance and Signed Attestation",
+      "type": "REL",
+      "url": "/standards/rel-007-build-provenance-and-signed-attestation/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Repository operators",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Release Process",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "build_security_scan_tool",
+                "scan_scope",
+                "scan_result"
+              ],
+              "id": "REL-008.CHECK-001",
+              "implementation": "osera-fitness.rel008.build_security_scan",
+              "severity": "observe",
+              "title": "Build-security scan evidence is present",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-008.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch providers should run build-security scanning appropriate to the package ecosystem before publishing an official patched artifact."
+        },
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "unresolved_findings",
+                "finding_disposition",
+                "not_applicable_rationale"
+              ],
+              "id": "REL-008.CHECK-002",
+              "implementation": "osera-fitness.rel008.finding_disposition",
+              "severity": "observe",
+              "title": "Build-security findings are dispositioned",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "REL-008.REQ-002",
+          "level": "SHOULD",
+          "text": "Build-security evidence should identify unresolved high-risk findings or explain why the selected tooling is not applicable to the patched project."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 280,
+      "source_path": "docs/_standards/rel-008-build-security-scanning.md",
+      "standard-version": "0.0.1",
+      "standard_id": "REL-008",
+      "summary": "Patch release builds should be checked for build-tool, dependency, and pipeline-injection risks before publication.",
+      "title": "Build Security Scanning",
+      "type": "REL",
+      "url": "/standards/rel-008-build-security-scanning/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients",
+        "Feed maintainers"
+      ],
+      "candidate-pack": "OSERA-SP-0.2.0 observe",
+      "category": "Source Changes",
+      "doc-status": "Pre-Draft",
+      "fitness-role": "Observe-only check",
+      "ratified-date": "Not ratified",
+      "ratified-in": "Not ratified",
+      "requirements": [
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "fix_item",
+                "cve_id",
+                "patch_basis_by_fix",
+                "upstream_fix_reference"
+              ],
+              "id": "SRC-001.CHECK-001",
+              "implementation": "osera-fitness.src001.patch_basis",
+              "severity": "observe",
+              "title": "Patch basis classification is present",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "SRC-001.REQ-001",
+          "level": "SHOULD",
+          "text": "Patch providers should classify whether each CVE or fix item in a patch release is based on an upstream fix, an adapted upstream fix, or a provider-developed fix, using a vocabulary still to be defined by the working group."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 110,
+      "source_path": "docs/_standards/src-001-patch-basis.md",
+      "standard-version": "0.0.1",
+      "standard_id": "SRC-001",
+      "summary": "Providers distinguish upstream backports from provider-developed fixes for each CVE or fix item carried by a patch release.",
+      "title": "Patch Basis Classification",
+      "type": "SRC",
+      "url": "/standards/src-001-patch-basis/"
+    },
+    {
+      "applies-to": [
+        "Patch providers",
+        "Enterprise recipients"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Source Changes",
+      "doc-status": "Ratified",
+      "fitness-role": "Required evidence",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "upstream_fix_url",
+                "patch_commit_url"
+              ],
+              "id": "SRC-002.CHECK-001",
+              "implementation": "osera-fitness.src002.upstream_provenance_link",
+              "severity": "blocking",
+              "title": "Upstream provenance link is present",
+              "type": "release-evidence"
+            }
+          ],
+          "id": "SRC-002.REQ-001",
+          "level": "MUST",
+          "text": "Backport evidence must link to the upstream commit, commit range, pull request, advisory, or release note defining the fix."
+        },
+        {
+          "checkability": "manual",
+          "checks": [
+            {
+              "evidence": [
+                "upstream_commit_author",
+                "co_authored_by_trailer",
+                "not_applicable_rationale"
+              ],
+              "id": "SRC-002.CHECK-002",
+              "implementation": "osera-fitness.src002.co_authored_by_trailer",
+              "severity": "advisory",
+              "title": "Upstream authorship trailer is present where applicable",
+              "type": "source"
+            }
+          ],
+          "id": "SRC-002.REQ-002",
+          "level": "SHOULD",
+          "text": "Backported commits carrying upstream-authored code should name the upstream commit and include a Co-authored-by trailer for the upstream author where applicable."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 120,
+      "source_path": "docs/_standards/src-002-provenance-links.md",
+      "standard-version": "0.1.0",
+      "standard_id": "SRC-002",
+      "summary": "Backports link to the upstream commit or advisory that introduced the fix being carried back.",
+      "title": "Upstream Provenance Links",
+      "type": "SRC",
+      "url": "/standards/src-002-provenance-links/"
+    },
+    {
+      "applies-to": [
+        "Patch providers"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Source Changes",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "evidence": [
+                "new_files",
+                "nearest_same_type_file",
+                "license_header_check",
+                "not_applicable_rationale"
+              ],
+              "id": "SRC-003.CHECK-001",
+              "implementation": "osera-fitness.src003.license_headers",
+              "severity": "blocking",
+              "title": "New files use the local license-header convention",
+              "type": "source"
+            }
+          ],
+          "id": "SRC-003.REQ-001",
+          "level": "MUST",
+          "text": "New source or test files added by a patch must follow the prevailing license-header convention of the surrounding project."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 130,
+      "source_path": "docs/_standards/src-003-license-headers.md",
+      "standard-version": "0.1.0",
+      "standard_id": "SRC-003",
+      "summary": "New source or test files match the prevailing license format of the surrounding project.",
+      "title": "License Headers for New Files",
+      "type": "SRC",
+      "url": "/standards/src-003-license-headers/"
+    },
+    {
+      "applies-to": [
+        "OSERA maintainers",
+        "Tooling providers"
+      ],
+      "candidate-pack": "OSERA-SP-0.1.0 ratified",
+      "category": "Standards Governance",
+      "doc-status": "Ratified",
+      "fitness-role": "Required check",
+      "ratified-date": "2026-09-10",
+      "ratified-in": "OSERA-SP-0.1.0",
+      "requirements": [
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "standard_markdown",
+                "schema-version"
+              ],
+              "id": "STD-001.CHECK-001",
+              "implementation": "osera-fitness.std001.standard_frontmatter_schema",
+              "severity": "blocking",
+              "title": "Standard front matter validates against the active OSERA schema",
+              "type": "standards-repository"
+            }
+          ],
+          "id": "STD-001.REQ-001",
+          "level": "MUST",
+          "text": "Standard pages must include schema-versioned YAML front matter containing identifiers, lifecycle status, requirements, checks, evidence expectations, and pack references."
+        },
+        {
+          "checkability": "automated",
+          "checks": [
+            {
+              "evidence": [
+                "docs/catalog/osera-standards.yaml",
+                "docs/catalog/osera-standards.json"
+              ],
+              "id": "STD-001.CHECK-002",
+              "implementation": "osera-fitness.std001.generated_catalog_current",
+              "severity": "blocking",
+              "title": "Generated catalog artifacts are current",
+              "type": "standards-repository"
+            }
+          ],
+          "id": "STD-001.REQ-002",
+          "level": "MUST",
+          "text": "The standards repository must publish normalized catalog artifacts generated from the Markdown front matter."
+        }
+      ],
+      "schema-version": "0.1.0",
+      "sequence": 610,
+      "source_path": "docs/_standards/std-001-standards-as-code.md",
+      "standard-version": "0.1.0",
+      "standard_id": "STD-001",
+      "summary": "OSERA standards use human-authored Markdown with structured YAML front matter as the machine-readable source of truth.",
+      "title": "Standards-as-Code Source Metadata",
+      "type": "STD",
+      "url": "/standards/std-001-standards-as-code/"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standards-as-Code Source Metadata | OSERA Remediation Standards</title>
+  <meta name="description" content="Open standards for producing, publishing, and consuming OSERA patches.">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<aside class="release-notice" style="padding:1rem 5%;background:#fff4d6;border-bottom:2px solid #bd8419;color:#342700"><strong>OSERA-SP-0.1.0 · Preserved release snapshot</strong><p>Prepared for review. Treat this copy as official only when its publication is confirmed in the <a href="https://standards.osera.finos.org/releases/">release register</a>. It does not follow working-draft edits.</p><a href="../../index.html">Snapshot contents and downloads</a> · <a href="https://github.com/finos-osera/remediation-standards/commit/51e0afebeb789c266efe3a6802fa59fbb3d8e999">Source revision</a></aside>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <div class="brand">
+        <a href="https://osera.finos.org" target="_blank" rel="noopener" aria-label="OSERA">
+          <img class="brand-logo" src="../../assets/osera-horizontal-color.svg" alt="OSERA">
+        </a>
+        <a class="brand-title" href="../../index.html">Remediation Standards</a>
+      </div>
+      <nav aria-label="Snapshot navigation"><a href="../../index.html#standards">Snapshot standards</a><a href="../../standard-packs/index.html">Pack</a><a href="../../fitness/index.html">Fitness</a><a href="../../examples/index.html">Examples</a><a href="https://standards.osera.finos.org/releases/">Release register</a></nav>
+    </div>
+  </header>
+  <main>
+    <article class="wrap standard-page">
+  <div class="breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#standards">Standards</a> / STD-001</div>
+  <div class="standard-header">
+    <div>
+      <span class="standard-id">STD-001</span>
+      <h1>Standards-as-Code Source Metadata</h1>
+      <p>OSERA standards use human-authored Markdown with structured YAML front matter as the machine-readable source of truth.</p>
+    </div>
+    <dl class="meta-panel">
+      <div><dt>Status</dt><dd>Ratified</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Pack</dt><dd>OSERA-SP-0.1.0 ratified</dd></div>
+      <div><dt>Ratified</dt><dd>2026-09-10</dd></div>
+      <div><dt>Fitness</dt><dd>Required check</dd></div>
+      <div><dt>Category</dt><dd>Standards Governance</dd></div>
+      <div><dt>Applies to</dt><dd>OSERA maintainers, Tooling providers</dd></div>
+      
+      
+      <div><dt>Machine-readable</dt><dd><a href="../../catalog/standards/STD-001.yaml">YAML</a> / <a href="../../catalog/standards/STD-001.json">JSON</a></dd></div>
+    </dl>
+  </div>
+  
+  
+  <section class="structured-requirements">
+    <h2>Structured Requirements</h2>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">STD-001.REQ-001</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>Standard pages must include schema-versioned YAML front matter containing identifiers, lifecycle status, requirements, checks, evidence expectations, and pack references.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>STD-001.CHECK-001</strong><br>
+                    Standard front matter validates against the active OSERA schema
+                  </td>
+                  <td>blocking</td>
+                  <td>standard_markdown, schema-version</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+      <article class="requirement-block">
+        <div class="requirement-heading">
+          <span class="row-id">STD-001.REQ-002</span>
+          <span class="row-status">MUST</span>
+          <span class="row-pack">automated</span>
+        </div>
+        <p>The standards repository must publish normalized catalog artifacts generated from the Markdown front matter.</p>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Severity</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>
+                    <strong>STD-001.CHECK-002</strong><br>
+                    Generated catalog artifacts are current
+                  </td>
+                  <td>blocking</td>
+                  <td>docs/catalog/osera-standards.yaml, docs/catalog/osera-standards.json</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+      </article>
+    
+  </section>
+  
+  <div class="standard-body">
+    <h2 id="requirement">Requirement</h2>
+
+<p>OSERA standards MUST be authored as readable Markdown pages with schema-versioned YAML front matter.</p>
+
+<p>The YAML front matter is the machine-readable source for:</p>
+
+<ul>
+  <li>standard identifiers, profile relationships, and versions;</li>
+  <li>lifecycle status;</li>
+  <li>pack membership;</li>
+  <li>requirements;</li>
+  <li>check identifiers and severity;</li>
+  <li>evidence expectations;</li>
+  <li>implementation binding names for future fitness tooling.</li>
+</ul>
+
+<p>The standards repository MUST publish normalized catalog artifacts generated from that source metadata.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Markdown remains the right format for reviewable standards prose. Gates and fitness functions need stronger structure than prose headings can provide.</p>
+
+<p>This hybrid model keeps the current Jekyll/GitHub Pages site while making the same standards consumable by CI, acceptance gates, and downstream policy tooling.</p>
+
+<h2 id="generated-artifacts">Generated artifacts</h2>
+
+<p>The repository SHOULD publish generated artifacts at stable HTTP paths such as:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/catalog/osera-standards.yaml
+/catalog/osera-standards.json
+/catalog/packs/OSERA-SP-0.1.0.yaml
+/catalog/packs/OSERA-SP-0.1.0.json
+</code></pre></div></div>
+
+<h2 id="generator-posture">Generator posture</h2>
+
+<p>The generated artifacts are derived from the Markdown front matter. Contributors SHOULD update the Markdown source and rerun the generator rather than editing generated catalog files directly.</p>
+
+<h2 id="authoring-model">Authoring model</h2>
+
+<p>Standard prose pages are maintained manually in <code class="language-plaintext highlighter-rouge">docs/_standards/*.md</code>. The structured YAML front matter at the top of each page is the machine-readable source for standard IDs, versions, lifecycle status, pack membership, requirements, checks, evidence expectations, and future fitness-function bindings.</p>
+
+<p>The documentation site renders those Markdown files through Jekyll templates. The same front matter is also used by <code class="language-plaintext highlighter-rouge">tools/generate_catalog.rb</code> to produce normalized YAML and JSON artifacts under <code class="language-plaintext highlighter-rouge">docs/catalog/</code>.</p>
+
+<p>Package-ecosystem or package-manager profiles MAY extend a base standard by appending an uppercase profile suffix to the base standard identifier, for example <code class="language-plaintext highlighter-rouge">REL-003-JAVA</code>. The profile suffix uses <code class="language-plaintext highlighter-rouge">-PROFILE</code> rather than <code class="language-plaintext highlighter-rouge">.PROFILE</code> so requirement and check IDs can keep the established dotted form, such as <code class="language-plaintext highlighter-rouge">REL-003-JAVA.REQ-001</code> and <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code>.</p>
+
+<p>When a profile extends a base standard, the base standard’s checks automatically apply to the profile unless the profile defines a check with the same numeric suffix. The numeric suffix is the override key. For example, <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-001</code> overrides <code class="language-plaintext highlighter-rouge">REL-003.CHECK-001</code>, while <code class="language-plaintext highlighter-rouge">REL-003-JAVA.CHECK-003</code> adds a new Java-specific check after the inherited and overridden checks. This mirrors method overriding in an object-oriented class extension: unchanged parent checks are inherited, same-number child checks replace the parent behavior for that profile, and new child check numbers add profile-specific behavior.</p>
+
+<h3 id="explicit-parent-relationships">Explicit parent relationships</h3>
+
+<p>Every overriding requirement and check MUST include an <code class="language-plaintext highlighter-rouge">override-explanation</code> string in its YAML metadata. It MUST describe the specialization and the parent obligations that remain applicable. An override does not implicitly waive the parent outcome. The field is omitted for added items; inherited items are not copied into the profile source.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">extends</span><span class="pi">:</span> <span class="s">REL-003</span>
+<span class="na">requirements</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">REL-003-JAVA.REQ-002</span>
+  <span class="na">override-explanation</span><span class="pi">:</span> <span class="s">Adds Maven package URL evidence while retaining the parent obligation to use the same patched-release identity across tags, artifacts, feeds, and evidence.</span>
+  <span class="c1"># Other required requirement fields are omitted from this excerpt.</span>
+  <span class="na">checks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">REL-003-JAVA.CHECK-002</span>
+    <span class="na">override-explanation</span><span class="pi">:</span> <span class="s">Uses Maven package URLs to verify the parent identifier-consistency obligation.</span>
+    <span class="c1"># Other required check fields are omitted from this excerpt.</span>
+</code></pre></div></div>
+
+<p>The generator derives <strong>Inherited</strong>, <strong>Overrides</strong>, and <strong>Added</strong> relationships by numeric suffix, independently for requirements and checks. Overriding a requirement does not remove parent checks: a check is replaced only by a same-number profile check. For profiles extending other profiles, the comparison uses the parent’s effective inherited and overridden items.</p>
+
+<p>The generated catalogs include <code class="language-plaintext highlighter-rouge">parent_relationship</code> with the parent ID/version and separate requirement/check rows containing <code class="language-plaintext highlighter-rouge">parent_item</code>, <code class="language-plaintext highlighter-rouge">treatment</code>, <code class="language-plaintext highlighter-rouge">effective_item</code>, and <code class="language-plaintext highlighter-rouge">explanation</code>. Added rows have a null <code class="language-plaintext highlighter-rouge">parent_item</code>; inherited rows retain the defining ancestor’s item ID. This is a relationship map, not a second copy of the requirements or an executable fitness result.</p>
+
+<p>The same data is generated into <code class="language-plaintext highlighter-rouge">docs/_data/profile_relationships.yml</code> to render a <strong>Relationship to parent</strong> section before each profile’s structured requirements. Authors MUST NOT edit the generated relationship data or author <code class="language-plaintext highlighter-rouge">parent_relationship</code> in front matter. Consumers resolve each effective item ID to its defining standard record; the parent version identifies the version in this catalog snapshot.</p>
+
+<p>Validation rejects missing or blank override explanations, explanations on items that do not override a parent, unknown parents, inheritance cycles, and duplicate item numbers. No manually maintained inherited/overridden lists are required.</p>
+
+<p>Profile requirements follow the same numbering convention. A same-number profile requirement specializes the parent requirement for the profile; a new number adds a profile-specific requirement.</p>
+
+<p>Profile pages SHOULD be readable on their own. A profile SHOULD explicitly describe any same-number requirements or checks that override the parent. Parent requirements and checks that are inherited without modification do not need to be duplicated in the child page; catalog and fitness tooling should compute the effective requirement and check set from the parent plus the profile.</p>
+
+<p>The generated YAML and JSON files SHOULD NOT be edited independently. When a standard changes, update the Markdown page and rerun the generator so the rendered documentation and machine-readable catalog remain synchronized.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="../../assets/osera-horizontal-white.svg" alt="OSERA">
+        <strong>Remediation Standards</strong>
+        <p>Versioned remediation standards for FINOS OSERA participants, patch providers, and enterprise consumers.</p>
+      </div>
+      <div>
+        <a href="https://osera.finos.org" target="_blank" rel="noopener">osera.finos.org</a>
+        <a href="https://github.com/finos-osera/community" target="_blank" rel="noopener">Community repo</a>
+        <a href="https://github.com/finos-osera" target="_blank" rel="noopener">Patch repositories</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>
