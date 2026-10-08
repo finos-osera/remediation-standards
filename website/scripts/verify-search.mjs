@@ -35,3 +35,18 @@ for (const [collection, directory] of [
     `Verified complete ${collection} search inventory and requirement text.`,
   );
 }
+
+const pages = JSON.parse(fs.readFileSync(new URL("src/data/pages.json", site)));
+const build = new URL("build/", site);
+const indexFile = fs
+  .readdirSync(build)
+  .find((name) => /^search-index-.*\.json$/.test(name));
+const docs = JSON.parse(fs.readFileSync(new URL(indexFile, build))).flatMap(
+  (index) => index.documents,
+);
+for (const page of pages)
+  assert.ok(
+    docs.some((doc) => doc.u === page.route),
+    `Search omits guide ${page.route}`,
+  );
+console.log("Verified search coverage for every migrated guide.");

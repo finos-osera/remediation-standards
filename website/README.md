@@ -30,7 +30,7 @@ Review these paths:
 
 Docusaurus versions the **whole standards collection**, not each specification separately. `0.2.0 · Draft` is the proposed next collection; it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged. There is no need to rename standards to FDC3's document taxonomy or introduce a SPEC-CCC-YYYY naming convention.
 
-Continue editing `docs/_standards/*.md`. `npm run prepare:docs` converts those authoritative files into ignored Docusaurus Markdown, retaining full body text and structured source metadata. Standard links stay in the selected collection. Supporting guidance links resolve to repository source because this experiment does not migrate all existing Liquid-driven pages. Unhandled Liquid or missing supporting targets fail generation.
+Continue editing `docs/_standards/*.md`. `npm run prepare:docs` converts those authoritative files into ignored Docusaurus Markdown, retaining full body text and structured source metadata. Standard links stay in the selected collection. Current supporting links resolve to the migrated guidance and downloads. Historical links retain the pinned repository revision. Shared pages are generated from their original `docs/` Markdown, with explicit rendering for the data-driven pack page. Unhandled Liquid or missing supporting targets fail generation.
 
 The initial historical snapshot is committed under `versioned_docs/version-0.1.0/`, with a matching sidebar. `baseline.json` records original source bytes, hashes, metadata and pack membership from exact commit `51e0afebeb789c266efe3a6802fa59fbb3d8e999` (ratification PR #51). Routine builds only generate current pages. The initial `--snapshot` bootstrap refuses to overwrite an existing baseline and is not a production release preparation command.
 
@@ -65,9 +65,9 @@ Sources reviewed:
 
 1. Integrate #84's approved manifests and archive records. Replace this prototype's single-baseline history and two-collection release register with manifest-derived multi-release history, including removed/renamed standards and multiple pack inclusions.
 2. Serve frozen HTML/bundles/catalogs byte-for-byte outside the Docusaurus renderer. Versioned Markdown alone is not immutable publication, and normal builds can change historical HTML when themes or dependencies change.
-3. Migrate the remaining Jekyll pages (packs, lifecycle, fitness, feeds, examples, governance), preserve all public URLs/catalog endpoints and resolve profile inheritance from each approved snapshot. Local YAML shown on standard pages is not a resolved conformance catalog.
+3. Complete the production URL/content parity audit, including old heading anchors and profile presentation. Shared guides and raw catalog/schema downloads are now migrated, and current profiles display their generated parent relationships. Resolve historical profile inheritance and supporting dependencies from each approved snapshot before claiming release completeness.
 4. Define deliberate release preparation, review and tagging with baseline confirmation, repository protections and recoverable publication. Do not use Docusaurus's snapshot command as ratification.
-5. Complete accessibility testing, full-text search selection, and visual review across the remaining page types before switching production hosting.
+5. Complete accessibility testing, full-text search accessibility, and visual review across the remaining page types before switching production hosting.
 
 ## Validation
 
@@ -93,7 +93,7 @@ This is an adoption proposal for review under the existing [standard lifecycle](
 
 **Implemented here:** automatic discovery of current standards; historical source files independent of current generation; source-based change detection; collection-aware catalog links; four intersecting filters; tests for adding/removing/renaming current catalog entries without losing historical entries; existing catalog validation and strict site-link validation.
 
-**Still required before production adoption:** integrate #84's archive layer; multi-release manifest-derived history including removed standards; enforce source version/status transitions and append-only archive comparisons in required CI against a trusted base; configure protected branches/release environments/tags and immutable releases; migrate remaining site pages and preserve legacy URLs/catalogs; validate resolved profile/schema dependencies, offline bundles and recovery. Tests in this PR do not establish repository-wide immutability or protection against administrators deleting history.
+**Still required before production adoption:** integrate #84's archive layer; multi-release manifest-derived history including removed standards; enforce source version/status transitions and append-only archive comparisons in required CI against a trusted base; configure protected branches/release environments/tags and immutable releases; complete the legacy URL/anchor and content parity audit; validate resolved profile/schema dependencies, offline bundles and recovery. Tests in this PR do not establish repository-wide immutability or protection against administrators deleting history.
 
 [Kris West's comment on #84](https://github.com/finos-osera/remediation-standards/pull/84#issuecomment-6063955038) highlights the same boundary: FDC3 adds explicit schema/conformance asset copying and reference rewriting alongside Docusaurus's documentation snapshots. Review this prototype with him before choosing the production architecture; keep #83 open until the release guarantees are implemented and exercised.
 
@@ -101,4 +101,30 @@ This is an adoption proposal for review under the existing [standard lifecycle](
 
 The header search uses `@easyops-cn/docusaurus-search-local` to build and serve its index with the site; no hosted search account or API key is needed. It indexes standard titles, headings, body text and structured requirements/checks, plus the site's ordinary pages. Cmd/Ctrl+K focuses search; suggestions link to matching sections and “See all results” opens `/search/`.
 
-Search from a standard page uses that document's collection. The full results page has an explicit collection selector that preserves the query while switching between working and historical definitions. Supporting pages that still live only in the repository are not indexed. Search indexes are generated by the production build (`npm run build` then `npm run serve` for local testing), with content-hashed filenames to avoid stale cached indexes after publication. New generated standards enter the index on the next build.
+Search from a standard page uses that document's collection. The full results page has an explicit collection selector that preserves the query while switching between working and historical definitions. Migrated shared guidance pages are indexed; material outside the published site is not indexed. Search indexes are generated by the production build (`npm run build` then `npm run serve` for local testing), with content-hashed filenames to avoid stale cached indexes after publication. New generated standards enter the index on the next build.
+
+
+## Replacement readiness (current audit)
+
+The exploration banner is cosmetic. Removing it does not switch production or satisfy release publication requirements.
+
+| Area | Current state | Remaining work |
+| --- | --- | --- |
+| Footer | Current site's white OSERA logo, description and community links restored | Visual review |
+| Lifecycle, fitness, governance, definitions | Generated from the existing Markdown at original URLs | Editorial review of existing text against current decisions |
+| Examples and subpages | Preserved at original URLs with images/assets | Review legacy examples for accuracy, not just link validity |
+| Packs | Original source template rendered; 0.1.0 membership links to historical definitions | Replace the single-baseline adapter with multi-release manifests before adding another pack |
+| Catalog and schemas | Existing JSON/YAML endpoints and per-standard downloads copied byte-for-byte; catalog landing page added | These remain mutable working endpoints; immutable release catalogs still require #84 |
+| Feeds | `/feeds/` retained as documentation, with a clear availability note | Hidden from navigation until a usable service exists; no feed endpoints invented |
+| Profiles | Current parent/override relationship tables generated from existing catalog metadata | Confirm historical effective dependencies as part of immutable archives |
+| Search | All shared pages plus version-specific standard content indexed | Broader accessibility/keyboard review before launch |
+| Deployment | Production still runs Jekyll; this PR only changes previews | Deliberate switch of Pages/Netlify build, custom-domain checks, rollout and rollback |
+| Immutable release identity | Historical baseline candidate and working collection demonstrated | Confirm 0.1.0, integrate #84's freeze/publish path, protect releases and test a second pack |
+
+A reader-site launch and an official immutable pack publication are separate decisions. The unconfirmed historical snapshot must retain its honest labeling if the reader is launched first. Complete content/URL parity review and approve a deployment switch before replacing production; do not claim #83 is complete until archive guarantees are implemented.
+
+### Keeping shared content current
+
+`docs/` remains the authoring source. `generate-pages.mjs` discovers every non-standard Markdown page except the deliberately redesigned homepage, requires a unique permalink, and writes ignored Docusaurus page files. Unsupported Liquid fails the build. Static catalogs, schemas and assets are copied from the same source tree. New pack identities fail closed until their version-specific routing is defined.
+
+`verify-site.mjs` checks source-page coverage, byte-identical downloads, historical pack links and footer presence. Search verification checks every guide. The Docusaurus PR workflow now watches all `docs/**` changes, not only standards. `AGENTS.md` gives future agents durable instructions to assess downstream guidance/examples/catalogs when editing a standard and to run the validators. This is repository guidance, not a scheduled maintenance job or a guarantee of semantic freshness: maintainers still review the meaning of changed guidance under governance.

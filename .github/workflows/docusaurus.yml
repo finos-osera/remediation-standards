@@ -3,9 +3,10 @@ on:
   pull_request:
     paths:
       - "website/**"
-      - "docs/_standards/**"
+      - "docs/**"
       - ".github/workflows/docusaurus.yml"
       - "netlify.toml"
+      - "AGENTS.md"
 permissions:
   contents: read
 jobs:

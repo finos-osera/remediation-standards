@@ -4,3 +4,9 @@ build/
 docs/
 src/data/current.json
 src/data/catalog.json
+src/pages/**/*.md
+.generated-pages.json
+src/data/pages.json
+static/catalog/
+static/schemas/
+static/assets/

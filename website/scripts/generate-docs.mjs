@@ -82,6 +82,14 @@ export function convertLinks(content, standards, historical) {
         const target = candidates.find((p) => files.has(`docs/${p}`));
         if (!target)
           throw new Error(`Unresolved supporting reference: ${href}`);
+        if (!historical) {
+          const permalink = target.endsWith(".md")
+            ? matter(fs.readFileSync(path.join(root, "docs", target), "utf8"))
+                .data.permalink
+            : "/" + target;
+          if (permalink)
+            return `${label}(${permalink}${anchor ? "#" + anchor : ""}${tail})`;
+        }
         return `${label}(${repo}/blob/${ref}/docs/${target}${anchor ? "#" + anchor : ""}${tail})`;
       },
     );
@@ -99,6 +107,41 @@ export function historyState(standard, baseline) {
   };
 }
 
+function currentRelationships(s, standards) {
+  const downloads = `[Working YAML](/catalog/standards/${s.id}.yaml) · [Working JSON](/catalog/standards/${s.id}.json)`;
+  if (!s.data.extends) return downloads;
+  const relationships = YAML.parse(
+    fs.readFileSync(
+      path.join(root, "docs/_data/profile_relationships.yml"),
+      "utf8",
+    ),
+  );
+  const relationship = relationships[s.id];
+  const parent = standards.find((candidate) => candidate.id === s.data.extends);
+  if (!relationship || !parent)
+    throw new Error(`Missing profile relationship for ${s.id}`);
+  const cell = (value) =>
+    String(value ?? "—")
+      .replace(/\|/g, "\\|")
+      .replace(/\n/g, " ");
+  return (
+    downloads +
+    `\n\n## Relationship to parent\n\nThis profile extends [${parent.id}](/standards/${parent.slug}/) version ${relationship.parent_version}. The tables below are generated from current parent/profile metadata.\n\n` +
+    ["requirements", "checks"]
+      .map(
+        (kind) =>
+          `### ${kind[0].toUpperCase() + kind.slice(1)}\n\n| Parent item | Treatment | Effective item | What changes or remains |\n| --- | --- | --- | --- |\n` +
+          relationship[kind]
+            .map(
+              (item) =>
+                `| ${cell(item.parent_item)} | ${cell(item.treatment)} | ${cell(item.effective_item)} | ${cell(item.explanation)} |`,
+            )
+            .join("\n"),
+      )
+      .join("\n\n")
+  );
+}
+
 function render(s, standards, baseline, historical) {
   const { old, member, changed } = historyState(s, baseline);
   const recorded = member && old;
@@ -113,7 +156,7 @@ function render(s, standards, baseline, historical) {
   const converted = convertLinks(s.content, standards, historical);
   if (/\{%|\{\{/.test(converted))
     throw new Error(`Unconverted Liquid in ${s.id}`);
-  return `---\n${YAML.stringify({ id: s.slug, title: `${s.id} · ${s.title}`, sidebar_label: `${s.id} · ${s.title}`, sidebar_position: s.sequence || 999, description: s.summary })}---\n\n:::${historical ? "info" : "warning"}[${status}]\n\n**Standard ${s.version}** · ${s.category}. ${historical ? "OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation." : "0.2.0 is the proposed next collection, not the version of every standard. Source status labels and predecessor dates do not approve working-copy changes."}\n\n${!historical && recorded ? `[Read recorded ratified ${member.version}](/standards/0.1.0/${old.slug}/) · ` : ""}[Version history](#version-history) · [All versions & release notes](/versions/)\n\n:::\n\n${s.summary}\n\n${converted}\n\n## Version history\n\n${history}\n\n## Structured requirements and checks\n\nThese definitions come from this page's source front matter. Profile inheritance remains defined by the referenced parent; these are local definitions, not a resolved conformance catalog.\n\n\`\`\`yaml\n${YAML.stringify(s.data)}\`\`\`\n\n## Source provenance\n\n[${historical ? "Historical source at " + baselineCommit.slice(0, 7) : "Working source"}](${repo}/blob/${historical ? baselineCommit : "main"}/docs/_standards/${s.slug}.md) · Source SHA-256: \`${s.sha256}\`.\n\nSupporting guidance links point to the ${historical ? "same historical Git revision" : "working repository"}; this prototype is not a self-contained release archive.\n`;
+  return `---\n${YAML.stringify({ id: s.slug, title: `${s.id} · ${s.title}`, sidebar_label: `${s.id} · ${s.title}`, sidebar_position: s.sequence || 999, description: s.summary })}---\n\n:::${historical ? "info" : "warning"}[${status}]\n\n**Standard ${s.version}** · ${s.category}. ${historical ? "OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation." : "0.2.0 is the proposed next collection, not the version of every standard. Source status labels and predecessor dates do not approve working-copy changes."}\n\n${!historical && recorded ? `[Read recorded ratified ${member.version}](/standards/0.1.0/${old.slug}/) · ` : ""}[Version history](#version-history) · [All versions & release notes](/versions/)\n\n:::\n\n${s.summary}\n\n${historical ? "" : currentRelationships(s, standards)}\n\n${converted}\n\n## Version history\n\n${history}\n\n## Structured requirements and checks\n\nThese definitions come from this page's source front matter. Profile inheritance remains defined by the referenced parent; these are local definitions, not a resolved conformance catalog.\n\n\`\`\`yaml\n${YAML.stringify(s.data)}\`\`\`\n\n## Source provenance\n\n[${historical ? "Historical source at " + baselineCommit.slice(0, 7) : "Working source"}](${repo}/blob/${historical ? baselineCommit : "main"}/docs/_standards/${s.slug}.md) · Source SHA-256: \`${s.sha256}\`.\n\nSupporting guidance links point to ${historical ? "the same historical Git revision" : "the current site guidance"}; this prototype is not a self-contained release archive.\n`;
 }
 
 function overview(standards, baseline, historical) {

@@ -60,6 +60,19 @@ const config = {
         { to: "/#standards", label: "Explore standards", position: "left" },
         { to: "/versions", label: "Version history", position: "left" },
         {
+          label: "Guides",
+          position: "left",
+          items: [
+            { to: "/standard-packs/", label: "Standard packs" },
+            { to: "/lifecycle/", label: "Lifecycle" },
+            { to: "/fitness/", label: "Fitness" },
+            { to: "/examples/", label: "Examples" },
+            { to: "/definitions/", label: "Definitions" },
+            { to: "/governance/", label: "Governance" },
+          ],
+        },
+        { to: "/catalog/", label: "Catalog", position: "left" },
+        {
           type: "docsVersionDropdown",
           position: "right",
           dropdownItemsAfter: [

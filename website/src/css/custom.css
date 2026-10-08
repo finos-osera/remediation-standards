@@ -532,3 +532,41 @@ div[class*="announcementBar_"] {
     min-width: 0;
   }
 }
+
+.osera-footer {
+  background: #00253f;
+  color: #cfe0ec;
+  padding: 38px 0;
+  margin-top: auto;
+}
+.osera-footer-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+}
+.osera-footer-logo {
+  display: block;
+  width: 112px;
+  height: auto;
+  margin-bottom: 8px;
+}
+.osera-footer p {
+  max-width: 680px;
+  margin: 8px 0 0;
+  color: #9fbbcc;
+}
+.osera-footer nav {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 180px;
+}
+.osera-footer a {
+  color: #9fd4ec;
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .osera-footer-grid {
+    flex-direction: column;
+  }
+}

@@ -2,12 +2,12 @@
   "name": "osera-standards-docusaurus-exploration",
   "private": true,
   "scripts": {
-    "prepare:docs": "node scripts/generate-docs.mjs",
+    "prepare:docs": "node scripts/generate-docs.mjs && node scripts/generate-pages.mjs",
     "start": "npm run prepare:docs && docusaurus start --host 0.0.0.0",
     "build": "npm run prepare:docs && docusaurus build",
     "serve": "docusaurus serve --host 0.0.0.0",
     "test": "node --test scripts/*.test.mjs",
-    "postbuild": "node scripts/verify-search.mjs"
+    "postbuild": "node scripts/verify-search.mjs && node scripts/verify-site.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -19,6 +19,7 @@
     "@mdx-js/react": "3.1.1",
     "clsx": "2.1.1",
     "gray-matter": "4.0.3",
+    "liquidjs": "10.30.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "yaml": "2.8.3"
