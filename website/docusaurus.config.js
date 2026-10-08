@@ -33,6 +33,24 @@ const config = {
       },
     ],
   ],
+  themes: [
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: "filename",
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: true,
+        docsRouteBasePath: "/standards",
+        language: "en",
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchBarPosition: "right",
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 100,
+      },
+    ],
+  ],
   themeConfig: {
     colorMode: { defaultMode: "light", disableSwitch: true },
     announcementBar: {

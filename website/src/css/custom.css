@@ -496,3 +496,39 @@ div[class*="announcementBar_"] {
     width: 100%;
   }
 }
+
+.search-scope {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  max-width: 960px;
+}
+.search-scope .filter-menu {
+  min-width: 280px;
+}
+.search-scope p {
+  font-size: 13px;
+  color: #536571;
+  margin: 0;
+}
+.search-scope .filter-option {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.search-scope .filter-option input {
+  accent-color: #006c96;
+}
+@media (max-width: 680px) {
+  .search-scope {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .search-scope .filter-menu {
+    min-width: 0;
+  }
+}
