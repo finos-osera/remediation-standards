@@ -2,18 +2,31 @@ import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import Heading from "@theme/Heading";
-import standards from "../data/current.json";
+import standards from "../data/catalog.json";
+import FilterMenu from "../components/FilterMenu";
+import { filterCatalog } from "../lib/catalog.mjs";
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
-  const filtered = standards.filter(
-    (s) =>
-      (category === "All" || s.category === category) &&
-      `${s.id} ${s.title} ${s.summary}`
-        .toLowerCase()
-        .includes(query.toLowerCase()),
-  );
+  const [status, setStatus] = useState("All");
+  const [collection, setCollection] = useState("current");
+  const filtered = filterCatalog(standards, {
+    query,
+    category,
+    status,
+    collection,
+  });
+  const options = (values) => [
+    { value: "All", label: "All" },
+    ...values.map((value) => ({ value, label: value })),
+  ];
+  const reset = () => {
+    setQuery("");
+    setCategory("All");
+    setStatus("All");
+    setCollection("current");
+  };
   return (
     <Layout
       title="Explore the standards"
@@ -76,14 +89,21 @@ export default function Home() {
         <section className="container catalog-section">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">THE WORKING COLLECTION / 0.2.0</p>
+              <p className="eyebrow">
+                {collection === "current"
+                  ? "WORKING COLLECTION / 0.2.0"
+                  : collection === "0.1.0"
+                    ? "HISTORICAL COLLECTION / 0.1.0"
+                    : "ALL COLLECTIONS"}
+              </p>
               <Heading as="h2" id="standards">
                 Find your standard
               </Heading>
               <p>Stable IDs. Explicit versions. Traceable decisions.</p>
             </div>
             <span className="result-count" aria-live="polite">
-              {filtered.length} standards
+              {filtered.length}{" "}
+              {filtered.length === 1 ? "standard version" : "standard versions"}
             </span>
           </div>
           <div className="catalog-controls">
@@ -96,34 +116,72 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
               />
             </label>
-            <label>
-              Category
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                {["All", ...new Set(standards.map((s) => s.category))].map(
-                  (c) => (
-                    <option key={c}>{c}</option>
-                  ),
-                )}
-              </select>
-            </label>
+            <FilterMenu
+              label="Category"
+              value={category}
+              onChange={setCategory}
+              options={options(
+                Array.from(new Set(standards.map((s) => s.category))).sort(),
+              )}
+            />
+            <FilterMenu
+              label="Collection"
+              value={collection}
+              onChange={setCollection}
+              options={[
+                { value: "current", label: "0.2.0 · Working collection" },
+                { value: "0.1.0", label: "0.1.0 · Historical pack" },
+                { value: "All", label: "All collections" },
+              ]}
+            />
+            <FilterMenu
+              label="Status"
+              value={status}
+              onChange={setStatus}
+              options={options(
+                Array.from(new Set(standards.map((s) => s.status))).sort(),
+              )}
+            />
+          </div>
+          <div className="filter-context">
+            <p>
+              {collection === "current"
+                ? "Working copies for the next collection. Individual standard versions and statuses vary."
+                : "Historical 0.1.0 content is an unconfirmed archive candidate. Observe-only standards were not ratified."}
+            </p>
+            <button type="button" className="filter-reset" onClick={reset}>
+              Reset filters
+            </button>
           </div>
           <div className="standard-grid">
             {filtered.map((s) => (
-              <article className="standard-card" key={s.id}>
+              <article
+                className="standard-card"
+                key={`${s.collection}-${s.id}`}
+              >
                 <div className="card-top">
                   <span className="standard-id">{s.id}</span>
                   <span className="version-small">v{s.version}</span>
                 </div>
                 <h3>
-                  <Link to={`/standards/${s.slug}/`}>{s.title}</Link>
+                  <Link to={s.href}>{s.title}</Link>
                 </h3>
+                <div className="card-status">
+                  <span
+                    className={`status-pill ${s.status === "Recorded ratified" ? "ratified" : "draft"}`}
+                  >
+                    {s.status}
+                  </span>
+                  <span className="collection-label">
+                    {s.collection === "current"
+                      ? "0.2.0 working"
+                      : "0.1.0 historical"}
+                  </span>
+                </div>
                 <p>{s.summary}</p>
                 <div className="card-bottom">
                   <span>{s.category}</span>
-                  <Link to={`/standards/${s.slug}/#version-history`}>
+                  <Link to={`${s.href}#version-history`}>
                     {s.changed
                       ? "Changed since 0.1.0 ↗"
                       : "Version history ↗"}
@@ -134,7 +192,8 @@ export default function Home() {
           </div>
           {!filtered.length && (
             <p className="empty-state">
-              No standards match your search. Try a different term or category.
+              No standard versions match these filters. Try another collection,
+              category, or status, or reset the filters.
             </p>
           )}
         </section>

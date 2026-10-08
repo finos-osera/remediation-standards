@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import matter from "gray-matter";
 import YAML from "yaml";
+import { buildCatalog } from "../src/lib/catalog.mjs";
 
 const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -204,6 +205,10 @@ export function generate() {
       null,
       2,
     ) + "\n",
+  );
+  write(
+    path.join(site, "src/data/catalog.json"),
+    JSON.stringify(buildCatalog(standards, baseline), null, 2) + "\n",
   );
   console.log(
     `Prepared ${standards.length} working standards; historical pages left unchanged.`,

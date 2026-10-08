@@ -3,3 +3,4 @@ build/
 .docusaurus/
 docs/
 src/data/current.json
+src/data/catalog.json

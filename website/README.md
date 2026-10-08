@@ -72,3 +72,27 @@ Sources reviewed:
 ## Validation
 
 `npm test` covers exact historical member versions/check IDs, source hashes, same-version content changes, historical link scope, overwrite refusal and preservation of historical Markdown during current generation. The production build fails on broken internal links, anchors and Markdown links. Historical supporting links use the pinned Git revision; no snapshot claims to be offline/self-contained. The Node version and dependency lockfile make the preview reproducible.
+
+## Catalog filtering
+
+The category, collection and status menus use native disclosures with one labeled radio choice per row. Search and all three filters intersect; reset returns to the working collection. Cards show their standard version, collection and effective status.
+
+Selecting the historical 0.1.0 collection uses historical titles, versions and links, including standards no longer present in the working tree. Its status filter distinguishes recorded-ratified members from observe-only material. Working copies with source status `Ratified` but changed source bytes are labeled `Changed since ratification`; they cannot appear as recorded-ratified current definitions. A draft remains a draft even when it has a ratified predecessor. New standards are discovered from the source directory automatically.
+
+## Proposed contribution-to-release process
+
+This is an adoption proposal for review under the existing [standard lifecycle](../docs/lifecycle/index.md) and [governance](../GOVERNANCE.md), not a new ratification policy introduced by this prototype.
+
+1. **Propose:** open an issue identifying the requirement area, rationale, affected standards, evidence/check changes, and intended pack. Keep the same stable standard ID for a revision; use a new ID for an independent requirement area.
+2. **Author through a PR:** edit the authoritative working Markdown and structured front matter, bump the standard version when its text changes, declare its review status and proposed pack, and explain compatibility and predecessor relationships. A source status/date inherited from a predecessor is not approval of the new content. Do not edit historical snapshots or ratified pack membership to make current validation pass.
+3. **Validate and review:** require catalog/schema/profile checks and the site build before merging. Add a base-branch comparison that rejects ID reuse, unexplained removal/renaming and content changes without the required version/status transition. Generate the catalog and navigation from sources so adding a standard requires no second hand-maintained inventory. Content that disappears from the current collection must retain historical routes and a supersession/withdrawal record.
+4. **Prepare a candidate separately:** resolve the exact pack manifest against an exact source commit, including parent profiles, effective checks, catalogs, schemas, registries and supporting assets. Produce a self-contained candidate bundle and digest for review. A merged specification PR and a green website build do not ratify a release.
+5. **Approve exact content:** obtain the working group's decision under existing governance and bind the decision to the candidate source/payload digest. Resolve the original 0.1.0 baseline before its first official publication. A decision for one candidate must not silently approve subsequent edits.
+6. **Publish once:** use #84's verified publication path for append-only artifacts, annotated pack tags, release notes, checksums and protected GitHub Releases. Derive site history and selectors from the resulting manifests. Existing released bytes and URLs must survive site/theme changes.
+7. **Evolve and verify:** use a new version for corrections or revisions; record errata separately. Rehearse adding a standard, revising one without a version bump, renaming/removing one, and publishing a second pack that carries older standards forward. Verify old URLs and artifact hashes before and after, and periodically test recovery from an independently retained release bundle.
+
+**Implemented here:** automatic discovery of current standards; historical source files independent of current generation; source-based change detection; collection-aware catalog links; four intersecting filters; tests for adding/removing/renaming current catalog entries without losing historical entries; existing catalog validation and strict site-link validation.
+
+**Still required before production adoption:** integrate #84's archive layer; multi-release manifest-derived history including removed standards; enforce source version/status transitions and append-only archive comparisons in required CI against a trusted base; configure protected branches/release environments/tags and immutable releases; migrate remaining site pages and preserve legacy URLs/catalogs; validate resolved profile/schema dependencies, offline bundles and recovery. Tests in this PR do not establish repository-wide immutability or protection against administrators deleting history.
+
+[Kris West's comment on #84](https://github.com/finos-osera/remediation-standards/pull/84#issuecomment-6063955038) highlights the same boundary: FDC3 adds explicit schema/conformance asset copying and reference rewriting alongside Docusaurus's documentation snapshots. Review this prototype with him before choosing the production architecture; keep #83 open until the release guarantees are implemented and exercised.
