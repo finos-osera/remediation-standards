@@ -1,0 +1,24 @@
+{
+  "name": "osera-standards-docusaurus-exploration",
+  "private": true,
+  "scripts": {
+    "prepare:docs": "node scripts/generate-docs.mjs",
+    "start": "npm run prepare:docs && docusaurus start --host 0.0.0.0",
+    "build": "npm run prepare:docs && docusaurus build",
+    "serve": "docusaurus serve --host 0.0.0.0",
+    "test": "node --test scripts/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "3.1.1",
+    "clsx": "2.1.1",
+    "gray-matter": "4.0.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "yaml": "2.8.3"
+  }
+}
