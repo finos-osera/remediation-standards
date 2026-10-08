@@ -1,0 +1,9 @@
+# Standards website maintenance
+
+- Read `docs/lifecycle/index.md`, `GOVERNANCE.md`, and `website/README.md` before changing standard lifecycle, pack membership, publication, or website routing.
+- Author standards in `docs/_standards/*.md`, shared guidance in the existing `docs/**/*.md` pages, and pack/registry data in `docs/_data/`. Never hand-edit ignored Docusaurus generated pages, indexes or copied downloads.
+- For a standard change, review its dependent lifecycle/fitness guidance, examples, definitions, schemas and profile relationships. Update affected sources in the same PR or explicitly explain why no update is needed. Do not claim that a site build or merge ratifies new material.
+- For additions, renames or removals, preserve existing public routes and historical definitions. Never alter stored historical snapshots to make a current build pass. Adding a new standalone docs page must declare a unique permalink and enter the generated site automatically, or receive an explicit migration decision.
+- Run `ruby tools/generate_catalog.rb --check`, `npm --prefix website test`, and `npm --prefix website run build` after relevant content or generator changes. The site build validates routes, static downloads and search coverage; catalog drift must be fixed at the source and regenerated with the existing catalog tooling.
+- Navigation and footer changes must work on mobile and desktop. Feeds is intentionally absent from navigation pending a usable service; preserve `/feeds/` as documentation, and do not describe example endpoints as live.
+- Keep the remaining production-adoption gaps in `website/README.md` accurate. Production remains Jekyll until an explicitly reviewed deployment change; PR #87 is the Docusaurus exploration and #83 tracks release preservation/publication.

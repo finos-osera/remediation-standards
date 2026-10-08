@@ -9,3 +9,9 @@
 
 [context.deploy-preview]
   ignore = "false"
+  command = "npm --prefix ../website ci && npm --prefix ../website test && npm --prefix ../website run build"
+  publish = "../website/build"
+
+# Exploration only: PR previews exercise Docusaurus; production remains Jekyll.
+[context.deploy-preview.environment]
+  NODE_VERSION = "22"
