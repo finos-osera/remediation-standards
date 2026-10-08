@@ -53,12 +53,6 @@ const config = {
   ],
   themeConfig: {
     colorMode: { defaultMode: "light", disableSwitch: true },
-    announcementBar: {
-      id: "prototype",
-      content:
-        "Docusaurus exploration · 0.1.0 ratification is recorded; this historical baseline awaits confirmation.",
-      isCloseable: false,
-    },
     navbar: {
       title: "Standards",
       logo: { alt: "OSERA", src: "assets/osera-horizontal-color.svg" },
