@@ -7,9 +7,9 @@ description: Providers publish concise recipient guidance describing what
   changed and what surface area should be tested.
 ---
 
-:::info[Observe only · not ratified]
+:::info[Pre-Draft · Observe only in pack 0.1.0]
 
-**Standard 0.0.1** · Recipient Evidence. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.0.1** · Recipient Evidence. Included for observation, not ratified.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -105,6 +105,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/evd-001-change-and-test-surface.md) · Source SHA-256: `143308dcee75f1d5d612022fa61db2ad5c12e450ceed7650b2a985c6a6c1ba39`.
 

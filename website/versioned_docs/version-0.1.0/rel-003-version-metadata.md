@@ -8,9 +8,9 @@ description: Patched releases use package-ecosystem-appropriate version naming
   syntax.
 ---
 
-:::info[Recorded ratified · archive candidate]
+:::info[✓ Ratified in pack 0.1.0]
 
-**Standard 0.1.0** · Release Process. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.1.0** · Release Process. Ratified September 10, 2026.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -167,6 +167,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-003-version-metadata.md) · Source SHA-256: `78cb5848541e8989533a729fc360cd638221c963afbf161b00211d7b7fb071bc`.
 

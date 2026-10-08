@@ -1,10 +1,10 @@
 ---
 id: overview
-title: 0.1.0 · Recorded ratified pack
+title: Pack 0.1.0
 sidebar_position: 0
 ---
 
-Ratified September 10, 2026. Historical baseline candidate from PR #51; not a confirmed official archive. Observe-only standards remain unratified.
+Pack ratified September 10, 2026. Approval applies to its 13 included standards; seven observe-only standards remain unratified. Historical copy reconstructed from PR #51; snapshot verification pending.
 
 [Version history and release notes](/versions/)
 

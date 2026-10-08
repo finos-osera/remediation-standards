@@ -38,8 +38,7 @@ export default function SiteLayout({ children, ...props }) {
           />
           <p>
             Search titles, full standard text, requirements and checks, plus
-            site pages. Historical 0.1.0 content remains an unconfirmed archive
-            candidate.
+            site pages. Historical snapshot verification for pack 0.1.0 is pending.
           </p>
         </section>
       )}

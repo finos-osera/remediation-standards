@@ -8,9 +8,9 @@ description: Producers should sign an attestation linking the published artifact
   audit.
 ---
 
-:::info[Observe only · not ratified]
+:::info[Pre-Draft · Observe only in pack 0.1.0]
 
-**Standard 0.0.1** · Release Process. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.0.1** · Release Process. Included for observation, not ratified.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -110,6 +110,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-007-build-provenance-and-signed-attestation.md) · Source SHA-256: `060c6c275512bae4f65bb90401ff11868728c3ce78177736d27cbab64df23f25`.
 

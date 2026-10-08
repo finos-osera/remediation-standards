@@ -38,7 +38,7 @@ Docusaurus document IDs match between versions, enabling same-document switching
 
 ## Provenance and release notes
 
-The September 10, 2026 ratification is recorded, but the historical baseline is unconfirmed, as in PR #84. The selector's `Ratified*` label refers to the recorded pack decision, not confirmation of these archived bytes. Observe-mode documents remain unratified. Current pages do not inherit approval from a predecessor date or a stale source status label.
+The September 10, 2026 ratification is recorded, but the historical baseline is unconfirmed, as in PR #84. The selector says `Pack 0.1.0`; each standard shows its own approval status. Snapshot verification is noted separately from ratification. Observe-mode documents remain unratified. Current pages do not inherit approval from a predecessor date or a stale source status label.
 
 No GitHub Releases were returned by `gh release list` during this exploration (October 8, 2026). This PR creates no release or tag. It proposes the issue's pack tag `OSERA-SP-0.1.0`, rather than FDC3's `v2.2` naming. A future GitHub Release should contain highlights, exact pack membership, ratification decision, canonical archive permalink, approved-source provenance and verified bundle/checksum assets. For 0.1.0 this requires baseline confirmation first; link the version register to the actual Release once it exists.
 

@@ -155,7 +155,7 @@ export default function Home() {
             <p>
               {collection === "current"
                 ? "Working copies for the next collection. Individual standard versions and statuses vary."
-                : "Historical 0.1.0 content is an unconfirmed archive candidate. Observe-only standards were not ratified."}
+                : "Pack 0.1.0 includes ratified and observe-only standards. Historical snapshot verification is pending."}
             </p>
             <button type="button" className="filter-reset" onClick={reset}>
               Reset filters

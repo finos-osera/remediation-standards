@@ -7,9 +7,9 @@ description: Patched-source repositories use a consistent `patch-<reponame>`
   name in the finos-osera GitHub organization.
 ---
 
-:::info[Recorded ratified · archive candidate]
+:::info[✓ Ratified in pack 0.1.0]
 
-**Standard 0.1.0** · Fork Management. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.1.0** · Fork Management. Ratified September 10, 2026.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -102,6 +102,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/fork-001-repository-naming.md) · Source SHA-256: `59c2a204c917fe390501736ebe777bc8b5ab9f489697c6d7ae49044edc086c48`.
 

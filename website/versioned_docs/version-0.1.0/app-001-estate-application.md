@@ -7,9 +7,9 @@ description: Patch feeds should support automated discovery and application
   across dependency estates.
 ---
 
-:::info[Observe only · not ratified]
+:::info[Pre-Draft · Observe only in pack 0.1.0]
 
-**Standard 0.0.1** · Patch Application. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.0.1** · Patch Application. Included for observation, not ratified.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -84,6 +84,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/app-001-estate-application.md) · Source SHA-256: `b3329df023fbdf611683e9fa41c90d91b49403646cd96f153b7242d6714241bd`.
 

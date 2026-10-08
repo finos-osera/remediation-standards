@@ -12,6 +12,19 @@ const historicalDir = new URL(
   import.meta.url,
 );
 
+test("historical approval labels follow pack membership independently of snapshot verification", () => {
+  for (const s of baseline.standards) {
+    const page = fs.readFileSync(new URL(`${s.slug}.md`, historicalDir), "utf8");
+    const included = baseline.pack.included_standards.some((m) => m.id === s.id);
+    assert.ok(page.includes(included
+      ? ":::info[✓ Ratified in pack 0.1.0]"
+      : `:::info[${s.status} · Observe only in pack 0.1.0]`), s.id);
+    assert.doesNotMatch(page, /archive candidate/i);
+    assert.ok(page.split("## Source provenance")[1].includes("snapshot verification pending"));
+    if (!included) assert.doesNotMatch(page.split(":::\n\n")[0], /Ratified September/);
+  }
+});
+
 test("recorded membership pins exact versions and checks; observe-only is not ratified", () => {
   assert.equal(baseline.pack.included_standards.length, 13);
   assert.equal(baseline.pack.observe_standards.length, 7);

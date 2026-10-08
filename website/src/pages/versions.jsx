@@ -19,8 +19,8 @@ export default function Versions() {
         <div className="history-notice">
           <strong>Ratification and archive publication are separate.</strong>{" "}
           The 0.1.0 decision is recorded, but the reconstructed source baseline
-          still needs confirmation. The asterisk in “0.1.0 · ✓ Ratified*” refers
-          to that distinction. No official release tag or GitHub Release was
+          still needs verification. Each standard shows its own approval status.
+          No official release tag or GitHub Release was
           found during this exploration.
         </div>
         <section className="release-row">
@@ -58,7 +58,6 @@ export default function Versions() {
             </span>
             <h2>0.1.0</h2>
             <p>September 10, 2026</p>
-            <small>Archive candidate</small>
           </div>
           <div>
             <h3>The first remediation standards pack</h3>
@@ -70,7 +69,8 @@ export default function Versions() {
             </p>
             <p>
               The historical reader uses the exact source from ratification PR
-              #51. Later draft changes, including REL-001 0.2.0, are excluded.
+              #51; snapshot verification is pending. Later draft changes, including
+              REL-001 0.2.0, are excluded.
             </p>
             <Link
               className="button button--secondary"

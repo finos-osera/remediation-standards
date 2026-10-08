@@ -22,7 +22,7 @@ const config = {
           versions: {
             current: { label: "0.2.0 · ✎ Draft", path: "", banner: "none" },
             "0.1.0": {
-              label: "0.1.0 · ✓ Ratified*",
+              label: "Pack 0.1.0",
               path: "0.1.0",
               banner: "none",
             },

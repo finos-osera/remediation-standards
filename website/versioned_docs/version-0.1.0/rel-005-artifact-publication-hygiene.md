@@ -7,9 +7,9 @@ description: Published OSERA artifacts include consistent package metadata,
   checksums, and repository evidence required by the publication gate.
 ---
 
-:::info[Recorded ratified · archive candidate]
+:::info[✓ Ratified in pack 0.1.0]
 
-**Standard 0.1.0** · Release Process. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.1.0** · Release Process. Ratified September 10, 2026.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -101,6 +101,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-005-artifact-publication-hygiene.md) · Source SHA-256: `52fa191daa6b88d967a9e6e37419c45700b1e2c06691307da918c65175c9aefe`.
 

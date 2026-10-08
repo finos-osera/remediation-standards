@@ -8,9 +8,9 @@ description: Java patched releases use a version naming profile that optimizes
   policy-tool behavior for the affected upstream version line.
 ---
 
-:::info[Recorded ratified · archive candidate]
+:::info[✓ Ratified in pack 0.1.0]
 
-**Standard 0.1.0** · Release Process. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.1.0** · Release Process. Ratified September 10, 2026.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -164,6 +164,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-003-java-patch-version-naming.md) · Source SHA-256: `c709444cb6815b6d75eec79af974c4f1e90ab4d8988f8728e9f0142eb8119c4d`.
 

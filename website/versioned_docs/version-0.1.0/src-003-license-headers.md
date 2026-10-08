@@ -7,9 +7,9 @@ description: New source or test files match the prevailing license format of the
   surrounding project.
 ---
 
-:::info[Recorded ratified · archive candidate]
+:::info[✓ Ratified in pack 0.1.0]
 
-**Standard 0.1.0** · Source Changes. OSERA-SP-0.1.0 was ratified on September 10, 2026; this reconstruction awaits baseline confirmation.
+**Standard 0.1.0** · Source Changes. Ratified September 10, 2026.
 
 [Version history](#version-history) · [All versions & release notes](/versions/)
 
@@ -84,6 +84,8 @@ requirements:
 ```
 
 ## Source provenance
+
+**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/src-003-license-headers.md) · Source SHA-256: `ab9e760e0eb31628032f59ecf3f9c9f6681a9ff0ca7348cd584203da868b0093`.
 

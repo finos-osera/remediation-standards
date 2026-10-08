@@ -10,7 +10,7 @@ export default function StatusLabel({ status }) {
           <span aria-hidden="true">{icon}</span>{" "}
         </>
       )}
-      {status}
+      {status === "Recorded ratified" ? "Ratified" : status}
     </>
   );
 }

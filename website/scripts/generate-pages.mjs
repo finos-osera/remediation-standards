@@ -91,7 +91,7 @@ export async function generatePages() {
         "/standards/0.1.0/$1/",
       );
       body =
-        ":::info[Historical archive status]\nThe 0.1.0 ratification is recorded; its reconstructed baseline awaits confirmation. Membership links below open the historical candidate. The catalog downloads are the existing mutable working catalogs, not an immutable release bundle.\n:::\n\n" +
+        ":::info[Historical archive status]\nThe 0.1.0 ratification is recorded; its reconstructed baseline awaits confirmation. Membership links below open the historical copy. The catalog downloads are the existing mutable working catalogs, not an immutable release bundle.\n:::\n\n" +
         body;
     }
     // Liquid leaves blank, indented control-tag lines inside HTML tables.
