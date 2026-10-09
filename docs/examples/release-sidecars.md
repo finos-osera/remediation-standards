@@ -63,7 +63,7 @@ These are acceptance criteria for the fitness/exchange implementation, not claim
 
 | Case | Expected outcome under the proposed checks |
 | --- | --- |
-| Required sources JAR missing | Block promotion of the required release set, including the primary JAR. |
+| Upstream publishes a sources JAR, but the patched counterpart is missing | Block promotion of the required release set, including the primary JAR. |
 | Source JAR contains the upstream version of a patched file | Fail source comparison. |
 | ZIP timestamp/compression differs but extracted source bytes match | Source comparison may pass. |
 | Manifest or generated source is listed with digest and build origin | Allowed as a reported build addition; no claim of reproducible generation. |
@@ -71,6 +71,9 @@ These are acceptance criteria for the fitness/exchange implementation, not claim
 | Empty source JAR omits declared source inputs | Fail. |
 | `.module` contains the wrong JAR name, URL, size or SHA-256 | Fail the module check. |
 | Two Gradle variants refer to the same correct promoted JAR | Pass their file-reference checks. |
+| Non-`pom` upstream release has no sources or javadoc JAR | Do not require either sidecar; their absence does not fail acceptance. |
+| Upstream has no sources, javadoc or `.module`, but the producer supplies them voluntarily | Permit publication when the applicable identity, integrity and content checks pass. |
+| Voluntary sources JAR contains mismatched tracked source | Fail the applicable source comparison; optional publication does not waive validation. |
 | Neither release has `.module` | Module check is not applicable, supported by inventory evidence. |
 | POM-only BOM has no upstream sources/javadoc | Do not require synthetic JARs. |
 | Javadoc content is not regenerated, but identity/binding checks pass | No additional javadoc content comparison is imposed by this proposal. |

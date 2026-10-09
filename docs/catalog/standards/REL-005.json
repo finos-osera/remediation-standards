@@ -26,7 +26,7 @@
       {
         "id": "REL-005.REQ-001",
         "level": "MUST",
-        "text": "Official OSERA releases must publish the package files and checksums required by the applicable ecosystem profile, including counterparts of the upstream baseline release's package files.",
+        "text": "Official OSERA releases must publish counterparts of the exact upstream baseline release's package files with the required checksums. Additional companion artifacts are optional; their absence must not fail acceptance when upstream does not publish them.",
         "checkability": "automated",
         "checks": [
           {

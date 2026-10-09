@@ -24,8 +24,9 @@ requirements:
   level: MUST
   text: Maven/Gradle releases must preserve the upstream baseline publication's file
     roles and classifiers and include a POM, the primary artifact where packaging
-    is not pom, sources and javadoc JARs for non-pom packaging, and Gradle module
-    metadata wherever upstream published it, with the required checksums.
+    is not pom, and sources JARs, javadoc JARs and Gradle module metadata wherever
+    upstream published them, with the required checksums. Additional companion
+    artifacts are optional and must pass applicable checks when supplied.
   checkability: automated
   checks:
   - id: REL-005-JAVA.CHECK-001
@@ -91,15 +92,17 @@ The gate MUST compare the exact upstream baseline coordinate's repository invent
 | --- | --- | --- |
 | POM | Every Maven publication | Patched coordinate/version consistency under inherited CHECK-002. |
 | Primary artifact, typically a JAR | Packaging is not `pom` | Applicable artifact checks plus inherited file binding. |
-| `-sources.jar` | Packaging is not `pom`, or upstream publishes it | CHECK-005, against the patched tag. |
-| `-javadoc.jar` | Packaging is not `pom`, or upstream publishes it | No additional content comparison; inherited identity and file-binding checks still apply. |
+| `-sources.jar` | Upstream publishes it | CHECK-005, against the patched tag. |
+| `-javadoc.jar` | Upstream publishes it | No additional content comparison; inherited identity and file-binding checks still apply. |
 | `.module` | Upstream publishes Gradle Module Metadata | CHECK-006 for every declared variant file. |
 | Other upstream classifiers or variant files | Present in the upstream baseline inventory | Inherited identity and file-binding checks; source archives also receive CHECK-005. |
 | Producer test report | Required by REL-001 | REL-001.CHECK-003; inherited reports may remain at the tested release. |
 
 Checksums and producer signatures accompany content files under the parent binding rule and the repository's publication requirements. Test reports are OSERA evidence; this profile does not require a particular archive format or the literal filename `tests.zip`.
 
-The source/javadoc requirement follows the [Maven Central publication pattern](https://central.sonatype.org/publish/requirements/), including its `pom` packaging exception. This profile adopts that pattern for OSERA Maven publications even when hosted outside Maven Central. POM-only BOMs and parent POMs do not need synthetic binary, sources or javadoc JARs when upstream has none; upstream sidecars still carry forward. A `.module` or a standard sources/javadoc file voluntarily supplied when not required is recognized and MUST pass the same checks. Other files absent from upstream and not required by this profile or another applicable standard remain in staging.
+Sources, javadoc and Gradle module metadata are required only when present in the exact upstream baseline release's published inventory, regardless of whether generated artifacts are checked into its source repository. Producers are not required to introduce companion artifacts absent from that upstream release. POM-only BOMs and parent POMs do not need synthetic binary, sources or javadoc JARs when upstream has none; upstream sidecars still carry forward.
+
+Producers MAY voluntarily publish additional companion artifacts. Their absence MUST NOT cause acceptance to fail when upstream does not publish them. A voluntarily supplied `.module`, sources or javadoc file is recognized and MUST pass the same applicable checks as a required counterpart. Other voluntary companion files may be published when their role and applicable checks are recognized under the parent binding rule; upstream absence alone does not prohibit publication. Unrecognized uploads remain in staging. OSERA's separately required test and provenance evidence is unaffected.
 
 ## Sources from the patched tag
 

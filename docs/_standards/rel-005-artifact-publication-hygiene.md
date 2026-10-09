@@ -22,9 +22,10 @@ applies-to:
 requirements:
 - id: REL-005.REQ-001
   level: MUST
-  text: Official OSERA releases must publish the package files and checksums required
-    by the applicable ecosystem profile, including counterparts of the upstream
-    baseline release's package files.
+  text: Official OSERA releases must publish counterparts of the exact upstream
+    baseline release's package files with the required checksums. Additional
+    companion artifacts are optional; their absence must not fail acceptance
+    when upstream does not publish them.
   checkability: automated
   checks:
   - id: REL-005.CHECK-001
@@ -102,7 +103,7 @@ This generic standard defines the publication obligations. Ecosystem profiles de
 
 The producer MUST identify the exact upstream baseline package version and repository location, and record its published file inventory. The gate MUST derive the required patched inventory from that inventory and the applicable versioned profile. Every upstream package file MUST have a counterpart for the patched version with the same role, classifier or variant, except for exclusions explicitly defined by that profile. Upstream signatures and checksums are replaced by those for the patched bytes; copying them is not preservation. Repository-wide indexes and mutable download statistics are not package release files.
 
-Profiles MAY require additional files even when upstream did not publish them. A producer declaration alone MUST NOT waive a required file. If the upstream inventory cannot be established, the check is unresolved and MUST NOT pass. The acceptance record MUST retain the observed inventory so subsequent repository changes cannot change what was evaluated.
+The upstream baseline release's published package artifacts define the minimum, not a ceiling. Producers MAY publish additional companion artifacts, but profiles MUST NOT require them when upstream does not publish them, and their absence MUST NOT cause acceptance to fail. Any additional artifacts supplied MUST satisfy the applicable identity, integrity and content checks. This inventory rule does not waive OSERA's separately required test and provenance evidence. A producer declaration alone MUST NOT waive a required file. If the upstream inventory cannot be established, the check is unresolved and MUST NOT pass. The acceptance record MUST retain the observed inventory so subsequent repository changes cannot change what was evaluated.
 
 Package metadata MUST identify the patched version consistently with [REL-003]({{ site.baseurl }}/standards/rel-003-version-metadata/) and its applicable naming profile.
 

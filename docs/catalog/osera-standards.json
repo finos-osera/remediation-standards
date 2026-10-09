@@ -931,7 +931,7 @@
         {
           "id": "REL-005.REQ-001",
           "level": "MUST",
-          "text": "Official OSERA releases must publish the package files and checksums required by the applicable ecosystem profile, including counterparts of the upstream baseline release's package files.",
+          "text": "Official OSERA releases must publish counterparts of the exact upstream baseline release's package files with the required checksums. Additional companion artifacts are optional; their absence must not fail acceptance when upstream does not publish them.",
           "checkability": "automated",
           "checks": [
             {
@@ -1043,7 +1043,7 @@
           "id": "REL-005-JAVA.REQ-001",
           "override-explanation": "Specializes the parent's required upstream-preserving inventory with Maven classifiers, POM packaging and Gradle module metadata, retaining required files and checksum verification.",
           "level": "MUST",
-          "text": "Maven/Gradle releases must preserve the upstream baseline publication's file roles and classifiers and include a POM, the primary artifact where packaging is not pom, sources and javadoc JARs for non-pom packaging, and Gradle module metadata wherever upstream published it, with the required checksums.",
+          "text": "Maven/Gradle releases must preserve the upstream baseline publication's file roles and classifiers and include a POM, the primary artifact where packaging is not pom, and sources JARs, javadoc JARs and Gradle module metadata wherever upstream published them, with the required checksums. Additional companion artifacts are optional and must pass applicable checks when supplied.",
           "checkability": "automated",
           "checks": [
             {
