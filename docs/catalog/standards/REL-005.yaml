@@ -4,11 +4,13 @@ standard:
   sequence: 250
   standard_id: REL-005
   title: Artifact Publication Hygiene
-  summary: Published OSERA artifacts include consistent package metadata, checksums,
-    and repository evidence required by the publication gate.
-  doc-status: Ratified
-  standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 ratified
+  summary: Published OSERA releases preserve the ecosystem's expected package files
+    and bind each promoted file to the patched release with retained acceptance evidence.
+  extended-by:
+  - REL-005-JAVA
+  doc-status: Draft
+  standard-version: 0.2.0
+  candidate-pack: OSERA-SP-0.2.0 required
   ratified-in: OSERA-SP-0.1.0
   ratified-date: '2026-09-10'
   fitness-role: Required check
@@ -21,16 +23,20 @@ standard:
   requirements:
   - id: REL-005.REQ-001
     level: MUST
-    text: Official OSERA artifacts must publish expected package files and checksums
-      for the ecosystem being released.
+    text: Official OSERA releases must publish counterparts of the exact upstream
+      baseline release's package files with the required checksums. Additional companion
+      artifacts are optional; their absence must not fail acceptance when upstream
+      does not publish them.
     checkability: automated
     checks:
     - id: REL-005.CHECK-001
-      title: Package files and checksums are present
+      title: Required release inventory and checksums are present
       type: artifact
       severity: blocking
       implementation: osera-fitness.rel005.package_checksum_hygiene
       evidence:
+      - upstream_release_inventory
+      - required_release_inventory
       - artifact_files
       - checksums
   - id: REL-005.REQ-002
@@ -45,8 +51,47 @@ standard:
       severity: blocking
       implementation: osera-fitness.rel005.package_metadata_version
       evidence:
-      - pom
+      - package_metadata
       - artifact_version
       - release_tag
+  - id: REL-005.REQ-003
+    level: MUST
+    text: Each promoted release file must be bound to the patched release by its identity,
+      SHA-256 digest, upload account and verified producer signature, and satisfy
+      the applicable profile's content checks; unrecognized uploads remain in staging
+      and are reported.
+    checkability: automated
+    checks:
+    - id: REL-005.CHECK-003
+      title: Promoted files are bound to the release and unrecognized uploads are
+        staged
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005.release_file_binding
+      evidence:
+      - release_file_inventory
+      - observed_upload_accounts
+      - signature_verification
+      - profile_check_results
+      - staged_files
+  - id: REL-005.REQ-004
+    level: MUST
+    text: The publication gate must retain an immutable acceptance record for each
+      released binary or metadata-only package, identifying its exact artifacts, standards
+      pack, standard versions, effective checks, results and evidence.
+    checkability: automated
+    checks:
+    - id: REL-005.CHECK-004
+      title: Acceptance record preserves the exact release and evaluation rules
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel005.acceptance_record
+      evidence:
+      - artifact_digests
+      - standard_pack
+      - pack_checksum
+      - standard_versions
+      - effective_check_results
+      - retained_evidence
   source_path: docs/_standards/rel-005-artifact-publication-hygiene.md
   url: "/standards/rel-005-artifact-publication-hygiene/"

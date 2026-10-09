@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://standards.osera.finos.org/schemas/osera-test-report-binding-0.2.0.schema.json",
+  "title": "OSERA Test Report Binding Extension (Draft 0.2.0)",
+  "description": "Validates only the REL-001 report-binding extension to patch-evidence.yaml. Other standards validate the remaining evidence. It does not verify bytes, signatures, or provenance.",
+  "type": "object",
+  "required": ["evidence-version", "tests"],
+  "properties": {
+    "evidence-version": {"const": "0.2.0"},
+    "tests": {
+      "type": "object",
+      "required": ["report", "report_sha256"],
+      "properties": {
+        "report": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "report_sha256": {"type": "string", "minLength": 64, "maxLength": 64, "pattern": "^[0-9a-f]{64}$"},
+        "repository": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "release": {"type": "string", "minLength": 1, "pattern": "\\S"}
+      },
+      "dependentRequired": {"repository": ["release"], "release": ["repository"]},
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

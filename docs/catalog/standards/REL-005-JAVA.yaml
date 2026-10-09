@@ -1,0 +1,146 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 251
+  standard_id: REL-005-JAVA
+  title: JVM Artifact Publication
+  summary: Maven and Gradle publications preserve upstream companion files and bind
+    source archives and module metadata to the exact patched release.
+  extends: REL-005
+  doc-status: Draft
+  standard-version: 0.1.0
+  candidate-pack: OSERA-SP-0.2.0 required
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Required JVM ecosystem profile check
+  type: REL
+  category: Release Process
+  applies-to:
+  - Maven and Gradle package patch providers
+  - JVM package repository operators
+  - Enterprise JVM recipients
+  requirements:
+  - id: REL-005-JAVA.REQ-001
+    override-explanation: Specializes the parent's required upstream-preserving inventory
+      with Maven classifiers, POM packaging and Gradle module metadata, retaining
+      required files and checksum verification.
+    level: MUST
+    text: Maven/Gradle releases must preserve the upstream baseline publication's
+      file roles and classifiers and include a POM, the primary artifact where packaging
+      is not pom, and sources JARs, javadoc JARs and Gradle module metadata wherever
+      upstream published them, with the required checksums. Additional companion artifacts
+      are optional and must pass applicable checks when supplied.
+    checkability: automated
+    checks:
+    - id: REL-005-JAVA.CHECK-001
+      override-explanation: Applies the parent's upstream inventory and checksum check
+        to Maven packaging, classifiers and Gradle metadata while preserving every
+        required upstream counterpart.
+      title: Maven and Gradle publication inventory is complete
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_java.publication_inventory
+      evidence:
+      - upstream_release_inventory
+      - required_release_inventory
+      - pom_packaging
+      - artifact_files
+      - checksums
+  - id: REL-005-JAVA.REQ-005
+    level: MUST
+    text: Every source-archive entry mapped to a tracked file must match its bytes
+      at the patched release tag; build-added entries must be individually listed
+      with their origin and must not mask tracked-source mismatches.
+    checkability: automated
+    checks:
+    - id: REL-005-JAVA.CHECK-005
+      title: Source archive entries match the patched tag or are listed build additions
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_java.sources_match
+      evidence:
+      - patched_tag_commit
+      - source_roots
+      - source_entry_mapping
+      - source_comparison_results
+      - build_added_entries
+  - id: REL-005-JAVA.REQ-006
+    level: MUST
+    text: Every Gradle module file reference must resolve to the exact release file
+      promoted for that variant, with matching name, byte size and SHA-256.
+    checkability: automated
+    checks:
+    - id: REL-005-JAVA.CHECK-006
+      title: Gradle module metadata identifies the exact promoted variant files
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_java.module_file_binding
+      evidence:
+      - gradle_module
+      - variant_file_references
+      - promoted_file_names
+      - promoted_file_sizes
+      - promoted_file_sha256
+  source_path: docs/_standards/rel-005-java-artifact-publication.md
+  url: "/standards/rel-005-java-artifact-publication/"
+  parent_relationship:
+    parent_standard: REL-005
+    parent_version: 0.2.0
+    requirements:
+    - parent_item: REL-005.REQ-001
+      treatment: Overrides
+      effective_item: REL-005-JAVA.REQ-001
+      explanation: Specializes the parent's required upstream-preserving inventory
+        with Maven classifiers, POM packaging and Gradle module metadata, retaining
+        required files and checksum verification.
+    - parent_item: REL-005.REQ-002
+      treatment: Inherited
+      effective_item: REL-005.REQ-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-003
+      treatment: Inherited
+      effective_item: REL-005.REQ-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-004
+      treatment: Inherited
+      effective_item: REL-005.REQ-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVA.REQ-005
+      explanation: Every source-archive entry mapped to a tracked file must match
+        its bytes at the patched release tag; build-added entries must be individually
+        listed with their origin and must not mask tracked-source mismatches.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVA.REQ-006
+      explanation: Every Gradle module file reference must resolve to the exact release
+        file promoted for that variant, with matching name, byte size and SHA-256.
+    checks:
+    - parent_item: REL-005.CHECK-001
+      treatment: Overrides
+      effective_item: REL-005-JAVA.CHECK-001
+      explanation: Applies the parent's upstream inventory and checksum check to Maven
+        packaging, classifiers and Gradle metadata while preserving every required
+        upstream counterpart.
+    - parent_item: REL-005.CHECK-002
+      treatment: Inherited
+      effective_item: REL-005.CHECK-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-003
+      treatment: Inherited
+      effective_item: REL-005.CHECK-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-004
+      treatment: Inherited
+      effective_item: REL-005.CHECK-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVA.CHECK-005
+      explanation: Source archive entries match the patched tag or are listed build
+        additions
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVA.CHECK-006
+      explanation: Gradle module metadata identifies the exact promoted variant files
