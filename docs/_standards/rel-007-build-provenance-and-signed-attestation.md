@@ -65,6 +65,8 @@ Reproducible builds remain an important OSERA goal. The standards group is defer
 
 Build provenance and signed release evidence should be the first observe-mode path toward SP-0.2.0.
 
+The proposed [REL-005 publication checks]({{ site.baseurl }}/standards/rel-005-artifact-publication-hygiene/) and [REL-001 report binding]({{ site.baseurl }}/standards/rel-001-test-provenance/#test-report-digest-binding) verify companion-file consistency and exact report bytes. They do not establish source-to-binary build provenance or promote this standard out of observe mode. Their signed fitness-result coverage is coordinated with [#57](https://github.com/finos-osera/remediation-standards/issues/57).
+
 ## Observe-mode evidence
 
 Observe-mode evidence SHOULD include:

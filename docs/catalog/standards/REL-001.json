@@ -64,6 +64,30 @@
             ]
           }
         ]
+      },
+      {
+        "id": "REL-001.REQ-003",
+        "level": "MUST",
+        "text": "Release evidence must identify the exact test report bytes by SHA-256, covered by the verified signed fitness result, and the gate must verify the digest against the published report, including any inherited report.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-001.CHECK-003",
+            "title": "Test report digest matches the report and is covered by signed evidence",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel001.test_report_binding",
+            "evidence": [
+              "evidence_version",
+              "test_report_artifact",
+              "test_report_sha256",
+              "observed_report_sha256",
+              "signed_fitness_result",
+              "evidence_digest",
+              "signature_verification"
+            ]
+          }
+        ]
       }
     ],
     "source_path": "docs/_standards/rel-001-test-provenance.md",

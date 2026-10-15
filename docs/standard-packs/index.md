@@ -9,6 +9,12 @@ Each pack fixes the exact versions of its included standards. Later revisions do
 
 See the [standard lifecycle]({{ site.baseurl }}/lifecycle/) for identifiers, versions, and pack maintenance.
 
+## Proposed release-file changes for 0.2.0
+
+[#78](https://github.com/finos-osera/remediation-standards/issues/78) proposes REL-005 0.2.0 (generic inventory, file binding and acceptance records), REL-005-JAVA 0.1.0 (its Maven/Gradle/JVM profile), and REL-001 0.2.0 (including exact test-report digest binding). See the [review example]({{ site.baseurl }}/examples/release-sidecars/) and [gate responsibilities]({{ site.baseurl }}/fitness/#proposed-020-release-file-checks).
+
+These draft versions are candidates for the next pack; they do not establish a complete OSERA-SP-0.2.0 pack or ratify its membership. The future pack must select the parent/profile versions and effective checks explicitly, after the signed-result contract and gate implementation are ready. Existing OSERA-SP-0.1.0 pins, checks and verdicts remain unchanged; there is no retroactive sidecar promotion or evidence backfill.
+
 ## Release history
 
 <table>
