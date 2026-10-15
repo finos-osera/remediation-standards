@@ -56,6 +56,26 @@ requirements:
     - tested_release
     - tested_commit
     - carried_test_result
+- id: REL-001.REQ-003
+  level: MUST
+  text: Release evidence must identify the exact test report bytes by SHA-256,
+    covered by the verified signed fitness result, and the gate must verify the
+    digest against the published report, including any inherited report.
+  checkability: automated
+  checks:
+  - id: REL-001.CHECK-003
+    title: Test report digest matches the report and is covered by signed evidence
+    type: release-evidence
+    severity: blocking
+    implementation: osera-fitness.rel001.test_report_binding
+    evidence:
+    - evidence_version
+    - test_report_artifact
+    - test_report_sha256
+    - observed_report_sha256
+    - signed_fitness_result
+    - evidence_digest
+    - signature_verification
 ---
 
 ## Requirement
@@ -84,11 +104,23 @@ A release qualifies only when every file changed since the previous release tag,
 
 This requirement depends on REL-009-JAVA. Without line releases and BOM propagation there is no release that changes no source, and REL-001.REQ-001 applies to every release.
 
+### Test-report digest binding
+
+For packs adopting REL-001 0.2.0 with CHECK-003, the producer MUST add `tests.report_sha256` to `.osera/patch-evidence.yaml`, containing exactly 64 lowercase hexadecimal characters, without a `sha256:` prefix. It is the SHA-256 of the complete report file's bytes, including its archive container if applicable, not a hash of extracted files. `tests.report` continues to identify the report; this requirement does not prescribe ZIP or any ecosystem-specific filename.
+
+The evidence file MUST declare top-level `evidence-version: "0.2.0"` for this proposed contract. This is the release-evidence format version, distinct from a standards pack, an individual standard version, or the `schema-version` of standard front matter. Earlier unversioned/name-only evidence remains valid only under the earlier requirements; a reader MUST NOT silently downgrade or accept an unsupported evidence version for CHECK-003. The [test-report binding schema]({{ site.baseurl }}/schemas/osera-test-report-binding-0.2.0.schema.json) validates this extension, not the entire cross-standard evidence file.
+
+The fitness run MUST bind the report name and digest to the tested repository/release/commit in its signed result. It may embed that evidence or include a SHA-256 reference to the exact retained evidence-file bytes containing those fields. The gate MUST verify the signature and signer authorization under the applicable pack's signed-result contract, verify any evidence-file digest reference, fetch the named report, recompute its SHA-256 and compare it with `tests.report_sha256`. A signature on a filename or an unverified digest assertion alone is insufficient. Signature envelope and trust-policy details remain coordinated with [#57](https://github.com/finos-osera/remediation-standards/issues/57); adopting this check as blocking requires that verification contract and its implementation to be available.
+
+For a release carrying another release's test provenance under REQ-002, the current evidence MUST include the same `report_sha256` as the tested release's evidence, and the gate MUST verify the report bytes at that tested repository/release. The tested release's evidence must itself bind that report digest through verified signed fitness evidence. A previously accepted name-only report cannot be inherited as satisfying CHECK-003 without a new, retained digest-bound evaluation; its original acceptance remains unchanged. The report need not be copied or renamed for the consuming release.
+
+The producer calculates the report digest after completing the tests, commits the evidence file, then tags the release and runs fitness. This avoids a circular dependency: the report does not need to contain the later evidence commit or fitness signature.
+
 ## Rationale
 
 Older projects can require specialized tooling such as Apache Ant, Gradle 2-5, Java 6-7, or OSGi. A single public CI model is unlikely to fit every patch repository.
 
-This standard is intentionally scoped to test provenance for OSERA-SP-0.1.0. Build provenance, including evidence that a specific binary was built from a specific source tag, is deferred to [REL-007]({{ site.baseurl }}/standards/rel-007-build-provenance-and-signed-attestation/) for OSERA-SP-0.2.0 observe-mode work.
+This standard covers test provenance; the 0.2.0 draft adds exact report-byte binding without changing the frozen OSERA-SP-0.1.0 requirements. Build provenance, including evidence that a specific binary was built from a specific source tag, is deferred to [REL-007]({{ site.baseurl }}/standards/rel-007-build-provenance-and-signed-attestation/) for OSERA-SP-0.2.0 observe-mode work.
 
 ## Example
 
@@ -98,9 +130,10 @@ The July 7 update noted that Moderne uses `mod` CLI for repeatable project valid
 mod exec /path/to/project MODERNE_TEST_CHECK
 ```
 
-A Spring Boot release that only re-pins the Logback line, whose `logback-core` was patched and tested in `patch-logback`, records that release's tests:
+A Spring Boot release that only re-pins the Logback line, whose `logback-core` was patched and tested in `patch-logback`, records that release's tests. This draft 0.2.0 fragment uses an illustrative digest that must be replaced with the actual report hash:
 
 ```yaml
+evidence-version: "0.2.0"
 tests:
   repository: dev-finos-osera-forks/patch-logback
   release: v1.2.13.1-osera-00002
@@ -108,6 +141,7 @@ tests:
   command: mvn -B -pl logback-core -am clean test -Dmaven.javadoc.skip=true
   runtime: OpenJDK 1.8.0_372 (Zulu), Apache Maven 3.9.14
   report: logback-core-1.2.13.1-osera-00002-tests.zip
+  report_sha256: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   result: pass
   note: no source changed in this repository; the release pins logback-core 1.2.13.1-osera-00002, tested there
 ```
@@ -120,7 +154,11 @@ Release evidence SHOULD identify the runtime, relevant test command, test result
 
 A release that changes no source records, in addition, the tested repository and its release tag. `REL-001.CHECK-002` reads the files changed since the previous release tag, or the baseline tag, and fails when any is a source, resource or test file; reads the named release's evidence in the named repository and fails when it is not there, when its `REL-001.CHECK-001` did not pass, or when this release does not pin it; and fails when the tests block names a commit that is not the tested commit of that release.
 
+`REL-001.CHECK-003` fails for missing or malformed version/digest fields, missing reports, mismatched report or evidence-file digests, absent or invalid signatures, unauthorized signers, or a mismatch with inherited report evidence. When verification cannot be completed, it remains unresolved and blocks an alignment claim; it MUST NOT pass or become `not-applicable`. Report-content checks for the claimed test outcome still apply independently.
+
+See [release-file examples]({{ site.baseurl }}/examples/release-sidecars/) for promotion and failure cases. These draft additions address [#78](https://github.com/finos-osera/remediation-standards/issues/78) prospectively; they require neither republishing existing reports nor changing earlier pack verdicts.
+
 ## Revisions
 
 * 0.1.0, ratified in OSERA-SP-0.1.0 on 2026-09-10: REL-001.REQ-001 and REL-001.CHECK-001.
-* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009-JAVA; sets the floor of REL-001.REQ-001 at the tests the fix's commits added or changed, a module suite preferred, and has REL-001.CHECK-001 record those test files beside the command. The check's pass condition is unchanged.
+* 0.2.0, draft for OSERA-SP-0.2.0: adds REL-001.REQ-002 and REL-001.CHECK-002 for a release that changes no source, depending on REL-009-JAVA; sets the floor of REL-001.REQ-001 at the tests the fix's commits added or changed, a module suite preferred, and has REL-001.CHECK-001 record those test files beside the command. CHECK-001's pass condition is unchanged. Adds REQ-003/CHECK-003 for SHA-256 report binding, the proposed evidence-version 0.2.0 extension, signed coverage and inherited-report verification; these checks are not added to the frozen 0.1.0 pack.

@@ -9,6 +9,8 @@ These examples are intentionally concise and implementation-oriented. They are m
 
 The examples below illustrate the ratified OSERA-SP-0.1.0 conventions; repository names, providers, vulnerabilities, and evidence links are illustrative, not published releases or producer approvals. See [Java release scenarios]({{ site.baseurl }}/examples/release-tags/) for packaging examples. [OSERA Commit Evidence]({{ site.baseurl }}/examples/osera-commit-evidence/) documents the legacy proof of concept for illustration only.
 
+For the proposed next-pack publication rules, see [Release Files and Test Report Binding]({{ site.baseurl }}/examples/release-sidecars/), including JVM sidecars, inherited reports and gate review cases. That example is draft 0.2.0 material, separate from the 0.1.0 examples below.
+
 ## Patch repository shape
 
 ```text

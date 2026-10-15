@@ -98,6 +98,23 @@ Result summaries must respect the targeted pack's check roles and severities. A 
 
 The signed fitness-result contract and its verification behavior are tracked in [#57](https://github.com/finos-osera/remediation-standards/issues/57) for 0.2.0. This example does not add a blocking signature-verification requirement to 0.1.0.
 
+## Proposed 0.2.0 release-file checks
+
+The draft in [#78](https://github.com/finos-osera/remediation-standards/issues/78) revises [REL-005]({{ site.baseurl }}/standards/rel-005-artifact-publication-hygiene/), adds [REL-005-JAVA]({{ site.baseurl }}/standards/rel-005-java-artifact-publication/) for the Maven/Gradle/JVM ecosystem, and adds report binding to [REL-001]({{ site.baseurl }}/standards/rel-001-test-provenance/#test-report-digest-binding). These are proposed future blocking checks, not additions to the 0.1.0 tables above.
+
+| Evaluation stage | Responsibility |
+| --- | --- |
+| Producer | Preserve required upstream file roles, build the patched companion files, record the completed test report's SHA-256 and evidence-version 0.2.0, then commit evidence and tag. |
+| Fitness run | Validate evidence fields and source/test provenance; include the report identity and digest in signed coverage directly or through the digest of retained evidence-file bytes. |
+| Publication gate | Verify upstream and required inventories, actual upload accounts, producer signatures and checksums; compare sources with the patched tag; verify module file references and actual test-report bytes; retain the final acceptance record. |
+| Promotion | Publish only the verified required/recognized set; leave unknown extras staged with reasons. Missing or failed required files block the set. |
+
+For JVM publications the effective checks are `REL-005-JAVA.CHECK-001`, inherited `REL-005.CHECK-002`, `REL-005.CHECK-003` and `REL-005.CHECK-004`, plus `REL-005-JAVA.CHECK-005` and `REL-005-JAVA.CHECK-006`. `REL-001.CHECK-003` separately checks report-byte binding and verified signature coverage, including inherited reports. A structural fitness pass alone cannot stand in for the gate's artifact checks.
+
+Each released binary or metadata-only package must have a retained immutable record of the exact pack/checksum, individual standard and profile versions, effective checks/results, source identity, artifact digests and evidence used. Later reevaluation creates a separate record. Existing releases keep their original acceptance criteria; this draft requires no historical backfill.
+
+The [evidence example and review cases]({{ site.baseurl }}/examples/release-sidecars/) describe the proposed contract and its failure cases. Catalog implementation names are contracts for tooling work, not evidence of implemented checks. Adoption depends on the signed-result verification contract in [#57](https://github.com/finos-osera/remediation-standards/issues/57), implementations in fitness/exchange tooling, and inclusion of the exact versions and effective checks in a later ratified pack. Full source-to-binary build attestation remains the separate REL-007 track.
+
 ## Certification posture
 
 For v0.1.0, the working group SHOULD use "OSERA-SP-0.1.0 aligned" only when a repository publishes the fitness result and all blocking checks pass. The working group SHOULD NOT use "certified" until it has agreed reviewer identity, evidence retention, revocation, dispute handling, and trademark or badge rules.

@@ -74,6 +74,67 @@ REL-003-JAVASCRIPT:
     effective_item: REL-003-JAVASCRIPT.CHECK-004
     explanation: A backpatch closes every vulnerability its predecessors on the same
       baseline closed
+REL-005-JAVA:
+  parent_standard: REL-005
+  parent_version: 0.2.0
+  requirements:
+  - parent_item: REL-005.REQ-001
+    treatment: Overrides
+    effective_item: REL-005-JAVA.REQ-001
+    explanation: Specializes the parent's required upstream-preserving inventory with
+      Maven classifiers, POM packaging and Gradle module metadata, retaining required
+      files and checksum verification.
+  - parent_item: REL-005.REQ-002
+    treatment: Inherited
+    effective_item: REL-005.REQ-002
+    explanation: Applies unchanged from the parent.
+  - parent_item: REL-005.REQ-003
+    treatment: Inherited
+    effective_item: REL-005.REQ-003
+    explanation: Applies unchanged from the parent.
+  - parent_item: REL-005.REQ-004
+    treatment: Inherited
+    effective_item: REL-005.REQ-004
+    explanation: Applies unchanged from the parent.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-005-JAVA.REQ-005
+    explanation: Every source-archive entry mapped to a tracked file must match its
+      bytes at the patched release tag; build-added entries must be individually listed
+      with their origin and must not mask tracked-source mismatches.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-005-JAVA.REQ-006
+    explanation: Every Gradle module file reference must resolve to the exact release
+      file promoted for that variant, with matching name, byte size and SHA-256.
+  checks:
+  - parent_item: REL-005.CHECK-001
+    treatment: Overrides
+    effective_item: REL-005-JAVA.CHECK-001
+    explanation: Applies the parent's upstream inventory and checksum check to Maven
+      packaging, classifiers and Gradle metadata while preserving every required upstream
+      counterpart.
+  - parent_item: REL-005.CHECK-002
+    treatment: Inherited
+    effective_item: REL-005.CHECK-002
+    explanation: Applies unchanged from the parent.
+  - parent_item: REL-005.CHECK-003
+    treatment: Inherited
+    effective_item: REL-005.CHECK-003
+    explanation: Applies unchanged from the parent.
+  - parent_item: REL-005.CHECK-004
+    treatment: Inherited
+    effective_item: REL-005.CHECK-004
+    explanation: Applies unchanged from the parent.
+  - parent_item:
+    treatment: Added
+    effective_item: REL-005-JAVA.CHECK-005
+    explanation: Source archive entries match the patched tag or are listed build
+      additions
+  - parent_item:
+    treatment: Added
+    effective_item: REL-005-JAVA.CHECK-006
+    explanation: Gradle module metadata identifies the exact promoted variant files
 REL-009-JAVA:
   parent_standard: REL-009
   parent_version: 0.1.0
