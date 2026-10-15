@@ -1,3 +1,4 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import StatusLabel from "../components/StatusLabel";
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
@@ -8,10 +9,12 @@ import FilterMenu from "../components/FilterMenu";
 import { filterCatalog } from "../lib/catalog.mjs";
 
 export default function Home() {
+  const { siteConfig } = useDocusaurusContext();
+  const { defaultCollection } = siteConfig.customFields;
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [status, setStatus] = useState("All");
-  const [collection, setCollection] = useState("current");
+  const [collection, setCollection] = useState(defaultCollection);
   const filtered = filterCatalog(standards, {
     query,
     category,
@@ -26,7 +29,7 @@ export default function Home() {
     setQuery("");
     setCategory("All");
     setStatus("All");
-    setCollection("current");
+    setCollection(defaultCollection);
   };
   return (
     <Layout
@@ -134,7 +137,7 @@ export default function Home() {
               value={collection}
               onChange={setCollection}
               options={[
-                { value: "current", label: "0.2.0 · Working collection" },
+                { value: "current", label: "Next · Working draft" },
                 { value: "0.1.0", label: "0.1.0 · Historical pack" },
                 { value: "All", label: "All collections" },
               ]}

@@ -18,7 +18,7 @@ The PR's Netlify deploy-preview context builds this site. Production Netlify con
 
 Review these paths:
 
-- `/`: OSERA branding, searchable/filterable working catalog and collection cards.
+- `/`: OSERA branding, searchable/filterable catalog defaulting to the latest ratified pack and collection cards.
 - `/standards/rel-001-test-provenance/`: draft standard 0.2.0; history links to historical 0.1.0.
 - `/standards/0.1.0/rel-001-test-provenance/`: original proposed baseline text and complete source metadata/checks.
 - On either standard, use the navbar version selector to change collection without losing the document.
@@ -28,13 +28,13 @@ Review these paths:
 
 ## Model and authoring
 
-Docusaurus versions the **whole standards collection**, not each specification separately. `0.2.0 · Draft` is the proposed next collection; it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged. There is no need to rename standards to FDC3's document taxonomy or introduce a SPEC-CCC-YYYY naming convention.
+Docusaurus versions the **whole standards collection**, not each specification separately. `Next · Working draft` is the evolving main-branch collection (currently proposed for 0.2.0); it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged. There is no need to rename standards to FDC3's document taxonomy or introduce a SPEC-CCC-YYYY naming convention.
 
 Continue editing `docs/_standards/*.md`. `npm run prepare:docs` converts those authoritative files into ignored Docusaurus Markdown, retaining full body text and structured source metadata. Standard links stay in the selected collection. Current supporting links resolve to the migrated guidance and downloads. Historical links retain the pinned repository revision. Shared pages are generated from their original `docs/` Markdown, with explicit rendering for the data-driven pack page. Unhandled Liquid or missing supporting targets fail generation.
 
 The initial historical snapshot is committed under `versioned_docs/version-0.1.0/`, with a matching sidebar. `baseline.json` records original source bytes, hashes, metadata and pack membership from exact commit `51e0afebeb789c266efe3a6802fa59fbb3d8e999` (ratification PR #51). Routine builds only generate current pages. The initial `--snapshot` bootstrap refuses to overwrite an existing baseline and is not a production release preparation command.
 
-Docusaurus document IDs match between versions, enabling same-document switching. Existing `/standards/<slug>/` working URLs are preserved; historical reading URLs use `/standards/0.1.0/<slug>/`. These are deliberately not the authoritative `/releases/OSERA-SP-0.1.0/` namespace required by #83.
+Docusaurus document IDs match between versions, enabling same-document switching. `lastVersion` selects the newest entry in `versions.json` whose matching pack is recorded as Ratified in `docs/_data/standard_packs.yml`, falling back to `current` if none is available. The homepage catalog and search use that same default. An explicit version selection remains available, including `Next · Working draft` for main. This navigation preference does not verify or ratify a snapshot. Existing `/standards/<slug>/` working URLs are preserved; historical reading URLs use `/standards/0.1.0/<slug>/`. These are deliberately not the authoritative `/releases/OSERA-SP-0.1.0/` namespace required by #83.
 
 ## Provenance and release notes
 
@@ -60,6 +60,14 @@ Sources reviewed:
 - [Docusaurus versioning](https://docusaurus.io/docs/versioning).
 - [Antora component versions](https://docs.antora.org/antora/latest/component-name-and-version/) and [version ordering](https://docs.antora.org/antora/latest/how-component-versions-are-sorted/).
 - [Kubernetes documentation contribution model](https://kubernetes.io/docs/contribute/new-content/).
+
+## Final review after October 15 meeting
+
+Main through `ff8d728` (PR #82) is integrated: 25 current standards, including REL-005-JAVA, plus 10 shared pages including the release-sidecar example. Current catalogs, profile relationships and test-report binding schema come from those merged sources. Historical 0.1.0 Markdown and baseline bytes are unchanged.
+
+Kris West's requested latest-ratified default is implemented through Docusaurus `lastVersion`. Existing working `/standards/<slug>/` and historical `/standards/0.1.0/<slug>/` paths remain stable; the default selection changes without moving their content. A future canonical-route change needs an explicit redirect plan.
+
+Before merging this reader prototype, review the latest preview and confirm retaining the Netlify preview override for subsequent PRs. Production still uses Jekyll. The October 15 discussion about Pre-Draft/Draft stages and voting is a governance follow-up, not an enacted lifecycle change in this PR. The production and immutable-publication work below remains open under #83.
 
 ## What remains before adoption
 

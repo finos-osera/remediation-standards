@@ -1,4 +1,24 @@
+import fs from "node:fs";
+import YAML from "yaml";
+import { selectDefaultVersion } from "./scripts/version-policy.mjs";
+
+const availableVersions = JSON.parse(fs.readFileSync(new URL("./versions.json", import.meta.url)));
+const packs = YAML.parse(fs.readFileSync(new URL("../docs/_data/standard_packs.yml", import.meta.url), "utf8"));
+const defaultCollection = selectDefaultVersion(availableVersions, packs);
+const versions = {
+  current: { label: "Next · ✎ Working draft", path: "", banner: "none" },
+  ...Object.fromEntries(availableVersions.map((version) => [version, {
+    label: `Pack ${version}`, path: version, banner: "none",
+  }])),
+};
+const searchCollections = [defaultCollection, ...Object.keys(versions).filter((v) => v !== defaultCollection)]
+  .map((version) => ({
+    value: version === defaultCollection ? "" : `standards/${versions[version].path ? versions[version].path + "/" : ""}`,
+    label: versions[version].label,
+  }));
+
 const config = {
+  customFields: { defaultCollection, searchCollections },
   title: "OSERA Remediation Standards",
   tagline: "Open standards. Clear evidence. Trusted patches.",
   url: "https://standards.osera.finos.org",
@@ -18,15 +38,10 @@ const config = {
           path: "docs",
           routeBasePath: "standards",
           sidebarPath: "./sidebars.js",
-          lastVersion: "current",
-          versions: {
-            current: { label: "0.2.0 · ✎ Draft", path: "", banner: "none" },
-            "0.1.0": {
-              label: "Pack 0.1.0",
-              path: "0.1.0",
-              banner: "none",
-            },
-          },
+          // Keep existing working and historical URLs stable; lastVersion sets
+          // the default dropdown choice and search scope independently of paths.
+          lastVersion: defaultCollection,
+          versions,
         },
         blog: false,
         theme: { customCss: "./src/css/custom.css" },

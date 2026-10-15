@@ -1,3 +1,4 @@
+import config from "../docusaurus.config.js";
 import fs from "node:fs";
 import assert from "node:assert/strict";
 const site = new URL("../", import.meta.url);
@@ -5,8 +6,8 @@ const catalog = JSON.parse(
   fs.readFileSync(new URL("src/data/catalog.json", site)),
 );
 for (const [collection, directory] of [
-  ["current", "build/"],
-  ["0.1.0", "build/standards/0.1.0/"],
+  ["current", config.customFields.defaultCollection === "current" ? "build/" : "build/standards/"],
+  ["0.1.0", config.customFields.defaultCollection === "0.1.0" ? "build/" : "build/standards/0.1.0/"],
 ]) {
   const root = new URL(directory, site);
   const file = fs
