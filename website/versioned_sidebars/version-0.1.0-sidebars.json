@@ -1,0 +1,67 @@
+{
+  "standards": [
+    "overview",
+    {
+      "type": "category",
+      "label": "Patch Application",
+      "items": [
+        "app-001-estate-application"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Recipient Evidence",
+      "items": [
+        "evd-001-change-and-test-surface"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Feeds and Advisories",
+      "items": [
+        "feed-001-openvex-cyclonedx"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Fork Management",
+      "items": [
+        "fork-001-repository-naming",
+        "fork-002-patch-branches",
+        "fork-003-baseline-tags",
+        "fork-004-open-source-patch-publication"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Release Process",
+      "items": [
+        "rel-001-test-provenance",
+        "rel-002-bytecode-compatibility",
+        "rel-003-version-metadata",
+        "rel-003-java-patch-version-naming",
+        "rel-004-approved-producers",
+        "rel-005-artifact-publication-hygiene",
+        "rel-006-patch-request-authorization",
+        "rel-007-build-provenance-and-signed-attestation",
+        "rel-008-build-security-scanning"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Source Changes",
+      "items": [
+        "src-001-patch-basis",
+        "src-002-provenance-links",
+        "src-003-license-headers"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Standards Governance",
+      "items": [
+        "std-001-standards-as-code"
+      ]
+    }
+  ]
+}

@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - docs/**
-      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
@@ -19,7 +16,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  catalog:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/catalog.yml
+
   build:
+    needs: catalog
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,23 +30,29 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          ruby-version: "3.3"
-          bundler-cache: true
-          working-directory: docs
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: website/package-lock.json
 
-      - name: Build with Jekyll
-        working-directory: docs
-        run: bundle exec jekyll build --baseurl "" --destination ../_site
-        env:
-          JEKYLL_ENV: production
+      - name: Install dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Test Docusaurus
+        working-directory: website
+        run: npm test
+
+      - name: Build Docusaurus
+        working-directory: website
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: website/build
 
   deploy:
     environment:
@@ -56,3 +64,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Share production URL
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: printf '### Production website\n\n[%s](%s)\n' "$PAGE_URL" "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"

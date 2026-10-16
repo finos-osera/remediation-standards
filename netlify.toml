@@ -1,11 +1,9 @@
+# Pull-request previews only. Production is deployed by GitHub Pages.
 [build]
-  base = "docs"
-  command = "bundle exec jekyll build"
-  publish = "_site"
+  base = "."
+  ignore = 'test "$CONTEXT" != "deploy-preview"'
+  command = 'test "$CONTEXT" = "deploy-preview" && npm --prefix website ci && npm --prefix website test && npm --prefix website run build'
+  publish = "website/build"
 
 [build.environment]
-  JEKYLL_ENV = "production"
-  RUBY_VERSION = "3.3"
-
-[context.deploy-preview]
-  ignore = "false"
+  NODE_VERSION = "22"
