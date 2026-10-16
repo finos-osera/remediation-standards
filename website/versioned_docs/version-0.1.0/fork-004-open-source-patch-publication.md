@@ -133,7 +133,7 @@ requirements:
 
 ## Source provenance
 
-**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
+**Source snapshot:** Reconstructed from the source recorded at ratification; snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/fork-004-open-source-patch-publication.md) · Source SHA-256: `db147572ce572230ca25fea295aec64c9bf56b32f9e626b2b07c2c481a640c18`.
 

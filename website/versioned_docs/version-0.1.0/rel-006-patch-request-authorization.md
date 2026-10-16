@@ -87,7 +87,7 @@ requirements:
 
 ## Source provenance
 
-**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
+**Source snapshot:** Reconstructed from the source recorded at ratification; snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-006-patch-request-authorization.md) · Source SHA-256: `780526c64f4d535121c71ccbf42bd275f8021515bb360d23d5d57bcfc3c5f177`.
 

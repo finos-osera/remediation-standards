@@ -4,7 +4,7 @@ title: Pack 0.1.0
 sidebar_position: 0
 ---
 
-Pack ratified September 10, 2026. Approval applies to its 13 included standards; seven observe-only standards remain unratified. Historical copy reconstructed from PR #51; snapshot verification pending.
+Pack ratified September 10, 2026. Approval applies to its 13 included standards; seven observe-only standards remain unratified. Source snapshot verification is pending.
 
 [Version history and release notes](/versions/)
 

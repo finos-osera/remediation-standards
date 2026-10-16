@@ -23,8 +23,6 @@ export default function Versions() {
           <strong>Ratification and archive publication are separate.</strong>{" "}
           The 0.1.0 decision is recorded, but the reconstructed source baseline
           still needs verification. Each standard shows its own approval status.
-          No official release tag or GitHub Release was
-          found during this exploration.
         </div>
         <section className="release-row">
           <div>
@@ -49,8 +47,7 @@ export default function Versions() {
                 href={`${repo}/compare/51e0afebeb789c266efe3a6802fa59fbb3d8e999...main`}
               >
                 Compare source changes
-              </a>{" "}
-              · <a href={`${repo}/issues/83`}>Release requirements #83</a>
+              </a>
             </p>
           </div>
         </section>
@@ -71,8 +68,8 @@ export default function Versions() {
               observe-only and remain unratified.
             </p>
             <p>
-              This collection uses the exact source from ratification PR
-              #51; snapshot verification is pending. Later draft changes, including
+              This collection preserves the source recorded at ratification;
+              snapshot verification is pending. Later draft changes, including
               REL-001 0.2.0, are excluded.
             </p>
             <Link
@@ -83,32 +80,16 @@ export default function Versions() {
             </Link>
             <p className="release-links">
               <a href={`${repo}/issues/12`}>Ratification record</a> ·{" "}
-              <a href={`${repo}/pull/51`}>Baseline PR #51</a> ·{" "}
               <a href={`${repo}/tree/51e0afebeb789c266efe3a6802fa59fbb3d8e999`}>
                 Source snapshot
               </a>
             </p>
             <p>
-              <strong>Release notes:</strong> publication pending. Once the
-              baseline is confirmed, the intended tag is{" "}
-              <code>OSERA-SP-0.1.0</code>. This prototype does not create or
-              link to a nonexistent release.
+              <strong>Release downloads:</strong> not yet published. The{" "}
+              <Link to="/catalog/">YAML and JSON catalogs</Link> track the
+              working standards; they are not downloads of this pack.
             </p>
           </div>
-        </section>
-        <section className="next-step">
-          <h2>From versioned reading to permanent releases</h2>
-          <p>
-            Docusaurus provides the collection selector, sidebars, and
-            matching-page navigation. The immutable manifests, downloadable
-            archives, checksums, protected tags, and GitHub Release publication
-            proposed in <a href={`${repo}/pull/84`}>PR #84</a> remain a separate
-            layer.
-          </p>
-          <p>
-            These versioned reading pages are rebuilt with the site theme. They
-            are not the immutable conformance artifact described in issue #83.
-          </p>
         </section>
       </main>
     </Layout>

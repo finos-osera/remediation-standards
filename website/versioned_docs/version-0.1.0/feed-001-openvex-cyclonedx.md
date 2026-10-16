@@ -133,7 +133,7 @@ requirements:
 
 ## Source provenance
 
-**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
+**Source snapshot:** Reconstructed from the source recorded at ratification; snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/feed-001-openvex-cyclonedx.md) · Source SHA-256: `862e7c563347a7059111a1c735bc4e25a0fce2d2abaed1d994907d5a033b0dce`.
 

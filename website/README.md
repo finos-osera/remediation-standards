@@ -83,7 +83,7 @@ Before merging this reader prototype, review the latest preview and confirm reta
 
 ## Catalog filtering
 
-The category, collection and status menus use native disclosures with one labeled radio choice per row. Search and all three filters intersect; reset returns to the working collection. Cards show their standard version, collection and effective status.
+The category, collection and status menus use native disclosures with one labeled radio choice per row. Search and all three filters intersect; reset returns to the latest available ratified pack (or the working collection if none exists). Cards show their standard version, collection and effective status.
 
 Selecting the historical 0.1.0 collection uses historical titles, versions and links, including standards no longer present in the working tree. Its status filter distinguishes recorded-ratified members from observe-only material. Working copies with source status `Ratified` but changed source bytes are labeled `Changed since ratification`; they cannot appear as recorded-ratified current definitions. A draft remains a draft even when it has a ratified predecessor. New standards are discovered from the source directory automatically.
 

@@ -119,7 +119,7 @@ export async function generatePages() {
   const catalog = "catalog/index.md";
   write(
     path.join(site, "src/pages", catalog),
-    "---\ntitle: Machine-readable catalog\nslug: /catalog/\n---\n\n# Machine-readable catalog\n\nThese **mutable working catalogs** are generated from the current specification sources. They do not substitute for an immutable ratified release.\n\n- [Complete YAML catalog](/catalog/osera-standards.yaml)\n- [Complete JSON catalog](/catalog/osera-standards.json)\n- [0.1.0 pack metadata (working catalog)](/catalog/packs/OSERA-SP-0.1.0.json)\n- [Standards format schema](/schemas/osera-standard-frontmatter-0.1.0.schema.json)\n- [Pack format schema](/schemas/osera-standard-pack-0.1.0.schema.json)\n\n[Browse standards](/#standards) · [Version history](/versions/)\n",
+    "---\ntitle: Machine-readable catalog\nslug: /catalog/\n---\n\n# Machine-readable catalog\n\nThese **working catalogs** contain structured requirements and checks from the current specification sources and change as those sources are updated. They may include drafts newer than the versions in a ratified pack. For a specific pack, use its versioned collection; separate pack-specific downloads are not yet published.\n\n- [Complete YAML catalog](/catalog/osera-standards.yaml)\n- [Complete JSON catalog](/catalog/osera-standards.json)\n- [0.1.0 pack metadata (working catalog)](/catalog/packs/OSERA-SP-0.1.0.json)\n- [Standards format schema](/schemas/osera-standard-frontmatter-0.1.0.schema.json)\n- [Pack format schema](/schemas/osera-standard-pack-0.1.0.schema.json)\n\n[Browse standards](/#standards) · [Version history](/versions/)\n",
   );
   outputFiles.push(catalog);
   for (const dir of ["catalog", "schemas", "assets"]) {

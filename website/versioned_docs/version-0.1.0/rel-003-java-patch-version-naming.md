@@ -165,7 +165,7 @@ requirements:
 
 ## Source provenance
 
-**Historical copy:** Reconstructed from [PR #51](https://github.com/finos-osera/remediation-standards/pull/51); snapshot verification pending.
+**Source snapshot:** Reconstructed from the source recorded at ratification; snapshot verification pending.
 
 [Historical source at 51e0afe](https://github.com/finos-osera/remediation-standards/blob/51e0afebeb789c266efe3a6802fa59fbb3d8e999/docs/_standards/rel-003-java-patch-version-naming.md) · Source SHA-256: `c709444cb6815b6d75eec79af974c4f1e90ab4d8988f8728e9f0142eb8119c4d`.
 
