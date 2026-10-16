@@ -137,7 +137,7 @@ export default function Home() {
               value={collection}
               onChange={setCollection}
               options={[
-                { value: "current", label: "Next · Working draft" },
+                { value: "current", label: "Next · Working draft (0.2.0)" },
                 { value: "0.1.0", label: "0.1.0 · Historical pack" },
                 { value: "All", label: "All collections" },
               ]}
