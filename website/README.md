@@ -1,6 +1,6 @@
-# Docusaurus exploration for issue #83
+# Docusaurus standards website
 
-This is an independent alternative UI prototype to PR #84, based on main. It explores whether FDC3-style collection versioning can retain OSERA's branded catalog and named specifications. It is not a complete implementation of #83 or a production migration.
+The Docusaurus site renders the authoritative standards and guidance in `docs/`, with versioned collections and OSERA branding. Frozen release downloads and publication controls remain separate work tracked in #83.
 
 ## Try it
 
@@ -14,7 +14,16 @@ npm run start
 # Or: npm run build && npm run serve
 ```
 
-The PR's Netlify deploy-preview context builds this site. Production Netlify configuration and GitHub Pages continue to build Jekyll. Before merging a prototype as permanent tooling, decide whether to retain the preview override: it affects all subsequent PR previews if merged.
+## Deployment
+
+- **PR previews:** Netlify builds Docusaurus and posts its preview link on the PR. `netlify.toml` skips non-preview builds and its build command also rejects non-preview contexts.
+- **PR validation:** the Docusaurus workflow runs tests and a full build on every PR, uploading an artifact named `docusaurus`. Catalog validation separately checks source data, profile relationships and evidence schemas.
+- **Production:** pushes to `main` run `.github/workflows/pages.yml`. It requires the reusable catalog validation job, then runs `npm ci`, tests and the Docusaurus build before uploading `website/build` to GitHub Pages. Manual dispatch only deploys from `main`.
+- **Public URL:** https://standards.osera.finos.org/ remains unchanged. GitHub Pages is configured for Actions deployment and this custom domain. The deployment environment and workflow summary expose the URL returned by GitHub Pages.
+- **Static output:** the generator copies `docs/CNAME` and creates `.nojekyll`; build verification checks both. The site uses `baseUrl: "/"` for the custom domain.
+- **Rollback:** revert the deployment switch on main to restore the prior Jekyll Pages workflow and its source, then verify the deployed homepage and representative standard/catalog links. Keep the legacy Jekyll source during this migration. A failed build does not upload or deploy a replacement site.
+
+Merging this branch activates the production migration. No production workflow is dispatched from the PR branch. A site deployment does not ratify standards or publish an immutable pack.
 
 Review these paths:
 
@@ -67,15 +76,15 @@ Main through `ff8d728` (PR #82) is integrated: 25 current standards, including R
 
 Kris West's requested latest-ratified default is implemented through Docusaurus `lastVersion`. Existing working `/standards/<slug>/` and historical `/standards/0.1.0/<slug>/` paths remain stable; the default selection changes without moving their content. A future canonical-route change needs an explicit redirect plan.
 
-Before merging this reader prototype, review the latest preview and confirm retaining the Netlify preview override for subsequent PRs. Production still uses Jekyll. The October 15 discussion about Pre-Draft/Draft stages and voting is a governance follow-up, not an enacted lifecycle change in this PR. The production and immutable-publication work below remains open under #83.
+Before merging this migration, review the latest Netlify preview and the GitHub Pages deployment changes. Production switches to Docusaurus when this branch merges to main. The October 15 discussion about Pre-Draft/Draft stages and voting is a governance follow-up, not an enacted lifecycle change in this PR. Immutable-publication work remains open under #83; production smoke checks follow the first deployment.
 
-## What remains before adoption
+## Remaining release and site follow-ups
 
 1. Integrate #84's approved manifests and archive records. Replace this prototype's single-baseline history and two-collection release register with manifest-derived multi-release history, including removed/renamed standards and multiple pack inclusions.
 2. Serve frozen HTML/bundles/catalogs byte-for-byte outside the Docusaurus renderer. Versioned Markdown alone is not immutable publication, and normal builds can change historical HTML when themes or dependencies change.
 3. Complete the production URL/content parity audit, including old heading anchors and profile presentation. Shared guides and raw catalog/schema downloads are now migrated, and current profiles display their generated parent relationships. Resolve historical profile inheritance and supporting dependencies from each approved snapshot before claiming release completeness.
 4. Define deliberate release preparation, review and tagging with baseline confirmation, repository protections and recoverable publication. Do not use Docusaurus's snapshot command as ratification.
-5. Complete accessibility testing, full-text search accessibility, and visual review across the remaining page types before switching production hosting.
+5. Complete accessibility testing, full-text search accessibility, and visual review across the remaining page types as part of launch review.
 
 ## Validation
 
@@ -101,9 +110,9 @@ This is an adoption proposal for review under the existing [standard lifecycle](
 
 **Implemented here:** automatic discovery of current standards; historical source files independent of current generation; source-based change detection; collection-aware catalog links; four intersecting filters; tests for adding/removing/renaming current catalog entries without losing historical entries; existing catalog validation and strict site-link validation.
 
-**Still required before production adoption:** integrate #84's archive layer; multi-release manifest-derived history including removed standards; enforce source version/status transitions and append-only archive comparisons in required CI against a trusted base; configure protected branches/release environments/tags and immutable releases; complete the legacy URL/anchor and content parity audit; validate resolved profile/schema dependencies, offline bundles and recovery. Tests in this PR do not establish repository-wide immutability or protection against administrators deleting history.
+**Still required for immutable release publication:** integrate #84's archive layer; multi-release manifest-derived history including removed standards; enforce source version/status transitions and append-only archive comparisons in required CI against a trusted base; configure protected branches/release environments/tags and immutable releases; complete the legacy URL/anchor and content parity audit; validate resolved profile/schema dependencies, offline bundles and recovery. Tests in this PR do not establish repository-wide immutability or protection against administrators deleting history.
 
-[Kris West's comment on #84](https://github.com/finos-osera/remediation-standards/pull/84#issuecomment-6063955038) highlights the same boundary: FDC3 adds explicit schema/conformance asset copying and reference rewriting alongside Docusaurus's documentation snapshots. Review this prototype with him before choosing the production architecture; keep #83 open until the release guarantees are implemented and exercised.
+[Kris West's comment on #84](https://github.com/finos-osera/remediation-standards/pull/84#issuecomment-6063955038) highlights the same boundary: FDC3 adds explicit schema/conformance asset copying and reference rewriting alongside Docusaurus's documentation snapshots. Keep #83 open until the release guarantees are implemented and exercised.
 
 ## Global full-text search
 
@@ -114,7 +123,7 @@ Search from a standard page uses that document's collection. The full results pa
 
 ## Replacement readiness (current audit)
 
-The exploration banner is cosmetic. Removing it does not switch production or satisfy release publication requirements.
+Production deployment uses the Pages workflow described above; immutable release publication is separate.
 
 | Area | Current state | Remaining work |
 | --- | --- | --- |
@@ -126,10 +135,10 @@ The exploration banner is cosmetic. Removing it does not switch production or sa
 | Feeds | `/feeds/` retained as documentation, with a clear availability note | Hidden from navigation until a usable service exists; no feed endpoints invented |
 | Profiles | Current parent/override relationship tables generated from existing catalog metadata | Confirm historical effective dependencies as part of immutable archives |
 | Search | All shared pages plus version-specific standard content indexed | Broader accessibility/keyboard review before launch |
-| Deployment | Production still runs Jekyll; this PR only changes previews | Deliberate switch of Pages/Netlify build, custom-domain checks, rollout and rollback |
+| Deployment | PRs use Netlify; main deploys Docusaurus to GitHub Pages after validation | Verify production routes, downloads and search after the first deployment; rollback instructions above |
 | Immutable release identity | Historical baseline candidate and working collection demonstrated | Confirm 0.1.0, integrate #84's freeze/publish path, protect releases and test a second pack |
 
-A reader-site launch and an official immutable pack publication are separate decisions. The unconfirmed historical snapshot must retain its honest labeling if the reader is launched first. Complete content/URL parity review and approve a deployment switch before replacing production; do not claim #83 is complete until archive guarantees are implemented.
+A reader-site launch and an official immutable pack publication are separate decisions. The unconfirmed historical snapshot must retain its honest labeling if the reader is launched first. Complete content/URL parity review before merging the deployment switch; do not claim #83 is complete until archive guarantees are implemented.
 
 ### Keeping shared content current
 

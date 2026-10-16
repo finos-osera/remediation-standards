@@ -10,3 +10,5 @@ src/data/pages.json
 static/catalog/
 static/schemas/
 static/assets/
+static/CNAME
+static/.nojekyll

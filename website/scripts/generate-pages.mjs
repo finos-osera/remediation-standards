@@ -128,6 +128,8 @@ export async function generatePages() {
       recursive: true,
     });
   }
+  fs.copyFileSync(path.join(root, "docs/CNAME"), path.join(site, "static/CNAME"));
+  write(path.join(site, "static/.nojekyll"), "");
   write(outputsFile, JSON.stringify(outputFiles));
   write(
     path.join(site, "src/data/pages.json"),

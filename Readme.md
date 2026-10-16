@@ -18,12 +18,11 @@ The group meets weekly on Thursday (open to all FINOS members) - please contact 
 
 ## Documentation
 
-The standards site lives in [`docs/`](docs/) and is designed for GitHub Pages/Jekyll.
+Author content in [`docs/`](docs/); the Docusaurus site in [`website/`](website/) renders it. Pull requests receive Netlify previews. Merging to main deploys to [the production website](https://standards.osera.finos.org/) through GitHub Pages after validation. See [website maintenance and deployment](website/README.md).
 
 ```sh
-cd docs
-bundle install
-bundle exec jekyll serve
+npm --prefix website ci
+npm --prefix website start
 ```
 
 The site includes:

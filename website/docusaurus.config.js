@@ -104,7 +104,7 @@ const config = {
     footer: {
       style: "dark",
       copyright:
-        "FINOS OSERA · Remediation Standards · Docusaurus feasibility prototype",
+        "FINOS OSERA · Remediation Standards",
     },
     tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
   },

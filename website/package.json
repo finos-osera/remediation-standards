@@ -1,5 +1,5 @@
 {
-  "name": "osera-standards-docusaurus-exploration",
+  "name": "osera-standards-docusaurus",
   "private": true,
   "scripts": {
     "prepare:docs": "node scripts/generate-docs.mjs && node scripts/generate-pages.mjs",

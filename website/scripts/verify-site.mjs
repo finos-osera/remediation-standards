@@ -8,6 +8,9 @@ const root = path.resolve(
   "../..",
 );
 const build = path.join(root, "website/build");
+assert.equal(fs.readFileSync(path.join(build, "CNAME"), "utf8"),
+  fs.readFileSync(path.join(root, "docs/CNAME"), "utf8"), "Production domain must be preserved");
+assert.ok(fs.existsSync(path.join(build, ".nojekyll")), "Static Pages output must bypass Jekyll");
 for (const { data, file } of pageSources())
   assert.ok(
     fs.existsSync(path.join(build, data.permalink, "index.html")),
