@@ -11,6 +11,7 @@ import { filterCatalog } from "../lib/catalog.mjs";
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   const { defaultCollection } = siteConfig.customFields;
+  const isLatestPack = defaultCollection === "0.1.0";
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [status, setStatus] = useState("All");
@@ -78,7 +79,7 @@ export default function Home() {
                   Historical baseline awaiting confirmation.
                 </p>
                 <Link to="/standards/0.1.0/overview/">
-                  Browse historical collection →
+                  {isLatestPack ? "Browse collection →" : "Browse historical collection →"}
                 </Link>
               </div>
               <div className="journey-entry">
@@ -101,7 +102,7 @@ export default function Home() {
                 {collection === "current"
                   ? "WORKING COLLECTION / 0.2.0"
                   : collection === "0.1.0"
-                    ? "HISTORICAL COLLECTION / 0.1.0"
+                    ? (isLatestPack ? "LATEST RATIFIED PACK / 0.1.0" : "HISTORICAL COLLECTION / 0.1.0")
                     : "ALL COLLECTIONS"}
               </p>
               <Heading as="h2" id="standards">
@@ -138,7 +139,7 @@ export default function Home() {
               onChange={setCollection}
               options={[
                 { value: "current", label: "Next · Working draft (0.2.0)" },
-                { value: "0.1.0", label: "0.1.0 · Historical pack" },
+                { value: "0.1.0", label: isLatestPack ? "0.1.0 · Latest ratified pack" : "0.1.0 · Historical pack" },
                 { value: "All", label: "All collections" },
               ]}
             />
@@ -188,7 +189,7 @@ export default function Home() {
                   <span className="collection-label">
                     {s.collection === "current"
                       ? "0.2.0 working"
-                      : "0.1.0 historical"}
+                      : (isLatestPack ? "Pack 0.1.0" : "0.1.0 historical")}
                   </span>
                 </div>
                 <p>{s.summary}</p>

@@ -1,9 +1,12 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import StatusLabel from "../components/StatusLabel";
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 const repo = "https://github.com/finos-osera/remediation-standards";
 export default function Versions() {
+  const { siteConfig } = useDocusaurusContext();
+  const isLatestPack = siteConfig.customFields.defaultCollection === "0.1.0";
   return (
     <Layout
       title="Version history"
@@ -68,7 +71,7 @@ export default function Versions() {
               observe-only and remain unratified.
             </p>
             <p>
-              The historical reader uses the exact source from ratification PR
+              This collection uses the exact source from ratification PR
               #51; snapshot verification is pending. Later draft changes, including
               REL-001 0.2.0, are excluded.
             </p>
@@ -76,7 +79,7 @@ export default function Versions() {
               className="button button--secondary"
               to="/standards/0.1.0/overview/"
             >
-              Browse historical collection
+              {isLatestPack ? "Browse collection" : "Browse historical collection"}
             </Link>
             <p className="release-links">
               <a href={`${repo}/issues/12`}>Ratification record</a> ·{" "}
@@ -103,7 +106,7 @@ export default function Versions() {
             layer.
           </p>
           <p>
-            These historical reading pages are rebuilt with the site theme. They
+            These versioned reading pages are rebuilt with the site theme. They
             are not the immutable conformance artifact described in issue #83.
           </p>
         </section>
