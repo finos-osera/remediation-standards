@@ -1,0 +1,4 @@
+website/baseline.json linguist-generated=true
+website/versioned_docs/** linguist-generated=true
+website/versioned_sidebars/** linguist-generated=true
+website/package-lock.json linguist-generated=true
