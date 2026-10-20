@@ -37,19 +37,31 @@ Review these paths:
 
 ## Model and authoring
 
-Docusaurus versions the **whole standards collection**, not each specification separately. `Next · Working draft (0.2.0)` is the evolving main-branch collection (currently proposed for 0.2.0); it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged. There is no need to rename standards to FDC3's document taxonomy or introduce a SPEC-CCC-YYYY naming convention.
+Docusaurus versions the **whole standards collection**, not each specification separately. `Next · Working draft` is the evolving main-branch collection; it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged.
 
 Continue editing `docs/_standards/*.md`. `npm run prepare:docs` converts those authoritative files into ignored Docusaurus Markdown, retaining full body text and structured source metadata. Standard links stay in the selected collection. Current supporting links resolve to the migrated guidance and downloads. Historical links retain the pinned repository revision. Shared pages are generated from their original `docs/` Markdown, with explicit rendering for the data-driven pack page. Unhandled Liquid or missing supporting targets fail generation.
 
 The initial historical snapshot is committed under `versioned_docs/version-0.1.0/`, with a matching sidebar. `baseline.json` records original source bytes, hashes, metadata and pack membership from exact commit `51e0afebeb789c266efe3a6802fa59fbb3d8e999` (ratification PR #51). Routine builds only generate current pages. The initial `--snapshot` bootstrap refuses to overwrite an existing baseline and is not a production release preparation command.
 
-Docusaurus document IDs match between versions, enabling same-document switching. `lastVersion` selects the newest entry in `versions.json` whose matching pack is recorded as Ratified in `docs/_data/standard_packs.yml`, falling back to `current` if none is available. The homepage catalog and search use that same default. An explicit version selection remains available, including `Next · Working draft (0.2.0)` for main. This navigation preference does not verify or ratify a snapshot. Existing `/standards/<slug>/` working URLs are preserved; historical reading URLs use `/standards/0.1.0/<slug>/`. These are deliberately not the authoritative `/releases/OSERA-SP-0.1.0/` namespace required by #83.
+Docusaurus document IDs match between versions, enabling same-document switching. `lastVersion` selects the newest entry in `versions.json` whose matching pack is recorded as Ratified in `docs/_data/standard_packs.yml`, falling back to `current` if none is available. The homepage catalog and search use that same default. An explicit version selection remains available, including `Next · Working draft` for main. This navigation preference does not verify or ratify a snapshot. Existing `/standards/<slug>/` working URLs are preserved; historical reading URLs use `/standards/0.1.0/<slug>/`. These are deliberately not the authoritative `/releases/OSERA-SP-0.1.0/` namespace required by #83.
+
+## Creating another collection
+
+There is currently no supported end-to-end command for preparing another pack. Do not use the initial `--snapshot` bootstrap or a bare Docusaurus versioning command as a release workflow: the catalog, pack-page adapter and history still assume one historical baseline. Adding an entry to `versions.json` alone is insufficient.
+
+Until #83 delivers the release workflow, author working changes in `docs/` and run `npm run prepare:docs` (or the normal build). Keep individual standard versions and proposed pack records explicit; the reader labels the evolving collection “Next · Working draft” without assigning a future pack number.
+
+#83 must provide a documented preparation command taking a pack identity and exact source revision, validated manifests, review and publication steps, and a second-pack rehearsal without manual component edits. It must cover `scripts/generate-docs.mjs`, `scripts/generate-pages.mjs`, `src/lib/catalog.mjs`, `src/pages/index.jsx`, `src/pages/versions.jsx`, and their tests. Preserve the existing 0.1.0 regression tests alongside multi-release fixtures.
+
+The committed `versioned_docs/`, `versioned_sidebars/` and `baseline.json` preserve historical material; they are not ignored build output. Routine generation must leave them unchanged. Corrections to historical claims require separate provenance review or errata, not silent rewriting.
+
+Docusaurus is the renderer after this migration; Ruby continues to generate the machine-readable catalogs. STD-001's Jekyll references describe the earlier implementation and remain in its preserved text and current source pending a separately versioned editorial revision. This website change does not revise or re-ratify that standard.
 
 ## Provenance and release notes
 
 The September 10, 2026 ratification is recorded, but the historical baseline is unconfirmed, as in PR #84. The selector says `Pack 0.1.0`; each standard shows its own approval status. Snapshot verification is noted separately from ratification. Observe-mode documents remain unratified. Current pages do not inherit approval from a predecessor date or a stale source status label.
 
-No GitHub Releases were returned by `gh release list` during this exploration (October 8, 2026). This PR creates no release or tag. It proposes the issue's pack tag `OSERA-SP-0.1.0`, rather than FDC3's `v2.2` naming. A future GitHub Release should contain highlights, exact pack membership, ratification decision, canonical archive permalink, approved-source provenance and verified bundle/checksum assets. For 0.1.0 this requires baseline confirmation first; link the version register to the actual Release once it exists.
+No GitHub Releases were returned by `gh release list` during this exploration (October 8, 2026). This PR creates no release or tag. The planned pack tag is `OSERA-SP-0.1.0`. A future GitHub Release should contain highlights, exact pack membership, ratification decision, canonical archive permalink, approved-source provenance and verified bundle/checksum assets. For 0.1.0 this requires baseline confirmation first; link the version register to the actual Release once it exists.
 
 ## Feasibility and alternatives
 
@@ -118,7 +130,7 @@ This is an adoption proposal for review under the existing [standard lifecycle](
 
 The header search uses `@easyops-cn/docusaurus-search-local` to build and serve its index with the site; no hosted search account or API key is needed. It indexes standard titles, headings, body text and structured requirements/checks, plus the site's ordinary pages. Cmd/Ctrl+K focuses search; suggestions link to matching sections and “See all results” opens `/search/`.
 
-Search from a standard page uses that document's collection. The full results page has an explicit collection selector that preserves the query while switching between working and historical definitions. Migrated shared guidance pages are indexed; material outside the published site is not indexed. Search indexes are generated by the production build (`npm run build` then `npm run serve` for local testing), with content-hashed filenames to avoid stale cached indexes after publication. New generated standards enter the index on the next build.
+Search from a standard page uses that document's collection. On unversioned pages (including the homepage, catalog and version history), header suggestions use the default collection rather than retaining the previously selected collection. Use the collection selector on the full results page to search another collection; investigation of persistent selection is tracked in #83. The full results page has an explicit collection selector that preserves the query while switching between working and historical definitions. Migrated shared guidance pages are indexed; material outside the published site is not indexed. Search indexes are generated by the production build (`npm run build` then `npm run serve` for local testing), with content-hashed filenames to avoid stale cached indexes after publication. New generated standards enter the index on the next build.
 
 
 ## Replacement readiness (current audit)

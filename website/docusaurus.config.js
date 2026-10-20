@@ -6,7 +6,7 @@ const availableVersions = JSON.parse(fs.readFileSync(new URL("./versions.json", 
 const packs = YAML.parse(fs.readFileSync(new URL("../docs/_data/standard_packs.yml", import.meta.url), "utf8"));
 const defaultCollection = selectDefaultVersion(availableVersions, packs);
 const versions = {
-  current: { label: "Next · ✎ Working draft (0.2.0)", path: "", banner: "none" },
+  current: { label: "Next · Working draft", path: "", banner: "none" },
   ...Object.fromEntries(availableVersions.map((version) => [version, {
     label: `Pack ${version}`, path: version, banner: "none",
   }])),

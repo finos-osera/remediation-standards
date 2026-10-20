@@ -55,9 +55,9 @@ export default function Home() {
               <div className="hero-actions">
                 <Link
                   className="button button--primary button--lg"
-                  to="/standards/0.1.0/overview/"
+                  to={defaultCollection === "current" ? "/standards/overview/" : `/standards/${defaultCollection}/overview/`}
                 >
-                  Explore 0.1.0
+                  {defaultCollection === "current" ? "Explore working drafts" : `Explore pack ${defaultCollection}`}
                 </Link>
                 <Link
                   className="button button--secondary button--lg"
@@ -86,7 +86,7 @@ export default function Home() {
                 <span className="status-pill draft">
                   <StatusLabel status="Draft" />
                 </span>
-                <h2>0.2.0</h2>
+                <h2>Next · Working draft</h2>
                 <p>The next collection, open for review.</p>
                 <Link to="/versions/">
                   See version history & release notes →
@@ -100,7 +100,7 @@ export default function Home() {
             <div>
               <p className="eyebrow">
                 {collection === "current"
-                  ? "WORKING COLLECTION / 0.2.0"
+                  ? "NEXT / WORKING COLLECTION"
                   : collection === "0.1.0"
                     ? (isLatestPack ? "LATEST RATIFIED PACK / 0.1.0" : "HISTORICAL COLLECTION / 0.1.0")
                     : "ALL COLLECTIONS"}
@@ -138,7 +138,7 @@ export default function Home() {
               value={collection}
               onChange={setCollection}
               options={[
-                { value: "current", label: "Next · Working draft (0.2.0)" },
+                { value: "current", label: "Next · Working draft" },
                 { value: "0.1.0", label: isLatestPack ? "0.1.0 · Latest ratified pack" : "0.1.0 · Historical pack" },
                 { value: "All", label: "All collections" },
               ]}
@@ -188,7 +188,7 @@ export default function Home() {
                   </span>
                   <span className="collection-label">
                     {s.collection === "current"
-                      ? "0.2.0 working"
+                      ? "Working draft"
                       : (isLatestPack ? "Pack 0.1.0" : "0.1.0 historical")}
                   </span>
                 </div>

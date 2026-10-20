@@ -29,7 +29,7 @@ export default function Versions() {
             <span className="status-pill draft">
               <StatusLabel status="Working draft" />
             </span>
-            <h2>0.2.0</h2>
+            <h2>Next · Working draft</h2>
             <p>Next collection · not ratified</p>
           </div>
           <div>
