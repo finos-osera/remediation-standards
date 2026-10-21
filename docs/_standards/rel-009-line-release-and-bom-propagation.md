@@ -8,8 +8,9 @@ summary: Providers publish versioned remediation sets and supported adoption pro
   transitive dependency overrides themselves.
 extended-by:
 - REL-009-JAVA
+- REL-009-JAVASCRIPT
 doc-status: Draft
-standard-version: 0.1.0
+standard-version: 0.1.1
 candidate-pack: OSERA-SP-0.2.0 required
 ratified-in: Not ratified
 ratified-date: Not ratified
@@ -111,7 +112,7 @@ Providers MUST disclose the dependency version changes, validation performed, re
 
 ## Profile model
 
-Concrete ecosystem profiles define how to meet this outcome using their package managers and publication models. [REL-009-JAVA]({{ site.baseurl }}/standards/rel-009-java-line-release-and-bom-propagation/) specifies the Java line-release and BOM-propagation mechanism proposed in PR #67. Python and JavaScript profiles are future work; this draft does not prescribe their mechanisms or claim support for them.
+Concrete ecosystem profiles define how to meet this outcome using their package managers and publication models. [REL-009-JAVA]({{ site.baseurl }}/standards/rel-009-java-line-release-and-bom-propagation/) specifies the Java line-release and BOM-propagation mechanism proposed in PR #67. [REL-009-JAVASCRIPT]({{ site.baseurl }}/standards/rel-009-javascript-coordinated-adoption/) is an initial Pre-Draft for npm ecosystem adoption; its gate implementations and evidence remain experimental. Python profiles remain future work.
 
 Profiles define the supported release unit, artifact identity, publication and propagation rules, consumer adoption procedure, and evidence formats. Whole-line republication, shared release counters, Maven BOMs, and JAR checksum rules belong to the Java profile rather than the generic standard.
 
@@ -128,3 +129,7 @@ The unit of adoption and the mechanism for selecting dependencies differ across 
 Checks 001–003 examine the scope declaration, immutable release identities, evidence references, and adoption procedure. Check 006 evaluates recorded resolution results for all declared supported configurations. Check 007 checks that the version changes, validation scope, inherited evidence, and limitations are disclosed; it does not treat component test results as integration results.
 
 The implementation identifiers in this draft are proposed bindings, not a claim that new gate implementations already exist. Evidence schemas and ecosystem implementations require review before ratification. Both this standard and its Java profile are proposed for OSERA-SP-0.2.0; neither changes the ratified OSERA-SP-0.1.0 pack.
+
+## Wave 3 profile discovery revision
+
+Version 0.1.1 adds the JavaScript profile relationship and review link; parent requirement/check semantics are unchanged. This editorial revision is unratified and changes no ratified pack membership.

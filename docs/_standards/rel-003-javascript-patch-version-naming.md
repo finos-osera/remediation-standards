@@ -8,7 +8,7 @@ summary: A JavaScript patched release is a SemVer prerelease of the maintainer's
   below the maintainer's own fix.
 extends: REL-003
 doc-status: Draft
-standard-version: 0.1.0
+standard-version: 0.1.1
 candidate-pack: OSERA-SP-0.2.0 required
 ratified-in: Not ratified
 ratified-date: Not ratified
@@ -85,6 +85,12 @@ requirements:
     - previous_backpatch_versions
     - vulnerability_statements
 ---
+
+## Wave 3 review status
+
+Version 0.1.1 retains the naming requirements and check IDs introduced in [PR #76](https://github.com/finos-osera/remediation-standards/pull/76); it adds review context only. This is an unratified Draft, not an active JavaScript gate or a ratification request. The merged proposal and September 24 review remain the starting point.
+
+The [Wave 3 review matrix]({{ site.baseurl }}/examples/javascript-wave3/) distinguishes reported study results from reproducible local SemVer checks and outstanding registry/installation tests. [#98](https://github.com/finos-osera/remediation-standards/issues/98) tracks completion, including upstream headroom, registry ownership, pin/range tradeoffs and evidence handoff to Francesco and team. The next numeric upstream release is not guaranteed to contain the same security fix; verify its remediation evidence before treating return to upstream as safe. The form and recommendation below remain proposals for that review.
 
 ## Requirement
 

@@ -118,3 +118,9 @@ The [evidence example and review cases]({{ site.baseurl }}/examples/release-side
 ## Certification posture
 
 For v0.1.0, the working group SHOULD use "OSERA-SP-0.1.0 aligned" only when a repository publishes the fitness result and all blocking checks pass. The working group SHOULD NOT use "certified" until it has agreed reviewer identity, evidence retention, revocation, dispute handling, and trademark or badge rules.
+
+## Wave 3 JavaScript gate preparation
+
+The [JavaScript review brief]({{ site.baseurl }}/examples/javascript-wave3/) maps all current Java ecosystem profiles to JavaScript counterparts and proposes an initial evidence handoff for Francesco and team. REL-003-JAVASCRIPT remains an unratified naming Draft; REL-005-JAVASCRIPT and REL-009-JAVASCRIPT are initial Pre-Drafts. Their proposed blocking semantics are experimental, not additions to the ratified gate above.
+
+Retain the exact source revision, parent/profile versions, effective checks and evidence for each experiment. Report these results separately from ratified-pack alignment. Unimplemented checks remain `not-tested`; missing evidence does not become a pass. The brief lists producer/fitness/exchange responsibilities and unresolved registry, installation, naming and schema experiments. Production enforcement and ratification require separate decisions recorded through the existing lifecycle.
