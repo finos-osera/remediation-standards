@@ -35,6 +35,13 @@ Review these paths:
 - `/standards/0.1.0/overview/`: exact included vs observe-only roles.
 - `/versions/`: recorded decisions, source comparison, archive confirmation and release-note publication status.
 
+## Workflow security and dependency updates
+- **Pinned actions:** every `uses:` in `.github/workflows/` references a full commit SHA with the release tag in a trailing comment (for example `actions/checkout@<sha> # v7.0.1`). Local reusable workflows (`./.github/workflows/...`) are the only exception.
+- **Harden-Runner:** each job with steps starts with `step-security/harden-runner` in `egress-policy: audit` mode. Review the insights link in the job summary and consider moving to `block` with an allowed-endpoints list once the traffic is understood.
+- **Dependabot:** `.github/dependabot.yml` runs separate weekly update streams for `/website` npm dependencies and GitHub Actions. Patch and minor updates are grouped by theme; major updates are individual PRs. Cooldowns apply to routine updates only, and security updates bypass them.
+- **Security labels:** Dependabot cannot label security PRs differently, so `.github/workflows/dependabot-security-labels.yml` adds `cve-remediation` to Dependabot PRs that fix an advisory. Security PRs are never grouped with routine updates.
+- **Updating a pinned action manually:** resolve the release tag to a commit (`git ls-remote https://github.com/<owner>/<repo>.git 'refs/tags/<tag>' 'refs/tags/<tag>^{}'`, taking the peeled `^{}` line if present), replace the SHA, and update the version comment. Dependabot does this automatically for new releases.
+
 ## Model and authoring
 
 Docusaurus versions the **whole standards collection**, not each specification separately. `Next · Working draft` is the evolving main-branch collection; it includes standards whose individual versions are still 0.1.0 or 0.0.1. Stable IDs such as REL-003-JAVA remain unchanged.

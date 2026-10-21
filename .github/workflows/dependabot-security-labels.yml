@@ -1,0 +1,41 @@
+name: Dependabot security labels
+# Dependabot cannot apply different labels to security and routine PRs, so this
+# workflow adds CVE labels to PRs that fix a known advisory. It runs on
+# pull_request_target (Dependabot PRs get a read-only token on pull_request) and
+# never checks out or runs PR code.
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+permissions: {}
+jobs:
+  label:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        with:
+          egress-policy: audit
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Label security updates
+        if: steps.metadata.outputs.ghsa-id != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REPO: ${{ github.repository }}
+        run: |
+          for label in cve-remediation; do
+            gh label create "$label" --repo "$REPO" --force >/dev/null
+          done
+          gh pr edit "$PR_URL" --add-label "cve-remediation"
