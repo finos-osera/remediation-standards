@@ -103,7 +103,7 @@ A zero exit code alone is insufficient: a successful install retaining the targe
 
 ## Proposed naming interaction
 
-Use the existing [REL-003-JAVASCRIPT proposal]({{ site.baseurl }}/standards/rel-003-javascript-patch-version-naming/) as the first experiment: explicit adoption of a next-patch prerelease under the upstream package name. Compare exact pins and tilde ranges in the [review matrix]({{ site.baseurl }}/examples/javascript-wave3/). A range can resolve beyond the intended set after registry changes; retain exact resolved bytes for each run and require reevaluation of changed results. A higher upstream version is not evidence that the vulnerability is fixed.
+Use the existing [REL-003-JAVASCRIPT proposal]({{ site.baseurl }}/standards/rel-003-javascript-patch-version-naming/) as the first experiment: explicit adoption of a next-patch prerelease under the upstream package name. Compare exact pins and tilde ranges in the [review matrix](https://github.com/finos-osera/remediation-standards/pull/99#issuecomment-6321428330). A range can resolve beyond the intended set after registry changes; retain exact resolved bytes for each run and require reevaluation of changed results. A higher upstream version is not evidence that the vulnerability is fixed.
 
 The initial set may choose exact pins for a controlled experiment, using the naming draft's existing recipient pin-policy exception. This does not settle the broader tilde recommendation. Any alternate naming/alias experiment must label its divergence from REL-003-JAVASCRIPT instead of claiming a pass against that draft.
 

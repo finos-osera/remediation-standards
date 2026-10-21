@@ -104,6 +104,6 @@ Use [REL-003-JAVASCRIPT]({{ site.baseurl }}/standards/rel-003-javascript-patch-v
 | Registry integrity passes but producer signature is absent | Inherited CHECK-003 remains unresolved; integrity alone cannot pass the publication set. |
 | Upstream has no separate source archive | Do not require a synthetic archive; retain packaging/source mapping evidence. |
 
-Resolve exact entry-point test coverage (ESM/CommonJS/browser conditions), native/optional artifact coverage, generated-source evidence shape, and npm registry signature versus OSERA producer-signature integration before production use. The [Wave 3 review matrix]({{ site.baseurl }}/examples/javascript-wave3/) records evidence still needed.
+Resolve exact entry-point test coverage (ESM/CommonJS/browser conditions), native/optional artifact coverage, generated-source evidence shape, and npm registry signature versus OSERA producer-signature integration before production use. The [PR review matrix](https://github.com/finos-osera/remediation-standards/pull/99#issuecomment-6321428330) records evidence still needed.
 
 The [npm package manifest documentation](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/) describes npm packaging fields. The stricter inventory, source mapping and acceptance rules above are OSERA proposals, not claims that npm enforces them.
