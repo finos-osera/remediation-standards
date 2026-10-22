@@ -1,0 +1,120 @@
+# Dependabot version updates.
+#
+# - Each dependency domain is its own update stream with its own label.
+# - Patch and minor updates are grouped by theme; major updates match no group
+#   and so are raised as individual PRs.
+# - Cooldowns delay routine version updates only. Dependabot security updates
+#   bypass cooldown, and are labelled `cve-remediation` (plus related labels)
+#   by .github/workflows/dependabot-security-labels.yml.
+# - Security updates are never grouped with routine updates: none of the groups
+#   below set `applies-to: security-updates`, so each CVE fix is its own PR.
+# - Dependabot PRs still run the normal pull_request CI workflows.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/website"
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies-website
+    commit-message:
+      prefix: "deps(website)"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 3
+      semver-patch-days: 3
+      semver-minor-days: 7
+      semver-major-days: 14
+    groups:
+      docusaurus:
+        patterns:
+          - "@docusaurus/*"
+          - "@easyops-cn/docusaurus-*"
+        update-types:
+          - minor
+          - patch
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@mdx-js/*"
+          - "@types/react*"
+        update-types:
+          - minor
+          - patch
+      documentation-tooling:
+        patterns:
+          - "gray-matter"
+          - "liquidjs"
+          - "yaml"
+          - "prism-react-renderer"
+          - "@mermaid-js/*"
+        update-types:
+          - minor
+          - patch
+      website-build-tooling:
+        patterns:
+          - "typescript"
+          - "clsx"
+          - "@types/*"
+        update-types:
+          - minor
+          - patch
+      website-other:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies-github-actions
+    commit-message:
+      prefix: "ci"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      github-official-actions:
+        patterns:
+          - "actions/*"
+          - "github/*"
+        update-types:
+          - minor
+          - patch
+      security-scanning-actions:
+        patterns:
+          - "step-security/*"
+          - "dependabot/*"
+          - "aquasecurity/*"
+          - "ossf/*"
+        update-types:
+          - minor
+          - patch
+      build-ci-actions:
+        patterns:
+          - "ruby/*"
+          - "docker/*"
+          - "gradle/*"
+        update-types:
+          - minor
+          - patch
+      release-publishing-actions:
+        patterns:
+          - "softprops/*"
+          - "ncipollo/*"
+          - "peaceiris/*"
+        update-types:
+          - minor
+          - patch
+      github-actions-other:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
