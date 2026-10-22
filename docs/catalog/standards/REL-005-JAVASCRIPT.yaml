@@ -1,0 +1,150 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 252
+  standard_id: REL-005-JAVASCRIPT
+  title: JavaScript Package Publication
+  summary: npm publications preserve upstream package contents and bind tarballs,
+    metadata and source evidence to the exact patched release.
+  extends: REL-005
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: Not assigned; Wave 3 exploration
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Experimental JavaScript profile; not an approved gate
+  type: REL
+  category: Release Process
+  applies-to:
+  - npm ecosystem package patch providers
+  - JavaScript and TypeScript library recipients
+  - npm registry and exchange operators
+  requirements:
+  - id: REL-005-JAVASCRIPT.REQ-001
+    override-explanation: Specializes the parent upstream inventory and checksum obligation
+      for npm tarballs, their contents and separately published companion files; no
+      required upstream role is waived.
+    level: MUST
+    text: Producers must retain the exact upstream package inventory and publish a
+      patched tarball preserving its required file roles and entry points, plus counterparts
+      of separately published upstream companion files and required checksums.
+    checkability: partially-automated
+    checks:
+    - id: REL-005-JAVASCRIPT.CHECK-001
+      override-explanation: Examines the npm tarball contents and companion-file inventory
+        while retaining the parent completeness and checksum obligations.
+      title: npm publication preserves required upstream file roles and entry points
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_javascript.publication_inventory
+      evidence:
+      - upstream_release_inventory
+      - required_release_inventory
+      - tarball_entries
+      - entry_point_resolution
+      - companion_files
+      - checksums
+  - id: REL-005-JAVASCRIPT.REQ-005
+    level: MUST
+    text: Published source files must match the patched tag through an explicit path
+      mapping; generated or transformed files must be individually identified with
+      their generating inputs and command, and required source inputs must not be
+      silently omitted.
+    checkability: partially-automated
+    checks:
+    - id: REL-005-JAVASCRIPT.CHECK-005
+      title: Packaged sources match the patched tag and generated files have declared
+        origins
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_javascript.source_mapping
+      evidence:
+      - patched_tag_commit
+      - source_entry_mapping
+      - source_comparison_results
+      - generated_file_inventory
+      - packaging_inputs
+  - id: REL-005-JAVASCRIPT.REQ-006
+    level: MUST
+    text: The registry version metadata must identify the same package name and patched
+      version as the tarball package.json, and its tarball reference and advertised
+      integrity must identify the exact bytes evaluated and promoted.
+    checkability: automated
+    checks:
+    - id: REL-005-JAVASCRIPT.CHECK-006
+      title: Registry metadata resolves to the evaluated package identity and tarball
+        bytes
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_javascript.registry_binding
+      evidence:
+      - registry_version_metadata
+      - tarball_package_json
+      - downloaded_tarball_digest
+      - advertised_integrity
+      - promoted_tarball_sha256
+  source_path: docs/_standards/rel-005-javascript-artifact-publication.md
+  url: "/standards/rel-005-javascript-artifact-publication/"
+  parent_relationship:
+    parent_standard: REL-005
+    parent_version: 0.2.1
+    requirements:
+    - parent_item: REL-005.REQ-001
+      treatment: Overrides
+      effective_item: REL-005-JAVASCRIPT.REQ-001
+      explanation: Specializes the parent upstream inventory and checksum obligation
+        for npm tarballs, their contents and separately published companion files;
+        no required upstream role is waived.
+    - parent_item: REL-005.REQ-002
+      treatment: Inherited
+      effective_item: REL-005.REQ-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-003
+      treatment: Inherited
+      effective_item: REL-005.REQ-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-004
+      treatment: Inherited
+      effective_item: REL-005.REQ-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVASCRIPT.REQ-005
+      explanation: Published source files must match the patched tag through an explicit
+        path mapping; generated or transformed files must be individually identified
+        with their generating inputs and command, and required source inputs must
+        not be silently omitted.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVASCRIPT.REQ-006
+      explanation: The registry version metadata must identify the same package name
+        and patched version as the tarball package.json, and its tarball reference
+        and advertised integrity must identify the exact bytes evaluated and promoted.
+    checks:
+    - parent_item: REL-005.CHECK-001
+      treatment: Overrides
+      effective_item: REL-005-JAVASCRIPT.CHECK-001
+      explanation: Examines the npm tarball contents and companion-file inventory
+        while retaining the parent completeness and checksum obligations.
+    - parent_item: REL-005.CHECK-002
+      treatment: Inherited
+      effective_item: REL-005.CHECK-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-003
+      treatment: Inherited
+      effective_item: REL-005.CHECK-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-004
+      treatment: Inherited
+      effective_item: REL-005.CHECK-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVASCRIPT.CHECK-005
+      explanation: Packaged sources match the patched tag and generated files have
+        declared origins
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-JAVASCRIPT.CHECK-006
+      explanation: Registry metadata resolves to the evaluated package identity and
+        tarball bytes
