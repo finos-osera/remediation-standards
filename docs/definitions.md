@@ -42,3 +42,7 @@ The reason and source for a patch change. A patch basis can be an upstream commi
 ## Recipient evidence
 
 Metadata and human-readable guidance that helps recipients understand what changed, why it changed, and what they should test before adopting the patch.
+
+## JavaScript package profile (proposed)
+
+The `-JAVASCRIPT` profiles specialize generic requirements for npm ecosystem packages, including TypeScript libraries published as JavaScript. The proposed [JavaScript remediation set]({{ site.baseurl }}/standards/rel-009-javascript-coordinated-adoption/) binds exact package identities and digests to supported consumer changes; it does not inherit Java's BOM or whole-line republication mechanism. See the [PR review brief](https://github.com/finos-osera/remediation-standards/pull/99#issuecomment-6321428330) for experimental status and evidence gaps.

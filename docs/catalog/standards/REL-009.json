@@ -7,10 +7,11 @@
     "title": "Coordinated Remediation Adoption",
     "summary": "Providers publish versioned remediation sets and supported adoption procedures so consumers can resolve the intended patched dependencies without reconstructing transitive dependency overrides themselves.",
     "extended-by": [
-      "REL-009-JAVA"
+      "REL-009-JAVA",
+      "REL-009-JAVASCRIPT"
     ],
     "doc-status": "Draft",
-    "standard-version": "0.1.0",
+    "standard-version": "0.1.1",
     "candidate-pack": "OSERA-SP-0.2.0 required",
     "ratified-in": "Not ratified",
     "ratified-date": "Not ratified",

@@ -120,7 +120,7 @@
     "url": "/standards/rel-009-java-line-release-and-bom-propagation/",
     "parent_relationship": {
       "parent_standard": "REL-009",
-      "parent_version": "0.1.0",
+      "parent_version": "0.1.1",
       "requirements": [
         {
           "parent_item": "REL-009.REQ-001",

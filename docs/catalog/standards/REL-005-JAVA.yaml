@@ -85,7 +85,7 @@ standard:
   url: "/standards/rel-005-java-artifact-publication/"
   parent_relationship:
     parent_standard: REL-005
-    parent_version: 0.2.0
+    parent_version: 0.2.1
     requirements:
     - parent_item: REL-005.REQ-001
       treatment: Overrides

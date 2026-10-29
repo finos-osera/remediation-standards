@@ -7,10 +7,11 @@
     "title": "Artifact Publication Hygiene",
     "summary": "Published OSERA releases preserve the ecosystem's expected package files and bind each promoted file to the patched release with retained acceptance evidence.",
     "extended-by": [
-      "REL-005-JAVA"
+      "REL-005-JAVA",
+      "REL-005-JAVASCRIPT"
     ],
     "doc-status": "Draft",
-    "standard-version": "0.2.0",
+    "standard-version": "0.2.1",
     "candidate-pack": "OSERA-SP-0.2.0 required",
     "ratified-in": "OSERA-SP-0.1.0",
     "ratified-date": "2026-09-10",
