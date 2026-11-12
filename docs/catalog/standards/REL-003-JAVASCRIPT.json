@@ -8,7 +8,7 @@
     "summary": "A JavaScript patched release is a SemVer prerelease of the maintainer's next patch version, so npm tooling sorts it above the release it patches and below the maintainer's own fix.",
     "extends": "REL-003",
     "doc-status": "Draft",
-    "standard-version": "0.1.0",
+    "standard-version": "0.1.1",
     "candidate-pack": "OSERA-SP-0.2.0 required",
     "ratified-in": "Not ratified",
     "ratified-date": "Not ratified",

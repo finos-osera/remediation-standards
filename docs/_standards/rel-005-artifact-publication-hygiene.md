@@ -7,8 +7,9 @@ summary: Published OSERA releases preserve the ecosystem's expected package file
   bind each promoted file to the patched release with retained acceptance evidence.
 extended-by:
 - REL-005-JAVA
+- REL-005-JAVASCRIPT
 doc-status: Draft
-standard-version: 0.2.0
+standard-version: 0.2.1
 candidate-pack: OSERA-SP-0.2.0 required
 ratified-in: OSERA-SP-0.1.0
 ratified-date: '2026-09-10'
@@ -97,7 +98,7 @@ requirements:
 
 Official OSERA releases MUST publish the expected package files and checksums for their package-manager and build-tool ecosystem. A companion artifact (or sidecar) is a separately published file accompanying a package, such as source, documentation, metadata or a test report.
 
-This generic standard defines the publication obligations. Ecosystem profiles define concrete file kinds and content checks; [REL-005-JAVA]({{ site.baseurl }}/standards/rel-005-java-artifact-publication/) specializes them for Maven/Gradle/JVM publications, regardless of implementation language. Unoverridden parent requirements and checks continue to apply under the [profile lifecycle]({{ site.baseurl }}/lifecycle/#profile-extension-and-overrides).
+This generic standard defines the publication obligations. Ecosystem profiles define concrete file kinds and content checks; [REL-005-JAVA]({{ site.baseurl }}/standards/rel-005-java-artifact-publication/) specializes them for Maven/Gradle/JVM publications, regardless of implementation language. [REL-005-JAVASCRIPT]({{ site.baseurl }}/standards/rel-005-javascript-artifact-publication/) proposes npm tarball and metadata checks as a Pre-Draft. Unoverridden parent requirements and checks continue to apply under the [profile lifecycle]({{ site.baseurl }}/lifecycle/#profile-extension-and-overrides).
 
 ### Required release inventory
 
@@ -143,3 +144,7 @@ See the [release-file evidence example]({{ site.baseurl }}/examples/release-side
 
 * 0.1.0, ratified in OSERA-SP-0.1.0 on 2026-09-10: expected package files, checksums and consistent package versions.
 * 0.2.0, draft for OSERA-SP-0.2.0: makes CHECK-001 inventory-based, keeps CHECK-002 ecosystem-neutral, adds CHECK-003 for file binding and staging and CHECK-004 for acceptance records, and introduces REL-005-JAVA. The frozen 0.1.0 pack is unchanged.
+
+## Wave 3 profile discovery revision
+
+Version 0.2.1 adds the JavaScript profile relationship and review link; parent requirement/check semantics are unchanged. This editorial revision is unratified and changes no ratified pack membership.

@@ -694,7 +694,7 @@
       "summary": "A JavaScript patched release is a SemVer prerelease of the maintainer's next patch version, so npm tooling sorts it above the release it patches and below the maintainer's own fix.",
       "extends": "REL-003",
       "doc-status": "Draft",
-      "standard-version": "0.1.0",
+      "standard-version": "0.1.1",
       "candidate-pack": "OSERA-SP-0.2.0 required",
       "ratified-in": "Not ratified",
       "ratified-date": "Not ratified",
@@ -912,10 +912,11 @@
       "title": "Artifact Publication Hygiene",
       "summary": "Published OSERA releases preserve the ecosystem's expected package files and bind each promoted file to the patched release with retained acceptance evidence.",
       "extended-by": [
-        "REL-005-JAVA"
+        "REL-005-JAVA",
+        "REL-005-JAVASCRIPT"
       ],
       "doc-status": "Draft",
-      "standard-version": "0.2.0",
+      "standard-version": "0.2.1",
       "candidate-pack": "OSERA-SP-0.2.0 required",
       "ratified-in": "OSERA-SP-0.1.0",
       "ratified-date": "2026-09-10",
@@ -1112,7 +1113,7 @@
       "url": "/standards/rel-005-java-artifact-publication/",
       "parent_relationship": {
         "parent_standard": "REL-005",
-        "parent_version": "0.2.0",
+        "parent_version": "0.2.1",
         "requirements": [
           {
             "parent_item": "REL-005.REQ-001",
@@ -1187,6 +1188,180 @@
             "treatment": "Added",
             "effective_item": "REL-005-JAVA.CHECK-006",
             "explanation": "Gradle module metadata identifies the exact promoted variant files"
+          }
+        ]
+      }
+    },
+    {
+      "schema-version": "0.1.0",
+      "sequence": 252,
+      "standard_id": "REL-005-JAVASCRIPT",
+      "title": "JavaScript Package Publication",
+      "summary": "npm publications preserve upstream package contents and bind tarballs, metadata and source evidence to the exact patched release.",
+      "extends": "REL-005",
+      "doc-status": "Pre-Draft",
+      "standard-version": "0.0.1",
+      "candidate-pack": "Not assigned; Wave 3 exploration",
+      "ratified-in": "Not ratified",
+      "ratified-date": "Not ratified",
+      "fitness-role": "Experimental JavaScript profile; not an approved gate",
+      "type": "REL",
+      "category": "Release Process",
+      "applies-to": [
+        "npm ecosystem package patch providers",
+        "JavaScript and TypeScript library recipients",
+        "npm registry and exchange operators"
+      ],
+      "requirements": [
+        {
+          "id": "REL-005-JAVASCRIPT.REQ-001",
+          "override-explanation": "Specializes the parent upstream inventory and checksum obligation for npm tarballs, their contents and separately published companion files; no required upstream role is waived.",
+          "level": "MUST",
+          "text": "Producers must retain the exact upstream package inventory and publish a patched tarball preserving its required file roles and entry points, plus counterparts of separately published upstream companion files and required checksums.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-005-JAVASCRIPT.CHECK-001",
+              "override-explanation": "Examines the npm tarball contents and companion-file inventory while retaining the parent completeness and checksum obligations.",
+              "title": "npm publication preserves required upstream file roles and entry points",
+              "type": "artifact",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel005_javascript.publication_inventory",
+              "evidence": [
+                "upstream_release_inventory",
+                "required_release_inventory",
+                "tarball_entries",
+                "entry_point_resolution",
+                "companion_files",
+                "checksums"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REL-005-JAVASCRIPT.REQ-005",
+          "level": "MUST",
+          "text": "Published source files must match the patched tag through an explicit path mapping; generated or transformed files must be individually identified with their generating inputs and command, and required source inputs must not be silently omitted.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-005-JAVASCRIPT.CHECK-005",
+              "title": "Packaged sources match the patched tag and generated files have declared origins",
+              "type": "artifact",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel005_javascript.source_mapping",
+              "evidence": [
+                "patched_tag_commit",
+                "source_entry_mapping",
+                "source_comparison_results",
+                "generated_file_inventory",
+                "packaging_inputs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REL-005-JAVASCRIPT.REQ-006",
+          "level": "MUST",
+          "text": "The registry version metadata must identify the same package name and patched version as the tarball package.json, and its tarball reference and advertised integrity must identify the exact bytes evaluated and promoted.",
+          "checkability": "automated",
+          "checks": [
+            {
+              "id": "REL-005-JAVASCRIPT.CHECK-006",
+              "title": "Registry metadata resolves to the evaluated package identity and tarball bytes",
+              "type": "artifact",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel005_javascript.registry_binding",
+              "evidence": [
+                "registry_version_metadata",
+                "tarball_package_json",
+                "downloaded_tarball_digest",
+                "advertised_integrity",
+                "promoted_tarball_sha256"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_path": "docs/_standards/rel-005-javascript-artifact-publication.md",
+      "url": "/standards/rel-005-javascript-artifact-publication/",
+      "parent_relationship": {
+        "parent_standard": "REL-005",
+        "parent_version": "0.2.1",
+        "requirements": [
+          {
+            "parent_item": "REL-005.REQ-001",
+            "treatment": "Overrides",
+            "effective_item": "REL-005-JAVASCRIPT.REQ-001",
+            "explanation": "Specializes the parent upstream inventory and checksum obligation for npm tarballs, their contents and separately published companion files; no required upstream role is waived."
+          },
+          {
+            "parent_item": "REL-005.REQ-002",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.REQ-002",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": "REL-005.REQ-003",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.REQ-003",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": "REL-005.REQ-004",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.REQ-004",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": null,
+            "treatment": "Added",
+            "effective_item": "REL-005-JAVASCRIPT.REQ-005",
+            "explanation": "Published source files must match the patched tag through an explicit path mapping; generated or transformed files must be individually identified with their generating inputs and command, and required source inputs must not be silently omitted."
+          },
+          {
+            "parent_item": null,
+            "treatment": "Added",
+            "effective_item": "REL-005-JAVASCRIPT.REQ-006",
+            "explanation": "The registry version metadata must identify the same package name and patched version as the tarball package.json, and its tarball reference and advertised integrity must identify the exact bytes evaluated and promoted."
+          }
+        ],
+        "checks": [
+          {
+            "parent_item": "REL-005.CHECK-001",
+            "treatment": "Overrides",
+            "effective_item": "REL-005-JAVASCRIPT.CHECK-001",
+            "explanation": "Examines the npm tarball contents and companion-file inventory while retaining the parent completeness and checksum obligations."
+          },
+          {
+            "parent_item": "REL-005.CHECK-002",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.CHECK-002",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": "REL-005.CHECK-003",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.CHECK-003",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": "REL-005.CHECK-004",
+            "treatment": "Inherited",
+            "effective_item": "REL-005.CHECK-004",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": null,
+            "treatment": "Added",
+            "effective_item": "REL-005-JAVASCRIPT.CHECK-005",
+            "explanation": "Packaged sources match the patched tag and generated files have declared origins"
+          },
+          {
+            "parent_item": null,
+            "treatment": "Added",
+            "effective_item": "REL-005-JAVASCRIPT.CHECK-006",
+            "explanation": "Registry metadata resolves to the evaluated package identity and tarball bytes"
           }
         ]
       }
@@ -1371,10 +1546,11 @@
       "title": "Coordinated Remediation Adoption",
       "summary": "Providers publish versioned remediation sets and supported adoption procedures so consumers can resolve the intended patched dependencies without reconstructing transitive dependency overrides themselves.",
       "extended-by": [
-        "REL-009-JAVA"
+        "REL-009-JAVA",
+        "REL-009-JAVASCRIPT"
       ],
       "doc-status": "Draft",
-      "standard-version": "0.1.0",
+      "standard-version": "0.1.1",
       "candidate-pack": "OSERA-SP-0.2.0 required",
       "ratified-in": "Not ratified",
       "ratified-date": "Not ratified",
@@ -1602,7 +1778,7 @@
       "url": "/standards/rel-009-java-line-release-and-bom-propagation/",
       "parent_relationship": {
         "parent_standard": "REL-009",
-        "parent_version": "0.1.0",
+        "parent_version": "0.1.1",
         "requirements": [
           {
             "parent_item": "REL-009.REQ-001",
@@ -1653,6 +1829,160 @@
             "treatment": "Added",
             "effective_item": "REL-009-JAVA.CHECK-005",
             "explanation": "Every member's repository is a patch fork of the upstream that ships it"
+          },
+          {
+            "parent_item": "REL-009.CHECK-006",
+            "treatment": "Inherited",
+            "effective_item": "REL-009.CHECK-006",
+            "explanation": "Applies unchanged from the parent."
+          },
+          {
+            "parent_item": "REL-009.CHECK-007",
+            "treatment": "Inherited",
+            "effective_item": "REL-009.CHECK-007",
+            "explanation": "Applies unchanged from the parent."
+          }
+        ]
+      }
+    },
+    {
+      "schema-version": "0.1.0",
+      "sequence": 292,
+      "standard_id": "REL-009-JAVASCRIPT",
+      "title": "JavaScript Coordinated Remediation Adoption",
+      "summary": "Providers supply versioned npm remediation sets and supported manifest, catalog and lockfile updates with evidence of the actual resolved dependency graph.",
+      "extends": "REL-009",
+      "doc-status": "Pre-Draft",
+      "standard-version": "0.0.1",
+      "candidate-pack": "Not assigned; Wave 3 exploration",
+      "ratified-in": "Not ratified",
+      "ratified-date": "Not ratified",
+      "fitness-role": "Experimental JavaScript profile; not an approved gate",
+      "type": "REL",
+      "category": "Release Process",
+      "applies-to": [
+        "npm ecosystem package patch providers",
+        "JavaScript and TypeScript library recipients",
+        "Remediation and dependency update tooling"
+      ],
+      "requirements": [
+        {
+          "id": "REL-009-JAVASCRIPT.REQ-001",
+          "override-explanation": "Specializes declared scope with npm package identities, workspace membership, runtime and manager versions and registry routing while preserving supported baselines and consumer entry points.",
+          "level": "MUST",
+          "text": "Providers must declare package names, baselines, source repositories, coordinated release units, consumer entry points and the supported Node, package-manager, platform and registry configurations for each remediation set.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-009-JAVASCRIPT.CHECK-001",
+              "override-explanation": "Checks the parent scope declaration using npm package and consumer configuration evidence; no Java BOM assumption is introduced.",
+              "title": "npm remediation scope and supported consumer configurations are explicit",
+              "type": "release-evidence",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel009_javascript.supported_scope",
+              "evidence": [
+                "supported_dependency_scope",
+                "upstream_baselines",
+                "package_repository_mapping",
+                "coordinated_release_units",
+                "consumer_entry_points",
+                "supported_tooling_configurations"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REL-009-JAVASCRIPT.REQ-002",
+          "override-explanation": "Specializes the immutable remediation set with exact npm identities, registry origin and tarball digests while preserving remediation evidence and inherited change disclosure.",
+          "level": "MUST",
+          "text": "Each immutable versioned remediation set must list exact package names, versions, npm purls, registry origins and tarball digests with their baseline and remediation evidence, and identify changed and unchanged members.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-009-JAVASCRIPT.CHECK-002",
+              "override-explanation": "Verifies exact npm artifacts and evidence in the versioned set rather than requiring Java line counters or BOMs.",
+              "title": "Versioned set binds intended npm artifacts to baseline and remediation evidence",
+              "type": "release-evidence",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel009_javascript.remediation_set",
+              "evidence": [
+                "remediation_set_identity",
+                "package_versions_and_purls",
+                "registry_origins",
+                "tarball_digests",
+                "remediation_evidence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REL-009-JAVASCRIPT.REQ-003",
+          "override-explanation": "Specializes the supported adoption procedure through provider-maintained coordinated edits; consumers need not author or maintain transitive override lists themselves. Inherited CHECK-006 verifies actual resolution.",
+          "level": "MUST",
+          "text": "Providers must supply a supported procedure or tool applying coordinated manifest, workspace or catalog and lockfile changes, including required root overrides or resolutions, and verify clean and frozen installation for each declared supported configuration.",
+          "checkability": "partially-automated",
+          "checks": [
+            {
+              "id": "REL-009-JAVASCRIPT.CHECK-003",
+              "override-explanation": "Verifies documented or automated npm ecosystem edits and rollback inputs, preserving the parent requirement to avoid recipient-authored artifact-by-artifact transitive override maintenance.",
+              "title": "Supported adoption procedure updates the controlling declarations and lockfile together",
+              "type": "release-evidence",
+              "severity": "blocking",
+              "implementation": "osera-fitness.rel009_javascript.adoption_procedure",
+              "evidence": [
+                "adoption_procedure",
+                "consumer_entry_points",
+                "manifest_catalog_lockfile_diff",
+                "provider_maintained_override_rules",
+                "rollback_inputs"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_path": "docs/_standards/rel-009-javascript-coordinated-adoption.md",
+      "url": "/standards/rel-009-javascript-coordinated-adoption/",
+      "parent_relationship": {
+        "parent_standard": "REL-009",
+        "parent_version": "0.1.1",
+        "requirements": [
+          {
+            "parent_item": "REL-009.REQ-001",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.REQ-001",
+            "explanation": "Specializes declared scope with npm package identities, workspace membership, runtime and manager versions and registry routing while preserving supported baselines and consumer entry points."
+          },
+          {
+            "parent_item": "REL-009.REQ-002",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.REQ-002",
+            "explanation": "Specializes the immutable remediation set with exact npm identities, registry origin and tarball digests while preserving remediation evidence and inherited change disclosure."
+          },
+          {
+            "parent_item": "REL-009.REQ-003",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.REQ-003",
+            "explanation": "Specializes the supported adoption procedure through provider-maintained coordinated edits; consumers need not author or maintain transitive override lists themselves. Inherited CHECK-006 verifies actual resolution."
+          }
+        ],
+        "checks": [
+          {
+            "parent_item": "REL-009.CHECK-001",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.CHECK-001",
+            "explanation": "Checks the parent scope declaration using npm package and consumer configuration evidence; no Java BOM assumption is introduced."
+          },
+          {
+            "parent_item": "REL-009.CHECK-002",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.CHECK-002",
+            "explanation": "Verifies exact npm artifacts and evidence in the versioned set rather than requiring Java line counters or BOMs."
+          },
+          {
+            "parent_item": "REL-009.CHECK-003",
+            "treatment": "Overrides",
+            "effective_item": "REL-009-JAVASCRIPT.CHECK-003",
+            "explanation": "Verifies documented or automated npm ecosystem edits and rollback inputs, preserving the parent requirement to avoid recipient-authored artifact-by-artifact transitive override maintenance."
           },
           {
             "parent_item": "REL-009.CHECK-006",

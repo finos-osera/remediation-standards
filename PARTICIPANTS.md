@@ -31,6 +31,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the OSERA Remediat
 - Sudha Chinnappa, RapidFort, Sep/15/2026
 - Mehran Farimani, RapidFort, Sep/15/2026
 - Roman Zhukov, Red Hat, Oct/29/2026
+- Rishabh Soni, RapidFort, Nov/12/2026
 
 ## How to enroll as a participant
 In order to enroll as a participant in the OSERA Remediation Standards project, please submit a Pull Request to this [participants](PARTICIPANTS.md) file listing your name, organization, and date of enrollment, by following the steps described below. 

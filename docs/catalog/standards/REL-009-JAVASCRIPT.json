@@ -1,0 +1,157 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 292,
+    "standard_id": "REL-009-JAVASCRIPT",
+    "title": "JavaScript Coordinated Remediation Adoption",
+    "summary": "Providers supply versioned npm remediation sets and supported manifest, catalog and lockfile updates with evidence of the actual resolved dependency graph.",
+    "extends": "REL-009",
+    "doc-status": "Pre-Draft",
+    "standard-version": "0.0.1",
+    "candidate-pack": "Not assigned; Wave 3 exploration",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Experimental JavaScript profile; not an approved gate",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "npm ecosystem package patch providers",
+      "JavaScript and TypeScript library recipients",
+      "Remediation and dependency update tooling"
+    ],
+    "requirements": [
+      {
+        "id": "REL-009-JAVASCRIPT.REQ-001",
+        "override-explanation": "Specializes declared scope with npm package identities, workspace membership, runtime and manager versions and registry routing while preserving supported baselines and consumer entry points.",
+        "level": "MUST",
+        "text": "Providers must declare package names, baselines, source repositories, coordinated release units, consumer entry points and the supported Node, package-manager, platform and registry configurations for each remediation set.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009-JAVASCRIPT.CHECK-001",
+            "override-explanation": "Checks the parent scope declaration using npm package and consumer configuration evidence; no Java BOM assumption is introduced.",
+            "title": "npm remediation scope and supported consumer configurations are explicit",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009_javascript.supported_scope",
+            "evidence": [
+              "supported_dependency_scope",
+              "upstream_baselines",
+              "package_repository_mapping",
+              "coordinated_release_units",
+              "consumer_entry_points",
+              "supported_tooling_configurations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-009-JAVASCRIPT.REQ-002",
+        "override-explanation": "Specializes the immutable remediation set with exact npm identities, registry origin and tarball digests while preserving remediation evidence and inherited change disclosure.",
+        "level": "MUST",
+        "text": "Each immutable versioned remediation set must list exact package names, versions, npm purls, registry origins and tarball digests with their baseline and remediation evidence, and identify changed and unchanged members.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009-JAVASCRIPT.CHECK-002",
+            "override-explanation": "Verifies exact npm artifacts and evidence in the versioned set rather than requiring Java line counters or BOMs.",
+            "title": "Versioned set binds intended npm artifacts to baseline and remediation evidence",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009_javascript.remediation_set",
+            "evidence": [
+              "remediation_set_identity",
+              "package_versions_and_purls",
+              "registry_origins",
+              "tarball_digests",
+              "remediation_evidence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-009-JAVASCRIPT.REQ-003",
+        "override-explanation": "Specializes the supported adoption procedure through provider-maintained coordinated edits; consumers need not author or maintain transitive override lists themselves. Inherited CHECK-006 verifies actual resolution.",
+        "level": "MUST",
+        "text": "Providers must supply a supported procedure or tool applying coordinated manifest, workspace or catalog and lockfile changes, including required root overrides or resolutions, and verify clean and frozen installation for each declared supported configuration.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-009-JAVASCRIPT.CHECK-003",
+            "override-explanation": "Verifies documented or automated npm ecosystem edits and rollback inputs, preserving the parent requirement to avoid recipient-authored artifact-by-artifact transitive override maintenance.",
+            "title": "Supported adoption procedure updates the controlling declarations and lockfile together",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel009_javascript.adoption_procedure",
+            "evidence": [
+              "adoption_procedure",
+              "consumer_entry_points",
+              "manifest_catalog_lockfile_diff",
+              "provider_maintained_override_rules",
+              "rollback_inputs"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-009-javascript-coordinated-adoption.md",
+    "url": "/standards/rel-009-javascript-coordinated-adoption/",
+    "parent_relationship": {
+      "parent_standard": "REL-009",
+      "parent_version": "0.1.1",
+      "requirements": [
+        {
+          "parent_item": "REL-009.REQ-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.REQ-001",
+          "explanation": "Specializes declared scope with npm package identities, workspace membership, runtime and manager versions and registry routing while preserving supported baselines and consumer entry points."
+        },
+        {
+          "parent_item": "REL-009.REQ-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.REQ-002",
+          "explanation": "Specializes the immutable remediation set with exact npm identities, registry origin and tarball digests while preserving remediation evidence and inherited change disclosure."
+        },
+        {
+          "parent_item": "REL-009.REQ-003",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.REQ-003",
+          "explanation": "Specializes the supported adoption procedure through provider-maintained coordinated edits; consumers need not author or maintain transitive override lists themselves. Inherited CHECK-006 verifies actual resolution."
+        }
+      ],
+      "checks": [
+        {
+          "parent_item": "REL-009.CHECK-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.CHECK-001",
+          "explanation": "Checks the parent scope declaration using npm package and consumer configuration evidence; no Java BOM assumption is introduced."
+        },
+        {
+          "parent_item": "REL-009.CHECK-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.CHECK-002",
+          "explanation": "Verifies exact npm artifacts and evidence in the versioned set rather than requiring Java line counters or BOMs."
+        },
+        {
+          "parent_item": "REL-009.CHECK-003",
+          "treatment": "Overrides",
+          "effective_item": "REL-009-JAVASCRIPT.CHECK-003",
+          "explanation": "Verifies documented or automated npm ecosystem edits and rollback inputs, preserving the parent requirement to avoid recipient-authored artifact-by-artifact transitive override maintenance."
+        },
+        {
+          "parent_item": "REL-009.CHECK-006",
+          "treatment": "Inherited",
+          "effective_item": "REL-009.CHECK-006",
+          "explanation": "Applies unchanged from the parent."
+        },
+        {
+          "parent_item": "REL-009.CHECK-007",
+          "treatment": "Inherited",
+          "effective_item": "REL-009.CHECK-007",
+          "explanation": "Applies unchanged from the parent."
+        }
+      ]
+    }
+  }
+}
