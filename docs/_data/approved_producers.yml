@@ -9,7 +9,7 @@ producers:
     github_users:
       - jkschneider
       - pstreef
-    staging_account: moderne-deploy
+    staging_account: 04286468-7051-70f0-cb1b-21d1f23a9b84
     pgp_fingerprint: CD543E8266B60901EA981EF94280984B79227AD0
     pgp_key_urls:
       - https://keys.openpgp.org/vks/v1/by-fingerprint/CD543E8266B60901EA981EF94280984B79227AD0
