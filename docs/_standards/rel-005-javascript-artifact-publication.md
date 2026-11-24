@@ -6,7 +6,7 @@ title: JavaScript Package Publication
 summary: npm publications preserve upstream package contents and bind tarballs, metadata and source evidence to the exact patched release.
 extends: REL-005
 doc-status: Pre-Draft
-standard-version: 0.0.1
+standard-version: 0.0.2
 candidate-pack: Not assigned; Wave 3 exploration
 ratified-in: Not ratified
 ratified-date: Not ratified
@@ -75,7 +75,7 @@ requirements:
 
 This initial **Pre-Draft** extends [REL-005]({{ site.baseurl }}/standards/rel-005-artifact-publication-hygiene/) for npm ecosystem packages, including TypeScript compiled to JavaScript. It is input for Francesco and team's experimental Wave 3 gates, tracked in [#98](https://github.com/finos-osera/remediation-standards/issues/98), not ratified policy. Proposed blocking severities describe eventual acceptance semantics; they do not activate production enforcement or add these checks to OSERA-SP-0.1.0. Implementation names are proposed contracts, not implemented validators.
 
-REQ-001/CHECK-001 override the parent's inventory rule. Parent requirements/checks 002–004 remain inherited: patched identity, uploader/signature/digest binding and staging, and immutable acceptance records. Requirements/checks 005–006 add source mapping and registry binding. This profile uses the parent working version 0.2.1; a future pack must freeze the exact parent and profile versions together.
+REQ-001/CHECK-001 override the parent's inventory rule. Parent requirements/checks 002–004 remain inherited: patched identity, uploader/signature/digest binding and staging, and immutable acceptance records. Requirements/checks 005–006 add source mapping and registry binding. This profile uses the parent working version 0.2.2; a future pack must freeze the exact parent and profile versions together.
 
 ## Publication inventory
 
@@ -107,3 +107,7 @@ Use [REL-003-JAVASCRIPT]({{ site.baseurl }}/standards/rel-003-javascript-patch-v
 Resolve exact entry-point test coverage (ESM/CommonJS/browser conditions), native/optional artifact coverage, generated-source evidence shape, and npm registry signature versus OSERA producer-signature integration before production use. The [PR review matrix](https://github.com/finos-osera/remediation-standards/pull/99#issuecomment-6321428330) records evidence still needed.
 
 The [npm package manifest documentation](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/) describes npm packaging fields. The stricter inventory, source mapping and acceptance rules above are OSERA proposals, not claims that npm enforces them.
+
+## Editorial revision
+
+Version 0.0.2 updates the parent working-version reference after Python profile discovery. JavaScript requirements, checks and experimental status are unchanged.

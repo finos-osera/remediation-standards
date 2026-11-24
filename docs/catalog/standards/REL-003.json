@@ -8,11 +8,12 @@
     "summary": "Patched releases use package-ecosystem-appropriate version naming profiles that optimize recipient tooling outcomes before choosing a concrete syntax.",
     "extended-by": [
       "REL-003-JAVA",
-      "REL-003-JAVASCRIPT"
+      "REL-003-JAVASCRIPT",
+      "REL-003-PYTHON"
     ],
-    "doc-status": "Ratified",
-    "standard-version": "0.1.0",
-    "candidate-pack": "OSERA-SP-0.1.0 ratified",
+    "doc-status": "Draft",
+    "standard-version": "0.1.1",
+    "candidate-pack": "Not assigned; Python profile discovery revision",
     "ratified-in": "OSERA-SP-0.1.0",
     "ratified-date": "2026-09-10",
     "fitness-role": "Required check",

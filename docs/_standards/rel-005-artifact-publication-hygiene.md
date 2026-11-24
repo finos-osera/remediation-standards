@@ -8,8 +8,9 @@ summary: Published OSERA releases preserve the ecosystem's expected package file
 extended-by:
 - REL-005-JAVA
 - REL-005-JAVASCRIPT
+- REL-005-PYTHON
 doc-status: Draft
-standard-version: 0.2.1
+standard-version: 0.2.2
 candidate-pack: OSERA-SP-0.2.0 required
 ratified-in: OSERA-SP-0.1.0
 ratified-date: '2026-09-10'
@@ -148,3 +149,7 @@ See the [release-file evidence example]({{ site.baseurl }}/examples/release-side
 ## Wave 3 profile discovery revision
 
 Version 0.2.1 adds the JavaScript profile relationship and review link; parent requirement/check semantics are unchanged. This editorial revision is unratified and changes no ratified pack membership.
+
+## Python profile discovery revision
+
+Version 0.2.2 adds [REL-005-PYTHON]({{ site.baseurl }}/standards/rel-005-python-artifact-publication/) as a Pre-Draft for [#123](https://github.com/finos-osera/remediation-standards/issues/123). Parent requirements and checks are unchanged. This editorial revision is unratified; the Python profile has no assigned pack and is not an active gate.

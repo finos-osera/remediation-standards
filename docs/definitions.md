@@ -46,3 +46,11 @@ Metadata and human-readable guidance that helps recipients understand what chang
 ## JavaScript package profile (proposed)
 
 The `-JAVASCRIPT` profiles specialize generic requirements for npm ecosystem packages, including TypeScript libraries published as JavaScript. The proposed [JavaScript remediation set]({{ site.baseurl }}/standards/rel-009-javascript-coordinated-adoption/) binds exact package identities and digests to supported consumer changes; it does not inherit Java's BOM or whole-line republication mechanism. See the [PR review brief](https://github.com/finos-osera/remediation-standards/pull/99#issuecomment-6321428330) for experimental status and evidence gaps.
+
+## Python distribution and import identity
+
+A Python distribution is the installable project identified by its normalized distribution name and version. Its import names may differ, and several distributions can contribute portions of a shared import namespace. Neither an import namespace nor a dotted distribution name is an authenticated publisher scope. The proposed [Python adoption profile]({{ site.baseurl }}/standards/rel-009-python-coordinated-adoption/) records distribution, import, source repository and approved artifact origin mappings separately.
+
+## Python package profiles proposed
+
+The `-PYTHON` Pre-Drafts propose [local-version naming]({{ site.baseurl }}/standards/rel-003-python-patch-version-naming/), [wheel and sdist publication]({{ site.baseurl }}/standards/rel-005-python-artifact-publication/) and [coordinated adoption]({{ site.baseurl }}/standards/rel-009-python-coordinated-adoption/). They have no assigned pack or active gate. Python purls identify the distribution without a publisher namespace; repository origin and individual file digests remain separate evidence. See the [research and parent audit]({{ site.baseurl }}/research/python-ecosystem/).

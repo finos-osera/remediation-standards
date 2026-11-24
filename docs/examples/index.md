@@ -11,6 +11,8 @@ The examples below illustrate the ratified OSERA-SP-0.1.0 conventions; repositor
 
 For the proposed next-pack publication rules, see [Release Files and Test Report Binding]({{ site.baseurl }}/examples/release-sidecars/), including JVM sidecars, inherited reports and gate review cases. That example is draft 0.2.0 material, separate from the 0.1.0 examples below.
 
+The [Python remediation example]({{ site.baseurl }}/examples/python-remediation/) illustrates the separate, unratified Python Pre-Drafts for #123, including distribution/import identity, constraints and gate failure cases.
+
 ## Patch repository shape
 
 ```text

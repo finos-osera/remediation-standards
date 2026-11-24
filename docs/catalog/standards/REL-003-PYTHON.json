@@ -1,0 +1,144 @@
+{
+  "schema-version": "0.1.0",
+  "standard": {
+    "schema-version": "0.1.0",
+    "sequence": 233,
+    "standard_id": "REL-003-PYTHON",
+    "title": "Python Patch Version Naming",
+    "summary": "Python patched distributions retain upstream names and use canonical local versions on a controlled index, with explicit resolver and release-identity evidence.",
+    "extends": "REL-003",
+    "doc-status": "Pre-Draft",
+    "standard-version": "0.0.2",
+    "candidate-pack": "Not assigned; issue 123 exploration",
+    "ratified-in": "Not ratified",
+    "ratified-date": "Not ratified",
+    "fitness-role": "Experimental Python profile; not an approved gate",
+    "type": "REL",
+    "category": "Release Process",
+    "applies-to": [
+      "Python distribution patch providers",
+      "Python package index operators",
+      "Enterprise Python recipients"
+    ],
+    "requirements": [
+      {
+        "id": "REL-003-PYTHON.REQ-001",
+        "override-explanation": "Specializes the parent naming outcome with PEP 440 local versions and controlled-index resolution while preserving upstream baseline and OSERA identity; SemVer build-metadata spelling is not imposed on Python.",
+        "level": "MUST",
+        "text": "Patched distributions must retain the normalized upstream distribution name and use the canonical version <baseline>+osera.<N>, where baseline is a supported canonical public final version and N is a positive unpadded integer, with supported-tool evidence that the intended remediation is selected.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-003-PYTHON.CHECK-001",
+            "override-explanation": "Replaces generic profile-selection evidence with canonical Python syntax, baseline identity, ordering and supported-tool resolution evidence; the parent recipient outcome remains required.",
+            "title": "Python version preserves the baseline and resolves to the intended remediation",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_python.version_pattern_compatibility",
+            "evidence": [
+              "baseline_version",
+              "normalized_distribution_name",
+              "artifact_version",
+              "supported_tooling_configurations",
+              "resolver_test_result",
+              "dependency_update_test_result"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-003-PYTHON.REQ-002",
+        "override-explanation": "Specializes identifier consistency for Python distribution metadata and package URLs while retaining source-tag, artifact, feed and evidence correlation.",
+        "level": "MUST",
+        "text": "Release tags, distribution filenames and metadata, Python package URLs, feeds and release evidence must identify the same canonical patched release; repository origin and file SHA-256 must distinguish its individual artifacts.",
+        "checkability": "automated",
+        "checks": [
+          {
+            "id": "REL-003-PYTHON.CHECK-002",
+            "override-explanation": "Checks Python name normalization and version identity across source, distributions and feeds; repository and digest evidence supplement rather than replace the parent consistency rule.",
+            "title": "Python release identity is consistent across source, distributions and feeds",
+            "type": "release",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_python.identifier_consistency",
+            "evidence": [
+              "release_tag",
+              "distribution_metadata",
+              "distribution_filenames",
+              "python_purl",
+              "feed_purl",
+              "repository_origins",
+              "artifact_digests"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REL-003-PYTHON.REQ-003",
+        "level": "MUST",
+        "text": "The release counter must increase without reuse for each normalized distribution and exact baseline, and each later patch must retain all prior remediation fixes on that baseline.",
+        "checkability": "partially-automated",
+        "checks": [
+          {
+            "id": "REL-003-PYTHON.CHECK-003",
+            "title": "Counter allocation is unique and remediation fixes are cumulative",
+            "type": "release-evidence",
+            "severity": "blocking",
+            "implementation": "osera-fitness.rel003_python.cumulative_release",
+            "evidence": [
+              "counter_allocation_record",
+              "previous_release_inventory",
+              "previous_remediation_evidence",
+              "current_remediation_evidence"
+            ]
+          }
+        ]
+      }
+    ],
+    "source_path": "docs/_standards/rel-003-python-patch-version-naming.md",
+    "url": "/standards/rel-003-python-patch-version-naming/",
+    "parent_relationship": {
+      "parent_standard": "REL-003",
+      "parent_version": "0.1.1",
+      "requirements": [
+        {
+          "parent_item": "REL-003.REQ-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-PYTHON.REQ-001",
+          "explanation": "Specializes the parent naming outcome with PEP 440 local versions and controlled-index resolution while preserving upstream baseline and OSERA identity; SemVer build-metadata spelling is not imposed on Python."
+        },
+        {
+          "parent_item": "REL-003.REQ-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-PYTHON.REQ-002",
+          "explanation": "Specializes identifier consistency for Python distribution metadata and package URLs while retaining source-tag, artifact, feed and evidence correlation."
+        },
+        {
+          "parent_item": null,
+          "treatment": "Added",
+          "effective_item": "REL-003-PYTHON.REQ-003",
+          "explanation": "The release counter must increase without reuse for each normalized distribution and exact baseline, and each later patch must retain all prior remediation fixes on that baseline."
+        }
+      ],
+      "checks": [
+        {
+          "parent_item": "REL-003.CHECK-001",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-PYTHON.CHECK-001",
+          "explanation": "Replaces generic profile-selection evidence with canonical Python syntax, baseline identity, ordering and supported-tool resolution evidence; the parent recipient outcome remains required."
+        },
+        {
+          "parent_item": "REL-003.CHECK-002",
+          "treatment": "Overrides",
+          "effective_item": "REL-003-PYTHON.CHECK-002",
+          "explanation": "Checks Python name normalization and version identity across source, distributions and feeds; repository and digest evidence supplement rather than replace the parent consistency rule."
+        },
+        {
+          "parent_item": null,
+          "treatment": "Added",
+          "effective_item": "REL-003-PYTHON.CHECK-003",
+          "explanation": "Counter allocation is unique and remediation fixes are cumulative"
+        }
+      ]
+    }
+  }
+}

@@ -101,7 +101,7 @@ standard:
   url: "/standards/rel-003-javascript-patch-version-naming/"
   parent_relationship:
     parent_standard: REL-003
-    parent_version: 0.1.0
+    parent_version: 0.1.1
     requirements:
     - parent_item: REL-003.REQ-001
       treatment: Overrides
