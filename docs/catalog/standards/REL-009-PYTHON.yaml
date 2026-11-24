@@ -1,0 +1,149 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 293
+  standard_id: REL-009-PYTHON
+  title: Python Coordinated Remediation Adoption
+  summary: Providers publish exact Python remediation sets and coordinated constraints
+    or project and lockfile changes, verified against installed distributions, origins
+    and digests.
+  extends: REL-009
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: Not assigned; issue 123 exploration
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Experimental Python profile; not an approved gate
+  type: REL
+  category: Release Process
+  applies-to:
+  - Python distribution patch providers
+  - Enterprise Python recipients
+  - Python remediation and dependency tooling
+  requirements:
+  - id: REL-009-PYTHON.REQ-001
+    override-explanation: Specializes scope with normalized distributions, source/import
+      mappings and Python environment/index configurations while preserving baseline
+      and consumer entry-point declarations.
+    level: MUST
+    text: Providers must declare normalized distribution names, exact baselines, source
+      repositories, import and namespace mappings, coordinated release units, consumer
+      entry points and supported interpreter, installer, platform and index configurations.
+    checkability: partially-automated
+    checks:
+    - id: REL-009-PYTHON.CHECK-001
+      override-explanation: Checks Python distribution and configuration evidence
+        for the parent supported-scope obligation without importing Java BOMs or npm
+        publisher scopes.
+      title: Python dependency scope and identity mappings are explicit
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009_python.supported_scope
+      evidence:
+      - supported_dependency_scope
+      - upstream_baselines
+      - distribution_repository_import_mapping
+      - coordinated_release_units
+      - consumer_entry_points
+      - supported_tooling_configurations
+  - id: REL-009-PYTHON.REQ-002
+    override-explanation: Specializes the immutable remediation set with Python identities,
+      approved origins and per-file hashes while preserving remediation evidence and
+      inherited change disclosure.
+    level: MUST
+    text: Each immutable versioned remediation set must identify exact normalized
+      distribution names, canonical versions, Python purls, approved index and download
+      origins, filenames, compatibility tags and SHA-256 digests, with baseline and
+      remediation evidence and changed or unchanged member disposition.
+    checkability: partially-automated
+    checks:
+    - id: REL-009-PYTHON.CHECK-002
+      override-explanation: Checks exact Python distribution files and evidence for
+        the parent immutable-set obligation; a name/version alone cannot bind an index
+        or wheel variant.
+      title: Python remediation set binds exact distributions to origins and evidence
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009_python.remediation_set
+      evidence:
+      - remediation_set_identity
+      - distribution_versions_and_purls
+      - approved_origins
+      - file_inventory_and_digests
+      - baseline_and_remediation_evidence
+  - id: REL-009-PYTHON.REQ-003
+    override-explanation: Specializes adoption through provider-maintained constraints
+      or tool-specific project, source and lockfile changes; inherited CHECK-006 verifies
+      selection and recipients need not maintain transitive overrides manually.
+    level: MUST
+    text: Providers must supply a supported procedure that updates controlling requirements,
+      constraints, source configuration and lockfiles or hashed installation inputs
+      together as applicable, verifies clean and repeatable installations, and reports
+      incompatible declarations without bypassing dependency checks.
+    checkability: partially-automated
+    checks:
+    - id: REL-009-PYTHON.CHECK-003
+      override-explanation: Checks Python adoption instructions, coordinated changes
+        and rollback inputs while retaining the parent obligation to avoid recipient-authored
+        artifact-by-artifact override maintenance.
+      title: Supported Python adoption procedure updates the controlling inputs together
+      type: release-evidence
+      severity: blocking
+      implementation: osera-fitness.rel009_python.adoption_procedure
+      evidence:
+      - adoption_procedure
+      - consumer_entry_points
+      - requirements_constraints_project_lock_diff
+      - source_configuration
+      - provider_maintained_rules
+      - rollback_inputs
+  source_path: docs/_standards/rel-009-python-coordinated-adoption.md
+  url: "/standards/rel-009-python-coordinated-adoption/"
+  parent_relationship:
+    parent_standard: REL-009
+    parent_version: 0.1.2
+    requirements:
+    - parent_item: REL-009.REQ-001
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.REQ-001
+      explanation: Specializes scope with normalized distributions, source/import
+        mappings and Python environment/index configurations while preserving baseline
+        and consumer entry-point declarations.
+    - parent_item: REL-009.REQ-002
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.REQ-002
+      explanation: Specializes the immutable remediation set with Python identities,
+        approved origins and per-file hashes while preserving remediation evidence
+        and inherited change disclosure.
+    - parent_item: REL-009.REQ-003
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.REQ-003
+      explanation: Specializes adoption through provider-maintained constraints or
+        tool-specific project, source and lockfile changes; inherited CHECK-006 verifies
+        selection and recipients need not maintain transitive overrides manually.
+    checks:
+    - parent_item: REL-009.CHECK-001
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.CHECK-001
+      explanation: Checks Python distribution and configuration evidence for the parent
+        supported-scope obligation without importing Java BOMs or npm publisher scopes.
+    - parent_item: REL-009.CHECK-002
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.CHECK-002
+      explanation: Checks exact Python distribution files and evidence for the parent
+        immutable-set obligation; a name/version alone cannot bind an index or wheel
+        variant.
+    - parent_item: REL-009.CHECK-003
+      treatment: Overrides
+      effective_item: REL-009-PYTHON.CHECK-003
+      explanation: Checks Python adoption instructions, coordinated changes and rollback
+        inputs while retaining the parent obligation to avoid recipient-authored artifact-by-artifact
+        override maintenance.
+    - parent_item: REL-009.CHECK-006
+      treatment: Inherited
+      effective_item: REL-009.CHECK-006
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-009.CHECK-007
+      treatment: Inherited
+      effective_item: REL-009.CHECK-007
+      explanation: Applies unchanged from the parent.

@@ -9,8 +9,9 @@ summary: Providers publish versioned remediation sets and supported adoption pro
 extended-by:
 - REL-009-JAVA
 - REL-009-JAVASCRIPT
+- REL-009-PYTHON
 doc-status: Draft
-standard-version: 0.1.1
+standard-version: 0.1.2
 candidate-pack: OSERA-SP-0.2.0 required
 ratified-in: Not ratified
 ratified-date: Not ratified
@@ -133,3 +134,7 @@ The implementation identifiers in this draft are proposed bindings, not a claim 
 ## Wave 3 profile discovery revision
 
 Version 0.1.1 adds the JavaScript profile relationship and review link; parent requirement/check semantics are unchanged. This editorial revision is unratified and changes no ratified pack membership.
+
+## Python profile discovery revision
+
+Version 0.1.2 adds [REL-009-PYTHON]({{ site.baseurl }}/standards/rel-009-python-coordinated-adoption/) as a Pre-Draft for [#123](https://github.com/finos-osera/remediation-standards/issues/123). Parent requirements and checks are unchanged. This editorial revision is unratified; the Python profile has no assigned pack and is not an active gate.

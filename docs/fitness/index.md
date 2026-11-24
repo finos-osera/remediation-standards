@@ -3,6 +3,12 @@ title: Fitness Function
 permalink: /fitness/
 ---
 
+Python ecosystem work for [issue #123](https://github.com/finos-osera/remediation-standards/issues/123) is collected in [Python Remediation Research and Proposal]({{ site.baseurl }}/research/python-ecosystem/). It includes measured installer behavior and proposed publication/adoption checks; these are research inputs, not active gates or additions to a ratified pack.
+
+The accompanying Pre-Drafts are [REL-003-PYTHON]({{ site.baseurl }}/standards/rel-003-python-patch-version-naming/), [REL-005-PYTHON]({{ site.baseurl }}/standards/rel-005-python-artifact-publication/) and [REL-009-PYTHON]({{ site.baseurl }}/standards/rel-009-python-coordinated-adoption/). Naming overrides parent checks 001–002 and adds 003. Publication overrides 001, inherits 002–004 and adds 005–007. Adoption overrides 001–003 and inherits 006–007. Proposed blocking severities are experimental; implementation identifiers do not assert deployed validators. See the [Python example]({{ site.baseurl }}/examples/python-remediation/) for failure cases.
+
+Python evaluation must distinguish normalized distribution name, import namespace, source repository, approved index/download origin and file digest. A name/version match does not establish producer trust. REL-004's mandatory OpenPGP registry fields remain in force wherever that version is evaluated; PEP 740/Sigstore experiments do not waive them. A keyless trust model needs a separately versioned producer-policy and registry contract. Java REL-002 bytecode checks must not be reported as Python runtime/ABI verification. Evidence-sidecar discovery and full member-package/environment trials remain prerequisites to production adoption.
+
 The v0.1.0 fitness function should measure alignment to a standard pack, not certify a provider or repository. This keeps the first gate useful for implementers without implying a mature accreditation regime before the working group has agreed one.
 
 ## Scope

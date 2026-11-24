@@ -9,8 +9,9 @@ standard:
   extended-by:
   - REL-005-JAVA
   - REL-005-JAVASCRIPT
+  - REL-005-PYTHON
   doc-status: Draft
-  standard-version: 0.2.1
+  standard-version: 0.2.2
   candidate-pack: OSERA-SP-0.2.0 required
   ratified-in: OSERA-SP-0.1.0
   ratified-date: '2026-09-10'

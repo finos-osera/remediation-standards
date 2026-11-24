@@ -6,7 +6,7 @@ title: JavaScript Coordinated Remediation Adoption
 summary: Providers supply versioned npm remediation sets and supported manifest, catalog and lockfile updates with evidence of the actual resolved dependency graph.
 extends: REL-009
 doc-status: Pre-Draft
-standard-version: 0.0.1
+standard-version: 0.0.2
 candidate-pack: Not assigned; Wave 3 exploration
 ratified-in: Not ratified
 ratified-date: Not ratified
@@ -77,7 +77,7 @@ requirements:
 
 ## Scope and status
 
-This **Pre-Draft** is the npm ecosystem counterpart of REL-009-JAVA, extending [REL-009]({{ site.baseurl }}/standards/rel-009-line-release-and-bom-propagation/) for experimental Wave 3 preparation in [#98](https://github.com/finos-osera/remediation-standards/issues/98). It does not ratify a pack or claim a complete JS gate exists. The parent working version is 0.1.1; a future pack must pin exact parent/profile versions.
+This **Pre-Draft** is the npm ecosystem counterpart of REL-009-JAVA, extending [REL-009]({{ site.baseurl }}/standards/rel-009-line-release-and-bom-propagation/) for experimental Wave 3 preparation in [#98](https://github.com/finos-osera/remediation-standards/issues/98). It does not ratify a pack or claim a complete JS gate exists. The parent working version is 0.1.2; a future pack must pin exact parent/profile versions.
 
 Requirements/checks 001–003 specialize the same-number parent items. Parent CHECK-006 (actual consumer resolution) and CHECK-007 (change and validation disclosure) remain inherited. Java's additional checks 004–005 are not inherited by a sibling profile. Proposed blocking severity remains experimental until separately approved.
 
@@ -118,3 +118,7 @@ The initial set may choose exact pins for a controlled experiment, using the nam
 | Package tests pass but no consumer integration test ran | Disclose the limitation; do not claim integration compatibility. |
 
 Decide supported manager generations, peer-conflict policy, coordinated-release boundaries, set schema and transport, update-tool integration, and evidence retention before production use. Test actual registry overlays and installations, not only SemVer comparisons. Existing REL-001, REL-005 and feed obligations remain applicable; this profile neither replaces their evidence nor imports JVM bytecode checks into JS.
+
+## Editorial revision
+
+Version 0.0.2 updates the parent working-version reference after Python profile discovery. JavaScript requirements, checks and experimental status are unchanged.

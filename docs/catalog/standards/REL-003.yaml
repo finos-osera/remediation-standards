@@ -9,9 +9,10 @@ standard:
   extended-by:
   - REL-003-JAVA
   - REL-003-JAVASCRIPT
-  doc-status: Ratified
-  standard-version: 0.1.0
-  candidate-pack: OSERA-SP-0.1.0 ratified
+  - REL-003-PYTHON
+  doc-status: Draft
+  standard-version: 0.1.1
+  candidate-pack: Not assigned; Python profile discovery revision
   ratified-in: OSERA-SP-0.1.0
   ratified-date: '2026-09-10'
   fitness-role: Required check

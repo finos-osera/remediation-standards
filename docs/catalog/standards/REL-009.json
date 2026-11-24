@@ -8,10 +8,11 @@
     "summary": "Providers publish versioned remediation sets and supported adoption procedures so consumers can resolve the intended patched dependencies without reconstructing transitive dependency overrides themselves.",
     "extended-by": [
       "REL-009-JAVA",
-      "REL-009-JAVASCRIPT"
+      "REL-009-JAVASCRIPT",
+      "REL-009-PYTHON"
     ],
     "doc-status": "Draft",
-    "standard-version": "0.1.1",
+    "standard-version": "0.1.2",
     "candidate-pack": "OSERA-SP-0.2.0 required",
     "ratified-in": "Not ratified",
     "ratified-date": "Not ratified",

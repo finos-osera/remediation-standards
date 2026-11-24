@@ -1,0 +1,184 @@
+schema-version: 0.1.0
+standard:
+  schema-version: 0.1.0
+  sequence: 253
+  standard_id: REL-005-PYTHON
+  title: Python Artifact Publication
+  summary: Python publications preserve baseline wheel and source-distribution coverage
+    and bind package contents, metadata and evidence to each promoted file.
+  extends: REL-005
+  doc-status: Pre-Draft
+  standard-version: 0.0.1
+  candidate-pack: Not assigned; issue 123 exploration
+  ratified-in: Not ratified
+  ratified-date: Not ratified
+  fitness-role: Experimental Python profile; not an approved gate
+  type: REL
+  category: Release Process
+  applies-to:
+  - Python distribution patch providers
+  - Python package index and exchange operators
+  - Enterprise Python recipients
+  requirements:
+  - id: REL-005-PYTHON.REQ-001
+    override-explanation: Specializes upstream file inventory and checksums for wheels
+      and sdists, retaining every required baseline role and compatibility variant;
+      producer declarations cannot waive missing files.
+    level: MUST
+    text: Producers must retain the exact baseline distribution inventory and publish
+      patched counterparts of every required wheel variant, sdist and companion role
+      with checksums, preserving runtime, ABI and platform coverage and public import
+      and entry-point behavior.
+    checkability: partially-automated
+    checks:
+    - id: REL-005-PYTHON.CHECK-001
+      override-explanation: Evaluates Python distribution roles and compatibility
+        coverage while retaining the parent's inventory completeness and checksum
+        obligations.
+      title: Required Python distributions and compatibility coverage are preserved
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_python.publication_inventory
+      evidence:
+      - upstream_release_inventory
+      - required_release_inventory
+      - distribution_files
+      - checksums
+      - compatibility_matrix
+      - installation_and_import_results
+  - id: REL-005-PYTHON.REQ-005
+    level: MUST
+    text: Packaged tracked sources must match the patched commit through an explicit
+      mapping; generated or transformed files must have individually recorded digests,
+      source inputs and generating commands, without disguising tracked-source mismatches.
+    checkability: partially-automated
+    checks:
+    - id: REL-005-PYTHON.CHECK-005
+      title: Packaged source and generated-file origins are accounted for
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_python.source_mapping
+      evidence:
+      - patched_tag_commit
+      - source_entry_mapping
+      - source_comparison_results
+      - generated_file_inventory
+      - build_inputs
+  - id: REL-005-PYTHON.REQ-006
+    level: MUST
+    text: Distribution archives, embedded identity metadata, index file references
+      and advertised hashes or separate core metadata must consistently describe the
+      exact evaluated and promoted bytes; unsafe or ambiguous archive entries must
+      be rejected.
+    checkability: automated
+    checks:
+    - id: REL-005-PYTHON.CHECK-006
+      title: Archives and index metadata identify the evaluated distribution bytes
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_python.archive_index_binding
+      evidence:
+      - archive_validation
+      - wheel_record_validation
+      - embedded_metadata
+      - retained_index_metadata
+      - advertised_hashes
+      - downloaded_file_digests
+      - promoted_file_digests
+  - id: REL-005-PYTHON.REQ-007
+    level: MUST
+    text: Producers must compare baseline and patched dependency, runtime, import,
+      namespace-package, entry-point and license metadata and behavior, disclose intended
+      changes and validate them for every declared supported environment without silently
+      narrowing baseline support.
+    checkability: partially-automated
+    checks:
+    - id: REL-005-PYTHON.CHECK-007
+      title: Python metadata changes and import compatibility are validated
+      type: artifact
+      severity: blocking
+      implementation: osera-fitness.rel005_python.metadata_compatibility
+      evidence:
+      - baseline_metadata
+      - patched_metadata
+      - dependency_and_marker_diff
+      - distribution_import_mapping
+      - namespace_coexistence_results
+      - runtime_abi_test_results
+      - license_inventory
+  source_path: docs/_standards/rel-005-python-artifact-publication.md
+  url: "/standards/rel-005-python-artifact-publication/"
+  parent_relationship:
+    parent_standard: REL-005
+    parent_version: 0.2.2
+    requirements:
+    - parent_item: REL-005.REQ-001
+      treatment: Overrides
+      effective_item: REL-005-PYTHON.REQ-001
+      explanation: Specializes upstream file inventory and checksums for wheels and
+        sdists, retaining every required baseline role and compatibility variant;
+        producer declarations cannot waive missing files.
+    - parent_item: REL-005.REQ-002
+      treatment: Inherited
+      effective_item: REL-005.REQ-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-003
+      treatment: Inherited
+      effective_item: REL-005.REQ-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.REQ-004
+      treatment: Inherited
+      effective_item: REL-005.REQ-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.REQ-005
+      explanation: Packaged tracked sources must match the patched commit through
+        an explicit mapping; generated or transformed files must have individually
+        recorded digests, source inputs and generating commands, without disguising
+        tracked-source mismatches.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.REQ-006
+      explanation: Distribution archives, embedded identity metadata, index file references
+        and advertised hashes or separate core metadata must consistently describe
+        the exact evaluated and promoted bytes; unsafe or ambiguous archive entries
+        must be rejected.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.REQ-007
+      explanation: Producers must compare baseline and patched dependency, runtime,
+        import, namespace-package, entry-point and license metadata and behavior,
+        disclose intended changes and validate them for every declared supported environment
+        without silently narrowing baseline support.
+    checks:
+    - parent_item: REL-005.CHECK-001
+      treatment: Overrides
+      effective_item: REL-005-PYTHON.CHECK-001
+      explanation: Evaluates Python distribution roles and compatibility coverage
+        while retaining the parent's inventory completeness and checksum obligations.
+    - parent_item: REL-005.CHECK-002
+      treatment: Inherited
+      effective_item: REL-005.CHECK-002
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-003
+      treatment: Inherited
+      effective_item: REL-005.CHECK-003
+      explanation: Applies unchanged from the parent.
+    - parent_item: REL-005.CHECK-004
+      treatment: Inherited
+      effective_item: REL-005.CHECK-004
+      explanation: Applies unchanged from the parent.
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.CHECK-005
+      explanation: Packaged source and generated-file origins are accounted for
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.CHECK-006
+      explanation: Archives and index metadata identify the evaluated distribution
+        bytes
+    - parent_item:
+      treatment: Added
+      effective_item: REL-005-PYTHON.CHECK-007
+      explanation: Python metadata changes and import compatibility are validated

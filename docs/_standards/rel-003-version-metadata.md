@@ -8,9 +8,10 @@ summary: Patched releases use package-ecosystem-appropriate version naming profi
 extended-by:
 - REL-003-JAVA
 - REL-003-JAVASCRIPT
-doc-status: Ratified
-standard-version: 0.1.0
-candidate-pack: OSERA-SP-0.1.0 ratified
+- REL-003-PYTHON
+doc-status: Draft
+standard-version: 0.1.1
+candidate-pack: Not assigned; Python profile discovery revision
 ratified-in: OSERA-SP-0.1.0
 ratified-date: '2026-09-10'
 fitness-role: Required check
@@ -83,7 +84,7 @@ Concrete profiles extend REL-003 by adding an uppercase profile suffix to the st
 
 * [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) for Java package tooling;
 * [REL-003-JAVASCRIPT]({{ site.baseurl }}/standards/rel-003-javascript-patch-version-naming/) for npm package tooling;
-* `REL-003-PYTHON` for a future Python package profile.
+* [REL-003-PYTHON]({{ site.baseurl }}/standards/rel-003-python-patch-version-naming/) for the proposed Python local-version profile (Pre-Draft; not an active gate).
 
 The suffix uses `-PROFILE` rather than `.PROFILE` because requirement and check IDs already use dots, such as `REL-003.CHECK-001`.
 
@@ -135,3 +136,7 @@ Package URLs using `+` metadata MUST encode `+` as `%2B`. Java Maven purls follo
 ## Java examples
 
 Java artifacts use the ratified [REL-003-JAVA]({{ site.baseurl }}/standards/rel-003-java-patch-version-naming/) CARE-style convention, including the recorded non-OSGi example `5.3.39.1-osera-00001`. The generic SemVer examples above apply only where no concrete ecosystem profile exists.
+
+## Python profile discovery revision
+
+Version 0.1.1 is an unratified editorial revision adding Python profile discovery. Requirement and check semantics are unchanged. The ratified OSERA-SP-0.1.0 definition remains at 0.1.0; this working Draft does not amend that pack or approve the Python profile.
